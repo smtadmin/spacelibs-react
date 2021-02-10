@@ -6,7 +6,7 @@
  * File Created: Saturday, 6th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th February 2021 3:18 pm
+ * Last Modified: Wednesday, 10th February 2021 3:51 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -65,4 +65,3 @@ it("Renders Correctly", () => {
     const element = render(<SpaceForceLayout ThemeConfig={ThemeConfig} />);
     expect(element).toMatchSnapshot();
 })
-

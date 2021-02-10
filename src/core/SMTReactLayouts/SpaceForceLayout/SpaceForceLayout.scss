@@ -15,71 +15,73 @@
 /** FONT IMPORTS **/
 
 @font-face {
-    font-family: "ProximaNovaMedium";
-    src: local("ProximaNovaMedium"), url("./Fonts/ProximaMedium/ProximaMedium.ttf") format("truetype");
+    font-family: "NunitoSans-Regular";
+    src: local("NunitoSans-Regular"), url("./Fonts/NunitoSans-Regular") format("truetype");
     font-weight: normal;
 }
 
 @font-face {
-    font-family: "ProximaNovaRegular";
-    src: local("ProximaNovaRegular"), url("./Fonts/ProximaRegular/ProximaNovaRegular.otf") format("truetype");
-    font-weight: normal;
+    font-family: "NunitoSans-Bold";
+    src: local("NunitoSans-Bold"), url("./Fonts/NunitoSans-Bold.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "ProximaNovaBold";
-    src: local("ProximaNovaBold"), url("./Fonts/ProximaBold/ProximaNovaBold.otf") format("truetype");
+    font-family: "NunitoSans-ExtraBold";
+    src: local(""), url("./Fonts/NunitoSans-ExtraBold") format("truetype");
+    font-weight: normal;
 }
+
+
 
 /** FONT PRESETS **/
 
 h1 {
-    font-family: ProximaNovaRegular;
+    font-family: NunitoSans-Regular;
     font-size: 48px;
 }
 
 h2 {
-    font-family: ProximaNovaRegular;
+    font-family: NunitoSans-Regular;
     font-size: 34px;
 }
 
 h3 {
-    font-family: ProximaNovaRegular;
+    font-family: NunitoSans-Regular;
     font-size: 24px;
 }
 
 h4 {
-    font-family: ProximaNovaMedium;
+    font-family: NunitoSans-Bold;
     font-size: 20px;
 }
 
 p {
-    font-family: ProximaNovaRegular;
+    font-family: NunitoSans-Regular;
     font-size: 16px;
 }
 
 body {
-    font-family: ProximaNovaRegular;
+    font-family: NunitoSans-Regular;
     font-size: 14px;
 }
 
 .subtitle-1 {
-    font-family: ProximaNovaRegular;
+    font-family: NunitoSans-Regular;
     font-size: 16px;
 }
 
 .subtitle-2 {
-    font-family: ProximaNovaMedium;
+    font-family: NunitoSans-Bold;
     font-size: 14px;
 }
 
 .caption {
-    font-family: ProximaNovaRegular;
+    font-family: NunitoSans-Regular;
     font-size: 12px;
 }
 
 .overline {
-    font-family: ProximaNovaBold;
+    font-family: NunitoSans-ExtraBold;
     font-size: 12px;
 }
 
