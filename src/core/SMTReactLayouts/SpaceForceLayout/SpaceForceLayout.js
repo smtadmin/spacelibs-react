@@ -1,12 +1,12 @@
 /*
- * File: PlanitLayout
+ * File: SpaceForceLayout
  * Version: 0.1.0
  * Project: react-test
  * Description: SMT Space Force Layout
  * File Created: Wednesday, 27th January 2021 1:30 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th February 2021 3:01 pm
+ * Last Modified: Wednesday, 10th February 2021 4:17 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -18,7 +18,6 @@ import Footer from './Footer/Footer';
 import BootstrapWrapper from './BootstrapWrapper/BootstrapWrapper';
 import { Container } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import MenuFactory from './MenuFactory/MenuFactory';
 import './SpaceForceLayout.scss';
 
 /**
@@ -178,7 +177,7 @@ class SpaceForceLayout extends React.Component {
 }
 
 /** Prop Validators */
-MenuFactory.propTypes = {
+SpaceForceLayout.propTypes = {
     ThemeConfig : PropTypes.object
 };
 

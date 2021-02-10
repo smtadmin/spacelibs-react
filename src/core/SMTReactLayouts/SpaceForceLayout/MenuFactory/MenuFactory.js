@@ -8,7 +8,7 @@
  * File Created: Friday, 5th February 2021 10:31 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th February 2021 3:02 pm
+ * Last Modified: Wednesday, 10th February 2021 4:15 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -29,18 +29,17 @@ class MenuFactory extends React.Component {
     constructor(props) {
         super();
         this.props = props;
-        this.buildNavLinks(props.routeData);
+        this.buildNavLinks();
     }
 
     /**
      * Builds a list of Nav.Link elements using the array of objects passed by the routeData param
-     * @param {*} routeData 
      */
-    buildNavLinks(routeData) {
+    buildNavLinks() {
 
         this.menuElements = [];
         let count = 0;
-        routeData.forEach(route => {
+        this.props.routeData.forEach(route => {
             let element = [];
             if (this.props.icon === true) {
                 element.push(<div key={"icon-" + count} className={"px-1 nav-icon nav-element-icon-" + count} >{route.icon}</div>);

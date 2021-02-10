@@ -1,5 +1,5 @@
 /*
- * File: SpaceForceTwoColumnContentLayout
+ * File: TwoColumn
  * Version: 0.1.0
  * Project: react-test
  * Description: Two column layout for Spaceforce content. It is defauled to a col-2 and col-10 that can be overriden with whatever bootstrap
@@ -7,7 +7,7 @@
  * File Created: Wednesday, 3rd February 2021 3:56 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th February 2021 9:04 am
+ * Last Modified: Wednesday, 10th February 2021 4:16 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
