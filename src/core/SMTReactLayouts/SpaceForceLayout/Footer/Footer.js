@@ -6,7 +6,7 @@
  * File Created: Friday, 29th January 2021 9:57 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th February 2021 3:01 pm
+ * Last Modified: Wednesday, 10th February 2021 4:11 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -50,6 +50,7 @@ class Footer extends React.Component {
 
 }
 
+/** Sets Default Props */
 Footer.defaultProps = {
     bootstrap: "footer"
 };

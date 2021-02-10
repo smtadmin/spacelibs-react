@@ -6,7 +6,7 @@
  * File Created: Wednesday, 3rd February 2021 1:06 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th February 2021 3:01 pm
+ * Last Modified: Wednesday, 10th February 2021 4:11 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -57,7 +57,7 @@ class BootstrapWrapper extends React.Component {
 
 }
 
-
+/** Sets Default Props */
 BootstrapWrapper.defaultProps = {
     bootstrap: ""
 };
