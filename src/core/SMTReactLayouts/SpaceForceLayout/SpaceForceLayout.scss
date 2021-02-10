@@ -1,0 +1,214 @@
+/*
+ * File: SpaceForceLayout.scss
+ * Version: 0.1.0
+ * Project: react-test
+ * Description: Space Force Layout scss file
+ * File Created: Saturday, 9th February 2021 11:01 am
+ * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
+ * -----
+ * Last Modified: Wed Feb 10 2021
+ * Modified By: Justin Jeffrey
+ * -----
+ * Copyright 2021, Silicon Mountain Technologies, Inc.
+ */
+
+/** FONT IMPORTS **/
+
+@font-face {
+    font-family: "ProximaNovaMedium";
+    src: local("ProximaNovaMedium"), url("./Fonts/ProximaMedium/ProximaMedium.ttf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "ProximaNovaRegular";
+    src: local("ProximaNovaRegular"), url("./Fonts/ProximaRegular/ProximaNovaRegular.otf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "ProximaNovaBold";
+    src: local("ProximaNovaBold"), url("./Fonts/ProximaBold/ProximaNovaBold.otf") format("truetype");
+}
+
+/** FONT PRESETS **/
+
+h1 {
+    font-family: ProximaNovaRegular;
+    font-size: 48px;
+}
+
+h2 {
+    font-family: ProximaNovaRegular;
+    font-size: 34px;
+}
+
+h3 {
+    font-family: ProximaNovaRegular;
+    font-size: 24px;
+}
+
+h4 {
+    font-family: ProximaNovaMedium;
+    font-size: 20px;
+}
+
+p {
+    font-family: ProximaNovaRegular;
+    font-size: 16px;
+}
+
+body {
+    font-family: ProximaNovaRegular;
+    font-size: 14px;
+}
+
+.subtitle-1 {
+    font-family: ProximaNovaRegular;
+    font-size: 16px;
+}
+
+.subtitle-2 {
+    font-family: ProximaNovaMedium;
+    font-size: 14px;
+}
+
+.caption {
+    font-family: ProximaNovaRegular;
+    font-size: 12px;
+}
+
+.overline {
+    font-family: ProximaNovaBold;
+    font-size: 12px;
+}
+
+/** Colors **/
+
+//Theme
+.background-theme-light {
+    background-color: #29749D;
+}
+
+.text-theme-light {
+    color: #29749D;
+}
+
+.background-theme-main {
+    background-color: #034E77;
+}
+
+.text-theme-main {
+    color: #034E77;
+}
+
+.background-theme-dark {
+    background-color: #002851;
+}
+
+.text-theme-dark {
+    color: #002851;
+}
+
+//Greys
+.background-main {
+    background-color: #FFFFFF;
+}
+
+.background-secondary {
+    background-color: #F5F5F5;
+}
+
+.background-light-grey {
+    background-color: #EEEEEE;
+}
+
+.background-medium-grey {
+    background-color: #B5B5B5;
+}
+
+.outline-medium-grey {
+    border: solid 3px #B5B5B5;
+}
+
+.background-dark-grey {
+    background-color: #616161;
+}
+
+.text-dark-grey {
+    color: #616161;
+}
+
+//Message Colors
+.background-success {
+    background-color: #4CAF50;
+}
+
+.text-success {
+    color: #4CAF50;
+}
+
+.background-error {
+    background-color: #D32F2F;
+}
+
+.text-error {
+    color: #D32F2F;
+}
+
+.background-info {
+    background-color: #2196F3;
+}
+
+.text-info {
+    color: #2196F3;
+}
+
+//Template Colors
+.orange {
+    background-color: #FF9800;
+}
+
+.green {
+    background-color: #0A8043;
+}
+
+.light-blue {
+    background-color: #039BE5;
+}
+
+.dark-blue {
+    background-color: #3F51B5;
+}
+
+.purple {
+    background-color: #8E24AA;
+}
+
+.brown {
+    background-color: #775333;
+}
+
+.red {
+    background-color: #F4511E;
+}
+
+/** THEME CSS **/@at-root
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-text:hover {
+    text-decoration: underline;
+}
+
+.mobile-menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mobile-menu > .nav-link > .nav-icon > .nav-icon-svg {
+    width: 35px !important;
+    height: 35px !important;
+}
