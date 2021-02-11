@@ -6,8 +6,8 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wed Feb 10 2021
- * Modified By: Justin Jeffrey
+ * Last Modified: Thu Feb 11 2021
+ * Modified By: justinjeffrey
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -27,10 +27,15 @@
 
 @font-face {
     font-family: "NunitoSans-ExtraBold";
-    src: local(""), url("./Fonts/NunitoSans-ExtraBold") format("truetype");
+    src: local("NunitoSans-ExtraBold"), url("./Fonts/NunitoSans-ExtraBold") format("truetype");
     font-weight: normal;
 }
 
+@font-face {
+    font-family: "NunitoSans-SemiBold";
+    src: local("NunitoSans-SemiBold"), url("./Fonts/NunitoSans-SemiBold.ttf") format("truetype");
+    font-weight: normal;
+}
 
 
 /** FONT PRESETS **/
@@ -51,7 +56,7 @@ h3 {
 }
 
 h4 {
-    font-family: NunitoSans-Bold;
+    font-family: NunitoSans-SemiBold;
     font-size: 20px;
 }
 
@@ -71,7 +76,7 @@ body {
 }
 
 .subtitle-2 {
-    font-family: NunitoSans-Bold;
+    font-family: NunitoSans-SemiBold;
     font-size: 14px;
 }
 
@@ -83,6 +88,10 @@ body {
 .overline {
     font-family: NunitoSans-ExtraBold;
     font-size: 12px;
+}
+
+.sl-button {
+    font-family: NunitoSans-ExtraBold;
 }
 
 /** Colors **/
@@ -195,7 +204,7 @@ body {
     background-color: #F4511E;
 }
 
-/** THEME CSS **/@at-root
+/** THEME CSS **/
 
 .nav-link {
     color: white !important;
