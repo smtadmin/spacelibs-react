@@ -11,6 +11,5 @@
 		"allowJs": true,
 		"skipLibCheck": true
 	},
-	"include": ["src/core/*"],
-	"exclude": ["node_modules/*"]
+	"exclude": ["node_modules/*", "docs/*", "coverage/*", "./core/*"]
 }
