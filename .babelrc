@@ -11,6 +11,9 @@
 		]
 	],
 	"plugins": [
+		["transform-rename-import", 
+			{ "original": "^(.+?)\\.scss$", "replacement": "$1.css" }
+		],
 		"@babel/plugin-transform-classes",
 		"@babel/plugin-proposal-class-properties",
 		"@babel/plugin-transform-runtime",
