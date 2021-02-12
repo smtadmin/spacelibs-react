@@ -11,7 +11,6 @@
     "test": "jest --coverage ./src/core",
     "test:watch": "jest --coverage --watchAll ./src/core",
     "test:prod": "jest",
-    "clearTypeScriptDefinitionFilesBecauseSomethingIsWrong": "cd src/ && find . -type f -name '*.d.ts' -delete",
     "buildStyles:watch": "node-sass -w src/core/ -o core/",
     "copyFonts": "cp -R './src/core/SMTReactLayouts/SpaceForceLayout/Fonts' './core/SMTReactLayouts/SpaceForceLayout'",
     "semantic-release": "semantic-release",
