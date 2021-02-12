@@ -1,4 +1,4 @@
- {
+{
 	"compilerOptions": {
 		"noImplicitAny": false,
 		"removeComments": true,
@@ -6,10 +6,18 @@
 		"sourceMap": true,
 		"declaration": true,
 		"outDir": "./",
-		"rootDir": "src/",
+		"rootDir": "./src/",
 		"target": "ES5",
 		"allowJs": true,
 		"skipLibCheck": true
 	},
-	"exclude": ["node_modules/*", "docs/*", "coverage/*", "./core/*"]
+	"include": [
+		"./src/"
+	],
+	"exclude": [
+		"node_modules/*",
+		"docs/*",
+		"coverage/*",
+		"./core/*"
+	]
 }
