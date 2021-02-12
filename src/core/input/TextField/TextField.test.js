@@ -6,7 +6,7 @@
  * File Created: Thursday, 11th February 2021 12:08 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th February 2021 2:45 pm
+ * Last Modified: Friday, 12th February 2021 10:53 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -56,7 +56,7 @@ it("Renders with value prop", ()=> {
 	const input = inputParent.children[0].children[0];
 
 	expect(element).toBeTruthy();
-	expect(input.value).toBe("Hello");
+	expect(input.value).toBe(valueProps.value);
 });
 
 /**
