@@ -8,7 +8,10 @@
 	},
 	"parserOptions": {
 		"ecmaVersion": 12,
-		"sourceType": "module"
+		"sourceType": "module",
+		"ecmaFeatures": {
+            "jsx": true
+        }
 	},
 	"ignorePatterns": [
 		"node_modules/*",
@@ -20,6 +23,7 @@
 	],
 	"extends": [
 		"plugin:jest/recommended",
+		"plugin:react/recommended",
 		"eslint:recommended"
 	],
 	"settings": {
