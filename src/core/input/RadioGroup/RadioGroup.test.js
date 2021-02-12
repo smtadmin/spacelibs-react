@@ -6,7 +6,7 @@
  * File Created: Thursday, 11th February 2021 11:51 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th February 2021 1:50 pm
+ * Last Modified: Friday, 12th February 2021 3:14 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -87,7 +87,7 @@ it("Renders without crashing", () => {
 it("Renders with single value", () => {
     render(<RadioGroup {...singleOptionNoValues} />);
     const element = screen.getAllByTestId('radio-group')[0].children[0].children[0].children[0].children[0];
-    expect(element.value).toBe("A");
+    expect(element.value).toBe(singleOptionNoValues.config.options[0].identifier);
 });
 
 /**
@@ -97,8 +97,8 @@ it("Renders with multiple values", () => {
     render(<RadioGroup {...twoOptionsOneSelectedValue} />);
     const inputElement1 = screen.getAllByTestId('radio-group')[0].children[0].children[0].children[0];
     const inputElement2 = screen.getAllByTestId('radio-group')[0].children[1].children[0].children[0];
-    expect(inputElement1.children[0].value).toBe("A");
-    expect(inputElement2.children[0].value).toBe("B");
+    expect(inputElement1.children[0].value).toBe(twoOptionsOneSelectedValue.config.options[0].identifier);
+    expect(inputElement2.children[0].value).toBe(twoOptionsOneSelectedValue.config.options[1].identifier);
 });
 
 /**

@@ -6,7 +6,7 @@
  * File Created: Wednesday, 10th February 2021 5:25 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th February 2021 4:04 pm
+ * Last Modified: Friday, 12th February 2021 3:06 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -68,7 +68,7 @@ it("Renders with value only", ()=>{
 	const input = inputParent.children[0].children[0].children[0];
 
 	expect(element).toBeTruthy();
-	expect(input.value).toBe("one");
+	expect(input.value).toBe(options[0].displayText);
 });
 
 /**
@@ -150,11 +150,14 @@ it("Doesn't crash when clicked without options | Single Select", ()=>{
 	
 	const inputParent = screen.getByTestId('select');
 	const input = inputParent.children[0].children[0].children[0];
+
+	const selection = "one";
 	
 	userEvent.click(input);
-	userEvent.type(input, "one");
+	userEvent.type(input, selection);
 
 	expect(element).toBeTruthy();
+	expect(input.value).toBe(selection);
 });
 
 /**
@@ -168,8 +171,11 @@ it("Doesn't crash when clicked without options | Multiple Select", ()=>{
 	const inputParent = screen.getByTestId('select');
 	const input = inputParent.children[0].children[0].children[0];
 	
+	const selection = "one";
+
 	userEvent.click(input);
-	userEvent.type(input, "one");
+	userEvent.type(input, selection);
 
 	expect(element).toBeTruthy();
+	expect(input.value).toBe(selection);
 });

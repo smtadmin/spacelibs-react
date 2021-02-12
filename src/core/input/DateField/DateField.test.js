@@ -6,7 +6,7 @@
  * File Created: Wednesday, 10th February 2021 4:30 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th February 2021 2:39 pm
+ * Last Modified: Friday, 12th February 2021 3:15 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -14,7 +14,6 @@
 import DateField from './index';
 import React from 'react';
 import { render } from '@testing-library/react';
-import ReactTestUtils from 'react-dom/test-utils';
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 

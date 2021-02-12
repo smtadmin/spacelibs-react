@@ -6,7 +6,7 @@
  * File Created: Thursday, 11th February 2021 9:13 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th February 2021 2:41 pm
+ * Last Modified: Friday, 12th February 2021 3:16 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -15,7 +15,6 @@
 import Tooltip from './Tooltip';
 import React from 'react';
 import { render } from '@testing-library/react';
-import ReactTestUtils from 'react-dom/test-utils';
 
 /**
  * Checks that tooltip displays when test is passed
