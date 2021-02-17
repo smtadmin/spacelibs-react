@@ -6,7 +6,7 @@
  * File Created: Wednesday, 27th January 2021 1:30 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th February 2021 4:17 pm
+ * Last Modified: Wednesday, 17th February 2021 12:13 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -31,7 +31,7 @@ class SpaceForceLayout extends React.Component {
      */
     constructor(props) {
         super();
-
+        
         /**
          * Header page locations
          *
