@@ -6,8 +6,8 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thu Feb 11 2021
- * Modified By: justinjeffrey
+ * Last Modified: Wed Feb 17 2021
+ * Modified By: Justin Jeffrey
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -16,7 +16,7 @@
 
 @font-face {
     font-family: "NunitoSans-Regular";
-    src: local("NunitoSans-Regular"), url("./Fonts/NunitoSans-Regular") format("truetype");
+    src: local("NunitoSans-Regular"), url("./Fonts/NunitoSans-Regular.ttf") format("truetype");
     font-weight: normal;
 }
 
@@ -27,7 +27,7 @@
 
 @font-face {
     font-family: "NunitoSans-ExtraBold";
-    src: local("NunitoSans-ExtraBold"), url("./Fonts/NunitoSans-ExtraBold") format("truetype");
+    src: local("NunitoSans-ExtraBold"), url("./Fonts/NunitoSans-ExtraBold.ttf") format("truetype");
     font-weight: normal;
 }
 
@@ -222,4 +222,8 @@ body {
 .mobile-menu > .nav-link > .nav-icon > .nav-icon-svg {
     width: 35px !important;
     height: 35px !important;
+}
+
+.logo {
+    height: 35px;
 }
