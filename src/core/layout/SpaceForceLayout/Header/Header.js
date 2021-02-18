@@ -6,7 +6,7 @@
  * File Created: Friday, 29th January 2021 9:57 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th February 2021 3:02 pm
+ * Last Modified: Thursday, 18th February 2021 3:39 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -35,10 +35,10 @@ class Header extends React.Component {
     render() {
         return (
             <Navbar id="header-container" className={this.props.bootstrap}>
-                <Col className="header-left col-2">
+                <Col className="header-left col-1">
                     {this.props.left}
                 </Col>
-                <Col className="header-center col-9">
+                <Col className="header-center col-10">
                     {this.props.center}
                 </Col>
                 <Col className="header-right col-1">
