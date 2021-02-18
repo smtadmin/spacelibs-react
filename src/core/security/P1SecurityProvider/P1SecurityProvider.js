@@ -6,7 +6,7 @@
  * File Created: Wednesday, 17th February 2021 11:23 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 17th February 2021 5:02 pm
+ * Last Modified: Wednesday, 17th February 2021 5:14 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -42,6 +42,7 @@ class P1SecurityProvider extends React.Component {
 		let values = {};
 		let auth = secContext.authClient;
 
+		/** Transform 3rd party context values to our context values */
 		values.isInitialized = secContext.initialized;
 		values.isLoggedIn = auth.authenticated;
 		values.clearTokens = auth.clearToken;

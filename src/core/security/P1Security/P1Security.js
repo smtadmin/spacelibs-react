@@ -2,11 +2,11 @@
  * File: /src/core/security/P1SecurityContext/P1Security.js
  * Version: 0.0.2
  * Project: @siliconmtn/spacelibs-react
- * Description: INSERT DESCRIPTION
+ * Description: This should wrap any components you want protected and to have access to security info
  * File Created: Wednesday, 17th February 2021 12:19 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 17th February 2021 5:02 pm
+ * Last Modified: Wednesday, 17th February 2021 5:13 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
