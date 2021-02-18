@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="dropdown-test dropdown nav-item"
+        class="dropdown nav-item"
       >
         <a
           aria-expanded="false"
@@ -22,7 +22,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="dropdown-test dropdown nav-item"
+      class="dropdown nav-item"
     >
       <a
         aria-expanded="false"
@@ -95,11 +95,11 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="mobile-public-menu nav"
+        class="nav"
         title="nav-menu"
       >
         <a
-          class="mobile-public-menu-nav-element-0 d-flex nav-link"
+          class="undefined-nav-element-0 d-flex nav-link"
           data-rb-event-key="/admin"
           href="/admin"
         >
@@ -119,11 +119,11 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="mobile-public-menu nav"
+      class="nav"
       title="nav-menu"
     >
       <a
-        class="mobile-public-menu-nav-element-0 d-flex nav-link"
+        class="undefined-nav-element-0 d-flex nav-link"
         data-rb-event-key="/admin"
         href="/admin"
       >
@@ -200,11 +200,11 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="mobile-public-menu nav"
+        class="nav"
         title="nav-menu"
       >
         <a
-          class="mobile-public-menu-nav-element-0 d-flex nav-link"
+          class="undefined-nav-element-0 d-flex nav-link"
           data-rb-event-key="/analytics"
           href="/analytics"
         >
@@ -224,11 +224,11 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="mobile-public-menu nav"
+      class="nav"
       title="nav-menu"
     >
       <a
-        class="mobile-public-menu-nav-element-0 d-flex nav-link"
+        class="undefined-nav-element-0 d-flex nav-link"
         data-rb-event-key="/analytics"
         href="/analytics"
       >
@@ -305,11 +305,11 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="mobile-public-menu nav"
+        class="nav"
         title="nav-menu"
       >
         <a
-          class="mobile-public-menu-nav-element-0 d-flex nav-link"
+          class="undefined-nav-element-0 d-flex nav-link"
           data-rb-event-key="/analytics"
           href="/analytics"
         >
@@ -324,11 +324,11 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="mobile-public-menu nav"
+      class="nav"
       title="nav-menu"
     >
       <a
-        class="mobile-public-menu-nav-element-0 d-flex nav-link"
+        class="undefined-nav-element-0 d-flex nav-link"
         data-rb-event-key="/analytics"
         href="/analytics"
       >
@@ -400,11 +400,11 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="mobile-public-menu nav"
+        class="nav"
         title="nav-menu"
       >
         <a
-          class="mobile-public-menu-nav-element-0 d-flex nav-link"
+          class="undefined-nav-element-0 d-flex nav-link"
           data-rb-event-key="/analytics"
           href="/analytics"
         >
@@ -419,11 +419,11 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="mobile-public-menu nav"
+      class="nav"
       title="nav-menu"
     >
       <a
-        class="mobile-public-menu-nav-element-0 d-flex nav-link"
+        class="undefined-nav-element-0 d-flex nav-link"
         data-rb-event-key="/analytics"
         href="/analytics"
       >

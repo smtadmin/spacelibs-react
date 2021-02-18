@@ -8,7 +8,7 @@
  * File Created: Friday, 5th February 2021 10:31 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th February 2021 4:15 pm
+ * Last Modified: Wednesday, 17th February 2021 12:13 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -39,23 +39,24 @@ class MenuFactory extends React.Component {
 
         this.menuElements = [];
         let count = 0;
-        this.props.routeData.forEach(route => {
+        const routeData = this.props.routeData;
+        Object.keys(routeData).forEach(function (item) {
             let element = [];
             if (this.props.icon === true) {
-                element.push(<div key={"icon-" + count} className={"px-1 nav-icon nav-element-icon-" + count} >{route.icon}</div>);
+                element.push(<div key={"icon-" + count} className={"px-1 nav-icon nav-element-icon-" + count} >{routeData[item].icon}</div>);
             }
             if (this.props.text === true) {
-                element.push(<div key={"text-" + count} className={"px-1 nav-text nav-element-text-" + count} >{route.text}</div>);
+                element.push(<div key={"text-" + count} className={"px-1 nav-text nav-element-text-" + count} >{routeData[item].text}</div>);
             }
             if (this.props.dropdown) {
-                this.menuElements.push(<NavDropdown.Item key={this.props.name + count} className={this.props.name + "-nav-element-" + count + " d-flex"} href={route.link}>{element}</NavDropdown.Item>)
-                this.content = <NavDropdown title={this.props.name} className={this.props.name}>{this.menuElements}</NavDropdown>;
+                this.menuElements.push(<NavDropdown.Item key={routeData[item].name + count} className={routeData[item].name + "-nav-element-" + count + " d-flex"} href={routeData[item].link}>{element}</NavDropdown.Item>)
+                this.content = <NavDropdown title={this.props.name} className={routeData[item].name}>{this.menuElements}</NavDropdown>;
             } else {
-                this.menuElements.push(<Nav.Link key={this.props.name + count} className={this.props.name + "-nav-element-" + count + " d-flex"} href={route.link}>{element}</Nav.Link>)
-                this.content = <Nav title="nav-menu" className={this.props.name}>{this.menuElements}</Nav>;
+                this.menuElements.push(<Nav.Link key={routeData[item].name + count} className={routeData[item].name + "-nav-element-" + count + " d-flex"} href={routeData[item].link}>{element}</Nav.Link>)
+                this.content = <Nav title="nav-menu" className={routeData[item].name}>{this.menuElements}</Nav>;
             }
             count++;
-        });
+        }, this);
 
     }
 
@@ -76,7 +77,7 @@ MenuFactory.defaultProps = {
 };
 /** Prop Validators */
 MenuFactory.propTypes = {
-    test: PropTypes.bool,
+    text: PropTypes.bool,
     icon: PropTypes.bool,
     name: PropTypes.string.isRequired,
     dropdown: PropTypes.bool

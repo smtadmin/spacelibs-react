@@ -12,7 +12,7 @@
     "test:watch": "jest --coverage --watchAll ./src/core",
     "test:prod": "jest",
     "buildStyles:watch": "node-sass -w src/core/ -o core/",
-    "copyFonts": "cp -R './src/core/SMTReactLayouts/SpaceForceLayout/Fonts' './core/SMTReactLayouts/SpaceForceLayout'",
+    "copyFonts": "cp -R './src/core/layout/SpaceForceLayout/Fonts' './core/layout/SpaceForceLayout'",
     "semantic-release": "semantic-release",
     "docs": "npx jsdoc -c docs.json -r"
   },
@@ -59,6 +59,7 @@
     "moment": "^2.29.1",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
     "typescript": "^4.1.3"
