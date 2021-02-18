@@ -6,7 +6,7 @@
  * File Created: Wednesday, 27th January 2021 1:30 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 17th February 2021 12:13 pm
+ * Last Modified: Thursday, 18th February 2021 10:23 am
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -40,7 +40,7 @@ class SpaceForceLayout extends React.Component {
         this.header = {
             // Bootstrap for the Mobile and Desktop header content wrappers
             bootstrap: {
-                mobile: "mobile-header fixed-bottom d-md-none",
+                mobile: "mobile-header fixed-bottom d-md-none background-theme-main",
                 desktop: "desktop-header d-none d-md-flex background-theme-main white"
             },
             // Bootstrap and content to be injected in to the header left
@@ -76,7 +76,7 @@ class SpaceForceLayout extends React.Component {
                     bootstrap: null
                 },
             }
-        }
+        };
 
         /**
          * Footer page locations
@@ -122,7 +122,7 @@ class SpaceForceLayout extends React.Component {
                     bootstrap: null
                 },
             }
-        }
+        };
     }
 
     /**
@@ -171,14 +171,15 @@ class SpaceForceLayout extends React.Component {
                     />
                 </Container>
             </>
-        )
+        );
     }
 
 }
 
 /** Prop Validators */
 SpaceForceLayout.propTypes = {
-    ThemeConfig : PropTypes.object
+    ThemeConfig : PropTypes.object,
+    children : PropTypes.any
 };
 
 export default SpaceForceLayout;

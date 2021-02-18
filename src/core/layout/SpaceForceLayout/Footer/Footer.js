@@ -6,7 +6,7 @@
  * File Created: Friday, 29th January 2021 9:57 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th February 2021 4:11 pm
+ * Last Modified: Thursday, 18th February 2021 10:28 am
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -23,9 +23,8 @@ class Footer extends React.Component {
 
     /**
      * Creates an instance of the footer class
-     * @param {*} props 
      */
-    constructor(props) {
+    constructor() {
         super();
     }
 
@@ -58,7 +57,8 @@ Footer.defaultProps = {
 Footer.propTypes = {
     left: PropTypes.any,
     center: PropTypes.any,
-    right: PropTypes.any
+    right: PropTypes.any,
+    bootstrap: PropTypes.string
 };
 
 export default Footer;
