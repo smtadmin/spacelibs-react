@@ -6,7 +6,7 @@
  * File Created: Friday, 29th January 2021 9:57 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th February 2021 3:39 pm
+ * Last Modified: Friday, 19th February 2021 11:17 am
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -45,7 +45,7 @@ class Header extends React.Component {
                     {this.props.right}
                 </Col>
             </Navbar>
-        )
+        );
     }
 
 }
