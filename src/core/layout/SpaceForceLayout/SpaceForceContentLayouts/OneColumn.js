@@ -6,7 +6,7 @@
  * File Created: Friday, 29th January 2021 10:15 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th February 2021 4:16 pm
+ * Last Modified: Friday, 19th February 2021 11:33 am
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -25,7 +25,6 @@ class OneColumn extends React.Component {
      */
     constructor(props) {
         super();
-        this.column = props.column;
     }
 
     /**
@@ -36,7 +35,7 @@ class OneColumn extends React.Component {
             <Container className="single-column-container">
                 <Row>
                     <Col className="col-12">
-                        {this.column}
+                        {this.props.column}
                     </Col>
                 </Row>
             </Container>
