@@ -6,8 +6,8 @@
  * File Created: Monday, 8th February 2021 3:18 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th February 2021 2:40 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Friday, 19th February 2021 5:23 pm
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
 */
@@ -125,8 +125,7 @@ RadioGroup.defaultProps = {
  */
 RadioGroup.propTypes = {
 	value: PropTypes.arrayOf(PropTypes.any),
-	hasError: PropTypes.bool,
-	subText: PropTypes.string,
+	isValid: PropTypes.bool,
 	color: PropTypes.string,
 	labelPlacement: PropTypes.oneOf(["left", "top", "right", "bottom"]),
 	variant: PropTypes.oneOf(["standard", "filled", "outlined"]),

@@ -6,7 +6,7 @@
  * File Created: Friday, 29th January 2021 10:15 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Friday, 19th February 2021 11:33 am
+ * Last Modified: Monday, 22nd February 2021 9:41 am
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -21,25 +21,28 @@ class OneColumn extends React.Component {
 
     /**
      * Creates an instance of the OneColumn class
-     * @param {*} props 
+     * @param {*} props - Props passed to this component
      */
     constructor(props) {
-        super();
+        super(props);
     }
 
     /**
      * Returns a OneColumn component
+     *
+     * @returns {*} - JSX return
+     * @memberof OneColumn
      */
     render() {
         return (
-            <Container className="single-column-container">
+            <Container className="single-column-container mb-5 mt-5">
                 <Row>
-                    <Col className="col-12">
+                    <Col className="col-12 mb-5">
                         {this.props.column}
                     </Col>
                 </Row>
             </Container>
-        )
+        );
     }
 
 }
