@@ -6,7 +6,7 @@
  * File Created: Wednesday, 27th January 2021 1:30 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 1:16 pm
+ * Last Modified: Monday, 22nd February 2021 2:12 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -22,20 +22,30 @@ import './SpaceForceLayout.scss';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: '#29749D',
-      main: '#034E77',
-      dark: '#002851',
-      contrastText: '#fff',
+    palette: {
+        background: {
+            default: "#ffffff"
+        },
+        primary: {
+            light: '#29749D',
+            main: '#034E77',
+            dark: '#002851',
+            contrastText: '#fff',
+        },
+        secondary: {
+            light: '#ff7961',
+            main: '#FFFFFF',
+            dark: '#ba000d',
+            contrastText: '#000',
+        },
     },
-    secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000',
-    },
-  },
+    overrides: {
+        MuiStepIcon: {
+            root: {
+                background: '#FFFFFF'
+            },
+        },
+    }
 });
 
 /**
@@ -49,7 +59,7 @@ class SpaceForceLayout extends React.Component {
      */
     constructor(props) {
         super();
-        
+
         /**
          * Header page locations
          *
@@ -142,7 +152,7 @@ class SpaceForceLayout extends React.Component {
             }
         };
 
-        
+
     }
 
     /**
@@ -198,8 +208,8 @@ class SpaceForceLayout extends React.Component {
 
 /** Prop Validators */
 SpaceForceLayout.propTypes = {
-    ThemeConfig : PropTypes.object,
-    children : PropTypes.any
+    ThemeConfig: PropTypes.object,
+    children: PropTypes.any
 };
 
 export default SpaceForceLayout;

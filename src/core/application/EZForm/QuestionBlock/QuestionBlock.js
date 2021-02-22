@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 10:30 am
+ * Last Modified: Monday, 22nd February 2021 2:18 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -65,14 +65,13 @@ class QuestionBlock extends React.Component {
 		
 		let component = this.getComponentMap()[this.props.dataType.code];
 		if(component === null || component === undefined){
-			console.log("RIGHT HERE ", props);
 			console.error("Type '" + this.props.dataType.code + "' was not found in 'getComponentMap()'");
 			return null;
 		}
 
 		let newReactElement = React.createElement(component, {...props}, null);
 
-		return <div className={"question-block-wrapper pt-3"}>{newReactElement}</div>;
+		return <div className={"question-block-wrapper pt-3 pl-2"}>{newReactElement}</div>;
     }
 }
 

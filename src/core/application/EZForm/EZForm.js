@@ -6,14 +6,14 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 1:12 pm
+ * Last Modified: Monday, 22nd February 2021 3:24 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import HTTPService from '@siliconmtn/spacelibs-js/core/io/BaseHTTPService/BaseHTTPService';
+import HTTPService from '../../../../spacelibs-js/core/io/BaseHTTPService';
 import EZFormPage from './EZFormPage/EZFormPage';
 
 import Button from '@material-ui/core/Button';
@@ -86,7 +86,7 @@ class EZForm extends React.Component {
         const formattedData = this.formatData(response.data);
         this.setState({
             status: EZFormStatus.inProgress,
-            currentPage: 2,
+            currentPage: 0,
             pageCount: formattedData.pages.length,
             data: formattedData,
             formErrorMessage: null
@@ -194,7 +194,7 @@ class EZForm extends React.Component {
      */
     validateQuestion(question){
         // console.log("Validating question",question);
-        // question.isRequired = true;
+        // question.isRequired = false;
         if(!question.isRequired || (Array.isArray(question.value) && question.value.length > 0)){
             return {
                 isValid: true
@@ -243,7 +243,10 @@ class EZForm extends React.Component {
             for(let y = 0; y < page.questions.length; y++){
                 const question = page.questions[x];
                 let values = this.getResponseValuesFromQuestion(question);
-                data.concat(values);
+                for(var z = 0; z < values.length; z++){
+                    data.push(values[z]);
+                }
+                
             }
         }
         console.log(data);
@@ -253,14 +256,14 @@ class EZForm extends React.Component {
         }, ()=>{
             console.log("Something went wrong");
         }, {
-                headers: {
-                    "Access-Control-Allow-Origin": "*"
-                }
-            });
-        }
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            }
+        });
+    }
 
     getResponseValuesFromQuestion(question){
-        console.log(question);
+        console.log("Question", question);
         let values = question.value;
         let output = [];
         for(let x = 0; x < values.length; x++){
@@ -298,7 +301,7 @@ class EZForm extends React.Component {
         let output = {};
         const isLastPage = this.state.currentPage === this.state.pageCount - 1;
         const backButton = 
-            <Button size="small" onClick={this.onGoBack.bind(this)} disabled={this.state.currentPage === 0}>
+            <Button size="small" color={"primary"} variant={"contained"} onClick={this.onGoBack.bind(this)} disabled={this.state.currentPage === 0}>
             <KeyboardArrowLeft />
             Back
             </Button>;
@@ -306,12 +309,12 @@ class EZForm extends React.Component {
         // const bottomElements = <div className={"form-footer"}>{backButton}{forwardButton}{submitButton}</div>;
         let forwardButton;
         if(isLastPage){
-            forwardButton = <Button size="small" onClick={this.onSubmit.bind(this)}>
+            forwardButton = <Button color={"primary"} variant={"contained"} size="small" onClick={this.onSubmit.bind(this)}>
             Submit
             <KeyboardArrowRight />
             </Button>;
         }else{
-            forwardButton = <Button size="small" onClick={this.onGoForward.bind(this)}>
+            forwardButton = <Button color={"primary"} variant={"contained"} size="small" onClick={this.onGoForward.bind(this)}>
             Next
             <KeyboardArrowRight />
             </Button>;
@@ -319,7 +322,7 @@ class EZForm extends React.Component {
         
         const bottomElements = <MobileStepper
         variant="dots"
-        steps={this.state.currentPage}
+        steps={this.state.pageCount}
         position="static"
         activeStep={this.state.currentPage}
         nextButton={forwardButton}

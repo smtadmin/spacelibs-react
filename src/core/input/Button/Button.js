@@ -6,7 +6,7 @@
  * File Created: Thursday, 11th February 2021 12:37 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 11:16 am
+ * Last Modified: Monday, 22nd February 2021 1:21 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -38,10 +38,12 @@ class Button extends React.Component {
 	 */
 	render(){
 		return <MuiButton 
+		variant={this.props.variant ? this.props.variant : "contained"}
 		data-testid={'button'}
-		className={"sl-button"}
-		color={this.props.color}
-		variant={this.props.variant}
+		className={"sl-button " + this.props.className}
+		color={this.props.color ? this.props.color : 'default'}
+		startIcon={this.props.startIcon}
+		endIcon={this.props.endIcon}
 		onClick={this.props.onClick}>
 			{this.props.children}
 		</MuiButton>;

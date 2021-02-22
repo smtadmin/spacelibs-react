@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:25 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 10:29 am
+ * Last Modified: Monday, 22nd February 2021 3:25 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -62,6 +62,7 @@ class RadioBlock extends React.Component {
                     isRequired={this.props.isRequired}
                     number={this.props.number}
                 />
+                <div className="question-input-wrapper pl-5 pt-2">
                 <FormControl fullWidth>
                     <RadioGroup
                         {...this.props}
@@ -70,6 +71,7 @@ class RadioBlock extends React.Component {
                     />
                 </FormControl>
                 <ErrorLabel isValid={this.props.isValid} errorMessage={this.props.errorMessage} />
+                </div>
             </>
         );
     }

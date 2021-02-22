@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:49 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 10:29 am
+ * Last Modified: Monday, 22nd February 2021 3:20 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -62,6 +62,7 @@ class SelectBlock extends React.Component {
                     isRequired={this.props.isRequired}
                     number={this.props.number}
                 />
+                <div className="question-input-wrapper pl-5">
                 <FormControl fullWidth>
                     <SelectField
                         {...this.props}
@@ -72,6 +73,7 @@ class SelectBlock extends React.Component {
                     isValid={this.props.isValid}
                     errorMessage={this.props.errorMessage}
                 />
+                </div>
             </>
         );
     }

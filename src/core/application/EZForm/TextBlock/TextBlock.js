@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:04 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 10:30 am
+ * Last Modified: Monday, 22nd February 2021 3:20 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -31,47 +31,49 @@ class TextBlock extends React.Component {
 	 * @returns {*} Component
 	 * @memberof TextBlock
 	 */
-	render(){
+	render() {
 		return <>
-			<QuestionLabel 
-			label={this.props.label} 
-			helperText={this.props.helperText} 
-			isRequired={this.props.isRequired} 
-			number={this.props.number}/>
-			<FormControl fullWidth>
-				<TextField 
-				type={this.props.config.textType}
-				onValueChanged={this.onValueChanged.bind(this)} 
-				value={this.props.value ? this.props.value[0] : ""} 
-				isValid={this.props.isValid}/>
-			</FormControl>
+			<QuestionLabel
+				label={this.props.label}
+				helperText={this.props.helperText}
+				isRequired={this.props.isRequired}
+				number={this.props.number} />
+			<div className="question-input-wrapper pl-5">
+				<FormControl fullWidth>
+					<TextField
+						type={this.props.config.textType}
+						onValueChanged={this.onValueChanged.bind(this)}
+						value={this.props.value ? this.props.value[0] : ""}
+						isValid={this.props.isValid} />
+				</FormControl>
 			<ErrorLabel errorMessage />
+			</div>
 		</>;
 	}
 }
 
 TextBlock.defaultProps = {
-    variant: "standard",
-    isRequired: false,
+	variant: "standard",
+	isRequired: false,
 };
 
 TextBlock.propTypes = {
-    value: PropTypes.arrayOf(PropTypes.string),
-    isValid: PropTypes.bool,
-    errorMessage: PropTypes.string,
+	value: PropTypes.arrayOf(PropTypes.string),
+	isValid: PropTypes.bool,
+	errorMessage: PropTypes.string,
 
-    identifier: PropTypes.string.isRequired,
-    variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
-    number: PropTypes.number.isRequired,
-    label: PropTypes.string.isRequired,
-    onValueChanged: PropTypes.func.isRequired,
-    placeholder: PropTypes.string,
-    helperText: PropTypes.string,
-    config: PropTypes.shape({
-        textType: PropTypes.string,
-        matchesPattern: PropTypes.string,
-    }),
-    isRequired: PropTypes.bool,
+	identifier: PropTypes.string.isRequired,
+	variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
+	number: PropTypes.number.isRequired,
+	label: PropTypes.string.isRequired,
+	onValueChanged: PropTypes.func.isRequired,
+	placeholder: PropTypes.string,
+	helperText: PropTypes.string,
+	config: PropTypes.shape({
+		textType: PropTypes.string,
+		matchesPattern: PropTypes.string,
+	}),
+	isRequired: PropTypes.bool,
 };
 
 export default TextBlock;

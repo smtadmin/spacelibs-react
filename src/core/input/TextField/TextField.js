@@ -6,7 +6,7 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 19th February 2021 2:26 pm
+ * Last Modified: Monday, 22nd February 2021 1:25 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -51,16 +51,23 @@ class TextField extends React.Component {
 	 * @memberof TextField
 	 */
 	render(){
-		return <FormControl>
+		return <FormControl fullWidth={this.props.fullWidth}>
 			<MuiTextField 
-			variant={this.props.variant}
-			data-testid={"textfield-input"}
-			type={this.props.type}
-			onChange={this.onValueChanged.bind(this)}
-			value={this.props.value}
-			error={this.props.isValid ? null : true}
+				variant={this.props.variant}
+				data-testid={"textfield-input"}
+				type={this.props.type}
+				onChange={this.onValueChanged.bind(this)}
+				value={this.props.value}
+				required={this.props.required}
+				fullWidth={this.props.fullWidth}
+				label={this.props.placeholder}
+				error={this.props.hasError ? true : null}
 			/>
-			</FormControl>;
+			{this.props.subText && this.props.subText.length > 0 &&
+				<FormHelperText>{this.props.subText}</FormHelperText>
+			}
+			</FormControl>
+
 	}
 }
 
@@ -68,7 +75,8 @@ class TextField extends React.Component {
  * Default Props
  */
 TextField.defaultProps = {
-	variant: "standard"
+	variant: "standard",
+	fullWidth : true
 };
 
 /**
@@ -79,7 +87,9 @@ TextField.propTypes = {
 	type: PropTypes.string,
 	onValueChanged: PropTypes.func.isRequired,
 	value: PropTypes.string,
-	isValid: PropTypes.bool,
+	hasError: PropTypes.bool,
+	fullWidth: PropTypes.bool,
+	subText: PropTypes.string,
 	variant: PropTypes.oneOf(["standard", "filled", "outlined"])
 };
 
