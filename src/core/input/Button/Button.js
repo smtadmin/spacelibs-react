@@ -38,8 +38,12 @@ class Button extends React.Component {
 	 */
 	render(){
 		return <MuiButton 
+		variant={this.props.variant ? this.props.variant : "contained"}
 		data-testid={'button'}
-		className={"sl-button"}
+		className={"sl-button " + this.props.className}
+		color={this.props.color ? this.props.color : 'default'}
+		startIcon={this.props.startIcon}
+		endIcon={this.props.endIcon}
 		onClick={this.props.onClick}>
 			{this.props.children}
 		</MuiButton>;
