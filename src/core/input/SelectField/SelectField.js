@@ -166,7 +166,7 @@ class SelectField extends React.Component {
     return (
       <Autocomplete
         data-testid={"select"}
-        multiple={this.props.config.isMultiple ? true : undefined}
+        multiple={this.props.config.isMultiple ? true : false}
         options={options}
         getOptionLabel={(option) => this.getOptionLabel(option)}
         value={selectedValues}

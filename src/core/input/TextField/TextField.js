@@ -51,19 +51,23 @@ class TextField extends React.Component {
 	 * @memberof TextField
 	 */
 	render(){
-		return <FormControl>
+		return <FormControl fullWidth={this.props.fullWidth}>
 			<MuiTextField 
-			variant={this.props.variant}
-			data-testid={"textfield-input"}
-			type={this.props.type}
-			onChange={this.onValueChanged.bind(this)}
-			value={this.props.value}
-			error={this.props.hasError ? true : null}
+				variant={this.props.variant}
+				data-testid={"textfield-input"}
+				type={this.props.type}
+				onChange={this.onValueChanged.bind(this)}
+				value={this.props.value}
+				required={this.props.required}
+				fullWidth={this.props.fullWidth}
+				label={this.props.placeholder}
+				error={this.props.hasError ? true : null}
 			/>
 			{this.props.subText && this.props.subText.length > 0 &&
 				<FormHelperText>{this.props.subText}</FormHelperText>
 			}
-			</FormControl>;
+			</FormControl>
+
 	}
 }
 
@@ -71,7 +75,8 @@ class TextField extends React.Component {
  * Default Props
  */
 TextField.defaultProps = {
-	variant: "standard"
+	variant: "standard",
+	fullWidth : true
 };
 
 /**
@@ -83,6 +88,7 @@ TextField.propTypes = {
 	onValueChanged: PropTypes.func.isRequired,
 	value: PropTypes.string,
 	hasError: PropTypes.bool,
+	fullWidth: PropTypes.bool,
 	subText: PropTypes.string,
 	variant: PropTypes.oneOf(["standard", "filled", "outlined"])
 };
