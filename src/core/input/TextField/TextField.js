@@ -6,8 +6,8 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th February 2021 2:48 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Friday, 19th February 2021 2:26 pm
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -58,11 +58,8 @@ class TextField extends React.Component {
 			type={this.props.type}
 			onChange={this.onValueChanged.bind(this)}
 			value={this.props.value}
-			error={this.props.hasError ? true : null}
+			error={this.props.isValid ? null : true}
 			/>
-			{this.props.subText && this.props.subText.length > 0 &&
-				<FormHelperText>{this.props.subText}</FormHelperText>
-			}
 			</FormControl>;
 	}
 }
@@ -82,8 +79,7 @@ TextField.propTypes = {
 	type: PropTypes.string,
 	onValueChanged: PropTypes.func.isRequired,
 	value: PropTypes.string,
-	hasError: PropTypes.bool,
-	subText: PropTypes.string,
+	isValid: PropTypes.bool,
 	variant: PropTypes.oneOf(["standard", "filled", "outlined"])
 };
 

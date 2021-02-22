@@ -6,8 +6,8 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thu Feb 18 2021
- * Modified By: justinjeffrey
+ * Last Modified: Mon Feb 22 2021
+ * Modified By: Justin Jeffrey
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -151,6 +151,7 @@ body {
 }
 
 //Message Colors
+
 .background-success {
     background-color: #4CAF50;
 }
@@ -164,7 +165,7 @@ body {
 }
 
 .text-error {
-    color: #D32F2F;
+    color: #D32F2F !important;
 }
 
 .background-info {

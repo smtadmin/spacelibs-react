@@ -6,8 +6,8 @@
  * File Created: Thursday, 11th February 2021 12:37 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th February 2021 3:34 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Monday, 22nd February 2021 11:16 am
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -40,6 +40,8 @@ class Button extends React.Component {
 		return <MuiButton 
 		data-testid={'button'}
 		className={"sl-button"}
+		color={this.props.color}
+		variant={this.props.variant}
 		onClick={this.props.onClick}>
 			{this.props.children}
 		</MuiButton>;
@@ -50,8 +52,8 @@ class Button extends React.Component {
  * Default props
  */
 Button.defaultProps = {
-	varaint: "contained",
-	color: "default"
+	variant: "contained",
+	color: "primary"
 };
 
 /**

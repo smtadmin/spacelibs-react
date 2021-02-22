@@ -6,7 +6,7 @@
  * File Created: Wednesday, 27th January 2021 1:30 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th February 2021 10:23 am
+ * Last Modified: Monday, 22nd February 2021 1:16 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -19,6 +19,24 @@ import BootstrapWrapper from './BootstrapWrapper/BootstrapWrapper';
 import { Container } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './SpaceForceLayout.scss';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#29749D',
+      main: '#034E77',
+      dark: '#002851',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
 
 /**
  * SMT Space Force Layout
@@ -123,6 +141,8 @@ class SpaceForceLayout extends React.Component {
                 },
             }
         };
+
+        
     }
 
     /**
@@ -131,7 +151,7 @@ class SpaceForceLayout extends React.Component {
     render() {
 
         return (
-            <>
+            <ThemeProvider theme={theme}>
                 {/* Header Sections */}
                 <Container fluid className="px-0">
                     {/* Header Desktop */}
@@ -170,7 +190,7 @@ class SpaceForceLayout extends React.Component {
                         right={<BootstrapWrapper sectionName="mobile-footer-right" bootstrap={this.footer.right.mobile.bootstrap} content={this.footer.right.mobile.content} />}
                     />
                 </Container>
-            </>
+            </ThemeProvider>
         );
     }
 
