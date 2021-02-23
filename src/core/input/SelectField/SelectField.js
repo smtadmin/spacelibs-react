@@ -6,7 +6,7 @@
  * File Created: Monday, 8th February 2021 4:50 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th February 2021 2:54 pm
+ * Last Modified: Monday, 22nd February 2021 8:30 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -155,7 +155,7 @@ class SelectField extends React.Component {
     let selectedValues;
     let value = this.props.value;
 
-    if (this.props.config.isMultiple) {
+    if (this.props.isMultiple) {
       // Is Multiple
       selectedValues = value;
     } else {
@@ -166,7 +166,7 @@ class SelectField extends React.Component {
     return (
       <Autocomplete
         data-testid={"select"}
-        multiple={this.props.config.isMultiple ? true : false}
+        multiple={this.props.isMultiple ? true : false}
         options={options}
         getOptionLabel={(option) => this.getOptionLabel(option)}
         value={selectedValues}
