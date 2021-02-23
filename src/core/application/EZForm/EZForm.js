@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 3:24 pm
+ * Last Modified: Monday, 22nd February 2021 4:21 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -21,7 +21,7 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
-const EZFormStatus = Object.freeze({"loading":1, "failedToLoad":2, "inProgress":3, "submitted": 4});
+const EZFormStatus = Object.freeze({"loading":1, "failedToLoad":2, "inProgress":3, "submitting":4, "submitted": 5});
 /**
  * React component that displays a form using the EZForm api
  */
@@ -141,11 +141,7 @@ class EZForm extends React.Component {
     onSubmit(){
         console.log("Submitting nothing");
         if(this.validate()){
-            if(this.submitData()){
-                console.log("Submission accepted!");
-            }else{
-                console.log("Submission failed");
-            }
+            this.submitData();
         }else{
             console.log("Validation Failed");
         }
@@ -165,6 +161,7 @@ class EZForm extends React.Component {
             let page = stateData.pages[x];
             for(var y = 0; y < page.questions.length; y++){
                 let question = page.questions[y];
+
                 const validateObject = this.validateQuestion(question);
                 if(!validateObject.isValid){
                     errors.push(question.number);
@@ -241,20 +238,21 @@ class EZForm extends React.Component {
         for(let x = 0; x < this.state.data.pages.length; x++){
             const page = this.state.data.pages[x];
             for(let y = 0; y < page.questions.length; y++){
-                const question = page.questions[x];
+                const question = page.questions[y];
                 let values = this.getResponseValuesFromQuestion(question);
                 for(var z = 0; z < values.length; z++){
                     data.push(values[z]);
                 }
-                
             }
         }
-        console.log(data);
 
         http.insert("http://localhost:8080/api/ezform/response/" + this.state.data.identifier, data, ()=>{
-            console.log("Something worked!");
+            console.log("Submission worked!");
+            let prevState = this.state;
+            prevState.status = EZFormStatus.submitted;
+            this.setState(prevState);
         }, ()=>{
-            console.log("Something went wrong");
+            console.log("Submission went wrong");
         }, {
             headers: {
                 "Access-Control-Allow-Origin": "*"
@@ -263,14 +261,20 @@ class EZForm extends React.Component {
     }
 
     getResponseValuesFromQuestion(question){
-        console.log("Question", question);
         let values = question.value;
         let output = [];
         for(let x = 0; x < values.length; x++){
-            output.push({
-                question: question.identifier,
-                value: values[x].displayText
-            });
+            if(question.dataType.code === "date" || question.dataType.code === "text"){
+                output.push({
+                    question: question.identifier,
+                    value: values[x]
+                });
+            }else{
+                output.push({
+                    question: question.identifier,
+                    value: values[x].displayText
+                });
+            }
         }
         console.log("Values: ", output);
         return output;
@@ -300,11 +304,18 @@ class EZForm extends React.Component {
     render() {
         let output = {};
         const isLastPage = this.state.currentPage === this.state.pageCount - 1;
-        const backButton = 
-            <Button size="small" color={"primary"} variant={"contained"} onClick={this.onGoBack.bind(this)} disabled={this.state.currentPage === 0}>
+        let backButton;
+        if(this.state.currentPage === 0){
+            backButton = <Button style={{visibility: "hidden"}} size="small" color={"primary"} variant={"contained"} onClick={this.onGoBack.bind(this)} disabled={this.state.currentPage === 0}>
             <KeyboardArrowLeft />
             Back
             </Button>;
+        }else{
+            backButton = <Button size="small" color={"primary"} variant={"contained"} onClick={this.onGoBack.bind(this)} disabled={this.state.currentPage === 0}>
+            <KeyboardArrowLeft />
+            Back
+            </Button>;
+        }
         
         // const bottomElements = <div className={"form-footer"}>{backButton}{forwardButton}{submitButton}</div>;
         let forwardButton;
@@ -343,7 +354,7 @@ class EZForm extends React.Component {
         }else{
             const definedResponse = this.state.data.submissionText;
             const response = definedResponse ? definedResponse : "Thank you for your submission.";
-            output = <div className="submission-text">{response}</div>;
+            output = <div className="submission-text text-center"><h2>{response}</h2></div>;
         }
 
         return output;
