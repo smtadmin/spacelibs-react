@@ -6,7 +6,7 @@
  * File Created: Wednesday, 23rd February 2021 08:18pm
  * Author: James Camire (james@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 23rd February 2021 11:22 am
+ * Last Modified: Tuesday, 23rd February 2021 2:20 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -39,7 +39,6 @@ class MessageBox extends React.Component {
             message : props.message,
             level : props.level
 		};
-		console.log("Cons",props);
 	}
 	
 	onClose(){
@@ -65,7 +64,6 @@ class MessageBox extends React.Component {
      * @returns {*} Modal to display as a message box
      */
     render() {
-		console.log(this);
         return (
             <div>
                 <Modal

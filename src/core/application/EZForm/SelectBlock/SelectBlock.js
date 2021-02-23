@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:49 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 8:28 pm
+ * Last Modified: Tuesday, 23rd February 2021 1:55 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -18,6 +18,7 @@ import PropTypes from "prop-types";
 import FormControl from "@material-ui/core/FormControl";
 import QuestionLabel from "../QuestionLabel";
 import SelectField from "../../../input/SelectField";
+import TextField from '../../../input/TextField';
 import ErrorLabel from "../ErrorLabel";
 
 /**
@@ -30,7 +31,21 @@ class SelectBlock extends React.Component {
      * @memberof RadioBlock
      */
     constructor(props) {
-        super(props);
+		super(props);
+		
+		let object;
+		for(var x = 0; x < this.props.value.length; x++){
+			if(this.props.value[x].identifier === this.props.altResponseId){
+				object = this.props.value[x];
+				break;
+			}
+		}
+
+		this.state = {
+			values: this.props.value,
+			showAlternateResponse: object != null,
+			alternateValue: object != null ? object.value : ""
+		};
     }
 
     /**
@@ -40,11 +55,50 @@ class SelectBlock extends React.Component {
      * @memberof SelectBlock
      */
     valueChanged(output) {
+
         if (output.constructor !== Array) {
             output = [output];
-        }
-        this.props.onValueChanged(this.props.identifier, output);
-    }
+		}
+		
+		let flag = false;
+		for(var x = 0; x < output.length; x++){
+			if(output[x].identifier === this.props.altResponseId){
+				flag = true;
+				break;
+			}
+		}
+
+		let prevState = this.state;
+		prevState.values = output;
+		prevState.showAlternateResponse = flag;
+		this.setState(prevState);
+		
+		this.submitMergedValues();
+	}
+
+	submitMergedValues(){
+		if(this.state.showAlternateResponse){
+			let values = this.state.values;
+			for(var x = 0; x < values.length; x++){
+				if(values[x].identifier === this.props.altResponseId){
+					values[x].value = this.state.alternateValue;
+					break;
+				}
+			}
+			this.props.onValueChanged(this.props.identifier, values);
+		}else{
+			this.props.onValueChanged(this.props.identifier, this.state.values);
+		}
+	}
+	
+	onAlternateValueChanged(event){
+		const value = event.target.value;
+		let prevState = this.state;
+        prevState.alternateValue = value;
+		this.setState(prevState);
+		
+		this.submitMergedValues();
+	}
 
     /**
      * Renders SelectBlock Component
@@ -53,7 +107,6 @@ class SelectBlock extends React.Component {
      * @memberof SelectBlock
      */
     render() {
-        console.log("Rendering select block ", this.props)
         return (
             <>
                 <QuestionLabel
@@ -70,6 +123,9 @@ class SelectBlock extends React.Component {
                         onValueChanged={this.valueChanged.bind(this)}
                     />
                 </FormControl>
+				{ this.state.showAlternateResponse &&
+					<TextField class={"select-alt-field"} placeholder={"Other"} value={this.state.alternateValue} onValueChanged={this.onAlternateValueChanged.bind(this)}/>
+				}
                 <ErrorLabel
                     isValid={this.props.isValid}
                     errorMessage={this.props.errorMessage}

@@ -6,8 +6,8 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 23rd February 2021 11:58 am
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Tuesday, 23rd February 2021 2:19 pm
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -112,7 +112,6 @@ class EZForm extends React.Component {
     }
 
     onFailure(response) {
-        console.log("Err:", response);
         this.setState({
             status: EZFormStatus.failedToLoad,
             currentPage: 0,
@@ -162,16 +161,14 @@ class EZForm extends React.Component {
     }
 
     onSubmit() {
-        console.log("Submitting nothing");
-        const validationResults = this.validateCurrentPage();
+		const validationResults = this.validateCurrentPage();
         if (validationResults.isValid) {
             let prevState = this.state;
             prevState.status = EZFormStatus.submitting;
             this.setState(prevState);
             this.sendData();
         } else {
-            this.prompt(validationResults.prompt);
-            console.log("Validation Failed");
+			this.prompt(validationResults.prompt);
         }
     }
 
@@ -182,7 +179,6 @@ class EZForm extends React.Component {
      * @memberof EZForm
      */
     validateCurrentPage() {
-        console.log("Validating nothing");
         let state = this.state;
         let errors = [];
         let page = state.data.pages[state.currentPage];
@@ -219,9 +215,7 @@ class EZForm extends React.Component {
      * @memberof EZForm
      */
     validateQuestion(question) {
-        // console.log("Validating question",question);
-        // question.isRequired = false;
-        let valueArray;
+		let valueArray;
 
         if (Array.isArray(question.value)) {
             valueArray = question.value;
@@ -230,50 +224,72 @@ class EZForm extends React.Component {
                 isValid: false,
                 errorMessage: "Internal error",
             };
-        }
+		}
 
-        const isEmpty = valueArray.length === 0;
-        if (question.dataType.code === "date") {
-            if (question.isRequired) {
-                if (isEmpty) {
-                    return {
-                        isValid: false,
-                        errorMessage: "This field is required",
-                    };
-                } else if (!(valueArray[0] instanceof Date && !isNaN(valueArray[0]))) {
-                    return {
-                        isValid: false,
-                        errorMessage: "",
-                    };
-                } else {
-                    return {
-                        isValid: true
-                    };
-                }
-            } else {
-                if (isEmpty || valueArray[0] instanceof Date && !isNaN(valueArray[0])) {
-                    return {
-                        isValid: true
-                    };
-                } else {
-                    return {
-                        isValid: false,
-                        errorMessage: "",
-                    };
-                }
-            }
-        } else {
-            if (!question.isRequired || !isEmpty) {
-                return {
-                    isValid: true
-                };
-            } else {
-                return {
-                    isValid: false,
-                    errorMessage: "This field is required"
-                };
-            }
-        }
+		const isEmpty = valueArray.length === 0;
+		if(question.dataType.code === "date"){
+			if(question.isRequired){
+				if(isEmpty){
+					return {
+						isValid: false,
+						errorMessage: "This field is required",
+					};
+				}else if(!(valueArray[0] instanceof Date && !isNaN(valueArray[0]))){
+					return {
+						isValid: false,
+						errorMessage: "",
+					};
+				}else{
+					return {
+						isValid: true
+					};
+				}
+			}else{
+				if(isEmpty || valueArray[0] instanceof Date && !isNaN(valueArray[0])){
+					return {
+						isValid: true
+					};
+				}else{
+					return {
+						isValid: false,
+						errorMessage: "",
+					};
+				}	
+			}
+		}else if(question.dataType.code === "select" || question.dataType.code === "multiselect"){
+			if(question.altResponseId != null){
+				for(var x = 0; x < valueArray.length; x++){
+					if(valueArray[x].identifier === question.altResponseId && (valueArray[x].value == null || valueArray[x].value === "")){
+						return {
+							isValid: false,
+							errorMessage: "Please enter a value"
+						};
+					}
+				}
+			}
+
+			if (!question.isRequired || !isEmpty) {
+				return {
+					isValid: true,
+				};
+			} else {
+				return {
+					isValid: false,
+					errorMessage: "This field is required",
+				};
+			}
+		}else{
+			if(!question.isRequired || !isEmpty){
+				return {
+					isValid: true
+				};
+			}else{
+				return {
+					isValid: false,
+					errorMessage: "This field is required"
+				};
+			}
+		}
     }
 
     getErrorMessageForErrors(errors) {
@@ -296,7 +312,6 @@ class EZForm extends React.Component {
     }
 
     sendData() {
-        console.log("Data was valid, submitting form");
 
         let http = new HTTPService({
             host: "",
@@ -323,7 +338,6 @@ class EZForm extends React.Component {
             this.state.data.identifier,
             data,
             () => {
-                console.log("Submission worked!");
                 let prevState = this.state;
                 prevState.status = EZFormStatus.submitted;
                 this.setState(prevState);
@@ -346,22 +360,30 @@ class EZForm extends React.Component {
         let values = question.value;
         let output = [];
         for (let x = 0; x < values.length; x++) {
-            if (
-                question.dataType.code === "date" ||
-                question.dataType.code === "text"
-            ) {
+            if (question.dataType.code === "date" || question.dataType.code === "text") {
                 output.push({
                     question: question.identifier,
                     value: values[x],
                 });
-            } else {
-                output.push({
+            } else if (question.dataType.code === "select" || question.dataType.code === "multiselect"){
+				if(question.altResponseId === values[x].identifier){
+					output.push({
+                        question: question.identifier,
+                        value: values[x].value,
+                    });
+				}else{
+					output.push({
+                        question: question.identifier,
+                        value: values[x].displayText,
+                    });
+				}
+            }else{
+				output.push({
                     question: question.identifier,
                     value: values[x].displayText,
                 });
-            }
+			}
         }
-        console.log("Values: ", output);
         return output;
     }
 
@@ -524,7 +546,6 @@ class EZForm extends React.Component {
             );
         }
 
-        console.log("Re rendering: ", this.state);
         return <>
             {output}
             <MessageBox key={this.state.showModal} show={this.state.showModal} message={this.state.modalMessage} title={"EZForm"} onClose={this.onCloseModal.bind(this)} />
