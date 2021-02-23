@@ -7,7 +7,7 @@
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
  * Last Modified: Tue Feb 23 2021
- * Modified By: tylergaffaney
+ * Modified By: tyler Gaffaney
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -231,6 +231,19 @@ body {
 
 .mobile-header-center-header-element-0 {
     text-align: center;
+}
+
+.question-input-wrapper {
+    max-width: 300px;
+}
+
+.MuiPaper-elevation4 {
+    box-shadow: none !important;
+    border: solid 1px #B5B5B5; 
+}
+
+.MuiButton-contained {
+    box-shadow: none !important;
 }
 
 .resubmit-button {
