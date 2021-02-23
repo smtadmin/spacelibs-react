@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 23rd February 2021 11:31 am
+ * Last Modified: Tuesday, 23rd February 2021 1:41 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -261,6 +261,28 @@ class EZForm extends React.Component {
 					};
 				}	
 			}
+		}else if(question.dataType.code === "select" || question.dataType.code === "multiselect"){
+			if(question.altResponseId != null){
+				for(var x = 0; x < valueArray.length; x++){
+					if(valueArray[x].identifier === question.altResponseId && (valueArray[x].value == null || valueArray[x].value === "")){
+						return {
+							isValid: false,
+							errorMessage: "Please enter a value"
+						};
+					}
+				}
+			}
+
+			if (!question.isRequired || !isEmpty) {
+				return {
+					isValid: true,
+				};
+			} else {
+				return {
+					isValid: false,
+					errorMessage: "This field is required",
+				};
+			}
 		}else{
 			if(!question.isRequired || !isEmpty){
 				return {
@@ -345,20 +367,29 @@ class EZForm extends React.Component {
         let values = question.value;
         let output = [];
         for (let x = 0; x < values.length; x++) {
-            if (
-                question.dataType.code === "date" ||
-                question.dataType.code === "text"
-            ) {
+            if (question.dataType.code === "date" || question.dataType.code === "text") {
                 output.push({
                     question: question.identifier,
                     value: values[x],
                 });
-            } else {
-                output.push({
+            } else if (question.dataType.code === "select" || question.dataType.code === "multiselect"){
+				if(question.altResponseId === values[x].identifier){
+					output.push({
+                        question: question.identifier,
+                        value: values[x].value,
+                    });
+				}else{
+					output.push({
+                        question: question.identifier,
+                        value: values[x].displayText,
+                    });
+				}
+            }else{
+				output.push({
                     question: question.identifier,
                     value: values[x].displayText,
                 });
-            }
+			}
         }
         console.log("Values: ", output);
         return output;
