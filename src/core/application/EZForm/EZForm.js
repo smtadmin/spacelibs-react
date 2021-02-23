@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 23rd February 2021 1:41 pm
+ * Last Modified: Tuesday, 23rd February 2021 2:08 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -111,7 +111,6 @@ class EZForm extends React.Component {
     }
 
     onFailure(response) {
-        console.log("Err:", response);
         this.setState({
             status: EZFormStatus.failedToLoad,
             currentPage: 0,
@@ -161,7 +160,6 @@ class EZForm extends React.Component {
 	}
 
     onSubmit() {
-		console.log("Submitting nothing");
 		const validationResults = this.validateCurrentPage();
         if (validationResults.isValid) {
 			let prevState = this.state;
@@ -170,7 +168,6 @@ class EZForm extends React.Component {
             this.sendData();
         } else {
 			this.prompt(validationResults.prompt);
-            console.log("Validation Failed");
         }
     }
 
@@ -181,7 +178,6 @@ class EZForm extends React.Component {
      * @memberof EZForm
      */
     validateCurrentPage() {
-        console.log("Validating nothing");
         let state = this.state;
         let errors = [];
 		let page = state.data.pages[state.currentPage];
@@ -218,8 +214,6 @@ class EZForm extends React.Component {
      * @memberof EZForm
      */
     validateQuestion(question) {
-        // console.log("Validating question",question);
-		// question.isRequired = false;
 		let valueArray;
 
 		if(Array.isArray(question.value)){
@@ -317,7 +311,6 @@ class EZForm extends React.Component {
     }
 
     sendData() {
-        console.log("Data was valid, submitting form");
 
         let http = new HTTPService({
             host: "",
@@ -344,7 +337,6 @@ class EZForm extends React.Component {
                 this.state.data.identifier,
             data,
             () => {
-                console.log("Submission worked!");
                 let prevState = this.state;
                 prevState.status = EZFormStatus.submitted;
                 this.setState(prevState);
@@ -391,7 +383,6 @@ class EZForm extends React.Component {
                 });
 			}
         }
-        console.log("Values: ", output);
         return output;
     }
 
@@ -545,7 +536,6 @@ class EZForm extends React.Component {
             );
         }
 
-		console.log("Re rendering: ", this.state);
         return <>
 		{output}
 		<MessageBox key={this.state.showModal} show={this.state.showModal} message={this.state.modalMessage} title={"EZForm"} onClose={this.onCloseModal.bind(this)}/>
