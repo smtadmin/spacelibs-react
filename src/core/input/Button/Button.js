@@ -42,8 +42,8 @@ class Button extends React.Component {
 		data-testid={'button'}
 		className={"sl-button " + this.props.className}
 		color={this.props.color ? this.props.color : 'default'}
-		startIcon={this.props.startIcon}
-		endIcon={this.props.endIcon}
+		// startIcon={this.props.startIcon ? this.props.startIcon : null}
+		// endIcon={this.props.endIcon ? this.props.endIcon : null }
 		onClick={this.props.onClick}>
 			{this.props.children}
 		</MuiButton>;
@@ -65,7 +65,10 @@ Button.propTypes = {
 	children: PropTypes.any,
 	variant: PropTypes.oneOf(["contained","outlined","text"]),
 	color: PropTypes.oneOf(["default","primary","secondary"]),
-	onClick: PropTypes.func
+	onClick: PropTypes.func,
+	// startIcon : PropTypes.Component,
+	// endIcon : PropTypes.Component,
+	className : PropTypes.string
 };
 
 export default Button;
