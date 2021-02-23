@@ -6,8 +6,8 @@
  * File Created: Friday, 19th February 2021 2:05 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Friday, 19th February 2021 5:23 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Tuesday, 23rd February 2021 9:19 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -36,8 +36,8 @@ class EZFormPage extends React.Component {
     render() {
         return(
             <div className="form-page-wrapper" >
-                <h3 className="form-header">{/** This is the page title */}</h3>
-                <h4 className="form-description">{/** this is page description */}</h4>
+                <h3 className="form-header">{this.props.title}</h3>
+                <h4 className="form-description">{this.props.description}</h4>
                 {this.props.questions &&
                     this.props.questions.map(question => (<QuestionBlock key={question.identifier} onValueChanged={this.props.onValueChanged} {...question}  />))
                 }

@@ -6,8 +6,8 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 2:18 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Monday, 22nd February 2021 8:18 pm
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -48,6 +48,7 @@ class QuestionBlock extends React.Component {
 		dictionary["radio"] = RadioBlock;
 		dictionary["check"] = CheckBlock;
 		dictionary["select"] = SelectBlock;
+		dictionary["multiselect"] = SelectBlock;
 		return dictionary;
 	}
 
@@ -81,42 +82,50 @@ QuestionBlock.defaultProps = {
 };
 
 QuestionBlock.propTypes = {
-	value: PropTypes.any,
-	isValid: PropTypes.bool,
-	errorMessage: PropTypes.string,
+    value: PropTypes.any,
+    isValid: PropTypes.bool,
+    errorMessage: PropTypes.string,
 
-	identifier: PropTypes.string.isRequired,
-	number: PropTypes.number.isRequired,
-	variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
-	label: PropTypes.string.isRequired,
-	isRequired: PropTypes.bool,
-	helperText: PropTypes.string,
-	dataType: PropTypes.shape({
-		code: PropTypes.oneOf(["date", "radio", "select", "check", "text"]).isRequired,
-		isMultiple: PropTypes.bool
-	}),
-	placeholder: PropTypes.string,
-	isAlternateResponseAllowed: PropTypes.bool,
-	// Choice details
-	maxCount: PropTypes.number, // Also used by Text
-	alternateResponseAllowed: PropTypes.bool,
-	
+    identifier: PropTypes.string.isRequired,
+    number: PropTypes.number.isRequired,
+    variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
+    label: PropTypes.string.isRequired,
+    isRequired: PropTypes.bool,
+    helperText: PropTypes.string,
+    dataType: PropTypes.shape({
+        code: PropTypes.oneOf([
+            "date",
+            "radio",
+            "select",
+            "check",
+            "text",
+            "multiselect",
+        ]).isRequired,
+        isMultiple: PropTypes.bool,
+    }),
+    placeholder: PropTypes.string,
+    isAlternateResponseAllowed: PropTypes.bool,
+    // Choice details
+    maxCount: PropTypes.number, // Also used by Text
+    alternateResponseAllowed: PropTypes.bool,
 
-	// Date
-	minDate: PropTypes.string,
-	maxDate: PropTypes.string,
+    // Date
+    minDate: PropTypes.string,
+    maxDate: PropTypes.string,
 
-	// Text
-	textType: PropTypes.string,
-	matchesPattern: PropTypes.string,
-	options: PropTypes.arrayOf(PropTypes.shape({
-		identifier: PropTypes.string.isRequired,
-		displayText: PropTypes.string.isRequired,
-		helperText: PropTypes.string,
-		isSelected: PropTypes.bool,
-		isDisabled: PropTypes.bool
-	})),
-	onValueChanged: PropTypes.func.isRequired,
+    // Text
+    textType: PropTypes.string,
+    matchesPattern: PropTypes.string,
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            identifier: PropTypes.string.isRequired,
+            displayText: PropTypes.string.isRequired,
+            helperText: PropTypes.string,
+            isSelected: PropTypes.bool,
+            isDisabled: PropTypes.bool,
+        })
+    ),
+    onValueChanged: PropTypes.func.isRequired,
 };
 
 const areEqual = (prevProps, nextProps) => {
