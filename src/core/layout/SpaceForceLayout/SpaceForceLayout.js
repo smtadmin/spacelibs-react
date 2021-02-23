@@ -6,8 +6,8 @@
  * File Created: Wednesday, 27th January 2021 1:30 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 23rd February 2021 10:00 am
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Tuesday, 23rd February 2021 11:49 am
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -44,7 +44,7 @@ const theme = createMuiTheme({
             root: {
                 background: '#FFFFFF'
             },
-        },
+        }
     }
 });
 

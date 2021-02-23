@@ -6,8 +6,8 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 23rd February 2021 11:31 am
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Tuesday, 23rd February 2021 11:58 am
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -23,6 +23,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import CheckCircle from "@material-ui/icons/CheckCircle";
 import MessageBox from "../../notification/MessageBox";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const EZFormStatus = Object.freeze({
     loading: 1,
@@ -46,9 +47,9 @@ class EZForm extends React.Component {
             status: EZFormStatus.loading,
             currentPage: 0,
             pageCount: 0,
-			formErrorMessage: null,
-			showModal: false,
-			modalMessage: ""
+            formErrorMessage: null,
+            showModal: false,
+            modalMessage: ""
         };
         this.getFormData(props.formId, props.bearerTokenCallback);
         this.formatData = this.formatData.bind(this);
@@ -132,9 +133,9 @@ class EZForm extends React.Component {
             for (var y = 0; y < page.questions.length; y++) {
                 let question = page.questions[y];
                 if (question.identifier === questionId) {
-					question.value = value;
-					question.isValid = true;
-					question.errorMessage = null;
+                    question.value = value;
+                    question.isValid = true;
+                    question.errorMessage = null;
                     breakOut = true;
                     break;
                 }
@@ -151,25 +152,25 @@ class EZForm extends React.Component {
 
     //On user submission validate the inputs
 
-	//Send for data to the back end
-	
-	prompt(message){
-		let prevState = this.state;
-		prevState.showModal = true;
-		prevState.modalMessage = message;
-		this.setState(prevState);
-	}
+    //Send for data to the back end
+
+    prompt(message) {
+        let prevState = this.state;
+        prevState.showModal = true;
+        prevState.modalMessage = message;
+        this.setState(prevState);
+    }
 
     onSubmit() {
-		console.log("Submitting nothing");
-		const validationResults = this.validateCurrentPage();
+        console.log("Submitting nothing");
+        const validationResults = this.validateCurrentPage();
         if (validationResults.isValid) {
-			let prevState = this.state;
+            let prevState = this.state;
             prevState.status = EZFormStatus.submitting;
             this.setState(prevState);
             this.sendData();
         } else {
-			this.prompt(validationResults.prompt);
+            this.prompt(validationResults.prompt);
             console.log("Validation Failed");
         }
     }
@@ -184,18 +185,18 @@ class EZForm extends React.Component {
         console.log("Validating nothing");
         let state = this.state;
         let errors = [];
-		let page = state.data.pages[state.currentPage];
-		for (var y = 0; y < page.questions.length; y++) {
-			let question = page.questions[y];
+        let page = state.data.pages[state.currentPage];
+        for (var y = 0; y < page.questions.length; y++) {
+            let question = page.questions[y];
 
-			const validateObject = this.validateQuestion(question);
-			if (!validateObject.isValid) {
-				errors.push(question.number);
-			}
+            const validateObject = this.validateQuestion(question);
+            if (!validateObject.isValid) {
+                errors.push(question.number);
+            }
 
-			question.isValid = validateObject.isValid;
-			question.errorMessage = validateObject.errorMessage;
-		}
+            question.isValid = validateObject.isValid;
+            question.errorMessage = validateObject.errorMessage;
+        }
 
         let prevState = this.state;
 
@@ -205,10 +206,10 @@ class EZForm extends React.Component {
         this.setState(prevState);
 
         return {
-			isValid: errors.length === 0,
-			prompt: formErrorMessage
+            isValid: errors.length === 0,
+            prompt: formErrorMessage
         };
-	}
+    }
 
     /**
      *Validates that the required questions were answered and all of the input values are valid
@@ -219,60 +220,60 @@ class EZForm extends React.Component {
      */
     validateQuestion(question) {
         // console.log("Validating question",question);
-		// question.isRequired = false;
-		let valueArray;
+        // question.isRequired = false;
+        let valueArray;
 
-		if(Array.isArray(question.value)){
-			valueArray = question.value;
-		}else{
-			return {
+        if (Array.isArray(question.value)) {
+            valueArray = question.value;
+        } else {
+            return {
                 isValid: false,
                 errorMessage: "Internal error",
             };
-		}
+        }
 
-		const isEmpty = valueArray.length === 0;
-		if(question.dataType.code === "date"){
-			if(question.isRequired){
-				if(isEmpty){
-					return {
-						isValid: false,
-						errorMessage: "This field is required",
-					};
-				}else if(!(valueArray[0] instanceof Date && !isNaN(valueArray[0]))){
-					return {
-						isValid: false,
-						errorMessage: "",
-					};
-				}else{
-					return {
-						isValid: true
-					};
-				}
-			}else{
-				if(isEmpty || valueArray[0] instanceof Date && !isNaN(valueArray[0])){
-					return {
-						isValid: true
-					};
-				}else{
-					return {
-						isValid: false,
-						errorMessage: "",
-					};
-				}	
-			}
-		}else{
-			if(!question.isRequired || !isEmpty){
-				return {
-					isValid: true
-				};
-			}else{
-				return {
-					isValid: false,
-					errorMessage: "This field is required"
-				};
-			}
-		}
+        const isEmpty = valueArray.length === 0;
+        if (question.dataType.code === "date") {
+            if (question.isRequired) {
+                if (isEmpty) {
+                    return {
+                        isValid: false,
+                        errorMessage: "This field is required",
+                    };
+                } else if (!(valueArray[0] instanceof Date && !isNaN(valueArray[0]))) {
+                    return {
+                        isValid: false,
+                        errorMessage: "",
+                    };
+                } else {
+                    return {
+                        isValid: true
+                    };
+                }
+            } else {
+                if (isEmpty || valueArray[0] instanceof Date && !isNaN(valueArray[0])) {
+                    return {
+                        isValid: true
+                    };
+                } else {
+                    return {
+                        isValid: false,
+                        errorMessage: "",
+                    };
+                }
+            }
+        } else {
+            if (!question.isRequired || !isEmpty) {
+                return {
+                    isValid: true
+                };
+            } else {
+                return {
+                    isValid: false,
+                    errorMessage: "This field is required"
+                };
+            }
+        }
     }
 
     getErrorMessageForErrors(errors) {
@@ -319,7 +320,7 @@ class EZForm extends React.Component {
 
         http.insert(
             "http://localhost:8080/api/ezform/response/" +
-                this.state.data.identifier,
+            this.state.data.identifier,
             data,
             () => {
                 console.log("Submission worked!");
@@ -328,8 +329,8 @@ class EZForm extends React.Component {
                 this.setState(prevState);
             },
             () => {
-				this.prompt("Submission failed, please try again.");
-				let prevState = this.state;
+                this.prompt("Submission failed, please try again.");
+                let prevState = this.state;
                 prevState.status = EZFormStatus.inProgress;
                 this.setState(prevState);
             },
@@ -366,21 +367,21 @@ class EZForm extends React.Component {
 
     onGoBack() {
         if (this.state.currentPage > 0) {
-			const validationResults = this.validateCurrentPage();
+            const validationResults = this.validateCurrentPage();
             if (validationResults.isValid) {
                 let prevState = this.state;
                 prevState.currentPage--;
                 this.setState(prevState);
             } else {
-				//Error
-				this.prompt(validationResults.prompt);
+                //Error
+                this.prompt(validationResults.prompt);
             }
         }
     }
 
     onGoForward() {
         if (this.state.currentPage < this.state.pageCount - 1) {
-			const validationResults = this.validateCurrentPage();
+            const validationResults = this.validateCurrentPage();
             if (validationResults.isValid) {
                 let prevState = this.state;
                 prevState.currentPage++;
@@ -390,14 +391,14 @@ class EZForm extends React.Component {
                 this.prompt(validationResults.prompt);
             }
         }
-	}
-	
-	onCloseModal(){
-		let prevState = this.state;
-		prevState.showModal = false;
-		prevState.modalMessage = "";
+    }
+
+    onCloseModal() {
+        let prevState = this.state;
+        prevState.showModal = false;
+        prevState.modalMessage = "";
         this.setState(prevState);
-	}
+    }
 
     /**
      *Renders the returned JSX element
@@ -470,7 +471,7 @@ class EZForm extends React.Component {
                 nextButton={forwardButton}
                 backButton={backButton}
             />
-		);
+        );
 
         if (this.state.status === EZFormStatus.loading) {
             output = <div>Loading...</div>;
@@ -487,6 +488,15 @@ class EZForm extends React.Component {
                     {bottomElements}
                 </>
             );
+        } else if (this.state.status === EZFormStatus.submitting) {
+
+            output = (
+                <div className="justify-content-center text-center">
+                    <h1>Submitting</h1>
+                    <CircularProgress color="primary" />
+                </div>
+            );
+
         } else {
             const definedResponse = this.state.data.submissionText;
             const response = definedResponse
@@ -494,7 +504,7 @@ class EZForm extends React.Component {
                 : "Thank you for your submission.";
             output = (
                 <div className='submission-text text-center'>
-                    <span style={{fontSize: "60px"}}>
+                    <span style={{ fontSize: "60px" }}>
                         <CheckCircle fontSize="inherit" htmlColor={"#4fad52"} />
                     </span>
                     <h1>Thanks!</h1>
@@ -514,11 +524,11 @@ class EZForm extends React.Component {
             );
         }
 
-		console.log("Re rendering: ", this.state);
+        console.log("Re rendering: ", this.state);
         return <>
-		{output}
-		<MessageBox key={this.state.showModal} show={this.state.showModal} message={this.state.modalMessage} title={"EZForm"} onClose={this.onCloseModal.bind(this)}/>
-		</>;
+            {output}
+            <MessageBox key={this.state.showModal} show={this.state.showModal} message={this.state.modalMessage} title={"EZForm"} onClose={this.onCloseModal.bind(this)} />
+        </>;
     }
 }
 
