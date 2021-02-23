@@ -66,7 +66,7 @@ class TextField extends React.Component {
 			{this.props.subText && this.props.subText.length > 0 &&
 				<FormHelperText>{this.props.subText}</FormHelperText>
 			}
-			</FormControl>
+			</FormControl>;
 
 	}
 }
@@ -76,7 +76,8 @@ class TextField extends React.Component {
  */
 TextField.defaultProps = {
 	variant: "standard",
-	fullWidth : true
+	fullWidth : true,
+	required : false
 };
 
 /**
@@ -89,7 +90,9 @@ TextField.propTypes = {
 	value: PropTypes.string,
 	hasError: PropTypes.bool,
 	fullWidth: PropTypes.bool,
+	required: PropTypes.bool,
 	subText: PropTypes.string,
+	placeholder: PropTypes.string,
 	variant: PropTypes.oneOf(["standard", "filled", "outlined"])
 };
 
