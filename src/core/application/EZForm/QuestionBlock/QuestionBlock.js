@@ -6,8 +6,8 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 8:18 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Thursday, 25th February 2021 4:08 pm
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -59,7 +59,6 @@ class QuestionBlock extends React.Component {
      * @memberof QuestionBlock
      */
     render() {
-		console.log("Render component " + this.props.identifier, this.props);
 		let props = this.props;
 		props.config = { options: this.props.options };
 		delete props.options;
