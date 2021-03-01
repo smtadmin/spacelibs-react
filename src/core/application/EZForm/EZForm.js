@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 23rd February 2021 2:19 pm
+ * Last Modified: Monday, 1st March 2021 8:31 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -32,10 +32,12 @@ const EZFormStatus = Object.freeze({
     submitting: 4,
     submitted: 5,
 });
+
 /**
  * React component that displays a form using the EZForm api
  */
 class EZForm extends React.Component {
+
     /**
      * Creates an instance of the EZForm class
      * @param {*} props - The props passed to the component

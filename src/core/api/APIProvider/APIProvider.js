@@ -6,7 +6,7 @@
  * File Created: Wednesday, 17th February 2021 4:53 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th February 2021 3:33 pm
+ * Last Modified: Monday, 1st March 2021 1:10 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -16,7 +16,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import APIContext from "../APIContext";
 import SecurityContext from "../../security/P1SecurityContext";
-import BaseHTTPService from "@../../../../spacelibs-js/core/io/BaseHTTPService";
+import BaseHTTPService from "@siliconmtn/spacelibs-js/core/io/BaseHTTPService";
 
 /**
  * API Context provider

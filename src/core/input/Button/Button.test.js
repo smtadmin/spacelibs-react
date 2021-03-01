@@ -6,7 +6,7 @@
  * File Created: Thursday, 11th February 2021 12:37 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 12th February 2021 3:17 pm
+ * Last Modified: Monday, 1st March 2021 9:20 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -52,4 +52,11 @@ it("Renders with text", ()=> {
 	const inputParent = screen.getByTestId('button');
 
 	expect(inputParent.textContent).toBe("Something");
+});
+
+it("Renders with props", () => {
+    const element = render(<Button className={"btn"} startIcon={<div/>} endIcon={<div/>}/>);
+    expect(element).toBeTruthy();
+
+    expect(element).toMatchSnapshot();
 });

@@ -6,15 +6,14 @@
  * File Created: Friday, 19th February 2021 10:25 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 3:19 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Friday, 26th February 2021 1:58 pm
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 
 import React from "react";
 import PropTypes from "prop-types";
-
 import FormControl from "@material-ui/core/FormControl";
 import QuestionLabel from "../QuestionLabel";
 import CheckboxGroup from "../../../input/CheckboxGroup";
