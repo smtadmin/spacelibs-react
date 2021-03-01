@@ -1,6 +1,6 @@
 {
   "name": "@siliconmtn/spacelibs-react",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Library for reusable React components",
   "main": "index.js",
   "scripts": {
@@ -52,7 +52,7 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@material-ui/pickers": "^3.2.10",
     "@react-keycloak/web": "^3.4.0",
-    "@siliconmtn/spacelibs-js": "0.0.2",
+    "@siliconmtn/spacelibs-js": "0.0.3",
     "autosuggest-highlight": "^3.1.1",
     "babel-plugin-transform-rename-import": "^2.3.0",
     "babel-plugin-transform-scss": "^1.0.9",

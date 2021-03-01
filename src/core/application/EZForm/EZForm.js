@@ -6,14 +6,14 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 23rd February 2021 2:19 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Thursday, 25th February 2021 4:09 pm
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 import React from "react";
 import PropTypes from "prop-types";
-import HTTPService from "../../../../spacelibs-js/core/io/BaseHTTPService";
+import HTTPService from "@siliconmtn/spacelibs-js/core/io/BaseHTTPService";
 import EZFormPage from "./EZFormPage/EZFormPage";
 import SMTButton from '../../input/Button';
 
@@ -24,6 +24,7 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import CheckCircle from "@material-ui/icons/CheckCircle";
 import MessageBox from "../../notification/MessageBox";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { APIContext } from '../../api';
 
 const EZFormStatus = Object.freeze({
     loading: 1,
@@ -49,10 +50,26 @@ class EZForm extends React.Component {
             pageCount: 0,
             formErrorMessage: null,
             showModal: false,
-            modalMessage: ""
+            modalMessage: "",
+            apiService: null
         };
-        this.getFormData(props.formId, props.bearerTokenCallback);
         this.formatData = this.formatData.bind(this);
+    }
+
+    componentDidMount(){
+        this.getFormData(this.props.formId);
+    }
+
+    getHTTPService(){
+        if(this.context){
+            return new HTTPService({
+                host: this.context.baseURL
+            });
+        }else{
+            return new HTTPService({
+                host: "http://something",
+            });
+        }
     }
 
     /**
@@ -62,20 +79,16 @@ class EZForm extends React.Component {
      * @param {*} bearerTokenCallback - A callback to access the bearerToken
      * @memberof EZForm
      */
-    getFormData(formId, bearerTokenCallback) {
-        //make request to the api using
-        // /ezform/SpOC_JA_tracker
-        let http = new HTTPService({
-            host: "",
-        });
+    getFormData(formId) {
 
-        const token = bearerTokenCallback();
-        const options = { headers: [{ Authorization: "Bearer " + token }] };
+        let http = this.getHTTPService();
+        let prevState = this.state;
+        prevState.apiService = http;
+        this.setState(prevState);
         http.read(
-            "http://localhost:8080/api/ezform/" + formId,
+            "/api/ezform/" + formId,
             {},
-            this.onSuccess.bind(this),
-            this.onFailure.bind(this),
+            this.onComplete.bind(this),
             {}
         );
     }
@@ -95,28 +108,23 @@ class EZForm extends React.Component {
         });
         return data;
     }
+    
+    onComplete(response){
+        let data;
+        let pageCount = 0;
+        let status = EZFormStatus.failedToLoad;
 
-    onSuccess(response) {
-        //if successful call formatData
-        console.log(response.data);
-        const formattedData = this.formatData(response.data);
-        this.setState({
-            status: EZFormStatus.inProgress,
-            currentPage: 0,
-            pageCount: formattedData.pages.length,
-            data: formattedData,
-            formErrorMessage: null,
-            showModal: false,
-            modalMessage: "",
-        });
-    }
+        if(response.isValid){
+            data = this.formatData(response.data);
+            pageCount = data.pages.length;
+            status = EZFormStatus.inProgress;
+        }
 
-    onFailure(response) {
         this.setState({
-            status: EZFormStatus.failedToLoad,
+            status: status,
             currentPage: 0,
-            pageCount: 0,
-            data: null,
+            pageCount: pageCount,
+            data: data,
             formErrorMessage: null,
             showModal: false,
             modalMessage: ""
@@ -124,7 +132,6 @@ class EZForm extends React.Component {
     }
 
     onValueChanged(questionId, value) {
-        console.log(questionId, value);
         let prevState = this.state;
         let breakOut = false;
         for (var x = 0; x < prevState.data.pages.length; x++) {
@@ -313,10 +320,6 @@ class EZForm extends React.Component {
 
     sendData() {
 
-        let http = new HTTPService({
-            host: "",
-        });
-
         const token = this.props.bearerTokenCallback();
         const options = { headers: [{ Authorization: "Bearer " + token }] };
 
@@ -333,19 +336,14 @@ class EZForm extends React.Component {
             }
         }
 
-        http.insert(
-            "http://localhost:8080/api/ezform/response/" +
+        this.state.apiService.insert(
+            "/api/ezform/response/" +
             this.state.data.identifier,
             data,
-            () => {
+            {},
+            (response) => {
                 let prevState = this.state;
-                prevState.status = EZFormStatus.submitted;
-                this.setState(prevState);
-            },
-            () => {
-                this.prompt("Submission failed, please try again.");
-                let prevState = this.state;
-                prevState.status = EZFormStatus.inProgress;
+                prevState.status = response.isValid ? status.submitted : status.inProgress;
                 this.setState(prevState);
             },
             {
@@ -552,5 +550,7 @@ class EZForm extends React.Component {
         </>;
     }
 }
+
+EZForm.contextType = APIContext;
 
 export default EZForm;
