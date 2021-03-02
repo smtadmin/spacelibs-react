@@ -6,8 +6,8 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tue Feb 23 2021
- * Modified By: tyler Gaffaney
+ * Last Modified: Tue Mar 02 2021
+ * Modified By: tylergaffaney
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -96,7 +96,7 @@ body {
 
 /** Colors **/
 
-//Theme
+/* Theme */
 .background-theme-light {
     background-color: #29749D;
 }
@@ -121,7 +121,7 @@ body {
     color: #002851;
 }
 
-//Greys
+/* Greys */
 .background-main {
     background-color: #FFFFFF;
 }
@@ -150,7 +150,7 @@ body {
     color: #616161;
 }
 
-//Message Colors
+/* Message Colors */
 
 .background-success {
     background-color: #4CAF50;
@@ -176,7 +176,7 @@ body {
     color: #2196F3;
 }
 
-//Template Colors
+/* Template Colors */
 .orange {
     background-color: #FF9800;
 }
