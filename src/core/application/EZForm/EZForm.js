@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 2nd March 2021 1:37 pm
+ * Last Modified: Tuesday, 2nd March 2021 3:21 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -102,13 +102,13 @@ class EZForm extends React.Component {
         });
         return data;
     }
-
-    onComplete(response) {
+    
+    onComplete(response){
         let data;
         let pageCount = 0;
         let status = EZFormStatus.failedToLoad;
 
-        if (response.isValid) {
+        if(response.isValid){
             data = this.formatData(response.data);
             pageCount = data.pages.length;
             status = EZFormStatus.inProgress;
