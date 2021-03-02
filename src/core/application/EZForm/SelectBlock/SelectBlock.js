@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:49 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 23rd February 2021 1:55 pm
+ * Last Modified: Tuesday, 2nd March 2021 11:37 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -115,21 +115,33 @@ class SelectBlock extends React.Component {
                     isRequired={this.props.isRequired}
                     number={this.props.number}
                 />
-                <div className="question-input-wrapper pl-5">
-                <FormControl fullWidth>
-                    <SelectField
-						{...this.props}
-						isMultiple={this.props.dataType.isMultiple}
-                        onValueChanged={this.valueChanged.bind(this)}
+                <div className='question-input-wrapper pl-5'>
+                    <FormControl fullWidth>
+                        <SelectField
+                            {...this.props}
+                            isMultiple={
+                                this.props.dataType != null &&
+                                this.props.dataType.isMultiple != null
+                                    ? this.props.dataType.isMultiple
+                                    : false
+                            }
+                            onValueChanged={this.valueChanged.bind(this)}
+                        />
+                    </FormControl>
+                    {this.state.showAlternateResponse && (
+                        <TextField
+                            class={"select-alt-field"}
+                            placeholder={"Other"}
+                            value={this.state.alternateValue}
+                            onValueChanged={this.onAlternateValueChanged.bind(
+                                this
+                            )}
+                        />
+                    )}
+                    <ErrorLabel
+                        isValid={this.props.isValid}
+                        errorMessage={this.props.errorMessage}
                     />
-                </FormControl>
-				{ this.state.showAlternateResponse &&
-					<TextField class={"select-alt-field"} placeholder={"Other"} value={this.state.alternateValue} onValueChanged={this.onAlternateValueChanged.bind(this)}/>
-				}
-                <ErrorLabel
-                    isValid={this.props.isValid}
-                    errorMessage={this.props.errorMessage}
-                />
                 </div>
             </>
         );
@@ -144,8 +156,8 @@ SelectBlock.defaultProps = {
 
 SelectBlock.propTypes = {
     value: PropTypes.arrayOf(PropTypes.any),
-    isValid: PropTypes.bool,
-    errorMessage: PropTypes.string,
+    isValid: PropTypes.bool.isRequired,
+    errorMessage: PropTypes.string.isRequired,
 
     identifier: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,

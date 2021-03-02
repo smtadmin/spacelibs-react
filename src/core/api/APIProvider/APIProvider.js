@@ -6,7 +6,7 @@
  * File Created: Wednesday, 17th February 2021 4:53 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 1st March 2021 1:10 pm
+ * Last Modified: Monday, 1st March 2021 3:56 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -24,7 +24,6 @@ import BaseHTTPService from "@siliconmtn/spacelibs-js/core/io/BaseHTTPService";
  * @class APIProvider
  */
 class APIProvider extends React.Component {
-
     /**
      * Constructs an APIProvider
      * @param {*} props - Component Props
@@ -34,115 +33,13 @@ class APIProvider extends React.Component {
 
         let config = {};
 
-        if (this.props.baseUrl) {
-            config.host = this.props.baseUrl;
-		}
+        if (this.props.baseURL) {
+            config.host = this.props.baseURL;
+        }
 
         this.state = {
             service: new BaseHTTPService(config),
-		};
-		
-		this.read.bind(this);
-		this.update.bind(this);
-		this.insert.bind(this);
-		this.delete.bind(this);
-    }
-
-	/**
-	 * This adds authentication headers if user is authenticated
-	 *
-	 * @param {*} originalOptions - options passed in request
-	 * @returns {*} newOptions with header
-	 * @memberof APIProvider
-	 */
-	getOptionsWithAuth(originalOptions = {}) {
-        const securityContext = this.context;
-        if ( securityContext && securityContext.tokens && securityContext.tokens.accessToken ) {
-            if (!originalOptions.headers) {
-                originalOptions.headers = {};
-            }
-
-            originalOptions.headers = {
-                Authorization: "Bearer " + securityContext.tokens.accessToken,
-            };
-		}
-		return originalOptions;
-    }
-
-    /**
-     * Request call for reading/selecting data.  Uses the `GET` HTTP Method.
-     * @param {string} url - Location for the request to go to.  Can be absolute and relative (if you passed in baseUrl to the constructor)
-     * @param {object} data - Data for the request
-     * @param {Function} onSuccess - Handler for successful request.  Handler is passed response object.
-     * @param {Function} onFailure - Handler for errors/failures with the request.  Handler is passed an error object.
-     * @param {object} options - Additional options for this request.
-     * @memberof BaseHTTPService
-     */
-    read(url, data, onSuccess, onFailure, options = {}) {
-        this.state.service.read(
-            url,
-            data,
-            onSuccess,
-            onFailure,
-            this.getOptionsWithAuth(options)
-        );
-    }
-
-    /**
-     * Request call for inserting data.  Uses the `POST` HTTP Method.
-     * @param {string} url - Location for the request to go to.  Can be absolute and relative (if you passed in baseUrl to the constructor)
-     * @param {object} data - Data for the request
-     * @param {Function} onSuccess - Handler for successful request.  Handler is passed response object.
-     * @param {Function} onFailure - Handler for errors/failures with the request.  Handler is passed an error object.
-     * @param {object} options - Additional options for this request.
-     * @memberof BaseHTTPService
-     */
-    insert(url, data, onSuccess, onFailure, options = {}) {
-        this.state.service.insert(
-            url,
-            data,
-            onSuccess,
-            onFailure,
-            this.getOptionsWithAuth(options)
-        );
-    }
-
-    /**
-     * Request call for deleting data.  Uses the `DELETE` HTTP Method.
-     * @param {string} url - Location for the request to go to.  Can be absolute and relative (if you passed in baseUrl to the constructor)
-     * @param {object} data - Data for the request
-     * @param {Function} onSuccess - Handler for successful request.  Handler is passed response object.
-     * @param {Function} onFailure - Handler for errors/failures with the request.  Handler is passed an error object.
-     * @param {object} options - Additional options for this request.
-     * @memberof BaseHTTPService
-     */
-    delete(url, data, onSuccess, onFailure, options = {}) {
-        this.state.service.delete(
-            url,
-            data,
-            onSuccess,
-            onFailure,
-            this.getOptionsWithAuth(options)
-        );
-    }
-
-    /**
-     * Request call for updating existing data.  Uses the `PATCH` HTTP Method.
-     * @param {string} url - Location for the request to go to.  Can be absolute and relative (if you passed in baseUrl to the constructor)
-     * @param {object} data - Data for the request
-     * @param {Function} onSuccess - Handler for successful request.  Handler is passed response object.
-     * @param {Function} onFailure - Handler for errors/failures with the request.  Handler is passed an error object.
-     * @param {object} options - Additional options for this request.
-     * @memberof BaseHTTPService
-     */
-    update(url, data, onSuccess, onFailure, options = {}) {
-        this.state.service.update(
-            url,
-            data,
-            onSuccess,
-            onFailure,
-            this.getOptionsWithAuth(options)
-        );
+        };
     }
 
     /**
@@ -155,10 +52,11 @@ class APIProvider extends React.Component {
         return (
             <APIContext.Provider
                 value={{
-                    read: this.read.bind(this),
-                    update: this.update.bind(this),
-                    insert: this.insert.bind(this),
-                    delete: this.delete.bind(this),
+                    read: this.state.service.read.bind(this.state.service),
+                    update: this.state.service.update.bind(this.state.service),
+                    insert: this.state.service.insert.bind(this.state.service),
+                    delete: this.state.service.delete.bind(this.state.service),
+                    baseURL: this.state.service.getBaseURL(),
                 }}>
                 {this.props.children}
             </APIContext.Provider>

@@ -6,8 +6,8 @@
  * File Created: Friday, 19th February 2021 10:04 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 3:20 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Tuesday, 2nd March 2021 11:39 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -26,35 +26,53 @@ import ErrorLabel from "../ErrorLabel";
 class TextBlock extends React.Component {
 
 	/**
-	 * QuestionLabel Render
+	 * On value changed handler
 	 *
-	 * @returns {*} Component
+	 * @param {*} output - Value
 	 * @memberof TextBlock
 	 */
-	render() {
-		return <>
-			<QuestionLabel
-				label={this.props.label}
-				helperText={this.props.helperText}
-				isRequired={this.props.isRequired}
-				number={this.props.number} />
-			<div className="question-input-wrapper pl-5">
-				<FormControl fullWidth>
-					<TextField
-						type={this.props.config.textType}
-						onValueChanged={this.onValueChanged.bind(this)}
-						value={this.props.value ? this.props.value[0] : ""}
-						isValid={this.props.isValid} />
-				</FormControl>
-			<ErrorLabel errorMessage />
-			</div>
-		</>;
-	}
+	onValueChanged(output) {
+        if (output.constructor !== Array) {
+            output = [output];
+        }
+        this.props.onValueChanged(this.props.identifier, output);
+    }
+
+    /**
+     * QuestionLabel Render
+     *
+     * @returns {*} Component
+     * @memberof TextBlock
+     */
+    render() {
+        return (
+            <>
+                <QuestionLabel
+                    label={this.props.label}
+                    helperText={this.props.helperText}
+                    isRequired={this.props.isRequired}
+                    number={this.props.number}
+                />
+                <div className='question-input-wrapper pl-5'>
+                    <FormControl fullWidth>
+                        <TextField
+                            type={this.props.config.textType}
+                            onValueChanged={this.onValueChanged.bind(this)}
+                            value={this.props.value ? this.props.value[0] : ""}
+                            isValid={this.props.isValid}
+                        />
+                    </FormControl>
+                    <ErrorLabel errorMessage={this.errorMessage} isValid={this.isValid} />
+                </div>
+            </>
+        );
+    }
 }
 
 TextBlock.defaultProps = {
 	variant: "standard",
 	isRequired: false,
+	config: {}
 };
 
 TextBlock.propTypes = {

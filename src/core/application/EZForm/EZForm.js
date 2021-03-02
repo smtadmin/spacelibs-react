@@ -6,16 +6,16 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Monday, 1st March 2021 8:31 am
+ * Last Modified: Tuesday, 2nd March 2021 1:37 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 import React from "react";
 import PropTypes from "prop-types";
-import HTTPService from "../../../../spacelibs-js/core/io/BaseHTTPService";
+import HTTPService from "@siliconmtn/spacelibs-js/core/io/BaseHTTPService";
 import EZFormPage from "./EZFormPage/EZFormPage";
-import SMTButton from '../../input/Button';
+import SMTButton from "../../input/Button";
 
 import Button from "@material-ui/core/Button";
 import MobileStepper from "@material-ui/core/MobileStepper";
@@ -24,6 +24,7 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import CheckCircle from "@material-ui/icons/CheckCircle";
 import MessageBox from "../../notification/MessageBox";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { APIContext } from "../../api";
 
 const EZFormStatus = Object.freeze({
     loading: 1,
@@ -32,12 +33,10 @@ const EZFormStatus = Object.freeze({
     submitting: 4,
     submitted: 5,
 });
-
 /**
  * React component that displays a form using the EZForm api
  */
 class EZForm extends React.Component {
-
     /**
      * Creates an instance of the EZForm class
      * @param {*} props - The props passed to the component
@@ -51,10 +50,26 @@ class EZForm extends React.Component {
             pageCount: 0,
             formErrorMessage: null,
             showModal: false,
-            modalMessage: ""
+            modalMessage: "",
+            apiService: null,
         };
-        this.getFormData(props.formId, props.bearerTokenCallback);
         this.formatData = this.formatData.bind(this);
+    }
+
+    componentDidMount() {
+        this.getFormData(this.props.formId);
+    }
+
+    getHTTPService() {
+        if (this.context) {
+            return new HTTPService({
+                host: this.context.baseURL,
+            });
+        } else {
+            return new HTTPService({
+                host: "http://something",
+            });
+        }
     }
 
     /**
@@ -64,22 +79,12 @@ class EZForm extends React.Component {
      * @param {*} bearerTokenCallback - A callback to access the bearerToken
      * @memberof EZForm
      */
-    getFormData(formId, bearerTokenCallback) {
-        //make request to the api using
-        // /ezform/SpOC_JA_tracker
-        let http = new HTTPService({
-            host: "",
-        });
-
-        const token = bearerTokenCallback();
-        const options = { headers: [{ Authorization: "Bearer " + token }] };
-        http.read(
-            "http://localhost:8080/api/ezform/" + formId,
-            {},
-            this.onSuccess.bind(this),
-            this.onFailure.bind(this),
-            {}
-        );
+    getFormData(formId) {
+        let http = this.getHTTPService();
+        let prevState = this.state;
+        prevState.apiService = http;
+        this.setState(prevState);
+        http.read("/api/ezform/" + formId, {}, this.onComplete.bind(this), {});
     }
 
     formatData(data) {
@@ -98,35 +103,29 @@ class EZForm extends React.Component {
         return data;
     }
 
-    onSuccess(response) {
-        //if successful call formatData
-        console.log(response.data);
-        const formattedData = this.formatData(response.data);
+    onComplete(response) {
+        let data;
+        let pageCount = 0;
+        let status = EZFormStatus.failedToLoad;
+
+        if (response.isValid) {
+            data = this.formatData(response.data);
+            pageCount = data.pages.length;
+            status = EZFormStatus.inProgress;
+        }
+
         this.setState({
-            status: EZFormStatus.inProgress,
+            status: status,
             currentPage: 0,
-            pageCount: formattedData.pages.length,
-            data: formattedData,
+            pageCount: pageCount,
+            data: data,
             formErrorMessage: null,
             showModal: false,
             modalMessage: "",
         });
     }
 
-    onFailure(response) {
-        this.setState({
-            status: EZFormStatus.failedToLoad,
-            currentPage: 0,
-            pageCount: 0,
-            data: null,
-            formErrorMessage: null,
-            showModal: false,
-            modalMessage: ""
-        });
-    }
-
     onValueChanged(questionId, value) {
-        console.log(questionId, value);
         let prevState = this.state;
         let breakOut = false;
         for (var x = 0; x < prevState.data.pages.length; x++) {
@@ -149,12 +148,6 @@ class EZForm extends React.Component {
         this.setState(prevState);
     }
 
-    //Call factory that will take in a question and return a jsx element
-
-    //On user submission validate the inputs
-
-    //Send for data to the back end
-
     prompt(message) {
         let prevState = this.state;
         prevState.showModal = true;
@@ -163,14 +156,14 @@ class EZForm extends React.Component {
     }
 
     onSubmit() {
-		const validationResults = this.validateCurrentPage();
+        const validationResults = this.validateCurrentPage();
         if (validationResults.isValid) {
             let prevState = this.state;
             prevState.status = EZFormStatus.submitting;
             this.setState(prevState);
             this.sendData();
         } else {
-			this.prompt(validationResults.prompt);
+            this.prompt(validationResults.prompt);
         }
     }
 
@@ -205,7 +198,7 @@ class EZForm extends React.Component {
 
         return {
             isValid: errors.length === 0,
-            prompt: formErrorMessage
+            prompt: formErrorMessage,
         };
     }
 
@@ -217,7 +210,7 @@ class EZForm extends React.Component {
      * @memberof EZForm
      */
     validateQuestion(question) {
-		let valueArray;
+        let valueArray;
 
         if (Array.isArray(question.value)) {
             valueArray = question.value;
@@ -226,72 +219,84 @@ class EZForm extends React.Component {
                 isValid: false,
                 errorMessage: "Internal error",
             };
-		}
+        }
 
-		const isEmpty = valueArray.length === 0;
-		if(question.dataType.code === "date"){
-			if(question.isRequired){
-				if(isEmpty){
-					return {
-						isValid: false,
-						errorMessage: "This field is required",
-					};
-				}else if(!(valueArray[0] instanceof Date && !isNaN(valueArray[0]))){
-					return {
-						isValid: false,
-						errorMessage: "",
-					};
-				}else{
-					return {
-						isValid: true
-					};
-				}
-			}else{
-				if(isEmpty || valueArray[0] instanceof Date && !isNaN(valueArray[0])){
-					return {
-						isValid: true
-					};
-				}else{
-					return {
-						isValid: false,
-						errorMessage: "",
-					};
-				}	
-			}
-		}else if(question.dataType.code === "select" || question.dataType.code === "multiselect"){
-			if(question.altResponseId != null){
-				for(var x = 0; x < valueArray.length; x++){
-					if(valueArray[x].identifier === question.altResponseId && (valueArray[x].value == null || valueArray[x].value === "")){
-						return {
-							isValid: false,
-							errorMessage: "Please enter a value"
-						};
-					}
-				}
-			}
+        const isEmpty = valueArray.length === 0;
+        if (question.dataType.code === "date") {
+            if (question.isRequired) {
+                if (isEmpty) {
+                    return {
+                        isValid: false,
+                        errorMessage: "This field is required",
+                    };
+                } else if (
+                    !(valueArray[0] instanceof Date && !isNaN(valueArray[0]))
+                ) {
+                    return {
+                        isValid: false,
+                        errorMessage: "",
+                    };
+                } else {
+                    return {
+                        isValid: true,
+                    };
+                }
+            } else {
+                if (
+                    isEmpty ||
+                    (valueArray[0] instanceof Date && !isNaN(valueArray[0]))
+                ) {
+                    return {
+                        isValid: true,
+                    };
+                } else {
+                    return {
+                        isValid: false,
+                        errorMessage: "",
+                    };
+                }
+            }
+        } else if (
+            question.dataType.code === "select" ||
+            question.dataType.code === "multiselect"
+        ) {
+            if (question.altResponseId != null) {
+                for (var x = 0; x < valueArray.length; x++) {
+                    if (
+                        valueArray[x].identifier === question.altResponseId &&
+                        (valueArray[x].value == null ||
+                            valueArray[x].value === "")
+                    ) {
+                        return {
+                            isValid: false,
+                            errorMessage: "Please enter a value",
+                        };
+                    }
+                }
+            }
 
-			if (!question.isRequired || !isEmpty) {
-				return {
-					isValid: true,
-				};
-			} else {
-				return {
-					isValid: false,
-					errorMessage: "This field is required",
-				};
-			}
-		}else{
-			if(!question.isRequired || !isEmpty){
-				return {
-					isValid: true
-				};
-			}else{
-				return {
-					isValid: false,
-					errorMessage: "This field is required"
-				};
-			}
-		}
+            if (!question.isRequired || !isEmpty) {
+                return {
+                    isValid: true,
+                };
+            } else {
+                return {
+                    isValid: false,
+                    errorMessage: "This field is required",
+                };
+            }
+        } else {
+            if (!question.isRequired || !isEmpty) {
+                return {
+                    isValid: true,
+                };
+            } else {
+                return {
+                    isValid: false,
+                    errorMessage: "This field is required",
+                };
+            }
+        }
     }
 
     getErrorMessageForErrors(errors) {
@@ -314,14 +319,6 @@ class EZForm extends React.Component {
     }
 
     sendData() {
-
-        let http = new HTTPService({
-            host: "",
-        });
-
-        const token = this.props.bearerTokenCallback();
-        const options = { headers: [{ Authorization: "Bearer " + token }] };
-
         let data = [];
 
         for (let x = 0; x < this.state.data.pages.length; x++) {
@@ -335,19 +332,15 @@ class EZForm extends React.Component {
             }
         }
 
-        http.insert(
-            "http://localhost:8080/api/ezform/response/" +
-            this.state.data.identifier,
+        this.state.apiService.insert(
+            "/api/ezform/response/" + this.state.data.identifier,
             data,
-            () => {
+            {},
+            (response) => {
                 let prevState = this.state;
-                prevState.status = EZFormStatus.submitted;
-                this.setState(prevState);
-            },
-            () => {
-                this.prompt("Submission failed, please try again.");
-                let prevState = this.state;
-                prevState.status = EZFormStatus.inProgress;
+                prevState.status = response.isValid
+                    ? status.submitted
+                    : status.inProgress;
                 this.setState(prevState);
             },
             {
@@ -362,29 +355,35 @@ class EZForm extends React.Component {
         let values = question.value;
         let output = [];
         for (let x = 0; x < values.length; x++) {
-            if (question.dataType.code === "date" || question.dataType.code === "text") {
+            if (
+                question.dataType.code === "date" ||
+                question.dataType.code === "text"
+            ) {
                 output.push({
                     question: question.identifier,
                     value: values[x],
                 });
-            } else if (question.dataType.code === "select" || question.dataType.code === "multiselect"){
-				if(question.altResponseId === values[x].identifier){
-					output.push({
+            } else if (
+                question.dataType.code === "select" ||
+                question.dataType.code === "multiselect"
+            ) {
+                if (question.altResponseId === values[x].identifier) {
+                    output.push({
                         question: question.identifier,
                         value: values[x].value,
                     });
-				}else{
-					output.push({
+                } else {
+                    output.push({
                         question: question.identifier,
                         value: values[x].displayText,
                     });
-				}
-            }else{
-				output.push({
+                }
+            } else {
+                output.push({
                     question: question.identifier,
                     value: values[x].displayText,
                 });
-			}
+            }
         }
         return output;
     }
@@ -513,14 +512,12 @@ class EZForm extends React.Component {
                 </>
             );
         } else if (this.state.status === EZFormStatus.submitting) {
-
             output = (
-                <div className="justify-content-center text-center">
+                <div className='justify-content-center text-center'>
                     <h1>Submitting</h1>
-                    <CircularProgress color="primary" />
+                    <CircularProgress color='primary' />
                 </div>
             );
-
         } else {
             const definedResponse = this.state.data.submissionText;
             const response = definedResponse
@@ -529,7 +526,7 @@ class EZForm extends React.Component {
             output = (
                 <div className='submission-text text-center'>
                     <span style={{ fontSize: "60px" }}>
-                        <CheckCircle fontSize="inherit" htmlColor={"#4fad52"} />
+                        <CheckCircle fontSize='inherit' htmlColor={"#4fad52"} />
                     </span>
                     <h1>Thanks!</h1>
                     <h1>You're all set</h1>
@@ -548,11 +545,21 @@ class EZForm extends React.Component {
             );
         }
 
-        return <>
-            {output}
-            <MessageBox key={this.state.showModal} show={this.state.showModal} message={this.state.modalMessage} title={"EZForm"} onClose={this.onCloseModal.bind(this)} />
-        </>;
+        return (
+            <>
+                {output}
+                <MessageBox
+                    key={this.state.showModal}
+                    show={this.state.showModal}
+                    message={this.state.modalMessage}
+                    title={"EZForm"}
+                    onClose={this.onCloseModal.bind(this)}
+                />
+            </>
+        );
     }
 }
+
+EZForm.contextType = APIContext;
 
 export default EZForm;
