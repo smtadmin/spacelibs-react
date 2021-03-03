@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:49 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 9:09 am
+ * Last Modified: Wednesday, 3rd March 2021 2:45 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -25,6 +25,7 @@ import ErrorLabel from "../ErrorLabel";
  * SelectBlock component
  */
 class SelectBlock extends React.Component {
+	
     /**
      * Creates an instance of SelectBlock.
      * @param {*} props - Component props
@@ -167,8 +168,8 @@ SelectBlock.defaultProps = {
 
 SelectBlock.propTypes = {
     value: PropTypes.arrayOf(PropTypes.any),
-    isValid: PropTypes.bool.isRequired,
-    errorMessage: PropTypes.string.isRequired,
+    isValid: PropTypes.bool,
+    errorMessage: PropTypes.string,
 	altResponseId: PropTypes.string,
     identifier: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
