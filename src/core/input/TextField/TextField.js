@@ -6,7 +6,7 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 23rd February 2021 1:28 pm
+ * Last Modified: Wednesday, 3rd March 2021 9:22 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -54,7 +54,7 @@ class TextField extends React.Component {
 		return (
             <FormControl fullWidth={this.props.fullWidth}>
                 <MuiTextField
-                    className={this.props.class}
+                    className={this.props.className}
                     variant={this.props.variant}
                     data-testid={"textfield-input"}
                     type={this.props.type}
@@ -87,6 +87,7 @@ TextField.defaultProps = {
  * Accepted Props
  */
 TextField.propTypes = {
+	className: PropTypes.string,
 	label: PropTypes.string,
 	type: PropTypes.string,
 	onValueChanged: PropTypes.func.isRequired,

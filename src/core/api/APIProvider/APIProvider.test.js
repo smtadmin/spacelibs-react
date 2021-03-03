@@ -6,11 +6,13 @@
  * File Created: Monday, 1st March 2021 8:47 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 1st March 2021 4:02 pm
+ * Last Modified: Wednesday, 3rd March 2021 8:50 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
+
+/* eslint react/prop-types: 0 */
 
 import APIProvider from "./APIProvider";
 import APIContext from '../APIContext';
@@ -19,22 +21,26 @@ import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 /**
- * Checks that the button renders and the current snapshot matches the previous one.
+ * Checks that the Component renders with no props
  */
 it("Renders with no props", () => {
-    const { baseElement } = render(
-        <APIProvider />
-    );
+    const { baseElement } = render(<APIProvider />);
     expect(baseElement).toBeTruthy();
     expect(baseElement).toMatchSnapshot();
 });
 
-it("Renders with props", () => {
+/**
+ * Checks that the Component renders when passed a baseURL
+ */
+it("Renders with baseURL", () => {
     const { baseElement } = render(<APIProvider baseURL={"http://www.siliconmtn.com"} />);
     expect(baseElement).toBeTruthy();
     expect(baseElement).toMatchSnapshot();
 });
 
+/**
+ * Checks that 
+ */
 it("Passes valid api information", () => {
 
 	const base = "http://www.siliconmtn.com";

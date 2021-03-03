@@ -2,15 +2,18 @@
  * File: /src/core/application/EZForm/RadioBlock/RadioBlock.test.js
  * Version: 0.0.2
  * Project: @siliconmtn/spacelibs-react
- * Description: INSERT DESCRIPTION
+ * Description: Class to test RadioBlock
  * File Created: Tuesday, 2nd March 2021 12:42 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 2nd March 2021 12:44 pm
+ * Last Modified: Wednesday, 3rd March 2021 9:07 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
 */
+
+/* eslint react/prop-types: 0 */
+
 import RadioBlock from "./RadioBlock";
 import React from "react";
 import { render } from "@testing-library/react";
@@ -24,7 +27,7 @@ jest.mock("../../../input/RadioGroup", () => {
     };
 });
 
-const props = {
+const normalProps = {
     label: "What is your birthday",
     number: 1,
     value: [],
@@ -47,7 +50,10 @@ const props = {
     },
 };
 
+/**
+ * Checks that RadioBlock renders with normal props
+ */
 it("Renders with no props", () => {
-    const { baseElement } = render(<RadioBlock {...props} />);
+    const { baseElement } = render(<RadioBlock {...normalProps} />);
     expect(baseElement).toBeTruthy();
 });

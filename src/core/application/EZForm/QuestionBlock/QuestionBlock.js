@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 2nd March 2021 3:19 pm
+ * Last Modified: Wednesday, 3rd March 2021 9:04 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -84,7 +84,7 @@ QuestionBlock.propTypes = {
     value: PropTypes.any,
     isValid: PropTypes.bool,
     errorMessage: PropTypes.string,
-
+	config: PropTypes.any,
     identifier: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
     variant: PropTypes.oneOf(["standard", "filled", "outlined"]),

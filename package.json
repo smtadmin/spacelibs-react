@@ -1,11 +1,11 @@
 {
   "name": "@siliconmtn/spacelibs-react",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Library for reusable React components",
   "main": "index.js",
   "scripts": {
-    "build": "npx babel ./src -d ./ --config-file ./.babelrc --copy-files & npx tsc --rootDir src/ --emitDeclarationOnly",
-    "build:watch": "npx babel ./src -w -d ./ --config-file ./.babelrc --copy-files",
+    "build": "npx babel ./src -d ./ --config-file ./.babelrc --copy-files --ignore '**/*.test.js' & npx tsc --rootDir src/ --emitDeclarationOnly",
+    "build:watch": "npx babel ./src -w -d ./ --config-file ./.babelrc --copy-files --ignore '**/*.test.js'",
     "buildTypes": "npx tsc --emitDeclarationOnly",
     "buildTypes:watch": "npx tsc --watch --emitDeclarationOnly",
     "test": "jest --coverage ./src/core",
@@ -14,8 +14,9 @@
     "test:watchAll": "jest --coverage --watchAll --collectCoverageFrom=src/**/*.{js,jsx}",
     "test:all": "jest --coverage --collectCoverageFrom=src/**/*.{js,jsx}",
     "copyFonts": "cp -R './src/core/layout/SpaceForceLayout/Fonts' './core/layout/SpaceForceLayout'",
+    "copyStyles": "cp -R './src/core/layout/SpaceForceLayout/SpaceForceLayout.css' './core/layout/SpaceForceLayout/SpaceForceLayout.css'",
     "semantic-release": "semantic-release",
-	"docs": "npx jsdoc -c docs.json -r"
+    "docs": "npx jsdoc -c docs.json -r"
   },
   "jest": {
     "moduleNameMapper": {

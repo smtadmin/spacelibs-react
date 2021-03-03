@@ -2,12 +2,12 @@
  * File: /src/core/survey/DateBlock/DateBlock.js
  * Version: 0.0.3
  * Project: @siliconmtn/spacelibs-react
- * Description: INSERT DESCRIPTION
+ * Description: Class to render a Date Question
  * File Created: Friday, 19th February 2021 10:39 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 3:20 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Wednesday, 3rd March 2021 9:00 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -26,7 +26,7 @@ import ErrorLabel from '../ErrorLabel';
 class DateBlock extends React.Component {
     /**
      * Creates an instance of DateBlock.
-     * @param {*} props
+     * @param {*} props Component props
      * @memberof DateBlock
      */
     constructor(props) {

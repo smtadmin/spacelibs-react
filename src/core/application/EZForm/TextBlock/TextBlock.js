@@ -2,11 +2,11 @@
  * File: /src/core/survey/TextBlock/TextBlock.js
  * Version: 0.0.3
  * Project: @siliconmtn/spacelibs-react
- * Description: INSERT DESCRIPTION
+ * Description: Class to render TextBlock
  * File Created: Friday, 19th February 2021 10:04 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 2nd March 2021 11:39 am
+ * Last Modified: Wednesday, 3rd March 2021 9:20 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.

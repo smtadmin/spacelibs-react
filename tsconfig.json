@@ -18,6 +18,8 @@
 		"node_modules/*",
 		"docs/*",
 		"coverage/*",
-		"./core/*"
+		"./core/*",
+		"*.test.js",
+		"*.test.d.ts"
 	]
 }

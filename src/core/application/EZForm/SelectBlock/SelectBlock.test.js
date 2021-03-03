@@ -2,15 +2,18 @@
  * File: /src/core/application/EZForm/SelectBlock/SelectBlock.test.js
  * Version: 0.0.2
  * Project: @siliconmtn/spacelibs-react
- * Description: INSERT DESCRIPTION
+ * Description: Tests SelectBlock class
  * File Created: Tuesday, 2nd March 2021 11:15 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 2nd March 2021 12:42 pm
+ * Last Modified: Wednesday, 3rd March 2021 9:19 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
+
+ /* eslint react/prop-types: 0 */
+ /* eslint jsdoc/require-jsdoc: 0 */
 
 import SelectBlock from "./SelectBlock";
 import React from "react";
@@ -82,29 +85,29 @@ const multipleProps = {
 
 jest.mock("../../../input/SelectField", () => {
 
-	const React = require("react");
+	const react = require("react");
 
-	return class SelectField extends React.Component{
-		constructor(props){
-			super(props);
-		}
+	return class SelectField extends react.Component {
+        constructor(props) {
+            super(props);
+        }
 
-		componentDidMount(){
-			this.props.onValueChanged([]);
-			this.props.onValueChanged({identifier: "B"});
-			this.props.onValueChanged({identifier: "A"});
-		}
+        componentDidMount() {
+            this.props.onValueChanged([]);
+            this.props.onValueChanged({ identifier: "B" });
+            this.props.onValueChanged({ identifier: "A" });
+        }
 
-		render(){
-			return <span>Hi</span>;
-		}
-	};
+        render() {
+            return <span>Hi</span>;
+        }
+    };
 });
 
 jest.mock("../../../input/TextField", () => {
-    const React = require("react");
+    const react = require("react");
 
-    return class TextField extends React.Component {
+    return class TextField extends react.Component {
         constructor(props) {
             super(props);
         }
@@ -119,12 +122,18 @@ jest.mock("../../../input/TextField", () => {
     };
 });
 
+/**
+ * Checks that SelectBlock renders with normal props
+ */
 it("Renders with props", () => {
     const { baseElement } = render(<SelectBlock {...startingProps} />);
     expect(baseElement).toBeTruthy();
 });
 
-it("Renders with isMultipleprops", () => {
+/**
+ * Checks that SelectBlock renders with isMultiple set
+ */
+it("Renders with isMultiple props", () => {
     const { baseElement } = render(<SelectBlock {...multipleProps} />);
     expect(baseElement).toBeTruthy();
 });

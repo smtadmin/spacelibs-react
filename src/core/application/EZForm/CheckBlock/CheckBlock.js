@@ -2,11 +2,11 @@
  * File: /src/core/survey/RadioBlock/RadioBlock.js
  * Version: 0.0.3
  * Project: @siliconmtn/spacelibs-react
- * Description: INSERT DESCRIPTION
+ * Description: Class to render a checkblock question, consists of question label, checkboxes, and error message
  * File Created: Friday, 19th February 2021 10:25 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 26th February 2021 1:58 pm
+ * Last Modified: Wednesday, 3rd March 2021 8:59 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.

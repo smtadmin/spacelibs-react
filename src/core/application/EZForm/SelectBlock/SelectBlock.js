@@ -2,11 +2,11 @@
  * File: /src/core/survey/SelectBlock/SelectBlock.js
  * Version: 0.0.3
  * Project: @siliconmtn/spacelibs-react
- * Description: INSERT DESCRIPTION
+ * Description: Class that renders a SelectBlock
  * File Created: Friday, 19th February 2021 10:49 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 2nd March 2021 11:37 am
+ * Last Modified: Wednesday, 3rd March 2021 9:09 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -76,6 +76,11 @@ class SelectBlock extends React.Component {
 		this.submitMergedValues();
 	}
 
+	/**
+	 * Method called when either the select field or text field value changes
+	 *
+	 * @memberof SelectBlock
+	 */
 	submitMergedValues(){
 		if(this.state.showAlternateResponse){
 			let values = this.state.values;
@@ -91,6 +96,12 @@ class SelectBlock extends React.Component {
 		}
 	}
 	
+	/**
+	 * Method called when the other text field value changes
+	 *
+	 * @param {*} event Text Field value change event
+	 * @memberof SelectBlock
+	 */
 	onAlternateValueChanged(event){
 		const value = event.target.value;
 		let prevState = this.state;
@@ -158,13 +169,16 @@ SelectBlock.propTypes = {
     value: PropTypes.arrayOf(PropTypes.any),
     isValid: PropTypes.bool.isRequired,
     errorMessage: PropTypes.string.isRequired,
-
+	altResponseId: PropTypes.string,
     identifier: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
     label: PropTypes.string.isRequired,
     helperText: PropTypes.string,
     isRequired: PropTypes.bool,
-
+	dataType: PropTypes.shape({
+		code: PropTypes.string,
+		isMultiple: PropTypes.boolean
+	}),
     color: PropTypes.string,
     labelPlacement: PropTypes.oneOf(["left", "top", "right", "bottom"]),
     variant: PropTypes.oneOf(["standard", "filled", "outlined"]),

@@ -6,7 +6,7 @@
  * File Created: Monday, 8th February 2021 4:50 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 8:30 pm
+ * Last Modified: Wednesday, 3rd March 2021 9:21 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -200,7 +200,7 @@ SelectField.propTypes = {
 	value: PropTypes.arrayOf(PropTypes.any),
 	hasError: PropTypes.bool,
 	subText: PropTypes.string,
-
+	isMultiple: PropTypes.boolean,
 	variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
 	inputLabel: PropTypes.string,
 	placeholder: PropTypes.string,
