@@ -6,7 +6,7 @@
  * File Created: Wednesday, 23rd February 2021 08:18pm
  * Author: James Camire (james@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 23rd February 2021 2:20 pm
+ * Last Modified: Wednesday, 3rd March 2021 9:23 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -16,7 +16,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Row, Col } from 'react-bootstrap';
 import Button from '../../input/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
@@ -41,6 +40,11 @@ class MessageBox extends React.Component {
 		};
 	}
 	
+	/**
+	 * Method called when modal is closed
+	 *
+	 * @memberof MessageBox
+	 */
 	onClose(){
 		let oldState = this.state;
 		oldState.show = false;

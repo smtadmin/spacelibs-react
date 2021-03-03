@@ -2,19 +2,18 @@
  * File: /src/core/survey/RadioBlock/RadioBlock.js
  * Version: 0.0.3
  * Project: @siliconmtn/spacelibs-react
- * Description: INSERT DESCRIPTION
+ * Description: Class to render a checkblock question, consists of question label, checkboxes, and error message
  * File Created: Friday, 19th February 2021 10:25 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 22nd February 2021 3:19 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Wednesday, 3rd March 2021 8:59 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 
 import React from "react";
 import PropTypes from "prop-types";
-
 import FormControl from "@material-ui/core/FormControl";
 import QuestionLabel from "../QuestionLabel";
 import CheckboxGroup from "../../../input/CheckboxGroup";

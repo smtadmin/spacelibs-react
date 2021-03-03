@@ -6,7 +6,7 @@
  * File Created: Wednesday, 10th February 2021 5:25 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 12th February 2021 3:06 pm
+ * Last Modified: Monday, 1st March 2021 9:23 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -89,7 +89,7 @@ it("Renders with value and options | Single Selection", ()=>{
  * Checks multi select field renders with values and options
  */
 it("Renders with value and options | Multi Selection", ()=>{
-	const element = render(<SelectField {...blankProps} value={[options[0]]} config={{options:options, isMultiple: true}}/>);
+	const element = render(<SelectField {...blankProps} isMultiple={true} value={[options[0]]} config={{options:options, isMultiple: true}}/>);
 
 	expect(element).toBeTruthy();
 });
@@ -123,7 +123,14 @@ it("Doesn't crash when an option is selected | Single Select", ()=>{
 it("Doesn't crash when an option is selected | Multi Select", ()=>{
 	const mockValueChanged = jest.fn();
 
-	const element = render(<SelectField {...blankProps} config={{options: options, isMultiple: true}} onValueChanged={mockValueChanged}/>);
+	const element = render(
+        <SelectField
+            {...blankProps}
+            isMultiple={true}
+            config={{ options: options, isMultiple: true }}
+            onValueChanged={mockValueChanged}
+        />
+    );
 	
 	const inputParent = screen.getByTestId('select');
 	const input = inputParent.children[0].children[0].children[0];
@@ -166,7 +173,14 @@ it("Doesn't crash when clicked without options | Single Select", ()=>{
 it("Doesn't crash when clicked without options | Multiple Select", ()=>{
 	const mockValueChanged = jest.fn();
 
-	const element = render(<SelectField {...blankProps} config={{options: options, isMultiple: true}} onValueChanged={mockValueChanged}/>);
+	const element = render(
+        <SelectField
+            {...blankProps}
+            isMultiple={true}
+            config={{ options: options, isMultiple: true }}
+            onValueChanged={mockValueChanged}
+        />
+    );
 	
 	const inputParent = screen.getByTestId('select');
 	const input = inputParent.children[0].children[0].children[0];

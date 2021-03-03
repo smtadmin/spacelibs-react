@@ -6,8 +6,8 @@
  * File Created: Monday, 15th February 2021 11:04 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 17th February 2021 8:53 am
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Wednesday, 3rd March 2021 9:24 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -22,7 +22,7 @@ class BrowserRouter extends React.Component {
 
     /**
      * Creates an instance of the BrowserRouter Component
-     * @param {*} props 
+     * @param {*} props Component props
      */
     constructor(props) {
         super(props);
@@ -80,7 +80,7 @@ class BrowserRouter extends React.Component {
                     }
                 </Switch>
             </ReactBrowserRouter>
-        )
+        );
     }
 }
 

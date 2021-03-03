@@ -10,10 +10,10 @@ Object {
         id="header-container"
       >
         <div
-          class="header-left col-2 col"
+          class="header-left col-1 col"
         />
         <div
-          class="header-center col-9 col"
+          class="header-center col-10 col"
         />
         <div
           class="header-right col-1 col"
@@ -27,10 +27,10 @@ Object {
       id="header-container"
     >
       <div
-        class="header-left col-2 col"
+        class="header-left col-1 col"
       />
       <div
-        class="header-center col-9 col"
+        class="header-center col-10 col"
       />
       <div
         class="header-right col-1 col"
@@ -101,10 +101,10 @@ Object {
         id="header-container"
       >
         <div
-          class="header-left col-2 col"
+          class="header-left col-1 col"
         />
         <div
-          class="header-center col-9 col"
+          class="header-center col-10 col"
         />
         <div
           class="header-right col-1 col"
@@ -118,10 +118,10 @@ Object {
       id="header-container"
     >
       <div
-        class="header-left col-2 col"
+        class="header-left col-1 col"
       />
       <div
-        class="header-center col-9 col"
+        class="header-center col-10 col"
       />
       <div
         class="header-right col-1 col"

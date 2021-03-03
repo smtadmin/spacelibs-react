@@ -6,8 +6,8 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 25th February 2021 4:09 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Wednesday, 3rd March 2021 8:58 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -15,7 +15,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import HTTPService from "@siliconmtn/spacelibs-js/core/io/BaseHTTPService";
 import EZFormPage from "./EZFormPage/EZFormPage";
-import SMTButton from '../../input/Button';
+import SMTButton from "../../input/Button";
 
 import Button from "@material-ui/core/Button";
 import MobileStepper from "@material-ui/core/MobileStepper";
@@ -24,7 +24,7 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import CheckCircle from "@material-ui/icons/CheckCircle";
 import MessageBox from "../../notification/MessageBox";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { APIContext } from '../../api';
+import { APIContext } from "../../api";
 
 const EZFormStatus = Object.freeze({
     loading: 1,
@@ -33,10 +33,12 @@ const EZFormStatus = Object.freeze({
     submitting: 4,
     submitted: 5,
 });
+
 /**
  * React component that displays a form using the EZForm api
  */
 class EZForm extends React.Component {
+
     /**
      * Creates an instance of the EZForm class
      * @param {*} props - The props passed to the component
@@ -51,21 +53,32 @@ class EZForm extends React.Component {
             formErrorMessage: null,
             showModal: false,
             modalMessage: "",
-            apiService: null
+            apiService: null,
         };
         this.formatData = this.formatData.bind(this);
     }
 
-    componentDidMount(){
+	/**
+	 * Lifecycle method that gets called when the component mounts
+	 *
+	 * @memberof EZForm
+	 */
+	componentDidMount() {
         this.getFormData(this.props.formId);
     }
 
-    getHTTPService(){
-        if(this.context){
+	/**
+	 * Method to get an HTTPService
+	 *
+	 * @returns {*} an HTTPServiceObject
+	 * @memberof EZForm
+	 */
+	getHTTPService() {
+        if (this.context) {
             return new HTTPService({
-                host: this.context.baseURL
+                host: this.context.baseURL,
             });
-        }else{
+        } else {
             return new HTTPService({
                 host: "http://something",
             });
@@ -76,24 +89,24 @@ class EZForm extends React.Component {
      *Makes a request to the EZForm api to retrieve form data using the form id
      *
      * @param {*} formId - The id of the form
-     * @param {*} bearerTokenCallback - A callback to access the bearerToken
      * @memberof EZForm
      */
     getFormData(formId) {
-
         let http = this.getHTTPService();
         let prevState = this.state;
         prevState.apiService = http;
         this.setState(prevState);
-        http.read(
-            "/api/ezform/" + formId,
-            {},
-            this.onComplete.bind(this),
-            {}
-        );
+        http.read("/api/ezform/" + formId, {}, this.onComplete.bind(this), {});
     }
 
-    formatData(data) {
+	/**
+	 * Formats Backend data for front end consumption
+	 *
+	 * @param {*} data - javascript object in the format the backend serves
+	 * @returns {*} formatted data object 
+	 * @memberof EZForm
+	 */
+	formatData(data) {
         let count = 1;
         data.pages.forEach((page) => {
             page.questions.forEach((question) => {
@@ -108,8 +121,14 @@ class EZForm extends React.Component {
         });
         return data;
     }
-    
-    onComplete(response){
+	
+	/**
+	 * This method is called when API request to get data is complete
+	 *
+	 * @param {*} response The response object from the APIService
+	 * @memberof EZForm
+	 */
+	onComplete(response){
         let data;
         let pageCount = 0;
         let status = EZFormStatus.failedToLoad;
@@ -127,11 +146,18 @@ class EZForm extends React.Component {
             data: data,
             formErrorMessage: null,
             showModal: false,
-            modalMessage: ""
+            modalMessage: "",
         });
     }
 
-    onValueChanged(questionId, value) {
+	/**
+	 * Method called when a questions value changes
+	 *
+	 * @param {*} questionId Id for the question
+	 * @param {*} value value for the question
+	 * @memberof EZForm
+	 */
+	onValueChanged(questionId, value) {
         let prevState = this.state;
         let breakOut = false;
         for (var x = 0; x < prevState.data.pages.length; x++) {
@@ -154,28 +180,33 @@ class EZForm extends React.Component {
         this.setState(prevState);
     }
 
-    //Call factory that will take in a question and return a jsx element
-
-    //On user submission validate the inputs
-
-    //Send for data to the back end
-
-    prompt(message) {
+	/**
+	 * Prompts a modal to pop up
+	 *
+	 * @param {*} message message to add to the modal
+	 * @memberof EZForm
+	 */
+	prompt(message) {
         let prevState = this.state;
         prevState.showModal = true;
         prevState.modalMessage = message;
         this.setState(prevState);
     }
 
-    onSubmit() {
-		const validationResults = this.validateCurrentPage();
+	/**
+	 * Method called when the submit button is pressed
+	 *
+	 * @memberof EZForm
+	 */
+	onSubmit() {
+        const validationResults = this.validateCurrentPage();
         if (validationResults.isValid) {
             let prevState = this.state;
             prevState.status = EZFormStatus.submitting;
             this.setState(prevState);
             this.sendData();
         } else {
-			this.prompt(validationResults.prompt);
+            this.prompt(validationResults.prompt);
         }
     }
 
@@ -210,7 +241,7 @@ class EZForm extends React.Component {
 
         return {
             isValid: errors.length === 0,
-            prompt: formErrorMessage
+            prompt: formErrorMessage,
         };
     }
 
@@ -222,7 +253,7 @@ class EZForm extends React.Component {
      * @memberof EZForm
      */
     validateQuestion(question) {
-		let valueArray;
+        let valueArray;
 
         if (Array.isArray(question.value)) {
             valueArray = question.value;
@@ -231,75 +262,94 @@ class EZForm extends React.Component {
                 isValid: false,
                 errorMessage: "Internal error",
             };
-		}
+        }
 
-		const isEmpty = valueArray.length === 0;
-		if(question.dataType.code === "date"){
-			if(question.isRequired){
-				if(isEmpty){
-					return {
-						isValid: false,
-						errorMessage: "This field is required",
-					};
-				}else if(!(valueArray[0] instanceof Date && !isNaN(valueArray[0]))){
-					return {
-						isValid: false,
-						errorMessage: "",
-					};
-				}else{
-					return {
-						isValid: true
-					};
-				}
-			}else{
-				if(isEmpty || valueArray[0] instanceof Date && !isNaN(valueArray[0])){
-					return {
-						isValid: true
-					};
-				}else{
-					return {
-						isValid: false,
-						errorMessage: "",
-					};
-				}	
-			}
-		}else if(question.dataType.code === "select" || question.dataType.code === "multiselect"){
-			if(question.altResponseId != null){
-				for(var x = 0; x < valueArray.length; x++){
-					if(valueArray[x].identifier === question.altResponseId && (valueArray[x].value == null || valueArray[x].value === "")){
-						return {
-							isValid: false,
-							errorMessage: "Please enter a value"
-						};
-					}
-				}
-			}
+        const isEmpty = valueArray.length === 0;
+        if (question.dataType.code === "date") {
+            if (question.isRequired) {
+                if (isEmpty) {
+                    return {
+                        isValid: false,
+                        errorMessage: "This field is required",
+                    };
+                } else if (
+                    !(valueArray[0] instanceof Date && !isNaN(valueArray[0]))
+                ) {
+                    return {
+                        isValid: false,
+                        errorMessage: "",
+                    };
+                } else {
+                    return {
+                        isValid: true,
+                    };
+                }
+            } else {
+                if (
+                    isEmpty ||
+                    (valueArray[0] instanceof Date && !isNaN(valueArray[0]))
+                ) {
+                    return {
+                        isValid: true,
+                    };
+                } else {
+                    return {
+                        isValid: false,
+                        errorMessage: "",
+                    };
+                }
+            }
+        } else if (
+            question.dataType.code === "select" ||
+            question.dataType.code === "multiselect"
+        ) {
+            if (question.altResponseId != null) {
+                for (var x = 0; x < valueArray.length; x++) {
+                    if (
+                        valueArray[x].identifier === question.altResponseId &&
+                        (valueArray[x].value == null ||
+                            valueArray[x].value === "")
+                    ) {
+                        return {
+                            isValid: false,
+                            errorMessage: "Please enter a value",
+                        };
+                    }
+                }
+            }
 
-			if (!question.isRequired || !isEmpty) {
-				return {
-					isValid: true,
-				};
-			} else {
-				return {
-					isValid: false,
-					errorMessage: "This field is required",
-				};
-			}
-		}else{
-			if(!question.isRequired || !isEmpty){
-				return {
-					isValid: true
-				};
-			}else{
-				return {
-					isValid: false,
-					errorMessage: "This field is required"
-				};
-			}
-		}
+            if (!question.isRequired || !isEmpty) {
+                return {
+                    isValid: true,
+                };
+            } else {
+                return {
+                    isValid: false,
+                    errorMessage: "This field is required",
+                };
+            }
+        } else {
+            if (!question.isRequired || !isEmpty) {
+                return {
+                    isValid: true,
+                };
+            } else {
+                return {
+                    isValid: false,
+                    errorMessage: "This field is required",
+                };
+            }
+        }
     }
 
-    getErrorMessageForErrors(errors) {
+	/**
+	 * Method to get an aggregated list of errors
+	 *
+	 * @param {*} errors error-ing questions
+	 * @returns {*} String message for errors 
+	 * @memberof EZForm
+	 */
+	getErrorMessageForErrors(errors) {
         if (errors.length === 0) {
             return null;
         }
@@ -318,11 +368,12 @@ class EZForm extends React.Component {
         }
     }
 
-    sendData() {
-
-        const token = this.props.bearerTokenCallback();
-        const options = { headers: [{ Authorization: "Bearer " + token }] };
-
+	/**
+	 * Method called after submission and validation is done successfully
+	 *
+	 * @memberof EZForm
+	 */
+	sendData() {
         let data = [];
 
         for (let x = 0; x < this.state.data.pages.length; x++) {
@@ -337,13 +388,14 @@ class EZForm extends React.Component {
         }
 
         this.state.apiService.insert(
-            "/api/ezform/response/" +
-            this.state.data.identifier,
+            "/api/ezform/response/" + this.state.data.identifier,
             data,
             {},
             (response) => {
                 let prevState = this.state;
-                prevState.status = response.isValid ? status.submitted : status.inProgress;
+                prevState.status = response.isValid
+                    ? status.submitted
+                    : status.inProgress;
                 this.setState(prevState);
             },
             {
@@ -354,38 +406,56 @@ class EZForm extends React.Component {
         );
     }
 
-    getResponseValuesFromQuestion(question) {
+	/**
+	 * Gets the current value(s) for a question to send as a response to the backend
+	 *
+	 * @param {*} question Question object
+	 * @returns {*} Array of values
+	 * @memberof EZForm
+	 */
+	getResponseValuesFromQuestion(question) {
         let values = question.value;
         let output = [];
         for (let x = 0; x < values.length; x++) {
-            if (question.dataType.code === "date" || question.dataType.code === "text") {
+            if (
+                question.dataType.code === "date" ||
+                question.dataType.code === "text"
+            ) {
                 output.push({
                     question: question.identifier,
                     value: values[x],
                 });
-            } else if (question.dataType.code === "select" || question.dataType.code === "multiselect"){
-				if(question.altResponseId === values[x].identifier){
-					output.push({
+            } else if (
+                question.dataType.code === "select" ||
+                question.dataType.code === "multiselect"
+            ) {
+                if (question.altResponseId === values[x].identifier) {
+                    output.push({
                         question: question.identifier,
                         value: values[x].value,
                     });
-				}else{
-					output.push({
+                } else {
+                    output.push({
                         question: question.identifier,
                         value: values[x].displayText,
                     });
-				}
-            }else{
-				output.push({
+                }
+            } else {
+                output.push({
                     question: question.identifier,
                     value: values[x].displayText,
                 });
-			}
+            }
         }
         return output;
     }
 
-    onGoBack() {
+	/**
+	 * Method called when the back button is pressed
+	 *
+	 * @memberof EZForm
+	 */
+	onGoBack() {
         if (this.state.currentPage > 0) {
             const validationResults = this.validateCurrentPage();
             if (validationResults.isValid) {
@@ -399,7 +469,12 @@ class EZForm extends React.Component {
         }
     }
 
-    onGoForward() {
+	/**
+	 * Method called when the next button is pressed
+	 *
+	 * @memberof EZForm
+	 */
+	onGoForward() {
         if (this.state.currentPage < this.state.pageCount - 1) {
             const validationResults = this.validateCurrentPage();
             if (validationResults.isValid) {
@@ -413,7 +488,12 @@ class EZForm extends React.Component {
         }
     }
 
-    onCloseModal() {
+	/**
+	 * Method called when a prompted modal is closed
+	 *
+	 * @memberof EZForm
+	 */
+	onCloseModal() {
         let prevState = this.state;
         prevState.showModal = false;
         prevState.modalMessage = "";
@@ -496,7 +576,7 @@ class EZForm extends React.Component {
         if (this.state.status === EZFormStatus.loading) {
             output = <div>Loading...</div>;
         } else if (this.state.status === EZFormStatus.failedToLoad) {
-            output = <div>404 Couldn't find form {this.props.formId}</div>;
+            output = <div>404 Couldn&apos;t find form {this.props.formId}</div>;
         } else if (this.state.status === EZFormStatus.inProgress) {
             const currentPage = this.state.data.pages[this.state.currentPage];
             output = (
@@ -509,26 +589,20 @@ class EZForm extends React.Component {
                 </>
             );
         } else if (this.state.status === EZFormStatus.submitting) {
-
             output = (
-                <div className="justify-content-center text-center">
+                <div className='justify-content-center text-center'>
                     <h1>Submitting</h1>
-                    <CircularProgress color="primary" />
+                    <CircularProgress color='primary' />
                 </div>
             );
-
         } else {
-            const definedResponse = this.state.data.submissionText;
-            const response = definedResponse
-                ? definedResponse
-                : "Thank you for your submission.";
             output = (
                 <div className='submission-text text-center'>
                     <span style={{ fontSize: "60px" }}>
-                        <CheckCircle fontSize="inherit" htmlColor={"#4fad52"} />
+                        <CheckCircle fontSize='inherit' htmlColor={"#4fad52"} />
                     </span>
                     <h1>Thanks!</h1>
-                    <h1>You're all set</h1>
+                    <h1>You&apos;re all set</h1>
                     <h2>The form has successfully been submitted.</h2>
                     {this.state.data.resubmitFlag && (
                         <SMTButton
@@ -544,12 +618,24 @@ class EZForm extends React.Component {
             );
         }
 
-        return <>
-            {output}
-            <MessageBox key={this.state.showModal} show={this.state.showModal} message={this.state.modalMessage} title={"EZForm"} onClose={this.onCloseModal.bind(this)} />
-        </>;
+        return (
+            <>
+                {output}
+                <MessageBox
+                    key={this.state.showModal}
+                    show={this.state.showModal}
+                    message={this.state.modalMessage}
+                    title={"EZForm"}
+                    onClose={this.onCloseModal.bind(this)}
+                />
+            </>
+        );
     }
 }
+
+EZForm.propTypes = {
+	formId: PropTypes.string
+};
 
 EZForm.contextType = APIContext;
 

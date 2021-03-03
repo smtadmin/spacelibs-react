@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="single-column-container container"
+        class="single-column-container mb-5 mt-5 container"
       >
         <div
           class="row"
         >
           <div
-            class="col-12 col"
+            class="col-12 mb-5 col"
           />
         </div>
       </div>
@@ -20,13 +20,13 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="single-column-container container"
+      class="single-column-container mb-5 mt-5 container"
     >
       <div
         class="row"
       >
         <div
-          class="col-12 col"
+          class="col-12 mb-5 col"
         />
       </div>
     </div>
@@ -91,13 +91,13 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="single-column-container container"
+        class="single-column-container mb-5 mt-5 container"
       >
         <div
           class="row"
         >
           <div
-            class="col-12 col"
+            class="col-12 mb-5 col"
           />
         </div>
       </div>
@@ -105,13 +105,13 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="single-column-container container"
+      class="single-column-container mb-5 mt-5 container"
     >
       <div
         class="row"
       >
         <div
-          class="col-12 col"
+          class="col-12 mb-5 col"
         />
       </div>
     </div>

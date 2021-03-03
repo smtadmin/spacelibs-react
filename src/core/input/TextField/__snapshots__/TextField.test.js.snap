@@ -6,14 +6,14 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiFormControl-root"
+        class="MuiFormControl-root MuiFormControl-fullWidth"
       >
         <div
-          class="MuiFormControl-root MuiTextField-root"
+          class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
           data-testid="textfield-input"
         >
           <div
-            class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+            class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
           >
             <input
               class="MuiInputBase-input MuiInput-input"
@@ -27,14 +27,14 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="MuiFormControl-root"
+      class="MuiFormControl-root MuiFormControl-fullWidth"
     >
       <div
-        class="MuiFormControl-root MuiTextField-root"
+        class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
         data-testid="textfield-input"
       >
         <div
-          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
         >
           <input
             class="MuiInputBase-input MuiInput-input"
