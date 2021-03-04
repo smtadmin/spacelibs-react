@@ -6,13 +6,14 @@
  * File Created: Friday, 19th February 2021 2:05 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 23rd February 2021 2:15 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Thursday, 4th March 2021 10:41 am
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 import React from 'react';
 import QuestionBlock from '../QuestionBlock/QuestionBlock';
+import PropTypes from 'prop-types';
 
 /**
  * Formatter for the EZForm page wrapper

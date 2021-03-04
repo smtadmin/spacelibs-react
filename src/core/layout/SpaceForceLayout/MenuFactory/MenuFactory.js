@@ -8,13 +8,14 @@
  * File Created: Friday, 5th February 2021 10:31 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 17th February 2021 12:13 pm
+ * Last Modified: Wednesday, 3rd March 2021 5:07 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 import React from 'react';
-import { Nav, NavDropdown } from 'react-bootstrap';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import PropTypes from 'prop-types';
 
 /**

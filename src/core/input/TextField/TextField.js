@@ -6,15 +6,14 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 9:22 am
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Wednesday, 3rd March 2021 5:06 pm
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import MuiTextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
