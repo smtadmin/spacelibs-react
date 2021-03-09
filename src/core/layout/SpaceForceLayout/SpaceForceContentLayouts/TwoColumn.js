@@ -7,14 +7,16 @@
  * File Created: Wednesday, 3rd February 2021 3:56 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th February 2021 4:16 pm
+ * Last Modified: Wednesday, 3rd March 2021 5:08 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 import React from 'react';
 import BootstrapWrapper from '../BootstrapWrapper/BootstrapWrapper';
-import { Container, Row, Col } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 /**
  * Two column layout for Spaceforce content.

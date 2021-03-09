@@ -6,21 +6,18 @@
  * File Created: Wednesday, 23rd February 2021 08:18pm
  * Author: James Camire (james@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 9:23 am
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Wednesday, 3rd March 2021 5:10 pm
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Row, Col } from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Button from '../../input/Button';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
-
-library.add(fas, far);
 
 /**
  * 
@@ -60,7 +57,6 @@ class MessageBox extends React.Component {
      */
     getIcon() {
 		return null;
-        // return <FontAwesomeIcon icon={["far", "square"]} color="red" />;
     }
 
     /**

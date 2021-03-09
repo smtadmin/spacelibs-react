@@ -6,8 +6,8 @@
  * File Created: Wednesday, 27th January 2021 1:30 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 2:08 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Thursday, 4th March 2021 10:13 am
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -16,7 +16,7 @@ import React from 'react';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import BootstrapWrapper from './BootstrapWrapper/BootstrapWrapper';
-import { Container } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
 import PropTypes from 'prop-types';
 import './SpaceForceLayout.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';

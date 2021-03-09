@@ -6,14 +6,15 @@
  * File Created: Friday, 29th January 2021 9:57 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Friday, 19th February 2021 11:17 am
+ * Last Modified: Wednesday, 3rd March 2021 5:07 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 
 import React from 'react';
-import { Navbar, Col } from 'react-bootstrap';
+import Navbar from 'react-bootstrap/Navbar';
+import Col from 'react-bootstrap/Col';
 import PropTypes from 'prop-types';
 
 /**
