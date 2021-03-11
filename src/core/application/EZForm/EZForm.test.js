@@ -6,8 +6,8 @@
  * File Created: Monday, 1st March 2021 4:04 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th March 2021 8:06 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Thursday, 11th March 2021 2:24 pm
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -20,6 +20,9 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import { APIProvider } from "../../api";
+
+const scrollTo = () => {};
+Object.defineProperty(window, 'scrollTo', { value: scrollTo, writable: true });
 
 jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
 	return class HTTPService {
@@ -102,6 +105,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
 				onComplete({
                     isValid: true,
                     data: {
+                        resubmitFlag: true,
                         identifier: "justin",
                         pages: [
                             {
@@ -285,12 +289,7 @@ it("Renders with valid props", () => {
 	userEvent.type(input, "three");
 	
 	element = screen.getByText("Submit");
-	userEvent.click(element);
-	
-	screen.debug();
-
-	element = screen.getByTestId("button");
-	userEvent.click(element);
+    userEvent.click(element);
 
     expect(baseElement).toBeTruthy();
 });
@@ -382,6 +381,9 @@ it("Renders all data types", () => {
     userEvent.click(input3);
 	
 	element = screen.getByText("Submit");
+    userEvent.click(element);
+    
+	element = screen.getByTestId("button");
 	userEvent.click(element);
 
 	expect(baseElement).toBeTruthy();
