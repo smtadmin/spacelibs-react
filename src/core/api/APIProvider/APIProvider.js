@@ -6,7 +6,7 @@
  * File Created: Wednesday, 17th February 2021 4:53 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 2nd March 2021 3:21 pm
+ * Last Modified: Tuesday, 9th March 2021 12:46 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -15,7 +15,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import APIContext from "../APIContext";
-import SecurityContext from "../../security/P1SecurityContext";
 import BaseHTTPService from "@siliconmtn/spacelibs-js/core/io/BaseHTTPService";
 
 /**
@@ -63,9 +62,6 @@ class APIProvider extends React.Component {
         );
     }
 }
-
-/* Assinging context */
-APIProvider.contextType = SecurityContext;
 
 /**
  * Accepted props

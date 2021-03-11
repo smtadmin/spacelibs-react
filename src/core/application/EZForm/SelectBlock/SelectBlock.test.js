@@ -6,7 +6,7 @@
  * File Created: Tuesday, 2nd March 2021 11:15 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 9:19 am
+ * Last Modified: Tuesday, 9th March 2021 11:37 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -94,7 +94,7 @@ jest.mock("../../../input/SelectField", () => {
 
         componentDidMount() {
             this.props.onValueChanged([]);
-            this.props.onValueChanged({ identifier: "B" });
+            this.props.onValueChanged([{ identifier: "A" },{ identifier: "B" }]);
             this.props.onValueChanged({ identifier: "A" });
         }
 
