@@ -6,8 +6,8 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tue Mar 02 2021
- * Modified By: tylergaffaney
+ * Last Modified: Wed Mar 10 2021
+ * Modified By: Justin Jeffrey
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -239,7 +239,6 @@ body {
 
 .MuiPaper-elevation4 {
     box-shadow: none !important;
-    border: solid 1px #B5B5B5; 
 }
 
 .MuiButton-contained {

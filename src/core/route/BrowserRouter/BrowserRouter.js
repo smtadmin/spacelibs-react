@@ -6,7 +6,7 @@
  * File Created: Monday, 15th February 2021 11:04 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 5:24 pm
+ * Last Modified: Wednesday, 10th March 2021 4:48 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -14,6 +14,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as ReactBrowserRouter, Route, Switch } from "react-router-dom";
+import { Prompt } from "react-router";
 
 /**
  * Wrapper for the react-router-dom BrowserRouter

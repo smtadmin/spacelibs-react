@@ -6,8 +6,8 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 9:04 am
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Tuesday, 9th March 2021 12:54 pm
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -71,7 +71,7 @@ class QuestionBlock extends React.Component {
 
 		let newReactElement = React.createElement(component, {...props}, null);
 
-		return <div className={"question-block-wrapper pt-3 pl-2"}>{newReactElement}</div>;
+		return <div className={"question-block-wrapper pt-3 pl-5"}>{newReactElement}</div>;
     }
 }
 

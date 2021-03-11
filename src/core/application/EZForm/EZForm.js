@@ -6,8 +6,8 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th March 2021 7:57 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Thursday, 11th March 2021 2:25 pm
+ * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -16,7 +16,6 @@ import PropTypes from "prop-types";
 import HTTPService from "@siliconmtn/spacelibs-js/core/io/BaseHTTPService";
 import EZFormPage from "./EZFormPage/EZFormPage";
 import SMTButton from "../../input/Button";
-
 import Button from "@material-ui/core/Button";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
@@ -28,11 +27,11 @@ import { APIContext } from "../../api";
 import moment from 'moment';
 
 const EZFormStatus = Object.freeze({
-    loading: 1,
-    failedToLoad: 2,
-    inProgress: 3,
-    submitting: 4,
-    submitted: 5,
+    loading: "loading",
+    failedToLoad: "failedToLoad",
+    inProgress: "inProgress",
+    submitting: "submitting",
+    submitted: "submitted",
 });
 
 /**
@@ -54,7 +53,7 @@ class EZForm extends React.Component {
             formErrorMessage: null,
             showModal: false,
             modalMessage: "",
-            apiService: null,
+            apiService: null
         };
         this.formatData = this.formatData.bind(this);
     }
@@ -139,6 +138,8 @@ class EZForm extends React.Component {
             pageCount = data.pages.length;
             status = EZFormStatus.inProgress;
         }
+        
+        this.props.stateCallback?.(status);
 
         this.setState({
             status: status,
@@ -204,6 +205,7 @@ class EZForm extends React.Component {
         if (validationResults.isValid) {
             let prevState = this.state;
             prevState.status = EZFormStatus.submitting;
+            this.props.stateCallback?.(EZFormStatus.submitting);
             this.setState(prevState);
             this.sendData();
         } else {
@@ -341,17 +343,13 @@ class EZForm extends React.Component {
             return null;
         }
         if (errors.length === 1) {
-            return "There is a problem with question " + errors[0];
+            return errors[0];
         } else {
-            let output = "There are problems with questions ";
+            let output = "";
             for (var x = 0; x < errors.length; x++) {
-                if (x === errors.length - 1) {
-                    output += "and " + errors[x];
-                } else {
-                    output += errors[x] + ", ";
-                }
+                output += errors[x] + ", ";
             }
-            return output;
+            return output.slice(0, -2);
         }
     }
 
@@ -380,8 +378,9 @@ class EZForm extends React.Component {
             (response) => {
                 let prevState = this.state;
                 prevState.status = response.isValid
-                    ? status.submitted
-                    : status.inProgress;
+                    ? EZFormStatus.submitted
+                    : EZFormStatus.inProgress;
+                this.props.stateCallback?.(prevState.status);
                 this.setState(prevState);
             },
             {
@@ -466,8 +465,10 @@ class EZForm extends React.Component {
 			this.setState(prevState);
 		} else {
 			//Error
-			this.prompt(validationResults.prompt);
-		}
+            this.prompt(validationResults.prompt);
+        }
+        //Bring the screen to the top of the site when the form page is changed
+        window.scrollTo(0, 0);
     }
 
 	/**
@@ -496,7 +497,7 @@ class EZForm extends React.Component {
                 <Button
                     style={{ visibility: "hidden" }}
                     size='small'
-                    color={"primary"}
+                    color={"secondary"}
                     variant={"contained"}
                     onClick={this.onGoBack.bind(this)}
                     disabled={this.state.currentPage === 0}>
@@ -508,7 +509,7 @@ class EZForm extends React.Component {
             backButton = (
                 <Button
                     size='small'
-                    color={"primary"}
+                    color={"secondary"}
                     variant={"contained"}
                     onClick={this.onGoBack.bind(this)}
                     disabled={this.state.currentPage === 0}>
@@ -584,8 +585,8 @@ class EZForm extends React.Component {
                         <CheckCircle fontSize='inherit' htmlColor={"#4fad52"} />
                     </span>
                     <h1>Thanks!</h1>
-                    <h1>You&apos;re all set</h1>
-                    <h2>The form has successfully been submitted.</h2>
+                    <h1>You&apos;re all set.</h1>
+                    <h3>The form has successfully been submitted.</h3>
                     {this.state.data.resubmitFlag && (
                         <SMTButton
                             className={"resubmit-button"}
@@ -593,7 +594,7 @@ class EZForm extends React.Component {
                             onClick={() => {
                                 window.location = "/form/" + this.props.formId;
                             }}>
-                            Submit Another Form
+                            Submit Another Response
                         </SMTButton>
                     )}
                 </div>
@@ -603,11 +604,12 @@ class EZForm extends React.Component {
         return (
             <>
                 {output}
+                {/* Missing required questions modal */}
                 <MessageBox
                     key={this.state.showModal}
                     show={this.state.showModal}
                     message={this.state.modalMessage}
-                    title={"EZForm"}
+                    title="The following questions are required:"
                     onClose={this.onCloseModal.bind(this)}
                 />
             </>
@@ -616,7 +618,8 @@ class EZForm extends React.Component {
 }
 
 EZForm.propTypes = {
-	formId: PropTypes.string
+    formId: PropTypes.string,
+    stateCallback: PropTypes.func
 };
 
 EZForm.contextType = APIContext;
