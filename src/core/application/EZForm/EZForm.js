@@ -6,8 +6,8 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 5:00 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Wednesday, 10th March 2021 7:57 pm
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -25,6 +25,7 @@ import CheckCircle from "@material-ui/icons/CheckCircle";
 import MessageBox from "../../notification/MessageBox";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { APIContext } from "../../api";
+import moment from 'moment';
 
 const EZFormStatus = Object.freeze({
     loading: 1,
@@ -199,7 +200,7 @@ class EZForm extends React.Component {
 	 * @memberof EZForm
 	 */
 	onSubmit() {
-        const validationResults = this.validateCurrentPage();
+		const validationResults = this.validateCurrentPage();
         if (validationResults.isValid) {
             let prevState = this.state;
             prevState.status = EZFormStatus.submitting;
@@ -253,16 +254,7 @@ class EZForm extends React.Component {
      * @memberof EZForm
      */
     validateQuestion(question) {
-        let valueArray;
-
-        if (Array.isArray(question.value)) {
-            valueArray = question.value;
-        } else {
-            return {
-                isValid: false,
-                errorMessage: "Internal error",
-            };
-        }
+        let valueArray = question.value;
 
         const isEmpty = valueArray.length === 0;
         if (question.dataType.code === "date") {
@@ -271,24 +263,19 @@ class EZForm extends React.Component {
                     return {
                         isValid: false,
                         errorMessage: "This field is required",
-                    };
-                } else if (
-                    !(valueArray[0] instanceof Date && !isNaN(valueArray[0]))
-                ) {
-                    return {
-                        isValid: false,
-                        errorMessage: "",
-                    };
+					};
+				} else if (!moment(valueArray[0], "MM/DD/YYYY").isValid()) {
+					return {
+						isValid: false,
+						errorMessage: ""
+					};
                 } else {
                     return {
                         isValid: true,
                     };
                 }
             } else {
-                if (
-                    isEmpty ||
-                    (valueArray[0] instanceof Date && !isNaN(valueArray[0]))
-                ) {
+                if ( isEmpty || moment(valueArray[0], "MM/DD/YYYY").isValid()) {
                     return {
                         isValid: true,
                     };
@@ -317,7 +304,7 @@ class EZForm extends React.Component {
                     }
                 }
             }
-
+			
             if (!question.isRequired || !isEmpty) {
                 return {
                     isValid: true,
@@ -386,7 +373,6 @@ class EZForm extends React.Component {
                 }
             }
         }
-
         this.state.apiService.insert(
             "/api/ezform/response/" + this.state.data.identifier,
             data,
@@ -456,17 +442,15 @@ class EZForm extends React.Component {
 	 * @memberof EZForm
 	 */
 	onGoBack() {
-        if (this.state.currentPage > 0) {
-            const validationResults = this.validateCurrentPage();
-            if (validationResults.isValid) {
-                let prevState = this.state;
-                prevState.currentPage--;
-                this.setState(prevState);
-            } else {
-                //Error
-                this.prompt(validationResults.prompt);
-            }
-        }
+		const validationResults = this.validateCurrentPage();
+		if (validationResults.isValid) {
+			let prevState = this.state;
+			prevState.currentPage--;
+			this.setState(prevState);
+		} else {
+			//Error
+			this.prompt(validationResults.prompt);
+		}
     }
 
 	/**
@@ -475,17 +459,15 @@ class EZForm extends React.Component {
 	 * @memberof EZForm
 	 */
 	onGoForward() {
-        if (this.state.currentPage < this.state.pageCount - 1) {
-            const validationResults = this.validateCurrentPage();
-            if (validationResults.isValid) {
-                let prevState = this.state;
-                prevState.currentPage++;
-                this.setState(prevState);
-            } else {
-                //Error
-                this.prompt(validationResults.prompt);
-            }
-        }
+		const validationResults = this.validateCurrentPage();
+		if (validationResults.isValid) {
+			let prevState = this.state;
+			prevState.currentPage++;
+			this.setState(prevState);
+		} else {
+			//Error
+			this.prompt(validationResults.prompt);
+		}
     }
 
 	/**
