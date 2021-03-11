@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th March 2021 5:11 pm
+ * Last Modified: Thursday, 11th March 2021 9:33 am
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -24,8 +24,6 @@ import CheckCircle from "@material-ui/icons/CheckCircle";
 import MessageBox from "../../notification/MessageBox";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { APIContext } from "../../api";
-import { Prompt, Router } from "react-router";
-import { withRouter } from 'react-router-dom';
 
 const EZFormStatus = Object.freeze({
     loading: 1,
@@ -46,7 +44,6 @@ class EZForm extends React.Component {
      */
     constructor(props) {
         super(props);
-        console.log(props.history.block("test"));
 
         this.state = {
             status: EZFormStatus.loading,
@@ -629,9 +626,6 @@ class EZForm extends React.Component {
                     title="The following questions are required:"
                     onClose={this.onCloseModal.bind(this)}
                 />
-                {/* <Router history={this.props.history}>
-                    <Prompt message="test" />
-                </Router> */}
             </>
         );
     }
@@ -643,4 +637,4 @@ EZForm.propTypes = {
 
 EZForm.contextType = APIContext;
 
-export default withRouter(EZForm);
+export default EZForm;
