@@ -6,8 +6,8 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th March 2021 2:25 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 11th March 2021 3:53 pm
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -557,7 +557,11 @@ class EZForm extends React.Component {
         );
 
         if (this.state.status === EZFormStatus.loading) {
-            output = <div>Loading...</div>;
+            output = (
+				<div className='justify-content-center text-center'>
+                    <CircularProgress color='primary' />
+                </div>
+            );
         } else if (this.state.status === EZFormStatus.failedToLoad) {
             output = <div>404 Couldn&apos;t find form {this.props.formId}</div>;
         } else if (this.state.status === EZFormStatus.inProgress) {
