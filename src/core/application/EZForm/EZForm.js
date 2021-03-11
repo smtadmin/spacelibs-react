@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 5:00 pm
+ * Last Modified: Wednesday, 10th March 2021 5:11 pm
  * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -16,7 +16,6 @@ import PropTypes from "prop-types";
 import HTTPService from "@siliconmtn/spacelibs-js/core/io/BaseHTTPService";
 import EZFormPage from "./EZFormPage/EZFormPage";
 import SMTButton from "../../input/Button";
-
 import Button from "@material-ui/core/Button";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
@@ -25,6 +24,8 @@ import CheckCircle from "@material-ui/icons/CheckCircle";
 import MessageBox from "../../notification/MessageBox";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { APIContext } from "../../api";
+import { Prompt, Router } from "react-router";
+import { withRouter } from 'react-router-dom';
 
 const EZFormStatus = Object.freeze({
     loading: 1,
@@ -45,6 +46,7 @@ class EZForm extends React.Component {
      */
     constructor(props) {
         super(props);
+        console.log(props.history.block("test"));
 
         this.state = {
             status: EZFormStatus.loading,
@@ -356,15 +358,11 @@ class EZForm extends React.Component {
         if (errors.length === 1) {
             return "There is a problem with question " + errors[0];
         } else {
-            let output = "There are problems with questions ";
+            let output = "";
             for (var x = 0; x < errors.length; x++) {
-                if (x === errors.length - 1) {
-                    output += "and " + errors[x];
-                } else {
-                    output += errors[x] + ", ";
-                }
+                output += errors[x] + ", ";
             }
-            return output;
+            return output.slice(0, -2);
         }
     }
 
@@ -485,6 +483,8 @@ class EZForm extends React.Component {
                 //Error
                 this.prompt(validationResults.prompt);
             }
+            //Bring the screen to the top of the site when the form page is changed
+            window.scrollTo(0, 0);
         }
     }
 
@@ -514,7 +514,7 @@ class EZForm extends React.Component {
                 <Button
                     style={{ visibility: "hidden" }}
                     size='small'
-                    color={"primary"}
+                    color={"secondary"}
                     variant={"contained"}
                     onClick={this.onGoBack.bind(this)}
                     disabled={this.state.currentPage === 0}>
@@ -526,7 +526,7 @@ class EZForm extends React.Component {
             backButton = (
                 <Button
                     size='small'
-                    color={"primary"}
+                    color={"secondary"}
                     variant={"contained"}
                     onClick={this.onGoBack.bind(this)}
                     disabled={this.state.currentPage === 0}>
@@ -602,8 +602,8 @@ class EZForm extends React.Component {
                         <CheckCircle fontSize='inherit' htmlColor={"#4fad52"} />
                     </span>
                     <h1>Thanks!</h1>
-                    <h1>You&apos;re all set</h1>
-                    <h2>The form has successfully been submitted.</h2>
+                    <h1>You&apos;re all set.</h1>
+                    <h3>The form has successfully been submitted.</h3>
                     {this.state.data.resubmitFlag && (
                         <SMTButton
                             className={"resubmit-button"}
@@ -611,7 +611,7 @@ class EZForm extends React.Component {
                             onClick={() => {
                                 window.location = "/form/" + this.props.formId;
                             }}>
-                            Submit Another Form
+                            Submit Another Response
                         </SMTButton>
                     )}
                 </div>
@@ -621,13 +621,17 @@ class EZForm extends React.Component {
         return (
             <>
                 {output}
+                {/* Missing required questions modal */}
                 <MessageBox
                     key={this.state.showModal}
                     show={this.state.showModal}
                     message={this.state.modalMessage}
-                    title={"EZForm"}
+                    title="The following questions are required:"
                     onClose={this.onCloseModal.bind(this)}
                 />
+                {/* <Router history={this.props.history}>
+                    <Prompt message="test" />
+                </Router> */}
             </>
         );
     }
@@ -639,4 +643,4 @@ EZForm.propTypes = {
 
 EZForm.contextType = APIContext;
 
-export default EZForm;
+export default withRouter(EZForm);
