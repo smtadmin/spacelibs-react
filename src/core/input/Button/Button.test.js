@@ -6,7 +6,7 @@
  * File Created: Thursday, 11th February 2021 12:37 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 1st March 2021 9:20 am
+ * Last Modified: Thursday, 11th March 2021 2:12 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -48,9 +48,7 @@ it("Calls onClick function when clicked", () => {
  */
 it("Renders with text", ()=> {
 	render(<Button>Something</Button>);
-
 	const inputParent = screen.getByTestId('button');
-
 	expect(inputParent.textContent).toBe("Something");
 });
 
