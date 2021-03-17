@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th March 2021 3:53 pm
+ * Last Modified: Tuesday, 16th March 2021 1:45 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -259,7 +259,7 @@ class EZForm extends React.Component {
         let valueArray = question.value;
 
         const isEmpty = valueArray.length === 0;
-        if (question.dataType.code === "date") {
+        if (question.dataType === "DATE") {
             if (question.isRequired) {
                 if (isEmpty) {
                     return {
@@ -289,8 +289,8 @@ class EZForm extends React.Component {
                 }
             }
         } else if (
-            question.dataType.code === "select" ||
-            question.dataType.code === "multiselect"
+            question.dataType === "select" ||
+            question.dataType === "multiselect"
         ) {
             if (question.altResponseId != null) {
                 for (var x = 0; x < valueArray.length; x++) {
@@ -335,7 +335,7 @@ class EZForm extends React.Component {
 	 * Method to get an aggregated list of errors
 	 *
 	 * @param {*} errors error-ing questions
-	 * @returns {*} String message for errors 
+	 * @returns {*} String message for errors
 	 * @memberof EZForm
 	 */
 	getErrorMessageForErrors(errors) {

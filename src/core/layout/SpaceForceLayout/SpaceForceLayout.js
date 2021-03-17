@@ -6,8 +6,8 @@
  * File Created: Wednesday, 27th January 2021 1:30 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 4th March 2021 10:13 am
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Tuesday, 16th March 2021 12:53 pm
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -161,46 +161,144 @@ class SpaceForceLayout extends React.Component {
     render() {
 
         return (
-            <ThemeProvider theme={theme}>
-                {/* Header Sections */}
-                <Container fluid className="px-0">
-                    {/* Header Desktop */}
-                    <Header
-                        bootstrap={this.header.bootstrap.desktop}
-                        left={<BootstrapWrapper sectionName="desktop-header-left" bootstrap={this.header.left.desktop.bootstrap} content={this.header.left.desktop.content} />}
-                        center={<BootstrapWrapper sectionName="desktop-header-center" bootstrap={this.header.center.desktop.bootstrap} content={this.header.center.desktop.content} />}
-                        right={<BootstrapWrapper sectionName="desktop-header-right" bootstrap={this.header.right.desktop.bootstrap} content={this.header.right.desktop.content} />}
-                    />
-                    {/* Header Mobile */}
-                    <Header
-                        bootstrap={this.header.bootstrap.mobile}
-                        left={<BootstrapWrapper sectionName="mobile-header-left" bootstrap={this.header.left.mobile.bootstrap} content={this.header.left.mobile.content} />}
-                        center={<BootstrapWrapper sectionName="mobile-header-center" bootstrap={this.header.center.mobile.bootstrap} content={this.header.center.mobile.content} />}
-                        right={<BootstrapWrapper sectionName="mobile-header-right" bootstrap={this.header.right.mobile.bootstrap} content={this.header.right.mobile.content} />}
-                    />
-                </Container>
+            <ErrorBoundary>
+                <ThemeProvider theme={theme}>
+                    {/* Header Sections */}
+                    <Container fluid className='px-0'>
+                        {/* Header Desktop */}
+                        <Header
+                            bootstrap={this.header.bootstrap.desktop}
+                            left={
+                                <BootstrapWrapper
+                                    sectionName='desktop-header-left'
+                                    bootstrap={
+                                        this.header.left.desktop.bootstrap
+                                    }
+                                    content={this.header.left.desktop.content}
+                                />
+                            }
+                            center={
+                                <BootstrapWrapper
+                                    sectionName='desktop-header-center'
+                                    bootstrap={
+                                        this.header.center.desktop.bootstrap
+                                    }
+                                    content={this.header.center.desktop.content}
+                                />
+                            }
+                            right={
+                                <BootstrapWrapper
+                                    sectionName='desktop-header-right'
+                                    bootstrap={
+                                        this.header.right.desktop.bootstrap
+                                    }
+                                    content={this.header.right.desktop.content}
+                                />
+                            }
+                        />
+                        {/* Header Mobile */}
+                        <Header
+                            bootstrap={this.header.bootstrap.mobile}
+                            left={
+                                <BootstrapWrapper
+                                    sectionName='mobile-header-left'
+                                    bootstrap={
+                                        this.header.left.mobile.bootstrap
+                                    }
+                                    content={this.header.left.mobile.content}
+                                />
+                            }
+                            center={
+                                <BootstrapWrapper
+                                    sectionName='mobile-header-center'
+                                    bootstrap={
+                                        this.header.center.mobile.bootstrap
+                                    }
+                                    content={this.header.center.mobile.content}
+                                />
+                            }
+                            right={
+                                <BootstrapWrapper
+                                    sectionName='mobile-header-right'
+                                    bootstrap={
+                                        this.header.right.mobile.bootstrap
+                                    }
+                                    content={this.header.right.mobile.content}
+                                />
+                            }
+                        />
+                    </Container>
 
-                {/* This is where the content is injected */}
-                {this.props.children}
+                    {/* This is where the content is injected */}
+                    {this.props.children}
 
-                {/* Footer Sections */}
-                <Container fluid>
-                    {/* Desktop Footer */}
-                    <Footer
-                        bootstrap={this.footer.bootstrap.desktop}
-                        left={<BootstrapWrapper sectionName="desktop-footer-left" bootstrap={this.footer.left.desktop.bootstrap} content={this.footer.left.desktop.content} />}
-                        center={<BootstrapWrapper sectionName="desktop-footer-center" bootstrap={this.footer.center.desktop.bootstrap} content={this.footer.center.desktop.content} />}
-                        right={<BootstrapWrapper sectionName="desktop-footer-right" bootstrap={this.footer.right.desktop.bootstrap} content={this.footer.right.desktop.content} />}
-                    />
-                    {/* Mobile Footer */}
-                    <Footer
-                        bootstrap={this.footer.bootstrap.mobile}
-                        left={<BootstrapWrapper sectionName="mobile-footer-left" bootstrap={this.footer.left.mobile.bootstrap} content={this.footer.left.mobile.content} />}
-                        center={<BootstrapWrapper sectionName="mobile-footer-center" bootstrap={this.footer.center.mobile.bootstrap} content={this.footer.center.mobile.content} />}
-                        right={<BootstrapWrapper sectionName="mobile-footer-right" bootstrap={this.footer.right.mobile.bootstrap} content={this.footer.right.mobile.content} />}
-                    />
-                </Container>
-            </ThemeProvider>
+                    {/* Footer Sections */}
+                    <Container fluid>
+                        {/* Desktop Footer */}
+                        <Footer
+                            bootstrap={this.footer.bootstrap.desktop}
+                            left={
+                                <BootstrapWrapper
+                                    sectionName='desktop-footer-left'
+                                    bootstrap={
+                                        this.footer.left.desktop.bootstrap
+                                    }
+                                    content={this.footer.left.desktop.content}
+                                />
+                            }
+                            center={
+                                <BootstrapWrapper
+                                    sectionName='desktop-footer-center'
+                                    bootstrap={
+                                        this.footer.center.desktop.bootstrap
+                                    }
+                                    content={this.footer.center.desktop.content}
+                                />
+                            }
+                            right={
+                                <BootstrapWrapper
+                                    sectionName='desktop-footer-right'
+                                    bootstrap={
+                                        this.footer.right.desktop.bootstrap
+                                    }
+                                    content={this.footer.right.desktop.content}
+                                />
+                            }
+                        />
+                        {/* Mobile Footer */}
+                        <Footer
+                            bootstrap={this.footer.bootstrap.mobile}
+                            left={
+                                <BootstrapWrapper
+                                    sectionName='mobile-footer-left'
+                                    bootstrap={
+                                        this.footer.left.mobile.bootstrap
+                                    }
+                                    content={this.footer.left.mobile.content}
+                                />
+                            }
+                            center={
+                                <BootstrapWrapper
+                                    sectionName='mobile-footer-center'
+                                    bootstrap={
+                                        this.footer.center.mobile.bootstrap
+                                    }
+                                    content={this.footer.center.mobile.content}
+                                />
+                            }
+                            right={
+                                <BootstrapWrapper
+                                    sectionName='mobile-footer-right'
+                                    bootstrap={
+                                        this.footer.right.mobile.bootstrap
+                                    }
+                                    content={this.footer.right.mobile.content}
+                                />
+                            }
+                        />
+                    </Container>
+                </ThemeProvider>
+            </ErrorBoundary>
         );
     }
 
