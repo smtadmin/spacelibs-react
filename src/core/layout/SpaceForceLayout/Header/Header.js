@@ -6,8 +6,8 @@
  * File Created: Friday, 29th January 2021 9:57 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 5:07 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 18th March 2021 11:45 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -24,16 +24,19 @@ class Header extends React.Component {
 
     /**
      * Creates an instance of the Header Class
-     * @param {*} props 
+     * @param {*} props Header Props
      */
     constructor(props) {
-        super();
+        super(props);
     }
 
-    /**
-     * Returns a Header Component
-     */
-    render() {
+	/**
+	 * Renders Header Component
+	 *
+	 * @returns {*} React Components 
+	 * @memberof Header
+	 */
+	render() {
         return (
             <Navbar id="header-container" className={this.props.bootstrap}>
                 <Col className="header-left col-1">
@@ -48,7 +51,6 @@ class Header extends React.Component {
             </Navbar>
         );
     }
-
 }
 
 /** Sets Default Props */
@@ -59,7 +61,8 @@ Header.defaultProps = {
 Header.propTypes = {
     left: PropTypes.any,
     center: PropTypes.any,
-    right: PropTypes.any
+    right: PropTypes.any,
+    bootstrap: PropTypes.string
 };
 
 export default Header;

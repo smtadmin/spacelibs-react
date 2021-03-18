@@ -6,8 +6,8 @@
  * File Created: Friday, 19th February 2021 2:05 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th March 2021 1:49 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 18th March 2021 11:56 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -22,7 +22,7 @@ class EZFormPage extends React.Component {
     
     /**
      * Creates an instance of the EZFormPage component
-     * @param {*} props 
+     * @param {*} props EZFormPage Props
      */
     constructor(props) {
         super(props);
@@ -46,9 +46,16 @@ class EZFormPage extends React.Component {
             </div>
         );
     }
-
-
 }
+
+EZFormPage.propTypes = {
+	questions: PropTypes.arrayOf(
+		PropTypes.any
+	),
+	title: PropTypes.string,
+	description: PropTypes.string,
+	onValueChanged: PropTypes.func
+};
 
 export default EZFormPage;
 

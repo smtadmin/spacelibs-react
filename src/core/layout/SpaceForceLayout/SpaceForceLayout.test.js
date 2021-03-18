@@ -6,8 +6,8 @@
  * File Created: Saturday, 6th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 17th February 2021 12:13 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 18th March 2021 11:34 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -45,7 +45,7 @@ const ThemeConfig = {
         },
 
     }
-}
+};
 
 /**
  * Attempts to render a SpaceForceLayout component to confirm that it renders without crashing
@@ -64,4 +64,4 @@ it("Renders Correctly", () => {
 
     const element = render(<SpaceForceLayout ThemeConfig={ThemeConfig} />);
     expect(element).toMatchSnapshot();
-})
+});

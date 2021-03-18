@@ -6,7 +6,7 @@
  * File Created: Monday, 15th February 2021 11:04 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 11:33 am
+ * Last Modified: Thursday, 18th March 2021 11:41 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -19,7 +19,7 @@ import { BrowserRouter as ReactBrowserRouter, Route, Switch } from "react-router
  * Wrapper for the react-router-dom BrowserRouter
  */
 class BrowserRouter extends React.Component {
-	
+
     /**
      * Creates an instance of the BrowserRouter Component
      * @param {*} props Component props
@@ -94,11 +94,12 @@ class BrowserRouter extends React.Component {
     }
 }
 
-export default BrowserRouter;
-
-
-/** Prop Validators */
+/**
+ * Accepted Prop Types
+ */
 BrowserRouter.propTypes = {
     userRoles: PropTypes.arrayOf(PropTypes.string),
     routes: PropTypes.object
 };
+
+export default BrowserRouter;

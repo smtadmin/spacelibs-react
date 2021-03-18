@@ -6,8 +6,8 @@
  * File Created: Monday, 8th February 2021 12:19 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 10th February 2021 3:14 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 18th March 2021 11:41 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -52,7 +52,7 @@ it("Renders Public Menus Correctly", () => {
 
     const element = render(<MenuFactory name="mobile-public-menu" routeData={demoRoutes.publicRouteData} />);
     expect(element).toMatchSnapshot();
-})
+});
 
 /**
  * Renders a MenuFactory component using the adminRouteData object  and compares the render output to a snapshot
@@ -61,7 +61,7 @@ it("Renders Admin Menus Correctly", () => {
 
     const element = render(<MenuFactory name="mobile-public-menu" routeData={demoRoutes.adminRouteData} />);
     expect(element).toMatchSnapshot();
-})
+});
 
 /**
  * Renders a MenuFactory component using the publicRouteData object with the icon prop set to false and compares the render output to a snapshot
@@ -70,7 +70,7 @@ it("Renders Public Menus Correctly Without Icons", () => {
 
     const element = render(<MenuFactory name="mobile-public-menu" icon={false} routeData={demoRoutes.publicRouteData} />);
     expect(element).toMatchSnapshot();
-})
+});
 
 /**
  * Renders a MenuFactory component using the publicRouteData object with the dropdown prop set to true and compares the render output to a snapshot
@@ -79,8 +79,7 @@ it("Renders A Dropdown Menu Correctly", () => {
 
     const element = render(<MenuFactory name="dropdown-test" routeData={demoRoutes.publicRouteData} dropdown={true} />);
     expect(element).toMatchSnapshot();
-    
-})
+});
 
 /**
  * Renders a MenuFactory component using the publicRouteData object with the text prop set to false and compares the render output to a snapshot
@@ -90,4 +89,4 @@ it("Renders Public Menus Correctly Without Text", () => {
     const element = render(<MenuFactory name="mobile-public-menu" text={false} routeData={demoRoutes.publicRouteData} />);
     expect(element).toMatchSnapshot();
     
-})
+});

@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 10:21 am
+ * Last Modified: Thursday, 18th March 2021 12:02 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -223,7 +223,7 @@ class EZForm extends React.Component {
         let errors = [];
         let page = state.data.pages[state.currentPage];
         for (var y = 0; y < page.questions.length; y++) {
-			let question = page.questions[y];
+            let question = page.questions[y];
 
             const validateObject = this.validateQuestion(question);
             if (!validateObject.isValid) {
@@ -324,6 +324,13 @@ class EZForm extends React.Component {
         return dictionary[question.type](question);
     }
 
+    /**
+     * Gets value for an Entry question
+     *
+     * @param {*} question Question object
+     * @returns {Array.<{isValid: boolean, errorMessage: string}>} Value object
+     * @memberof EZForm
+     */
     getEntryValue(question) {
         if (question.value == null || question.value.length === 0) {
             return [];
@@ -337,6 +344,13 @@ class EZForm extends React.Component {
         ];
     }
 
+    /**
+     * Gets value for a Multi question
+     *
+     * @param {*} question Question object
+     * @returns {Array.<{isValid: boolean, errorMessage: string}>} Value object
+     * @memberof EZForm
+     */
     getMultiValue(question) {
         let values = [];
         for (let x = 0; x < question.value.length; x++) {
@@ -352,6 +366,13 @@ class EZForm extends React.Component {
         return values;
     }
 
+    /**
+     * Gets value for a Choice question
+     *
+     * @param {*} question Question object
+     * @returns {Array.<{isValid: boolean, errorMessage: string}>} Value object
+     * @memberof EZForm
+     */
     getChoiceValue(question) {
         if (question.value == null || question.value.length === 0) return [];
 
@@ -376,8 +397,8 @@ class EZForm extends React.Component {
             MULTI: this.validateMulti.bind(this),
             CHOICE: this.validateChoice.bind(this),
         };
-		const validationFunc = dictionary[question.type];
-		const validationObject = validationFunc(question);
+        const validationFunc = dictionary[question.type];
+        const validationObject = validationFunc(question);
         return validationObject;
     }
 
@@ -439,7 +460,7 @@ class EZForm extends React.Component {
      * @memberof EZForm
      */
     validateText(value, isRequired) {
-		const hasValue = value != null && value.length > 0;
+        const hasValue = value != null && value.length > 0;
 
         if (isRequired) {
             if (hasValue) {
@@ -468,7 +489,7 @@ class EZForm extends React.Component {
         if (isRequired) {
             if (validNumber && value.length > 0) {
                 return { isValid: true, errorMessage: "" };
-            } else if ((value) && value.length > 0) {
+            } else if (value && value.length > 0) {
                 return {
                     isValid: false,
                     errorMessage: "This field expects a number",
@@ -516,11 +537,12 @@ class EZForm extends React.Component {
      */
     validateMulti(question) {
         let values = question.value;
-		let altId = question.altResponseId;
+        let altId = question.altResponseId;
 
         for (let index = 0; index < values.length; index++) {
-			const option = values[index];
-			const value = option.identifier === altId ? option.value : option.displayText;
+            const option = values[index];
+            const value =
+                option.identifier === altId ? option.value : option.displayText;
 
             let error = this.validateValueAgainstType(
                 value,
@@ -550,7 +572,7 @@ class EZForm extends React.Component {
      * @memberof EZForm
      */
     validateChoice(question) {
-		const hasValues = question.value != null && question.value.length > 0;
+        const hasValues = question.value != null && question.value.length > 0;
         return this.validateValueAgainstType(
             hasValues ? question.value[0].displayText : null,
             question.dataType.code,

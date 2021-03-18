@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 17th March 2021 4:25 pm
+ * Last Modified: Thursday, 18th March 2021 11:56 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -31,29 +31,35 @@ class QuestionBlock extends React.Component {
      */
     constructor(props) {
         super(props);
-	}
-	
-	/**
-	 * Returns a component for the given params
-	 *
-	 * @param {*} type Question 
-	 * @param {*} dataType Type of data the question accepts
-	 * @param {*} optionCount How many options a question has
-	 * @returns {*} React component to render 
-	 * @memberof QuestionBlock
-	 */
-	getComponent(type, dataType, optionCount) {
-		const componentMap = this.getComponentMap(optionCount);
-		const componentFunc = componentMap[type];
-		
-		if(!componentFunc){ 
-			console.error("Component Factory does not support (Type=" + type + ", DataType=" + dataType + ")");
-			return null;
-		}
-		
+    }
+
+    /**
+     * Returns a component for the given params
+     *
+     * @param {*} type Question
+     * @param {*} dataType Type of data the question accepts
+     * @param {*} optionCount How many options a question has
+     * @returns {*} React component to render
+     * @memberof QuestionBlock
+     */
+    getComponent(type, dataType, optionCount) {
+        const componentMap = this.getComponentMap(optionCount);
+        const componentFunc = componentMap[type];
+
+        if (!componentFunc) {
+            console.error(
+                "Component Factory does not support (Type=" +
+                    type +
+                    ", DataType=" +
+                    dataType +
+                    ")"
+            );
+            return null;
+        }
+
         let component = componentFunc(dataType);
 
-		return React.createElement(component,{...this.props},null);
+        return React.createElement(component, { ...this.props }, null);
     }
 
     /**
@@ -79,6 +85,13 @@ class QuestionBlock extends React.Component {
         return dictionary;
     }
 
+    /**
+     * Gets a component for an ENTRY type question
+     *
+     * @param {*} dataType DataType of question
+     * @returns {*} ___Block Component
+     * @memberof QuestionBlock
+     */
     getEntryComponent(dataType) {
         let dictionary = {};
         dictionary["DATE"] = DateBlock;
@@ -90,6 +103,13 @@ class QuestionBlock extends React.Component {
         return dictionary[dataType];
     }
 
+    /**
+     * Gets a component for a Choice type question with less than 5 options
+     *
+     * @param {*} dataType DataType of question
+     * @returns {*} ___Block Component
+     * @memberof QuestionBlock
+     */
     getShortChoice(dataType) {
         let dictionary = {};
         dictionary["TEXT"] = RadioBlock;
@@ -97,13 +117,27 @@ class QuestionBlock extends React.Component {
         return dictionary[dataType];
     }
 
+    /**
+     * Gets a component for a MULTI type question with less than 5 options
+     *
+     * @param {*} dataType DataType of question
+     * @returns {*} ___Block Component
+     * @memberof QuestionBlock
+     */
     getShortMulti(dataType) {
-		let dictionary = {};
+        let dictionary = {};
         dictionary["TEXT"] = CheckBlock;
         dictionary["NUMBER"] = CheckBlock;
         return dictionary[dataType];
-	}
+    }
 
+    /**
+     * Gets a component for a Choice type question with more than 4 options
+     *
+     * @param {*} dataType DataType of question
+     * @returns {*} ___Block Component
+     * @memberof QuestionBlock
+     */
     getLongComponent(dataType) {
         let dictionary = {};
         dictionary["TEXT"] = SelectBlock;
@@ -119,17 +153,17 @@ class QuestionBlock extends React.Component {
      */
     render() {
         const type = this.props.type;
-		const dataType = this.props.dataType.code;
-		const optionCount = this.props.options ? this.props.options.length : 0;
+        const dataType = this.props.dataType.code;
+        const optionCount = this.props.options ? this.props.options.length : 0;
 
-		let props = this.props;
-		props.config = { 
-			options: this.props.options,
-		};
-		props.dataType.isMultiple = type === "MULTI";
+        let props = this.props;
+        props.config = {
+            options: this.props.options,
+        };
+        props.dataType.isMultiple = type === "MULTI";
         delete props.options;
 
-		// console.log("Question Block Props",props);
+        // console.log("Question Block Props",props);
         return (
             <div className={"question-block-wrapper pt-3 pl-5"}>
                 {this.getComponent(type, dataType, optionCount)}

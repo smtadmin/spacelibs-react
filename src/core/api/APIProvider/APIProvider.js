@@ -6,7 +6,7 @@
  * File Created: Wednesday, 17th February 2021 4:53 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 9th March 2021 12:46 pm
+ * Last Modified: Thursday, 18th March 2021 12:01 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -68,7 +68,7 @@ class APIProvider extends React.Component {
  */
 APIProvider.propTypes = {
     children: PropTypes.any,
-    baseUrl: PropTypes.string,
+    baseURL: PropTypes.string,
 };
 
 export default APIProvider;

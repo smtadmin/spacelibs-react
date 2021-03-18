@@ -6,8 +6,8 @@
  * File Created: Saturday, 6th February 2021 10:45 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Friday, 12th February 2021 9:11 am
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 18th March 2021 11:46 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -23,8 +23,8 @@ it("Renders without crashing", () => {
         left: "left",
         Center: "center",
         right: "right"
-    }
-    const element = render(<Footer footer={footerContent} />)
+    };
+    const element = render(<Footer footer={footerContent} />);
     expect(element).toBeTruthy();
 });
 
@@ -36,8 +36,8 @@ it("Renders correctly", () => {
         left: "left",
         Center: "center",
         right: "right"
-    }
-    const element = render(<Footer footer={footerContent} />)
+    };
+    const element = render(<Footer footer={footerContent} />);
     expect(element).toMatchSnapshot();
 });
 
@@ -49,7 +49,7 @@ it("Renders multiple items correctly", () => {
         left: ["item1", "item2", "item3"],
         Center: ["item1", "item2", "item3"],
         right: ["item1", "item2", "item3"]
-    }
-    const element = render(<Footer footer={footerContent} />)
+    };
+    const element = render(<Footer footer={footerContent} />);
     expect(element).toMatchSnapshot();
 });
