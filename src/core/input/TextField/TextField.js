@@ -6,7 +6,7 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 10:14 am
+ * Last Modified: Thursday, 18th March 2021 4:15 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -36,11 +36,13 @@ class TextField extends React.Component {
 	/**
 	 * Event handler for TextField value chaning
 	 *
-	 * @param {*} event - Text input change event
+	 * @param {*} output - Text input change event
 	 * @memberof TextField
 	 */
-	onValueChanged(event){
-		this.props.onValueChanged(event);
+	onValueChanged(output){
+		let reducedValue = output && output.target ? output.target.value : null;
+		console.log(reducedValue);
+		this.props.onValueChanged(reducedValue);
 	}
 
 	/**

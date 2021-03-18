@@ -6,8 +6,8 @@
  * File Created: Friday, 19th February 2021 10:49 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 5:00 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 18th March 2021 3:27 pm
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -104,7 +104,7 @@ class SelectBlock extends React.Component {
 	 * @memberof SelectBlock
 	 */
 	onAlternateValueChanged(event){
-		const value = event.target.value;
+		const value = event;
 		let prevState = this.state;
         prevState.alternateValue = value;
 		this.setState(prevState);

@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:04 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 10:17 am
+ * Last Modified: Thursday, 18th March 2021 4:14 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -32,7 +32,8 @@ class TextBlock extends React.Component {
 	 * @memberof TextBlock
 	 */
 	onValueChanged(output) {
-		let reducedValue = (output && output.target) ? output.target.value : [];
+		let reducedValue = output;
+		console.log(reducedValue);
         if (reducedValue.constructor !== Array) {
             reducedValue = [reducedValue];
         }
