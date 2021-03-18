@@ -1,6 +1,6 @@
 {
   "name": "@siliconmtn/spacelibs-react",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Library for reusable React components",
   "main": "index.js",
   "scripts": {

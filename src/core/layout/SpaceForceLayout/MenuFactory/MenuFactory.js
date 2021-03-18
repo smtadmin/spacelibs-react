@@ -8,7 +8,7 @@
  * File Created: Friday, 5th February 2021 10:31 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 11:48 am
+ * Last Modified: Thursday, 18th March 2021 12:35 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -126,14 +126,7 @@ MenuFactory.propTypes = {
     icon: PropTypes.bool,
     name: PropTypes.string.isRequired,
     dropdown: PropTypes.bool,
-    routeData: PropTypes.arrayOf(
-		PropTypes.shape({
-			name: PropTypes.any,
-			link: PropTypes.any,
-			icon: PropTypes.any,
-			text: PropTypes.any
-		})
-	)
+    routeData: PropTypes.any
 };
 
 export default MenuFactory;
