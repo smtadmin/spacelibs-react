@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 11:56 am
+ * Last Modified: Thursday, 18th March 2021 5:21 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -163,7 +163,6 @@ class QuestionBlock extends React.Component {
         props.dataType.isMultiple = type === "MULTI";
         delete props.options;
 
-        // console.log("Question Block Props",props);
         return (
             <div className={"question-block-wrapper pt-3 pl-5"}>
                 {this.getComponent(type, dataType, optionCount)}

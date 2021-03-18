@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 12:02 pm
+ * Last Modified: Thursday, 18th March 2021 5:24 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -578,25 +578,8 @@ class EZForm extends React.Component {
             question.dataType.code,
             question.isRequired
         );
-    }
-
-    // /**
-    //  * Validate a choice question
-    //  *
-    //  * @param {*} question question to validate
-    //  * @returns {*} boolean, true the value is a valid representation of the type
-    //  * @memberof EZForm
-    //  */
-    // validateChoice(question) {
-    //     const hasValues = question.values != null && question.values.length > 0;
-    //     return this.validateValueAgainstType(
-    //         hasValues ? question.values[0] : null,
-    //         question.dataType.code,
-    //         null,
-    //         question.isRequired
-    //     );
-    // }
-
+	}
+	
     /**
      * Method called when the back button is pressed
      *
@@ -681,7 +664,6 @@ class EZForm extends React.Component {
             );
         }
 
-        // const bottomElements = <div className={"form-footer"}>{backButton}{forwardButton}{submitButton}</div>;
         let forwardButton;
         if (isLastPage) {
             forwardButton = (
