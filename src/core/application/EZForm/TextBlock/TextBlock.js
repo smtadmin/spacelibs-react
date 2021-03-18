@@ -6,8 +6,8 @@
  * File Created: Friday, 19th February 2021 10:04 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 5:01 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 18th March 2021 10:17 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -32,10 +32,11 @@ class TextBlock extends React.Component {
 	 * @memberof TextBlock
 	 */
 	onValueChanged(output) {
-        if (output.constructor !== Array) {
-            output = [output];
+		let reducedValue = (output && output.target) ? output.target.value : [];
+        if (reducedValue.constructor !== Array) {
+            reducedValue = [reducedValue];
         }
-        this.props.onValueChanged(this.props.identifier, output);
+        this.props.onValueChanged(this.props.identifier, reducedValue);
     }
 
     /**
@@ -62,7 +63,10 @@ class TextBlock extends React.Component {
                             isValid={this.props.isValid}
                         />
                     </FormControl>
-                    <ErrorLabel errorMessage={this.errorMessage} isValid={this.isValid} />
+                    <ErrorLabel
+                        errorMessage={this.props.errorMessage}
+                        isValid={this.props.isValid}
+                    />
                 </div>
             </>
         );

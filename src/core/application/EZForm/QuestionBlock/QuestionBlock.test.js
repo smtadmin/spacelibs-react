@@ -6,7 +6,7 @@
  * File Created: Tuesday, 2nd March 2021 12:57 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 9:05 am
+ * Last Modified: Wednesday, 17th March 2021 5:35 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -24,12 +24,34 @@ it("Renders with with questions", () => {
 	const props = {
 			identifier: "FJIDSLKSDJS",
 			dataType: {
-				code: "text",
+				code: "TEXT",
 			},
+			type: "ENTRY",
 			label: "Question label",
 			number: 1,
 			onValueChanged: ()=>{}
 	};
+	const { baseElement, rerender } = render(<QuestionBlock {...props} />);
+	rerender(<QuestionBlock {...props} />);
+    expect(baseElement).toBeTruthy();
+});
+
+/**
+ * Checks that the question block renders
+ */
+it("Renders with with questions 2", () => {
+	const props = {
+			identifier: "FJIDSLKSDJS",
+			dataType: {
+				code: "TEXT",
+			},
+			type: "CHOICE",
+			label: "Question label",
+			options: [],
+			number: 1,
+			onValueChanged: ()=>{}
+	};
+
 	const { baseElement, rerender } = render(<QuestionBlock {...props} />);
 	rerender(<QuestionBlock {...props} />);
     expect(baseElement).toBeTruthy();

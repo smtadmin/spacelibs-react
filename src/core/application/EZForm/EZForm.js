@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 16th March 2021 1:45 pm
+ * Last Modified: Thursday, 18th March 2021 10:21 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -38,7 +38,6 @@ const EZFormStatus = Object.freeze({
  * React component that displays a form using the EZForm api
  */
 class EZForm extends React.Component {
-
     /**
      * Creates an instance of the EZForm class
      * @param {*} props - The props passed to the component
@@ -53,27 +52,27 @@ class EZForm extends React.Component {
             formErrorMessage: null,
             showModal: false,
             modalMessage: "",
-            apiService: null
+            apiService: null,
         };
         this.formatData = this.formatData.bind(this);
     }
 
-	/**
-	 * Lifecycle method that gets called when the component mounts
-	 *
-	 * @memberof EZForm
-	 */
-	componentDidMount() {
+    /**
+     * Lifecycle method that gets called when the component mounts
+     *
+     * @memberof EZForm
+     */
+    componentDidMount() {
         this.getFormData(this.props.formId);
     }
 
-	/**
-	 * Method to get an HTTPService
-	 *
-	 * @returns {*} an HTTPServiceObject
-	 * @memberof EZForm
-	 */
-	getHTTPService() {
+    /**
+     * Method to get an HTTPService
+     *
+     * @returns {*} an HTTPServiceObject
+     * @memberof EZForm
+     */
+    getHTTPService() {
         if (this.context) {
             return new HTTPService({
                 host: this.context.baseURL,
@@ -99,14 +98,14 @@ class EZForm extends React.Component {
         http.read("/api/ezform/" + formId, {}, this.onComplete.bind(this), {});
     }
 
-	/**
-	 * Formats Backend data for front end consumption
-	 *
-	 * @param {*} data - javascript object in the format the backend serves
-	 * @returns {*} formatted data object 
-	 * @memberof EZForm
-	 */
-	formatData(data) {
+    /**
+     * Formats Backend data for front end consumption
+     *
+     * @param {*} data - javascript object in the format the backend serves
+     * @returns {*} formatted data object
+     * @memberof EZForm
+     */
+    formatData(data) {
         let count = 1;
         data.pages.forEach((page) => {
             page.questions.forEach((question) => {
@@ -121,25 +120,23 @@ class EZForm extends React.Component {
         });
         return data;
     }
-	
-	/**
-	 * This method is called when API request to get data is complete
-	 *
-	 * @param {*} response The response object from the APIService
-	 * @memberof EZForm
-	 */
-	onComplete(response){
+
+    /**
+     * This method is called when API request to get data is complete
+     *
+     * @param {*} response The response object from the APIService
+     * @memberof EZForm
+     */
+    onComplete(response) {
         let data;
         let pageCount = 0;
         let status = EZFormStatus.failedToLoad;
 
-        if(response.isValid){
+        if (response.isValid) {
             data = this.formatData(response.data);
             pageCount = data.pages.length;
             status = EZFormStatus.inProgress;
         }
-        
-        this.props.stateCallback?.(status);
 
         this.setState({
             status: status,
@@ -150,16 +147,18 @@ class EZForm extends React.Component {
             showModal: false,
             modalMessage: "",
         });
+
+        this.props.stateCallback?.(status);
     }
 
-	/**
-	 * Method called when a questions value changes
-	 *
-	 * @param {*} questionId Id for the question
-	 * @param {*} value value for the question
-	 * @memberof EZForm
-	 */
-	onValueChanged(questionId, value) {
+    /**
+     * Method called when a questions value changes
+     *
+     * @param {*} questionId Id for the question
+     * @param {*} value value for the question
+     * @memberof EZForm
+     */
+    onValueChanged(questionId, value) {
         let prevState = this.state;
         let breakOut = false;
         for (var x = 0; x < prevState.data.pages.length; x++) {
@@ -182,26 +181,26 @@ class EZForm extends React.Component {
         this.setState(prevState);
     }
 
-	/**
-	 * Prompts a modal to pop up
-	 *
-	 * @param {*} message message to add to the modal
-	 * @memberof EZForm
-	 */
-	prompt(message) {
+    /**
+     * Prompts a modal to pop up
+     *
+     * @param {*} message message to add to the modal
+     * @memberof EZForm
+     */
+    prompt(message) {
         let prevState = this.state;
         prevState.showModal = true;
         prevState.modalMessage = message;
         this.setState(prevState);
     }
 
-	/**
-	 * Method called when the submit button is pressed
-	 *
-	 * @memberof EZForm
-	 */
-	onSubmit() {
-		const validationResults = this.validateCurrentPage();
+    /**
+     * Method called when the submit button is pressed
+     *
+     * @memberof EZForm
+     */
+    onSubmit() {
+        const validationResults = this.validateCurrentPage();
         if (validationResults.isValid) {
             let prevState = this.state;
             prevState.status = EZFormStatus.submitting;
@@ -224,7 +223,7 @@ class EZForm extends React.Component {
         let errors = [];
         let page = state.data.pages[state.currentPage];
         for (var y = 0; y < page.questions.length; y++) {
-            let question = page.questions[y];
+			let question = page.questions[y];
 
             const validateObject = this.validateQuestion(question);
             if (!validateObject.isValid) {
@@ -249,96 +248,13 @@ class EZForm extends React.Component {
     }
 
     /**
-     *Validates that the required questions were answered and all of the input values are valid
+     * Method to get an aggregated list of errors
      *
-     * @param {*} question - The question to validate
-     * @returns {*} - Object with boolean isValid and an error if the validation returns false
+     * @param {*} errors error-ing questions
+     * @returns {*} String message for errors
      * @memberof EZForm
      */
-    validateQuestion(question) {
-        let valueArray = question.value;
-
-        const isEmpty = valueArray.length === 0;
-        if (question.dataType === "DATE") {
-            if (question.isRequired) {
-                if (isEmpty) {
-                    return {
-                        isValid: false,
-                        errorMessage: "This field is required",
-					};
-				} else if (!moment(valueArray[0], "MM/DD/YYYY").isValid()) {
-					return {
-						isValid: false,
-						errorMessage: ""
-					};
-                } else {
-                    return {
-                        isValid: true,
-                    };
-                }
-            } else {
-                if ( isEmpty || moment(valueArray[0], "MM/DD/YYYY").isValid()) {
-                    return {
-                        isValid: true,
-                    };
-                } else {
-                    return {
-                        isValid: false,
-                        errorMessage: "",
-                    };
-                }
-            }
-        } else if (
-            question.dataType === "select" ||
-            question.dataType === "multiselect"
-        ) {
-            if (question.altResponseId != null) {
-                for (var x = 0; x < valueArray.length; x++) {
-                    if (
-                        valueArray[x].identifier === question.altResponseId &&
-                        (valueArray[x].value == null ||
-                            valueArray[x].value === "")
-                    ) {
-                        return {
-                            isValid: false,
-                            errorMessage: "Please enter a value",
-                        };
-                    }
-                }
-            }
-			
-            if (!question.isRequired || !isEmpty) {
-                return {
-                    isValid: true,
-                };
-            } else {
-                return {
-                    isValid: false,
-                    errorMessage: "This field is required",
-                };
-            }
-        } else {
-            if (!question.isRequired || !isEmpty) {
-                return {
-                    isValid: true,
-                };
-            } else {
-                return {
-                    isValid: false,
-                    errorMessage: "This field is required",
-                };
-            }
-        }
-    }
-
-	/**
-	 * Method to get an aggregated list of errors
-	 *
-	 * @param {*} errors error-ing questions
-	 * @returns {*} String message for errors
-	 * @memberof EZForm
-	 */
-	getErrorMessageForErrors(errors) {
+    getErrorMessageForErrors(errors) {
         if (errors.length === 0) {
             return null;
         }
@@ -353,12 +269,12 @@ class EZForm extends React.Component {
         }
     }
 
-	/**
-	 * Method called after submission and validation is done successfully
-	 *
-	 * @memberof EZForm
-	 */
-	sendData() {
+    /**
+     * Method called after submission and validation is done successfully
+     *
+     * @memberof EZForm
+     */
+    sendData() {
         let data = [];
 
         for (let x = 0; x < this.state.data.pages.length; x++) {
@@ -391,92 +307,316 @@ class EZForm extends React.Component {
         );
     }
 
-	/**
-	 * Gets the current value(s) for a question to send as a response to the backend
-	 *
-	 * @param {*} question Question object
-	 * @returns {*} Array of values
-	 * @memberof EZForm
-	 */
-	getResponseValuesFromQuestion(question) {
-        let values = question.value;
-        let output = [];
-        for (let x = 0; x < values.length; x++) {
-            if (
-                question.dataType.code === "date" ||
-                question.dataType.code === "text"
-            ) {
-                output.push({
-                    question: question.identifier,
-                    value: values[x],
-                });
-            } else if (
-                question.dataType.code === "select" ||
-                question.dataType.code === "multiselect"
-            ) {
-                if (question.altResponseId === values[x].identifier) {
-                    output.push({
-                        question: question.identifier,
-                        value: values[x].value,
-                    });
-                } else {
-                    output.push({
-                        question: question.identifier,
-                        value: values[x].displayText,
-                    });
-                }
+    /**
+     * Gets the current value(s) for a question to send as a response to the backend
+     *
+     * @param {*} question Question object
+     * @returns {*} Array of values
+     * @memberof EZForm
+     */
+    getResponseValuesFromQuestion(question) {
+        const dictionary = {
+            ENTRY: this.getEntryValue.bind(this),
+            MULTI: this.getMultiValue.bind(this),
+            CHOICE: this.getChoiceValue.bind(this),
+        };
+
+        return dictionary[question.type](question);
+    }
+
+    getEntryValue(question) {
+        if (question.value == null || question.value.length === 0) {
+            return [];
+        }
+
+        return [
+            {
+                question: question.identifier,
+                value: question.value[0],
+            },
+        ];
+    }
+
+    getMultiValue(question) {
+        let values = [];
+        for (let x = 0; x < question.value.length; x++) {
+            const value =
+                question.altResponseId === question.value[x].identifier
+                    ? question.value[x].value
+                    : question.value[x].displayText;
+            values.push({
+                question: question.identifier,
+                value: value,
+            });
+        }
+        return values;
+    }
+
+    getChoiceValue(question) {
+        if (question.value == null || question.value.length === 0) return [];
+
+        return [
+            {
+                question: question.identifier,
+                value: question.value[0].displayText,
+            },
+        ];
+    }
+
+    /**
+     *Validates that the required questions were answered and all of the input values are valid
+     *
+     * @param {*} question - The question to validate
+     * @returns {*} - Object with boolean isValid and an error if the validation returns false
+     * @memberof EZForm
+     */
+    validateQuestion(question) {
+        const dictionary = {
+            ENTRY: this.validateEntry.bind(this),
+            MULTI: this.validateMulti.bind(this),
+            CHOICE: this.validateChoice.bind(this),
+        };
+		const validationFunc = dictionary[question.type];
+		const validationObject = validationFunc(question);
+        return validationObject;
+    }
+
+    /**
+     * Factory for single value validation against its type
+     *
+     * @param {*} value value to be validated
+     * @param {*} type type the value should be
+     * @param {*} isRequired whether or not the value is required
+     * @returns {*} validation object
+     * @memberof EZForm
+     */
+    validateValueAgainstType(value, type, isRequired) {
+        const dictionary = {
+            DATE: this.validateDate.bind(this),
+            TEXT: this.validateText.bind(this),
+            NUMBER: this.validateNumber.bind(this),
+        };
+        return dictionary[type](value, isRequired);
+    }
+
+    /**
+     * Validates the value object as a date
+     *
+     * @param {*} value Object to validate
+     * @param {*} isRequired Whether or not the date is required
+     * @returns {*} Validation object
+     * @memberof EZForm
+     */
+    validateDate(value, isRequired) {
+        const validDate = value && moment(value, "MM/DD/YYYY").isValid();
+
+        if (isRequired) {
+            if (validDate) {
+                return { isValid: true, errorMessage: "" };
+            } else if (!value || value.length === 0) {
+                return {
+                    isValid: false,
+                    errorMessage: "This field is required",
+                };
             } else {
-                output.push({
-                    question: question.identifier,
-                    value: values[x].displayText,
-                });
+                return { isValid: false, errorMessage: "" };
+            }
+        } else {
+            if (validDate || value == null || value.length === 0) {
+                return { isValid: true, errorMessage: "" };
+            } else {
+                return { isValid: false, errorMessage: "" };
             }
         }
-        return output;
     }
 
-	/**
-	 * Method called when the back button is pressed
-	 *
-	 * @memberof EZForm
-	 */
-	onGoBack() {
-		const validationResults = this.validateCurrentPage();
-		if (validationResults.isValid) {
-			let prevState = this.state;
-			prevState.currentPage--;
-			this.setState(prevState);
-		} else {
-			//Error
-			this.prompt(validationResults.prompt);
-		}
+    /**
+     * Validates a value object as text
+     *
+     * @param {*} value Object to validate
+     * @param {*} isRequired Whether or not the value needs to exist
+     * @returns {*} Validation object
+     * @memberof EZForm
+     */
+    validateText(value, isRequired) {
+		const hasValue = value != null && value.length > 0;
+
+        if (isRequired) {
+            if (hasValue) {
+                return { isValid: true, errorMessage: "" };
+            } else {
+                return {
+                    isValid: false,
+                    errorMessage: "This field is required",
+                };
+            }
+        } else {
+            return { isValid: true, errorMessage: "" };
+        }
     }
 
-	/**
-	 * Method called when the next button is pressed
-	 *
-	 * @memberof EZForm
-	 */
-	onGoForward() {
-		const validationResults = this.validateCurrentPage();
-		if (validationResults.isValid) {
-			let prevState = this.state;
-			prevState.currentPage++;
-			this.setState(prevState);
-		} else {
-			//Error
+    /**
+     * Validates a value object as a number
+     *
+     * @param {*} value Object to validate
+     * @param {*} isRequired Whether or not the value needs to exist
+     * @returns {*} Validation object
+     * @memberof EZForm
+     */
+    validateNumber(value, isRequired) {
+        const validNumber = value && !isNaN(value);
+        if (isRequired) {
+            if (validNumber && value.length > 0) {
+                return { isValid: true, errorMessage: "" };
+            } else if ((value) && value.length > 0) {
+                return {
+                    isValid: false,
+                    errorMessage: "This field expects a number",
+                };
+            } else {
+                return {
+                    isValid: false,
+                    errorMessage: "This field is required",
+                };
+            }
+        } else {
+            if (validNumber || value == null || value.length === 0) {
+                return { isValid: true, errorMessage: "" };
+            } else {
+                return {
+                    isValid: false,
+                    errorMessage: "This field expects a number",
+                };
+            }
+        }
+    }
+
+    /**
+     * Validates an entry question
+     *
+     * @param {*} question Question to validate
+     * @returns {*} boolean, true the value is a valid representation of the type
+     * @memberof EZForm
+     */
+    validateEntry(question) {
+        const hasValues = question.value != null && question.value.length;
+        return this.validateValueAgainstType(
+            hasValues ? question.value[0] : null,
+            question.dataType.code,
+            question.isRequired
+        );
+    }
+
+    /**
+     * Validate a multiple choice question
+     *
+     * @param {*} question Question to validate
+     * @returns {*} boolean, true the value is a valid representation of the type
+     * @memberof EZForm
+     */
+    validateMulti(question) {
+        let values = question.value;
+		let altId = question.altResponseId;
+
+        for (let index = 0; index < values.length; index++) {
+			const option = values[index];
+			const value = option.identifier === altId ? option.value : option.displayText;
+
+            let error = this.validateValueAgainstType(
+                value,
+                question.dataType.code,
+                question.isRequired
+            );
+            if (!error.isValid) {
+                return error;
+            }
+        }
+
+        if (question.isRequired && values.length === 0) {
+            return {
+                isValid: false,
+                errorMessage: "This field is required",
+            };
+        }
+
+        return { isValid: true, errorMessage: "" };
+    }
+
+    /**
+     * Validates a choice question
+     *
+     * @param {*} question Question to validate
+     * @returns {*} boolean, true the value is a valid representation of the type
+     * @memberof EZForm
+     */
+    validateChoice(question) {
+		const hasValues = question.value != null && question.value.length > 0;
+        return this.validateValueAgainstType(
+            hasValues ? question.value[0].displayText : null,
+            question.dataType.code,
+            question.isRequired
+        );
+    }
+
+    // /**
+    //  * Validate a choice question
+    //  *
+    //  * @param {*} question question to validate
+    //  * @returns {*} boolean, true the value is a valid representation of the type
+    //  * @memberof EZForm
+    //  */
+    // validateChoice(question) {
+    //     const hasValues = question.values != null && question.values.length > 0;
+    //     return this.validateValueAgainstType(
+    //         hasValues ? question.values[0] : null,
+    //         question.dataType.code,
+    //         null,
+    //         question.isRequired
+    //     );
+    // }
+
+    /**
+     * Method called when the back button is pressed
+     *
+     * @memberof EZForm
+     */
+    onGoBack() {
+        const validationResults = this.validateCurrentPage();
+        if (validationResults.isValid) {
+            let prevState = this.state;
+            prevState.currentPage--;
+            this.setState(prevState);
+        } else {
+            //Error
+            this.prompt(validationResults.prompt);
+        }
+    }
+
+    /**
+     * Method called when the next button is pressed
+     *
+     * @memberof EZForm
+     */
+    onGoForward() {
+        const validationResults = this.validateCurrentPage();
+        if (validationResults.isValid) {
+            let prevState = this.state;
+            prevState.currentPage++;
+            this.setState(prevState);
+        } else {
+            //Error
             this.prompt(validationResults.prompt);
         }
         //Bring the screen to the top of the site when the form page is changed
         window.scrollTo(0, 0);
     }
 
-	/**
-	 * Method called when a prompted modal is closed
-	 *
-	 * @memberof EZForm
-	 */
-	onCloseModal() {
+    /**
+     * Method called when a prompted modal is closed
+     *
+     * @memberof EZForm
+     */
+    onCloseModal() {
         let prevState = this.state;
         prevState.showModal = false;
         prevState.modalMessage = "";
@@ -558,7 +698,7 @@ class EZForm extends React.Component {
 
         if (this.state.status === EZFormStatus.loading) {
             output = (
-				<div className='justify-content-center text-center'>
+                <div className='justify-content-center text-center'>
                     <CircularProgress color='primary' />
                 </div>
             );
@@ -613,7 +753,7 @@ class EZForm extends React.Component {
                     key={this.state.showModal}
                     show={this.state.showModal}
                     message={this.state.modalMessage}
-                    title="The following questions are required:"
+                    title='The following questions are required:'
                     onClose={this.onCloseModal.bind(this)}
                 />
             </>
