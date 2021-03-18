@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 5:20 pm
+ * Last Modified: Thursday, 18th March 2021 5:24 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -664,7 +664,6 @@ class EZForm extends React.Component {
             );
         }
 
-        // const bottomElements = <div className={"form-footer"}>{backButton}{forwardButton}{submitButton}</div>;
         let forwardButton;
         if (isLastPage) {
             forwardButton = (
