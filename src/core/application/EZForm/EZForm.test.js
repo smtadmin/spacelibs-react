@@ -6,8 +6,8 @@
  * File Created: Monday, 1st March 2021 4:04 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th March 2021 2:24 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 18th March 2021 10:06 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -25,18 +25,149 @@ const scrollTo = () => {};
 Object.defineProperty(window, 'scrollTo', { value: scrollTo, writable: true });
 
 jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
+	function getSelectData(url) {
+		url = url.replace("/api/ezform/", "");
+        let value = questionMap[url];
+        if (!value) {
+            throw Error("Questiond data not found for " + url);
+        }
+
+        return {
+            isValid: true,
+            data: {
+                resubmitFlag: true,
+                pages: [
+                    {
+                        identifier: "P1",
+                        questions: value,
+                    },
+                ],
+            },
+        };
+    }
+
+    const questionMap = {
+        t_number_no_required: [
+            {
+                identifier: "Q1",
+                label: "Enter a number",
+                type: "ENTRY",
+                dataType: {
+                    code: "NUMBER",
+                },
+                isRequired: false,
+            },
+        ],
+        t_number_required: [
+            {
+                identifier: "Q1",
+                label: "Enter a number",
+                type: "ENTRY",
+                dataType: {
+                    code: "NUMBER",
+                },
+                isRequired: true,
+            },
+        ],
+        t_multi_required: [
+            {
+                identifier: "Q1",
+                label: "Pick a greeting",
+                type: "MULTI",
+                dataType: {
+                    code: "TEXT",
+                },
+                altResponseId: "5",
+                options: [
+                    {
+                        identifier: "1",
+                        displayText: "Hello",
+                    },
+                    {
+                        identifier: "2",
+                        displayText: "Hi",
+                    },
+                    {
+                        identifier: "3",
+                        displayText: "Bonjour",
+                    },
+                    {
+                        identifier: "4",
+                        displayText: "Hola",
+                    },
+                    {
+                        identifier: "5",
+                        displayText: "Other",
+                    },
+                ],
+                isRequired: true,
+            },
+        ],
+        t_choice_required: [
+            {
+                identifier: "Q1",
+                label: "Pick a greeting",
+                type: "CHOICE",
+                dataType: {
+                    code: "TEXT",
+                },
+                options: [
+                    {
+                        identifier: "1",
+                        displayText: "Hello",
+                    },
+                    {
+                        identifier: "2",
+                        displayText: "Hi",
+                    },
+                    {
+                        identifier: "3",
+                        displayText: "Bonjour",
+                    },
+                ],
+                isRequired: true,
+            },
+        ],
+        t_choice_optional: [
+            {
+                identifier: "Q1",
+                label: "Pick a greeting",
+                type: "CHOICE",
+                dataType: {
+                    code: "TEXT",
+                },
+                options: [
+                    {
+                        identifier: "1",
+                        displayText: "Hello",
+                    },
+                    {
+                        identifier: "2",
+                        displayText: "Hi",
+                    },
+                    {
+                        identifier: "3",
+                        displayText: "Bonjour",
+                    },
+                ],
+                isRequired: false,
+            },
+        ],
+    };
+
+
 	return class HTTPService {
         read(url, params, onComplete) {
             if (url.includes("notworking")) {
                 onComplete({
                     isValid: false,
                     data: {},
-                });
-            }else if(url.includes("normal")) {
+				});
+			} else if(url.includes("normal")) {
                 onComplete({
                     isValid: true,
                     data: {
-						resubmitFlag: true,
+                        resubmitFlag: true,
                         pages: [
                             {
                                 identifier: "FDSJKL",
@@ -44,8 +175,9 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                     {
                                         identifier: "FDFSS",
                                         label: "Hello",
+                                        type: "ENTRY",
                                         dataType: {
-                                            code: "text",
+                                            code: "TEXT",
                                         },
                                         isRequired: true,
                                     },
@@ -57,8 +189,9 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                     {
                                         identifier: "FDFSSE",
                                         label: "Hello",
+                                        type: "ENTRY",
                                         dataType: {
-                                            code: "text",
+                                            code: "TEXT",
                                         },
                                         isRequired: true,
                                     },
@@ -70,8 +203,9 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                     {
                                         identifier: "FDFSSEED",
                                         label: "Hello",
+                                        type: "ENTRY",
                                         dataType: {
-                                            code: "text",
+                                            code: "TEXT",
                                         },
                                         isRequired: true,
                                     },
@@ -92,9 +226,11 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                     {
                                         identifier: "Date1",
                                         label: "Hello1",
+                                        type: "ENTRY",
                                         dataType: {
-                                            code: "date",
-                                        },
+                                            code: "DATE",
+										},
+										isRequired: false
                                     },
                                 ],
                             },
@@ -114,25 +250,30 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                     {
                                         identifier: "Date1",
                                         label: "Hello1",
+                                        type: "ENTRY",
                                         dataType: {
-                                            code: "date",
+                                            code: "DATE",
                                         },
                                         isRequired: true,
                                     },
                                     {
                                         identifier: "Date2",
+                                        type: "ENTRY",
                                         label: "Hello2",
                                         dataType: {
-                                            code: "date",
+                                            code: "DATE",
                                         },
+                                        isRequired: false,
                                     },
                                     {
                                         identifier: "Select1",
                                         label: "Hello3",
+                                        type: "MULTI",
                                         dataType: {
-                                            code: "multiselect",
+                                            code: "TEXT",
                                         },
                                         altResponseId: "3",
+                                        isRequired: false,
                                         options: [
                                             {
                                                 identifier: "1",
@@ -145,14 +286,23 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                             {
                                                 identifier: "3",
                                                 displayText: "three",
+                                            },
+                                            {
+                                                identifier: "4",
+                                                displayText: "four",
+                                            },
+                                            {
+                                                identifier: "5",
+                                                displayText: "five",
                                             },
                                         ],
                                     },
                                     {
                                         identifier: "Select2",
                                         label: "Hello4",
+                                        type: "MULTI",
                                         dataType: {
-                                            code: "multiselect",
+                                            code: "TEXT",
                                         },
                                         isRequired: true,
                                         options: [
@@ -168,18 +318,28 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                                 identifier: "3",
                                                 displayText: "three",
                                             },
+                                            {
+                                                identifier: "4",
+                                                displayText: "four",
+                                            },
+                                            {
+                                                identifier: "5",
+                                                displayText: "five",
+                                            }
                                         ],
                                     },
                                     {
                                         identifier: "Check1",
                                         label: "Hello5",
+                                        type: "MULTI",
                                         dataType: {
-                                            code: "check",
-										},
+                                            code: "TEXT",
+                                        },
+                                        isRequired: false,
                                         options: [
                                             {
                                                 identifier: "1",
-												displayText: "one",
+                                                displayText: "one",
                                             },
                                             {
                                                 identifier: "2",
@@ -196,6 +356,8 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                         ],
                     },
                 });
+			} else {
+				onComplete(getSelectData(url));
 			}
         }
 
@@ -396,4 +558,135 @@ it("Covers async waiting of API", () => {
     userEvent.click(element);
 
 	expect(baseElement).toBeTruthy();
+});
+
+/**
+ * Test a required number question
+ */
+it("Renders a required number question", () => {
+	render(<EZForm formId={"t_number_required"} />);
+
+	/** Attempt to submit with no data */
+	const submit1 = screen.getByText("Submit");
+	userEvent.click(submit1);
+	
+	/** Close validation failed dialog */
+	const close1 = screen.getAllByText("Close")[1];
+	userEvent.click(close1);
+
+	/** Enter a non-number string */
+	const field1 = screen.getByTestId("textfield-input").children[0].children[0];
+    userEvent.click(field1);
+	userEvent.type(field1, "hi");
+	
+	/** Attempt to submit with invalid data */
+	userEvent.click(submit1);
+
+	/** Close validation failed dialog */
+	const close2 = screen.getAllByText("Close")[1];
+	userEvent.click(close2);
+
+	/** Enter a valid number */
+	userEvent.click(field1);
+	userEvent.clear(field1);
+	userEvent.type(field1, "1");
+	
+	/** Attempt to submit with invalid data */
+	userEvent.click(submit1);
+	
+	expect(field1.value).toBe("1");
+});
+
+/**
+ * Test a non-required number question
+ */
+it("Renders a non-required number question", () => {
+    render(<EZForm formId={"t_number_no_required"} />);
+
+    /** Enter a non-number string */
+    const field1 = screen.getByTestId("textfield-input").children[0].children[0];
+    userEvent.click(field1);
+    userEvent.type(field1, "hi");
+
+    /** Attempt to submit with invalid data */
+    const submit1 = screen.getByText("Submit");
+    userEvent.click(submit1);
+
+    /** Close validation failed dialog */
+    const close2 = screen.getAllByText("Close")[1];
+    userEvent.click(close2);
+
+    /** Clear invalid data */
+    userEvent.clear(field1);
+
+    /** Submit with nothing entered */
+    userEvent.click(submit1);
+
+    expect(field1.value).toBe("");
+});
+
+/**
+ * Test a required MULTI question other option
+ */
+it("Renders a required MULTI question", () => {
+    const { baseElement } = render(<EZForm formId={"t_multi_required"} />);
+
+    expect(baseElement).toBeTruthy();
+
+    /** Click the dropdown */
+    const input1 = screen.getAllByTestId("select")[0];
+    const inputChild1 = input1.children[0].children[0].children[0];
+    userEvent.click(inputChild1);
+
+    /** Type Other */
+    userEvent.type(inputChild1, "Other");
+
+	/** Select the other option */
+    const popper1 = screen.getAllByTestId("select-option");
+    const popper1option = popper1[0].parentElement.parentElement;
+    userEvent.click(popper1option);
+
+    /** Attempt to submit with invalid data */
+    const submit1 = screen.getByText("Submit");
+    userEvent.click(submit1);
+
+    /** Close validation failed dialog */
+    const close2 = screen.getAllByText("Close")[1];
+    userEvent.click(close2);
+});
+
+/**
+ * Test a required CHOICE question 
+ */
+it("Renders a required CHOICE question", () => {
+    const { baseElement } = render(<EZForm formId={"t_choice_required"} />);
+    expect(baseElement).toBeTruthy();
+
+    /** Attempt to submit without picking an option */
+    const submit1 = screen.getByText("Submit");
+    userEvent.click(submit1);
+
+    /** Close validation failed dialog */
+    const close1 = screen.getAllByText("Close")[1];
+    userEvent.click(close1);
+
+    /** Click element on radio */
+    const element = screen.getAllByTestId("radio-group")[0];
+    const input = element.children[0].children[0];
+    userEvent.click(input);
+
+    /** Attempt to submit with valid data */
+    userEvent.click(submit1);
+});
+
+/**
+ * Test an optional CHOICE question 
+ */
+it("Renders an optional CHOICE question", () => {
+    const { baseElement } = render(<EZForm formId={"t_choice_optional"} />);
+    expect(baseElement).toBeTruthy();
+
+    /** Attempt to submit without picking an option */
+    const submit1 = screen.getByText("Submit");
+    userEvent.click(submit1);
 });

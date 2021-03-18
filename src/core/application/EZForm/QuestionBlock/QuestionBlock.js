@@ -6,8 +6,8 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 9th March 2021 12:54 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 18th March 2021 11:56 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -26,31 +26,124 @@ import TextBlock from "../TextBlock";
 class QuestionBlock extends React.Component {
     /**
      * Creates an instance of QuestionBlock.
-     * @param {*} props -
+     * @param {*} props Component Props
      * @memberof QuestionBlock
      */
     constructor(props) {
-		super(props);
+        super(props);
+    }
 
-		
-	}
-	
-	/**
-	 * Method to get a map of block components;
-	 *
-	 * @returns {*} Map of Block components
-	 * @memberof QuestionBlock
-	 */
-	getComponentMap(){
-		let dictionary = {};
-		dictionary["date"] = DateBlock;
-		dictionary["text"] = TextBlock;
-		dictionary["radio"] = RadioBlock;
-		dictionary["check"] = CheckBlock;
-		dictionary["select"] = SelectBlock;
-		dictionary["multiselect"] = SelectBlock;
-		return dictionary;
-	}
+    /**
+     * Returns a component for the given params
+     *
+     * @param {*} type Question
+     * @param {*} dataType Type of data the question accepts
+     * @param {*} optionCount How many options a question has
+     * @returns {*} React component to render
+     * @memberof QuestionBlock
+     */
+    getComponent(type, dataType, optionCount) {
+        const componentMap = this.getComponentMap(optionCount);
+        const componentFunc = componentMap[type];
+
+        if (!componentFunc) {
+            console.error(
+                "Component Factory does not support (Type=" +
+                    type +
+                    ", DataType=" +
+                    dataType +
+                    ")"
+            );
+            return null;
+        }
+
+        let component = componentFunc(dataType);
+
+        return React.createElement(component, { ...this.props }, null);
+    }
+
+    /**
+     * Method to get a map of block components;
+     *
+     * @param {*} optionCount Amount of options, if any
+     * @returns {*} Map of Block components
+     * @memberof QuestionBlock
+     */
+    getComponentMap(optionCount) {
+        let threshold = 4;
+
+        let dictionary = {};
+        dictionary["MULTI"] =
+            optionCount <= threshold
+                ? this.getShortMulti.bind(this)
+                : this.getLongComponent.bind(this);
+        dictionary["CHOICE"] =
+            optionCount <= threshold
+                ? this.getShortChoice.bind(this)
+                : this.getLongComponent.bind(this);
+        dictionary["ENTRY"] = this.getEntryComponent.bind(this);
+        return dictionary;
+    }
+
+    /**
+     * Gets a component for an ENTRY type question
+     *
+     * @param {*} dataType DataType of question
+     * @returns {*} ___Block Component
+     * @memberof QuestionBlock
+     */
+    getEntryComponent(dataType) {
+        let dictionary = {};
+        dictionary["DATE"] = DateBlock;
+        dictionary["TEXT"] = TextBlock;
+        dictionary["EMAIL"] = TextBlock;
+        dictionary["PHONE"] = TextBlock;
+        dictionary["NUMBER"] = TextBlock;
+        dictionary["DOUBLE"] = TextBlock;
+        return dictionary[dataType];
+    }
+
+    /**
+     * Gets a component for a Choice type question with less than 5 options
+     *
+     * @param {*} dataType DataType of question
+     * @returns {*} ___Block Component
+     * @memberof QuestionBlock
+     */
+    getShortChoice(dataType) {
+        let dictionary = {};
+        dictionary["TEXT"] = RadioBlock;
+        dictionary["NUMBER"] = RadioBlock;
+        return dictionary[dataType];
+    }
+
+    /**
+     * Gets a component for a MULTI type question with less than 5 options
+     *
+     * @param {*} dataType DataType of question
+     * @returns {*} ___Block Component
+     * @memberof QuestionBlock
+     */
+    getShortMulti(dataType) {
+        let dictionary = {};
+        dictionary["TEXT"] = CheckBlock;
+        dictionary["NUMBER"] = CheckBlock;
+        return dictionary[dataType];
+    }
+
+    /**
+     * Gets a component for a Choice type question with more than 4 options
+     *
+     * @param {*} dataType DataType of question
+     * @returns {*} ___Block Component
+     * @memberof QuestionBlock
+     */
+    getLongComponent(dataType) {
+        let dictionary = {};
+        dictionary["TEXT"] = SelectBlock;
+        dictionary["NUMBER"] = SelectBlock;
+        return dictionary[dataType];
+    }
 
     /**
      * Render Question Block
@@ -59,19 +152,23 @@ class QuestionBlock extends React.Component {
      * @memberof QuestionBlock
      */
     render() {
-		let props = this.props;
-		props.config = { options: this.props.options };
-		delete props.options;
-		
-		let component = this.getComponentMap()[this.props.dataType.code];
-		if(component === null || component === undefined){
-			console.error("Type '" + this.props.dataType.code + "' was not found in 'getComponentMap()'");
-			return null;
-		}
+        const type = this.props.type;
+        const dataType = this.props.dataType.code;
+        const optionCount = this.props.options ? this.props.options.length : 0;
 
-		let newReactElement = React.createElement(component, {...props}, null);
+        let props = this.props;
+        props.config = {
+            options: this.props.options,
+        };
+        props.dataType.isMultiple = type === "MULTI";
+        delete props.options;
 
-		return <div className={"question-block-wrapper pt-3 pl-5"}>{newReactElement}</div>;
+        // console.log("Question Block Props",props);
+        return (
+            <div className={"question-block-wrapper pt-3 pl-5"}>
+                {this.getComponent(type, dataType, optionCount)}
+            </div>
+        );
     }
 }
 
@@ -90,15 +187,16 @@ QuestionBlock.propTypes = {
     variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
     label: PropTypes.string.isRequired,
     isRequired: PropTypes.bool,
-    helperText: PropTypes.string,
+	helperText: PropTypes.string,
+	type: PropTypes.oneOf(["ENTRY", "CHOICE", "MULTI"]).isRequired,
     dataType: PropTypes.shape({
         code: PropTypes.oneOf([
-            "date",
-            "radio",
-            "select",
-            "check",
-            "text",
-            "multiselect",
+            "DATE",
+            "EMAIL",
+            "TEXT",
+            "PHONE",
+            "NUMBER",
+            "DOUBLE",
         ]).isRequired,
         isMultiple: PropTypes.bool,
     }),

@@ -6,8 +6,8 @@
  * File Created: Wednesday, 23rd February 2021 08:18pm
  * Author: James Camire (james@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 5:10 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 18th March 2021 10:21 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -112,7 +112,7 @@ MessageBox.defaultProps = {
 MessageBox.propTypes = {
     title: PropTypes.string,
     level: PropTypes.oneOf(["error", "warning", "info"]),
-    message : PropTypes.string,
+    message : PropTypes.any,
 	show : PropTypes.bool,
 	onClose: PropTypes.func
 };

@@ -6,8 +6,8 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 5:06 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 18th March 2021 10:14 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -58,7 +58,7 @@ class TextField extends React.Component {
                     data-testid={"textfield-input"}
                     type={this.props.type}
                     onChange={this.onValueChanged.bind(this)}
-                    value={this.props.value}
+                    value={this.props.value ? this.props.value : ""}
                     required={this.props.required}
                     fullWidth={this.props.fullWidth}
                     label={this.props.placeholder}

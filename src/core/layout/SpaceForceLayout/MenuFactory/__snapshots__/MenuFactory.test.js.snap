@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="dropdown nav-item"
+        class="nav-item dropdown"
       >
         <a
           aria-expanded="false"
@@ -22,7 +22,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="dropdown nav-item"
+      class="nav-item dropdown"
     >
       <a
         aria-expanded="false"

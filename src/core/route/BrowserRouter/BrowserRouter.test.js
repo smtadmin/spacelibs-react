@@ -6,8 +6,8 @@
  * File Created: Tuesday, 16th February 2021 1:32 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 16th February 2021 3:49 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 18th March 2021 11:32 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -28,7 +28,7 @@ const testingRouteConfig = {
         path: "",
         src: <div>ERROR</div>
     }
-}
+};
 
 const testingRouteConfigWithoutError = {
     pages: [
@@ -38,7 +38,7 @@ const testingRouteConfigWithoutError = {
             roles: ["admin"]
         }
     ]
-}
+};
 
 const testingRouteConfigWithoutAnyRoles = {
     pages: [
@@ -48,13 +48,13 @@ const testingRouteConfigWithoutAnyRoles = {
             roles: null
         }
     ]
-}
+};
 
 /**
  * Attempts to render without crashing
  */
 it("Renders without crashing", () => {
-    const element = render(<BrowserRouter userRoles={[]} routes={testingRouteConfig} />)
+    const element = render(<BrowserRouter userRoles={[]} routes={testingRouteConfig} />);
     expect(element).toBeTruthy();
 });
 
@@ -66,7 +66,7 @@ it("Renders the userRole with warning if it is passed in as a single element", (
         .spyOn(console, 'error')
         .mockImplementation(() => { });
 
-    const element = render(<BrowserRouter userRoles={"admin"} routes={testingRouteConfig} />)
+    render(<BrowserRouter userRoles={"admin"} routes={testingRouteConfig} />);
     expect(errorEvent).toHaveBeenCalled();
 });
 
