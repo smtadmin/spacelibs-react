@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders with no props 1`] = `
+<body>
+  <div>
+    <div
+      class="question-label"
+    >
+      1
+      . 
+      What is your name?
+       
+       
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Renders with required prop 1`] = `
+<body>
+  <div>
+    <div
+      class="question-label"
+    >
+      1
+      . 
+      What is your name?
+       
+      <span
+        style="color: red;"
+      >
+        *
+      </span>
+       
+    </div>
+  </div>
+</body>
+`;

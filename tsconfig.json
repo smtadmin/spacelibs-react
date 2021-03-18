@@ -1,0 +1,25 @@
+{
+	"compilerOptions": {
+		"noImplicitAny": false,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"sourceMap": true,
+		"declaration": true,
+		"outDir": "./",
+		"rootDir": "./src/",
+		"target": "ES5",
+		"allowJs": true,
+		"skipLibCheck": true
+	},
+	"include": [
+		"./src/"
+	],
+	"exclude": [
+		"node_modules/*",
+		"docs/*",
+		"coverage/*",
+		"./core/*",
+		"*.test.js",
+		"*.test.d.ts"
+	]
+}
