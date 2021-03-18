@@ -6,7 +6,7 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 4:15 pm
+ * Last Modified: Thursday, 18th March 2021 5:21 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -41,7 +41,6 @@ class TextField extends React.Component {
 	 */
 	onValueChanged(output){
 		let reducedValue = output && output.target ? output.target.value : null;
-		console.log(reducedValue);
 		this.props.onValueChanged(reducedValue);
 	}
 
