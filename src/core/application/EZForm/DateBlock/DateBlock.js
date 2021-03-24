@@ -6,8 +6,8 @@
  * File Created: Friday, 19th February 2021 10:39 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 5:02 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Wednesday, 24th March 2021 10:11 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -40,7 +40,9 @@ class DateBlock extends React.Component {
      * @memberof DateBlock
      */
     onValueChanged(output) {
-        if (output.constructor !== Array) {
+		if (output == null){
+			output = [];
+		}else if (output.constructor !== Array) {
             output = [output];
         }
         this.props.onValueChanged(this.props.identifier, output);

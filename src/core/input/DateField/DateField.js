@@ -6,8 +6,8 @@
  * File Created: Tuesday, 9th February 2021 3:31 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 5:15 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Wednesday, 24th March 2021 10:22 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -45,7 +45,7 @@ class DateField extends React.Component {
 		if( event && event._d ){
 			this.props.onValueChanged(event._d);
 		}else{
-			this.props.onValueChanged([]);
+			this.props.onValueChanged(null);
 		}
 	}
 
@@ -69,6 +69,7 @@ class DateField extends React.Component {
 				<Grid 
 				container>
 					<KeyboardDatePicker
+					autoOk={this.props.closeOnSelect}
 					data-testid={"date-input"}
 					disableToolbar
 					variant="inline"
@@ -93,13 +94,17 @@ class DateField extends React.Component {
  * Default Props
  */
 DateField.defaultProps = {
-	variant: "standard"
+	variant: "standard",
+	closeOnSelect: true
 };
 
 /**
  * Expected Props
  */
 DateField.propTypes = {
+  
+  closeOnSelect: PropTypes.bool,
+
   // Value of the date field, shown in the input
   value: PropTypes.arrayOf(PropTypes.any),
 
