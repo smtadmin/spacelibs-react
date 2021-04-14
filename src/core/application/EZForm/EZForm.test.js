@@ -26,7 +26,7 @@ Object.defineProperty(window, 'scrollTo', { value: scrollTo, writable: true });
 
 jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
 	function getSelectData(url) {
-		url = url.replace("/api/ezform/", "");
+		url = url.replace("/api/form/", "");
         let value = questionMap[url];
         if (!value) {
             throw Error("Questiond data not found for " + url);
