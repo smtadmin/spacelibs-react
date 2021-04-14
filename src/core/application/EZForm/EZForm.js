@@ -95,7 +95,7 @@ class EZForm extends React.Component {
         let prevState = this.state;
         prevState.apiService = http;
         this.setState(prevState);
-        http.read("/api/ezform/" + formId, {}, this.onComplete.bind(this), {});
+        http.read("/api/form/" + formId, {}, this.onComplete.bind(this), {});
     }
 
     /**
@@ -288,7 +288,7 @@ class EZForm extends React.Component {
             }
         }
         this.state.apiService.insert(
-            "/api/ezform/response/" + this.state.data.identifier,
+            "/api/form/submit/" + this.state.data.identifier,
             data,
             {},
             (response) => {
