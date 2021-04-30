@@ -1,6 +1,6 @@
 {
   "name": "@siliconmtn/spacelibs-react",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Library for reusable React components",
   "main": "index.js",
   "scripts": {
@@ -85,6 +85,7 @@
     "jest": "^26.6.3",
     "jsdoc": "^3.6.6",
     "prop-types": "^15.7.2",
+    "react-tabs": "^3.2.2",
     "react-test-renderer": "^17.0.1"
   }
 }

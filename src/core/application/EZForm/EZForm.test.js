@@ -6,7 +6,7 @@
  * File Created: Monday, 1st March 2021 4:04 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 10:06 am
+ * Last Modified: Tuesday, 27th April 2021 9:36 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -47,6 +47,40 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
     }
 
     const questionMap = {
+        t_single_other: [
+            {
+                identifier: "Q1",
+                label: "Pick other",
+                type: "CHOICE",
+                dataType: {
+                    code: "TEXT",
+                },
+                isRequired: true,
+                altResponseId: "1",
+                options: [
+                    {
+                        identifier: "1",
+                        displayText: "Other",
+                    },
+                    {
+                        identifier: "2",
+                        displayText: "Hi",
+                    },
+                    {
+                        identifier: "3",
+                        displayText: "Bonjour",
+                    },
+                    {
+                        identifier: "4",
+                        displayText: "Hola",
+                    },
+                    {
+                        identifier: "5",
+                        displayText: "Hello",
+                    },
+                ],
+            },
+        ],
         t_number_no_required: [
             {
                 identifier: "Q1",
