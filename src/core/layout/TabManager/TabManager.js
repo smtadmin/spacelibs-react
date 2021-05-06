@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 10:05 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 28th April 2021 1:10 pm
+ * Last Modified: Sunday, 2nd May 2021 2:49 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -26,8 +26,8 @@ class TabManager extends React.Component {
      * @memberof TabExample
      */
     constructor(props) {
-		super(props);
-		this.state = {};
+        super(props);
+        this.state = {};
     }
 
     /**
@@ -71,6 +71,7 @@ class TabManager extends React.Component {
      *
      * @param {*} tabs - Regular tabs for the tab manager
      * @param {*} panels - Panels to show for each tab
+     * @param {*} defaultIndex - The index of the tab to be selected by default
      * @returns {*} React element
      * @memberof TabManager
      */
@@ -134,7 +135,7 @@ class TabManager extends React.Component {
         return this.getCompleteComponent(
             tabs,
             panels,
-            this.props.defaultIndex ? this.props.defaultIndex : defaultIndex
+            this.props.defaultIndex != null ? this.props.defaultIndex : defaultIndex
         );
     }
 }
@@ -151,6 +152,7 @@ TabManager.propTypes = {
         PropTypes.exact({
             title: PropTypes.string,
             component: PropTypes.element,
+            isDisabled: PropTypes.bool,
         })
     ).isRequired,
     extraButtons: PropTypes.arrayOf(

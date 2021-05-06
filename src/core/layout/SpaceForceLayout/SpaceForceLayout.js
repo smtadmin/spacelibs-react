@@ -6,7 +6,7 @@
  * File Created: Wednesday, 27th January 2021 1:30 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 11:41 am
+ * Last Modified: Friday, 30th April 2021 3:06 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -24,28 +24,28 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 const theme = createMuiTheme({
     palette: {
         background: {
-            default: "#ffffff"
+            default: "#ffffff",
         },
         primary: {
-            light: '#29749D',
-            main: '#034E77',
-            dark: '#002851',
-            contrastText: '#fff',
+            light: "#29749D",
+            main: "#034E77",
+            dark: "#002851",
+            contrastText: "#fff",
         },
         secondary: {
-            light: '#EEE',
-            main: '#DDD',
-            dark: '#BBB',
-            contrastText: '#000',
+            light: "#EEE",
+            main: "#DDD",
+            dark: "#BBB",
+            contrastText: "#000",
         },
     },
     overrides: {
         MuiStepIcon: {
             root: {
-                background: '#FFFFFF'
+                background: "#FFFFFF",
             },
-        }
-    }
+        },
+    },
 });
 
 /**

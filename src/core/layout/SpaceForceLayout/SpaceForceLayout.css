@@ -6,8 +6,8 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wed Apr 28 2021
- * Modified By: tyler Gaffaney
+ * Last Modified: Mon May 03 2021
+ * Modified By: tylergaffaney
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -61,6 +61,12 @@ h3 {
 h4 {
     font-family: NunitoSans-SemiBold;
     font-size: 20px;
+}
+
+h5 {
+	font-family: NunitoSans-Regular;
+	font-size: 1.25rem;
+	display: inline-block;
 }
 
 p {
@@ -373,4 +379,9 @@ body {
 
 .react-tabs__tab-panel--selected {
     display: block;
+}
+
+div.centering {
+	text-align: center;
+	width:100%;
 }

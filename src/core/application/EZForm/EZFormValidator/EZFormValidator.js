@@ -2,11 +2,11 @@
  * File: /src/core/application/EZForm/EZFormValidator/EZFormValidator.js
  * Version: 0.0.19
  * Project: @siliconmtn/spacelibs-react
- * Description: INSERT DESCRIPTION
+ * Description: Module to validate different parts of an EZForm form
  * File Created: Tuesday, 27th April 2021 4:30 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 27th April 2021 4:42 pm
+ * Last Modified: Sunday, 2nd May 2021 1:29 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -17,7 +17,6 @@ import moment from "moment";
 /**
  * This is the EZForm Validator class
  *
- * @export
  * @class EZFormValidator
  */
 export default class EZFormValidator {

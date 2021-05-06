@@ -6,7 +6,7 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 5:21 pm
+ * Last Modified: Monday, 3rd May 2021 4:17 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -54,6 +54,7 @@ class TextField extends React.Component {
 		return (
             <FormControl fullWidth={this.props.fullWidth}>
                 <MuiTextField
+					disabled={this.props.isDisabled}
                     className={this.props.className}
                     variant={this.props.variant}
                     data-testid={"textfield-input"}
@@ -80,7 +81,8 @@ class TextField extends React.Component {
 TextField.defaultProps = {
 	variant: "standard",
 	fullWidth : true,
-	required : false
+	required : false,
+	isDisabled : false
 };
 
 /**
@@ -90,6 +92,7 @@ TextField.propTypes = {
 	className: PropTypes.string,
 	label: PropTypes.string,
 	type: PropTypes.string,
+	isDisabled: PropTypes.bool,
 	onValueChanged: PropTypes.func.isRequired,
 	value: PropTypes.string,
 	hasError: PropTypes.bool,

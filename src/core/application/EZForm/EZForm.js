@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 28th April 2021 9:31 am
+ * Last Modified: Friday, 30th April 2021 1:31 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -90,7 +90,7 @@ class EZForm extends React.Component {
         let prevState = this.state;
         prevState.apiService = http;
         this.setState(prevState);
-        http.read("/api/ezform/" + formId, {}, this.onComplete.bind(this), {});
+        http.read("/api/form/" + formId, {}, this.onComplete.bind(this), {});
     }
 
     /**
@@ -157,7 +157,7 @@ class EZForm extends React.Component {
      */
     sendData(responseData) {
         this.state.apiService.insert(
-            "/api/ezform/response/" + this.state.data.identifier,
+            "/api/response/create/" + this.state.data.identifier,
             responseData,
             {},
             (response) => {
@@ -216,7 +216,7 @@ class EZForm extends React.Component {
         } else if (this.state.status === EZFormStatus.inProgress) {
             output = (
                 <EZFormBase
-					unformattedFormData={this.state.data}
+                    unformattedFormData={this.state.data}
                     onSubmit={this.onSubmit.bind(this)}
                 />
             );
