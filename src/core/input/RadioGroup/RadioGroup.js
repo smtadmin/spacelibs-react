@@ -6,8 +6,8 @@
  * File Created: Monday, 8th February 2021 3:18 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 5:04 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Thursday, 6th May 2021 1:53 pm
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
 */
@@ -104,6 +104,7 @@ class RadioGroup extends React.Component {
 			selectedValue = value[0].identifier;
 		}		
 		return <MuiRadioGroup
+			row={this.props.row}
 			data-testid={"radio-group"}
 			value={selectedValue}
 			onChange={this.onValueChanged.bind(this)}>
@@ -125,6 +126,7 @@ RadioGroup.defaultProps = {
  * Expected Props
  */
 RadioGroup.propTypes = {
+	row: PropTypes.bool,
 	value: PropTypes.arrayOf(PropTypes.any),
 	isValid: PropTypes.bool,
 	color: PropTypes.string,

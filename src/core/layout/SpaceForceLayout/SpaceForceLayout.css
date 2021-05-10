@@ -6,7 +6,7 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Mon May 03 2021
+ * Last Modified: Thu May 06 2021
  * Modified By: tylergaffaney
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -384,4 +384,9 @@ body {
 div.centering {
 	text-align: center;
 	width:100%;
+}
+
+.h-divider {
+	
+	height:2px;
 }
