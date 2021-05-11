@@ -2,11 +2,11 @@
  * File: /src/core/application/EZForm/EZFormPage/EZFormPage.test.js
  * Version: 0.0.2
  * Project: @siliconmtn/spacelibs-react
- * Description: Class to test the EZFormPage
+ * Description: Test class for EZFormPage
  * File Created: Monday, 1st March 2021 4:02 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 9:03 am
+ * Last Modified: Sunday, 2nd May 2021 1:47 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.

@@ -1,16 +1,16 @@
 /*
- * File: /src/core/api/APIProvider/index.js
- * Version: 0.0.2
+ * File: /src/core/application/EZForm/index.js
+ * Version: 0.0.19
  * Project: @siliconmtn/spacelibs-react
  * Description: Index file
- * File Created: Wednesday, 17th February 2021 4:49 pm
+ * File Created: Sunday, 2nd May 2021 1:21 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Sunday, 2nd May 2021 1:28 pm
+ * Last Modified: Monday, 3rd May 2021 12:18 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 
-import APIProvider from './APIProvider';
-export default APIProvider;
+import EZForm from './EZForm';
+export default EZForm;

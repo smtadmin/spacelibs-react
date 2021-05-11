@@ -6,7 +6,7 @@
  * File Created: Monday, 8th February 2021 4:50 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th March 2021 3:34 pm
+ * Last Modified: Friday, 23rd April 2021 3:04 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -107,12 +107,13 @@ class SelectField extends React.Component {
    */
   renderInput(params) {
     return (
-      <TextField
-        {...params}
-        variant={this.props.variant}
-        placeholder={this.props.placeholder}
-        label={this.props.inputLabel}
-      />
+        <TextField
+            {...params}
+            error={this.props.hasError ? true : null}
+            variant={this.props.variant}
+            placeholder={this.props.placeholder}
+            label={this.props.inputLabel}
+        />
     );
   }
 

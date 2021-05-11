@@ -1,6 +1,6 @@
 {
   "name": "@siliconmtn/spacelibs-react",
-  "version": "0.0.18",
+  "version": "1.0.0",
   "description": "Library for reusable React components",
   "main": "index.js",
   "scripts": {
@@ -11,9 +11,9 @@
     "test": "jest --coverage ./src/core",
     "test:watch": "jest --coverage --watchAll ./src/core",
     "test:prod": "jest",
-    "test:watchAll": "jest --coverage --watchAll --collectCoverageFrom=src/**/*.{js,jsx}",
+    "test:watchAll": "jest --coverage ./src/core --watchAll --collectCoverageFrom=src/**/*.{js,jsx}",
     "lint": "eslint src",
-    "test:unit": "jest --coverage --collectCoverageFrom=src/**/*.{js,jsx}",
+    "test:unit": "jest --coverage ./src/core --collectCoverageFrom=src/**/*.{js,jsx}",
     "copyFonts": "cp -R './src/core/layout/SpaceForceLayout/Fonts' './core/layout/SpaceForceLayout'",
     "copyStyles": "cp -R './src/core/layout/SpaceForceLayout/SpaceForceLayout.css' './core/layout/SpaceForceLayout/SpaceForceLayout.css'",
     "semantic-release": "semantic-release",
@@ -85,6 +85,7 @@
     "jest": "^26.6.3",
     "jsdoc": "^3.6.6",
     "prop-types": "^15.7.2",
+    "react-tabs": "^3.2.2",
     "react-test-renderer": "^17.0.1"
   }
 }

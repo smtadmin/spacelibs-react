@@ -2,11 +2,11 @@
  * File: /src/core/api/APIProvider/APIProvider.test.js
  * Version: 0.0.2
  * Project: @siliconmtn/spacelibs-react
- * Description: INSERT DESCRIPTION
+ * Description: Class to test the API Provider
  * File Created: Monday, 1st March 2021 8:47 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 8:50 am
+ * Last Modified: Sunday, 2nd May 2021 12:49 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
