@@ -390,3 +390,8 @@ div.centering {
 	
 	height:2px;
 }
+
+.generic-modal-icon {
+	font-size: 35px !important;
+	margin-right: 11px;
+}
