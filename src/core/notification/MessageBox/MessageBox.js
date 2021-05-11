@@ -86,7 +86,7 @@ class MessageBox extends React.Component {
                             variant='outlined'
                             color='default'
                             onClick={this.onClose.bind(this)}
-                            size='lg'
+                            size='large'
                             style={{ paddingRight: "10px" }}>
                             Close
                         </Button>
