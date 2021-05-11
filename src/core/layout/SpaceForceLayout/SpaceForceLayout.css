@@ -276,10 +276,6 @@ body {
     border-bottom: 2px solid #034e77;
 }
 
-.tab-list.minimal {
-    border-bottom: 2px solid #DDD;
-}
-
 .tab-list.center {
 	text-align: center;
 }
