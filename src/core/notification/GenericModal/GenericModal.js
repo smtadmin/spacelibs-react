@@ -75,6 +75,7 @@ function GenericModal(props) {
             keyboard={props.keyboard}
             animation={props.isAnimated}
             centered={props.isCentered}
+            size={props.size}
         >
             <Modal.Header>
                 <Modal.Title>
@@ -136,6 +137,7 @@ GenericModal.propTypes = {
     keyboard: PropTypes.bool,
     isAnimated: PropTypes.bool,
     isCentered: PropTypes.bool,
+    size: PropTypes.string,
     titleIconName: PropTypes.string,
     title: PropTypes.string.isRequired,
 
