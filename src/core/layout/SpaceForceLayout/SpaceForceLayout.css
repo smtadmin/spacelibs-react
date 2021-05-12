@@ -6,8 +6,8 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thu May 06 2021
- * Modified By: tylergaffaney
+ * Last Modified: Wed May 12 2021
+ * Modified By: Chris Scarola
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -390,4 +390,20 @@ div.centering {
 .generic-modal-icon {
 	font-size: 35px !important;
 	margin-right: 11px;
+}
+
+.generic-modal-icon.help {
+	color: #2196f3
+}
+
+.generic-modal-icon.info {
+	color: #2196f3
+}
+
+.generic-modal-icon.warning {
+	color: #ff9800
+}
+
+.generic-modal-icon.error {
+	color: #d32f2f
 }
