@@ -6,7 +6,7 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 13th May 2021 4:24 pm
+ * Last Modified: Monday, 17th May 2021 10:55 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -95,7 +95,8 @@ class TextField extends React.Component {
                     value={this.props.value ? this.props.value : ""}
                     required={this.props.required}
                     fullWidth={this.props.fullWidth}
-                    label={this.props.placeholder}
+					label={this.props.label}
+					placeholder={this.props.placeholder}
                     error={this.props.hasError ? true : null}
                     InputProps={InputProps}
                 />

@@ -6,7 +6,7 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thu May 06 2021
+ * Last Modified: Tue May 18 2021
  * Modified By: tylergaffaney
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -183,6 +183,14 @@ body {
 
 .text-info {
     color: #2196f3;
+}
+
+::-moz-selection { /* Code for Firefox */
+  background: #b5d8fe;
+}
+
+::selection {
+  background: #b5d8fe;
 }
 
 /* Template Colors */
@@ -390,4 +398,33 @@ div.centering {
 .generic-modal-icon {
 	font-size: 35px !important;
 	margin-right: 11px;
+}
+
+.dynamic-label {
+	flex-grow: 1;
+}
+
+.dynamic-label.text {
+	display: inline-block;
+}
+
+.dynamic-label.text.other {
+	color:gray;
+}
+
+.dynamic-label.text.can-edit {
+	cursor: pointer;
+}
+
+.dynamic-label.text.can-edit:hover {
+	border-bottom: 2px solid gray;
+}
+
+.outlined-select > div > input {
+	padding: 2px 0px !important;
+}
+
+.select-icon {
+	margin-right: 4px;
+	padding-bottom:1px;
 }

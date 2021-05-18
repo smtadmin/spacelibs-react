@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:25 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 12th May 2021 10:23 am
+ * Last Modified: Monday, 17th May 2021 11:04 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -52,26 +52,27 @@ class CheckBlock extends React.Component {
      * @memberof CheckBlock
      */
     render() {
+		const {label, ...leftovers} = this.props;
         return (
             <>
                 <QuestionLabel
-                    label={this.props.label}
+                    label={label}
                     helperText={this.props.helperText}
                     isRequired={this.props.isRequired}
                     number={this.props.number}
                 />
-                <div className="question-input-wrapper pl-5">
-                <FormControl fullWidth>
-                    <CheckboxGroup
-                        {...this.props}
-                        color={this.props.color}
-                        onValueChanged={this.valueChanged.bind(this)}
+                <div className='question-input-wrapper pl-5'>
+                    <FormControl fullWidth>
+                        <CheckboxGroup
+                            {...leftovers}
+                            color={this.props.color}
+                            onValueChanged={this.valueChanged.bind(this)}
+                        />
+                    </FormControl>
+                    <ErrorLabel
+                        isValid={this.props.isValid}
+                        errorMessage={this.props.errorMessage}
                     />
-                </FormControl>
-                <ErrorLabel
-                    isValid={this.props.isValid}
-                    errorMessage={this.props.errorMessage}
-                />
                 </div>
             </>
         );

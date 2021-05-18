@@ -6,7 +6,7 @@
  * File Created: Thursday, 11th February 2021 12:37 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 3rd May 2021 1:09 pm
+ * Last Modified: Friday, 14th May 2021 4:52 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -37,10 +37,10 @@ class Button extends React.Component {
 	 * @memberof Button
 	 */
 	render(){
-		const {variant, className, color, startIcon, endIcon, onClick, children, ...leftOver} = this.props;
-
+		const {variant, size, className, color, startIcon, endIcon, onClick, children, ...leftOver} = this.props;
 		return <MuiButton 
 		variant={variant}
+		size={size}
 		data-testid={'button'}
 		className={"sl-button " + className}
 		color={color}
@@ -66,13 +66,14 @@ Button.defaultProps = {
  * Props this component takes
  */
 Button.propTypes = {
-	children: PropTypes.any,
-	variant: PropTypes.oneOf(["contained","outlined","text"]),
-	color: PropTypes.oneOf(["default","primary","secondary"]),
-	onClick: PropTypes.func,
-	startIcon : PropTypes.any,
-	endIcon : PropTypes.any,
-	className : PropTypes.string
+    children: PropTypes.any,
+    variant: PropTypes.oneOf(["contained", "outlined", "text"]),
+    size: PropTypes.oneOf(["small", "medium", "large"]),
+    color: PropTypes.oneOf(["default", "primary", "secondary"]),
+    onClick: PropTypes.func,
+    startIcon: PropTypes.any,
+    endIcon: PropTypes.any,
+    className: PropTypes.string,
 };
 
 export default Button;

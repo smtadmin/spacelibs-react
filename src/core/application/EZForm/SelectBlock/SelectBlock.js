@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:49 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 12th May 2021 10:23 am
+ * Last Modified: Monday, 17th May 2021 11:05 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -119,10 +119,11 @@ class SelectBlock extends React.Component {
      * @memberof SelectBlock
      */
     render() {
+		const { label, ...leftovers } = this.props;
         return (
             <>
                 <QuestionLabel
-                    label={this.props.label}
+                    label={label}
                     helperText={this.props.helperText}
                     isRequired={this.props.isRequired}
                     number={this.props.number}
@@ -130,7 +131,7 @@ class SelectBlock extends React.Component {
                 <div className='question-input-wrapper pl-5'>
                     <FormControl fullWidth>
                         <SelectField
-                            {...this.props}
+                            {...leftovers}
                             isMultiple={
                                 this.props.dataType != null &&
                                 this.props.dataType.isMultiple != null
@@ -143,7 +144,7 @@ class SelectBlock extends React.Component {
                     {this.state.showAlternateResponse && (
                         <TextField
                             class={"select-alt-field"}
-                            placeholder={"Other"}
+                            label={"Other"}
                             value={this.state.alternateValue}
                             onValueChanged={this.onAlternateValueChanged.bind(
                                 this

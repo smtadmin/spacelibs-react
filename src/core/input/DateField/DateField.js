@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 3:31 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 24th March 2021 10:22 am
+ * Last Modified: Monday, 17th May 2021 10:57 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -75,7 +75,8 @@ class DateField extends React.Component {
 					variant="inline"
 					format="MM/DD/yyyy"
 					margin="normal"
-					label={this.props.placeholder}
+					label={this.props.label}
+					placeholder={this.props.placeholder}
 					value={date}
 					onChange={this.onValueChanged.bind(this)}
 					KeyboardButtonProps={{}}
@@ -116,6 +117,8 @@ DateField.propTypes = {
 
   // Changes how the field looks
   variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
+
+  label: PropTypes.string,
 
   // Value to be on the field when nothing is entered
   placeholder: PropTypes.string,
