@@ -26,6 +26,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
     label: PropTypes.string,
     type: PropTypes.string,
     isDisabled: PropTypes.bool,
+    isReadOnly: PropTypes.bool,
     onValueChanged: PropTypes.func.isRequired,
     onBlur: PropTypes.func,
     value: PropTypes.string,
@@ -72,7 +73,8 @@ class TextField extends React.Component {
           } : null;
 
 		let inputProps = this.props.inputProps ? this.props.inputProps : {};
-		
+		inputProps.readOnly = this.props.isReadOnly;
+
 		if(this.props.maxLength != null){
 			inputProps.maxLength = this.props.maxLength;
 		}
@@ -126,6 +128,7 @@ TextField.propTypes = {
     label: PropTypes.string,
     type: PropTypes.string,
     isDisabled: PropTypes.bool,
+    isReadOnly: PropTypes.bool,
     onValueChanged: PropTypes.func.isRequired,
 	onBlur: PropTypes.func,
 	onFocus: PropTypes.func,
