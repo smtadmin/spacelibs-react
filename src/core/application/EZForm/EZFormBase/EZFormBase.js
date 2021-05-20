@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 4:00 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 28th April 2021 9:49 am
+ * Last Modified: Wednesday, 12th May 2021 10:26 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -130,11 +130,13 @@ class EZFormBase extends React.Component {
                 question.value = [];
                 question.errorMessage = null;
                 question.isValid = true;
-
-                question.number = count;
+				if (data.displayNumbersFlag) 
+					question.number = count;
                 count++;
             });
-        });
+		});
+		
+		console.log("Formatted data ", data);
         return data;
     }
 

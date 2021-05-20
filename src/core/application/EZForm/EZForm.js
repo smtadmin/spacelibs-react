@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Friday, 30th April 2021 1:31 pm
+ * Last Modified: Wednesday, 12th May 2021 12:15 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -229,7 +229,7 @@ class EZForm extends React.Component {
             );
         } else {
             output = (
-                <EZFormSubmission resubmit={this.state.data.resubmitFlag} />
+                <EZFormSubmission resubmit={this.state.data.resubmitFlag} text={this.state.data.submissionText} />
             );
         }
 

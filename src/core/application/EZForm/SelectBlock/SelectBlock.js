@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:49 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 3:27 pm
+ * Last Modified: Wednesday, 12th May 2021 10:23 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -172,7 +172,7 @@ SelectBlock.propTypes = {
     errorMessage: PropTypes.string,
 	altResponseId: PropTypes.string,
     identifier: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired,
+    number: PropTypes.number,
     label: PropTypes.string.isRequired,
     helperText: PropTypes.string,
     isRequired: PropTypes.bool,

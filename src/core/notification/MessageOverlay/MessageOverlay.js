@@ -19,43 +19,25 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { useTheme } from '@material-ui/core/styles';
 
 /**
- * Component to display the change history for an EZ Form group
- *
- * @class MessageOverlay
+ * Main function for the overlay component
+ * @param {*} props Properties for the function
+ * @returns Fully configured overlay object
  */
- class MessageOverlay extends React.Component {
-
-    /**
-     * Creates an instance of NewAdmin.
-     * @param {*} props - Component props
-     * @memberof NewAdmin
-     */
-    constructor(props) {
-        super(props);
-        this.state = {
-            color : props.color,
-            message : props.message,
-            showOverlay : props.showOverlay,
-            emptyAnimation : props.emptyAnimation
-        };
-
-        this.processActionButton = this.processActionButton.bind(this);
-    }
-
+function MessageOverlay(props) {
     /**
      * Assigns the component animation.  The default is circular progress
      * @returns {*} The provided animation or one set through the child attribute
      */
-    assignAnimation() {
-        if (this.state.emptyAnimation) return "";
-        else return (! this.props.children) ? <CircularProgress color={this.state.color} /> : this.props.children;
+    function assignAnimation() {
+        if (props.emptyAnimation) return "";
+        else return (! props.children) ? <CircularProgress color={props.color} /> : props.children;
     }
 
     /**
      * Gets the style elements for the overlay
      * @returns {*} Object with the style elements
      */
-    getCoverStyle() {
+     function getCoverStyle() {
         return {
             position : "fixed",
             top : 0,
@@ -64,7 +46,7 @@ import { useTheme } from '@material-ui/core/styles';
             zIndex : 5,
             width : "100%",
             height : "100%",
-            display : this.state.showOverlay ? "block" : "none"
+            display : props.showOverlay ? "block" : "none"
         };
     }
 
@@ -72,9 +54,9 @@ import { useTheme } from '@material-ui/core/styles';
      * Gets the style elements for the overlay
      * @returns {*} Object with the style elements
      */
-    getLoadingStyle() {
+     function getLoadingStyle() {
         const theme = useTheme();
-        let color = this.state.color === "primary" ? theme.palette.primary1Color : theme.palette.secondary;
+        let color = props.color === "primary" ? theme.palette.primary1Color : theme.palette.secondary;
         return {
             position : "fixed",
             color : color,
@@ -85,19 +67,17 @@ import { useTheme } from '@material-ui/core/styles';
         };
     }
 
-    /**
-     * Renders the display output
-     * @returns {*} Output display for this component 
-     */
-    render() {
-        return(
-            <div style={this.getCoverStyle()}> 
-                <div style={this.getLoadingStyle()}>{ this.assignAnimation() } <br/>{ this.state.message}</div>
-            </div>
-        );
-    }
+    return(
+        <div style={getCoverStyle()}> 
+            <div style={getLoadingStyle()}>{ assignAnimation() } <br/>{ props.message}</div>
+        </div>
+    );
 }
 
+MessageOverlay.defaultProps = {
+    emptyAnimation : false,
+    color : "primary"
+};
 
 MessageOverlay.propTypes = {
     showOverlay : PropTypes.bool,

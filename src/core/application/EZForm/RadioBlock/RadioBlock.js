@@ -6,8 +6,8 @@
  * File Created: Friday, 19th February 2021 10:25 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 3rd March 2021 5:15 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Wednesday, 12th May 2021 10:23 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -89,7 +89,7 @@ RadioBlock.propTypes = {
     errorMessage: PropTypes.string,
 
     identifier: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired,
+    number: PropTypes.number,
     label: PropTypes.string.isRequired,
     helperText: PropTypes.string,
     isRequired: PropTypes.bool,

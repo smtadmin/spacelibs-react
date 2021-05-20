@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:39 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 24th March 2021 10:11 am
+ * Last Modified: Wednesday, 12th May 2021 10:23 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -92,7 +92,7 @@ DateBlock.propTypes = {
 
     identifier: PropTypes.string.isRequired,
     variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
-    number: PropTypes.number.isRequired,
+    number: PropTypes.number,
     label: PropTypes.string.isRequired,
     onValueChanged: PropTypes.func.isRequired,
     placeholder: PropTypes.string,

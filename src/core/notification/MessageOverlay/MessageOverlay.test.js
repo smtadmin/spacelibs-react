@@ -16,7 +16,6 @@ import MessageOverlay from "./MessageOverlay";
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 
 /**
  * Checks that the button renders and the current snapshot matches the previous one.
@@ -27,22 +26,65 @@ it("Renders with no props", () => {
 });
 
 /**
+ * Checks that the button renders and the current snapshot matches the previous one.
+ */
+ it("Renders with no props with children", () => {
+	const { baseElement } = render(<MessageOverlay >Testing</MessageOverlay>);
+	expect(baseElement).toBeTruthy();
+});
+
+/**
+ * Checks that the button renders and the current snapshot matches the previous one.
+ */
+ it("Renders with props no animation", () => {
+	let props = {
+		emptyAnimation : true,
+		showOverlay : true,
+		message : "Testing"
+	};
+	const { baseElement } = render(<MessageOverlay {...props} />);
+	expect(baseElement).toBeTruthy();
+});
+
+/**
+ * Checks that the button renders and the current snapshot matches the previous one.
+ */
+ it("Renders with props secondary color", () => {
+	let props = {
+		showOverlay : true,
+		message : "Testing",
+		color: "secondary"
+	};
+	const { baseElement } = render(<MessageOverlay {...props} />);
+	expect(baseElement).toBeTruthy();
+});
+
+/**
  * Checks that the MessageBox calls onClose when closed
  */
 it("Calls showOverlay prop on open", () => {
     render(<MessageOverlay message="Testing" showOverlay={true} />);
 	const element = screen.getAllByText("Testing");
-    userEvent.click(element[1]);
-    expect(element).toBeInTheDocument();
+    expect(element).toBeTruthy();
 });
 
 /**
- * Checks that MessageBox renders without an onClose prop
+ * Checks that MessageBox renders without an onClose propnpm run test:unit
  */
 it("Opens and closes the overlay", () => {
-	let show = true;
-    render(<MessageOverlay showOverlay={show} />);
-	show = false;
-    const element = screen.getAllByText("Testing");
-	expect(element).toBeEmptyDOMElement();
+	let props = {
+		emptyAnimation : false,
+		showOverlay : true,
+		message : "Testing"
+	};
+
+    const { rerender } = render(<MessageOverlay {...props} />);
+	let element = screen.getAllByText("Testing");
+	expect(element).toBeTruthy();
+
+	props.showOverlay = false;
+	rerender(<MessageOverlay {...props} />);
+
+    element = screen.getAllByText("Testing");
+	expect(element).toBeTruthy();
 });

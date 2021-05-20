@@ -6,7 +6,7 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 6th May 2021 4:29 pm
+ * Last Modified: Thursday, 13th May 2021 4:24 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -80,25 +80,26 @@ class TextField extends React.Component {
 		}
 
         return (
-            <FormControl fullWidth={this.props.fullWidth}>
+            <FormControl fullWidth={this.props.fullWidth} style={this.props.style}>
                 <MuiTextField
-					autoFocus={this.props.autoFocus}
+                    autoFocus={this.props.autoFocus}
                     disabled={this.props.isDisabled}
                     className={this.props.className}
-					variant={this.props.variant}
-					multiline={this.props.multiline}
-					rowsMax={this.props.rowsMax}
+                    variant={this.props.variant}
+                    multiline={this.props.multiline}
+                    rowsMax={this.props.rowsMax}
                     data-testid={"textfield-input"}
                     type={this.props.type}
-					onBlur={this.props.onBlur}
-					inputProps={inputProps}
+                    onBlur={this.props.onBlur}
+                    onFocus={this.props.onFocus}
+                    inputProps={inputProps}
                     onChange={this.onValueChanged.bind(this)}
                     value={this.props.value ? this.props.value : ""}
                     required={this.props.required}
                     fullWidth={this.props.fullWidth}
                     label={this.props.placeholder}
-					error={this.props.hasError ? true : null}
-					InputProps={InputProps}
+                    error={this.props.hasError ? true : null}
+                    InputProps={InputProps}
                 />
                 {this.props.subText && this.props.subText.length > 0 && (
                     <FormHelperText>{this.props.subText}</FormHelperText>
@@ -130,6 +131,7 @@ TextField.propTypes = {
     isReadOnly: PropTypes.bool,
     onValueChanged: PropTypes.func.isRequired,
 	onBlur: PropTypes.func,
+	onFocus: PropTypes.func,
 	inputProps: PropTypes.any,
     value: PropTypes.string,
 	hasError: PropTypes.bool,
@@ -141,6 +143,7 @@ TextField.propTypes = {
     subText: PropTypes.string,
 	placeholder: PropTypes.string,
 	startAdornment: PropTypes.string,
+	style: PropTypes.object,
     variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
 };
 
