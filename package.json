@@ -14,6 +14,7 @@
     "test:watchAll": "jest --coverage ./src/core --watchAll --collectCoverageFrom=src/**/*.{js,jsx}",
     "lint": "eslint src",
     "test:unit": "jest --coverage ./src/core --collectCoverageFrom=src/**/*.{js,jsx}",
+    "test:unit:single": "jest --coverage  --collectCoverageFrom=src/**/*.{js,jsx}",
     "copyFonts": "cp -R './src/core/layout/SpaceForceLayout/Fonts' './core/layout/SpaceForceLayout'",
     "copyStyles": "cp -R './src/core/layout/SpaceForceLayout/SpaceForceLayout.css' './core/layout/SpaceForceLayout/SpaceForceLayout.css'",
     "semantic-release": "semantic-release",

@@ -6,7 +6,7 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tue May 18 2021
+ * Last Modified: Thu May 20 2021
  * Modified By: tylergaffaney
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -296,12 +296,11 @@ body {
 
 .tab.default {
     display: inline-block;
-    border: 1px solid transparent;
-    border-bottom: none;
-    bottom: -2px;
+	border: 1px solid transparent;
+	border-bottom: 0px;
     position: relative;
     list-style: none;
-    padding: 6px 15px;
+    padding: 4px 15px;
     cursor: pointer;
     border-color: #ccc;
 	border-radius: 10px 10px 0 0;
@@ -421,7 +420,7 @@ div.centering {
 }
 
 .outlined-select > div > input {
-	padding: 2px 0px !important;
+	padding: 0px 0px !important;
 }
 
 .select-icon {
