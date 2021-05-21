@@ -40,11 +40,11 @@ import ErrorIcon from '@material-ui/icons/ErrorRounded';
  *				// Your body here
  *			</Modal>
  *		);
- * }
- * @param {*} props settings for Modal and buttons
+ * };
+ * @param {*} props settings for Modal and buttons 
  * @returns {*} a custom bootstrap modal
  */
-function GenericModal(props) {
+ function GenericModal(props) {
 
     /**
      * Loads an icon if needed
@@ -54,13 +54,13 @@ function GenericModal(props) {
     function loadIcon() {
         switch (props.titleIconName) {
             case "help":
-                return <HelpIcon htmlColor='#2196f3' className='generic-modal-icon'/>;
+                return <HelpIcon className='generic-modal-icon help' />;
             case "info":
-                return <InfoIcon htmlColor='#2196f3' className='generic-modal-icon'/>;
+                return <InfoIcon className='generic-modal-icon info' />;
             case "warning":
-                return <WarningIcon htmlColor='#ff9800' className='generic-modal-icon'/>;
+                return <WarningIcon className='generic-modal-icon warning' />;
             case "error":
-                return <ErrorIcon htmlColor='#d32f2f' className='generic-modal-icon'/>;
+                return <ErrorIcon className='generic-modal-icon error' />;
             default:
                 return null;
         }
@@ -90,6 +90,7 @@ function GenericModal(props) {
                     variant={props.leftButtonVariant}
                     className={props.leftButtonClassName}
                     color={props.leftButtonColor}
+                    size={props.leftButtonSize}
                     disabled={props.leftButtonIsDisabled}
                     startIcon={props.leftButtonStartIcon}
                     endIcon={props.leftButtonEndIcon}
@@ -97,11 +98,13 @@ function GenericModal(props) {
                 >
                     {props.leftButtonLabel}
                 </Button>
-                }                
+                }    
+                {props.showRightButton &&             
                 <Button
                     variant={props.rightButtonVariant}
                     className={props.rightButtonClassName}
                     color={props.rightButtonColor}
+                    size={props.rightButtonSize}
                     disabled={props.rightButtonIsDisabled}
                     startIcon={props.rightButtonStartIcon}
                     endIcon={props.rightButtonEndIcon}
@@ -109,6 +112,7 @@ function GenericModal(props) {
                 >
                     {props.rightButtonLabel}
                 </Button>
+                }
             </Modal.Footer>
         </Modal>
     );
@@ -124,6 +128,7 @@ GenericModal.defaultProps = {
     leftButtonClassName: 'mr-auto',
     leftButtonLabel: 'Close',
 
+    showRightButton: true,
     rightButtonVariant: 'contained',
     rightButtonColor: 'primary',
     rightButtonLabel: 'Save',
@@ -133,29 +138,71 @@ GenericModal.propTypes = {
     show: PropTypes.bool.isRequired,
     onHide: PropTypes.func,
     onShow: PropTypes.func,
-    backdrop: PropTypes.string,
+    /**
+     * Modal backdrop options, determines if the backdrop is greyed out (true) or not.
+     * Setting to static prevents closing from an outside click
+     * 
+     * One of ('static','true','false')
+     */
+    backdrop: PropTypes.oneOf(['static','true','false']),
+    /**
+     * Modal keyboard option to choose if esc closes a modal (true) or not
+     */
     keyboard: PropTypes.bool,
     isAnimated: PropTypes.bool,
     isCentered: PropTypes.bool,
-    size: PropTypes.string,
-    titleIconName: PropTypes.string,
+    /**
+     * Modal size options
+     * 
+     * One of ('sm','lg','xl')
+     */
+    size: PropTypes.oneOf(['sm','lg','xl']),
+    /**
+     * Name of the icon to use before the title
+     * 
+     * Choose between 'help', 'info', 'warning', 'error'
+     */
+    titleIconName: PropTypes.oneOf(['help','info','warning','error']),
     title: PropTypes.string.isRequired,
 
     children: PropTypes.any,
 
     showLeftButton: PropTypes.bool,
-    leftButtonVariant: PropTypes.string,
+    /**
+     * Button variant selection
+     * 
+     * One of ('contained','outlined','text')
+     */
+    leftButtonVariant: PropTypes.oneOf(['contained','outlined','text']),
     leftButtonClassName: PropTypes.string,
     leftButtonColor: PropTypes.string,
+    /**
+     * Button size options
+     * 
+     * One of ('large','medium','small')
+     */
+    leftButtonSize: PropTypes.oneOf(['large','medium','small']),
     leftButtonIsDisabled: PropTypes.bool,
     leftButtonStartIcon: PropTypes.any,
     leftButtonEndIcon: PropTypes.any,
     leftButtonOnClick: PropTypes.func,
     leftButtonLabel: PropTypes.any,
 
-    rightButtonVariant: PropTypes.string,
+    showRightButton: PropTypes.bool,
+    /**
+     * Button variant selection
+     * 
+     * One of ('contained','outlined','text')
+     */
+    rightButtonVariant: PropTypes.oneOf(['contained','outlined','text']),
     rightButtonClassName: PropTypes.string,
     rightButtonColor: PropTypes.string,
+    /**
+     * Button size options
+     * 
+     * One of ('large','medium','small')
+     */
+    rightButtonSize: PropTypes.oneOf(['large','medium','small']),
     rightButtonIsDisabled: PropTypes.bool,
     rightButtonStartIcon: PropTypes.any,
     rightButtonEndIcon: PropTypes.any,
