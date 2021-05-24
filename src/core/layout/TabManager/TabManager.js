@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 10:05 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 19th May 2021 2:51 pm
+ * Last Modified: Monday, 24th May 2021 3:32 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -20,15 +20,6 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
  * Tab Example class
  */
 class TabManager extends React.Component {
-    /**
-     * Creates an instance of TabExample.
-     * @param {*} props Props for component
-     * @memberof TabExample
-     */
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
 
     /**
      * This returns a React element for our extra tabs
@@ -163,7 +154,6 @@ TabManager.propTypes = {
     extraButtons: PropTypes.arrayOf(
         PropTypes.exact({
             tabComponent: PropTypes.element,
-            callback: PropTypes.func,
         })
     ),
     selectedIndex: PropTypes.number,
