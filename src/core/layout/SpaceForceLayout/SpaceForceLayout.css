@@ -6,8 +6,8 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wed May 12 2021
- * Modified By: Chris Scarola
+ * Last Modified: Mon May 24 2021
+ * Modified By: tylergaffaney
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -331,13 +331,10 @@ body {
 
 .tab-add {
 	display: inline-block;
-    border-bottom: 1px solid transparent;
-    bottom: -1px;
     position: relative;
     list-style: none;
-    padding: 6px 8px;
+    padding: 3px 8px 3px 8px;
     cursor: pointer;
-	border-bottom-color: #034e77;
 	background-color: #DDD;
 	border-radius: 10px 10px 0 0;
 }

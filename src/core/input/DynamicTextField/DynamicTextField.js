@@ -6,7 +6,7 @@
  * File Created: Friday, 14th May 2021 4:03 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 17th May 2021 11:20 am
+ * Last Modified: Thursday, 27th May 2021 10:12 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -51,6 +51,10 @@ function DynamicTextField(props){
     } else if (props.canEdit) {
         return (
             <div
+                tabIndex={0}
+                onFocus={() => {
+                    props.callbacks.onFocus(props.identifier);
+                }}
                 style={{
                     fontSize: props.fontSize,
                     height: props.fontSize + props.bottomBarOffset + "px",
@@ -68,6 +72,7 @@ function DynamicTextField(props){
                 className={"dynamic-label text " + props.className}
                 style={{
                     fontSize: props.fontSize,
+                    height: props.fontSize + props.bottomBarOffset + "px",
                 }}>
                 {props.value}
             </div>

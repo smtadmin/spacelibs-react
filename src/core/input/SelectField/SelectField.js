@@ -6,7 +6,7 @@
  * File Created: Monday, 8th February 2021 4:50 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 18th May 2021 1:53 pm
+ * Last Modified: Thursday, 27th May 2021 10:13 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -171,6 +171,7 @@ class SelectField extends React.Component {
         return (
             <Autocomplete
                 data-testid={"select"}
+                disabled={this.props.isDisabled}
                 multiple={this.props.isMultiple ? true : false}
                 options={options}
                 getOptionLabel={(option) => this.getOptionLabel(option)}
@@ -205,7 +206,8 @@ SelectField.propTypes = {
 	className: PropTypes.string,
 	inputClassName: PropTypes.string,
     value: PropTypes.arrayOf(PropTypes.any),
-    hasError: PropTypes.bool,
+	hasError: PropTypes.bool,
+	isDisabled: PropTypes.bool,
     subText: PropTypes.string,
     isMultiple: PropTypes.bool,
     variant: PropTypes.oneOf(["standard", "filled", "outlined"]),

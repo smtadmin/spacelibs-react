@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 4:00 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 12th May 2021 10:26 am
+ * Last Modified: Tuesday, 25th May 2021 5:12 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -21,6 +21,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import MessageBox from "../../../notification/MessageBox";
 import EZFormValidator from "../EZFormValidator/EZFormValidator";
+import copy from 'fast-copy';
 
 import EZFormResponseParser from '../EZFormResponseParser/EZFormResponseParser';
 /**
@@ -123,21 +124,25 @@ class EZFormBase extends React.Component {
      * @memberof EZForm
      */
     formatData(data) {
+
+		let copiedData = copy(data);
         let count = 1;
-        data.pages.forEach((page) => {
+        copiedData.pages.forEach((page) => {
+			let questions = [];
             page.questions.forEach((question) => {
-                /* Will need to change when we allow people to save and submit later */
-                question.value = [];
-                question.errorMessage = null;
-                question.isValid = true;
-				if (data.displayNumbersFlag) 
-					question.number = count;
-                count++;
-            });
-		});
-		
-		console.log("Formatted data ", data);
-        return data;
+				if(question.isActive){
+                    /* Will need to change when we allow people to save and submit later */
+                    question.value = [];
+                    question.errorMessage = null;
+                    question.isValid = true;
+                    if (data.displayNumbersFlag) question.number = count;
+					count++;
+					questions.push(question);
+                }
+			});
+			page.questions = questions;
+        });
+        return copiedData;
     }
 
     /**
