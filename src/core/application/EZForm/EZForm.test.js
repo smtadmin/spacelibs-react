@@ -6,7 +6,7 @@
  * File Created: Monday, 1st March 2021 4:04 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 27th April 2021 9:36 am
+ * Last Modified: Friday, 28th May 2021 11:11 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -55,7 +55,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                 dataType: {
                     code: "TEXT",
                 },
-                isRequired: true,
+                required: true,
                 altResponseId: "1",
                 options: [
                     {
@@ -89,7 +89,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                 dataType: {
                     code: "NUMBER",
                 },
-                isRequired: false,
+                required: false,
             },
         ],
         t_number_required: [
@@ -100,7 +100,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                 dataType: {
                     code: "NUMBER",
                 },
-                isRequired: true,
+                required: true,
             },
         ],
         t_multi_required: [
@@ -134,7 +134,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                         displayText: "Other",
                     },
                 ],
-                isRequired: true,
+                required: true,
             },
         ],
         t_choice_required: [
@@ -159,7 +159,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                         displayText: "Bonjour",
                     },
                 ],
-                isRequired: true,
+                required: true,
             },
         ],
         t_choice_optional: [
@@ -184,7 +184,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                         displayText: "Bonjour",
                     },
                 ],
-                isRequired: false,
+                required: false,
             },
         ],
     };
@@ -213,7 +213,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "TEXT",
                                         },
-                                        isRequired: true,
+                                        required: true,
                                     },
                                 ],
                             },
@@ -227,7 +227,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "TEXT",
                                         },
-                                        isRequired: true,
+                                        required: true,
                                     },
                                 ],
                             },
@@ -241,7 +241,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "TEXT",
                                         },
-                                        isRequired: true,
+                                        required: true,
                                     },
                                 ],
                             },
@@ -264,7 +264,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "DATE",
 										},
-										isRequired: false
+										required: false
                                     },
                                 ],
                             },
@@ -288,7 +288,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "DATE",
                                         },
-                                        isRequired: true,
+                                        required: true,
                                     },
                                     {
                                         identifier: "Date2",
@@ -297,7 +297,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "DATE",
                                         },
-                                        isRequired: false,
+                                        required: false,
                                     },
                                     {
                                         identifier: "Select1",
@@ -307,7 +307,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                             code: "TEXT",
                                         },
                                         altResponseId: "3",
-                                        isRequired: false,
+                                        required: false,
                                         options: [
                                             {
                                                 identifier: "1",
@@ -338,7 +338,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "TEXT",
                                         },
-                                        isRequired: true,
+                                        required: true,
                                         options: [
                                             {
                                                 identifier: "1",
@@ -369,7 +369,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "TEXT",
                                         },
-                                        isRequired: false,
+                                        required: false,
                                         options: [
                                             {
                                                 identifier: "1",

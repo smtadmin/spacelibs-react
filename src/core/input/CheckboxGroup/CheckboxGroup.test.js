@@ -6,7 +6,7 @@
  * File Created: Thursday, 11th February 2021 9:55 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 11th February 2021 2:12 pm
+ * Last Modified: Friday, 28th May 2021 11:58 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -26,7 +26,7 @@ const singleOptionNoValues = {
   identifier: "1",
   type: "date",
   label: "Date Action Completed",
-  isRequired: true,
+  required: true,
   value: [],
   onValueChanged: () => { },
   config: {
@@ -42,62 +42,61 @@ const singleOptionNoValues = {
 };
 
 const twoOptionsOneSelectedValue = {
-  number: 1,
-  identifier: "1",
-  type: "date",
-  label: "Date Action Completed",
-  isRequired: true,
-  value: [
-    {
-      identifier: "B",
-      displayText: "Option B",
-      isDisabled: false,
-    },
-  ],
-  onValueChanged: () => {},
-  subText: "Error occurred",
-  config: {
-    options: [
-      {
-        identifier: "A",
-        displayText: "Option A",
-        isSelected: undefined,
-        isDisabled: undefined,
-      },
-      {
-        identifier: "B",
-        displayText: "Option B",
-        isDisabled: false,
-      },
+    number: 1,
+    identifier: "1",
+    type: "date",
+    label: "Date Action Completed",
+    required: true,
+    value: [
+        {
+            identifier: "B",
+            displayText: "Option B",
+            isDisabled: false,
+        },
     ],
-  },
+    onValueChanged: () => {},
+    subText: "Error occurred",
+    config: {
+        options: [
+            {
+                identifier: "A",
+                displayText: "Option A",
+                isSelected: undefined,
+                isDisabled: undefined,
+            },
+            {
+                identifier: "B",
+                displayText: "Option B",
+                isDisabled: false,
+            },
+        ],
+    },
 };
 
 const configWithUndefinedOptionValues = {
-  number: 1,
-  identifier: "1",
-  type: "date",
-  label: "Date Action Completed",
-  isRequired: true,
-  value: [
-  ],
-  onValueChanged: () => { },
-  subText: "Error occurred",
-  config: {
-    options: [
-      {
-        identifier: "A",
-        displayText: "Option A",
-        isSelected: undefined,
-        isDisabled: undefined,
-      },
-      {
-        identifier: "B",
-        displayText: "Option B",
-        isDisabled: false,
-      },
-    ],
-  },
+    number: 1,
+    identifier: "1",
+    type: "date",
+    label: "Date Action Completed",
+    required: true,
+    value: [],
+    onValueChanged: () => {},
+    subText: "Error occurred",
+    config: {
+        options: [
+            {
+                identifier: "A",
+                displayText: "Option A",
+                isSelected: undefined,
+                isDisabled: undefined,
+            },
+            {
+                identifier: "B",
+                displayText: "Option B",
+                isDisabled: false,
+            },
+        ],
+    },
 };
 
 /**

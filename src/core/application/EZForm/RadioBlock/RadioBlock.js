@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:25 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 12th May 2021 10:23 am
+ * Last Modified: Friday, 28th May 2021 11:56 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -59,7 +59,7 @@ class RadioBlock extends React.Component {
                 <QuestionLabel
                     label={this.props.label}
                     helperText={this.props.helperText}
-                    isRequired={this.props.isRequired}
+                    required={this.props.required}
                     number={this.props.number}
                 />
                 <div className="question-input-wrapper pl-5 pt-2">
@@ -92,7 +92,7 @@ RadioBlock.propTypes = {
     number: PropTypes.number,
     label: PropTypes.string.isRequired,
     helperText: PropTypes.string,
-    isRequired: PropTypes.bool,
+	required: PropTypes.bool,
 
     color: PropTypes.string,
     labelPlacement: PropTypes.oneOf(["left", "top", "right", "bottom"]),

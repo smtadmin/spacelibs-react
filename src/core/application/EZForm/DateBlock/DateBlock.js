@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:39 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 17th May 2021 11:03 am
+ * Last Modified: Friday, 28th May 2021 11:12 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -62,7 +62,7 @@ class DateBlock extends React.Component {
                 <QuestionLabel
                     label={label}
                     helperText={this.props.helperText}
-                    isRequired={this.props.isRequired}
+                    required={this.props.required}
                     number={this.props.number}
                 />
                 <div className='question-input-wrapper pl-5'>
@@ -84,7 +84,7 @@ class DateBlock extends React.Component {
 
 DateBlock.defaultProps = {
     variant: "standard",
-    isRequired: false,
+    required: false,
 };
 
 DateBlock.propTypes = {
@@ -99,7 +99,7 @@ DateBlock.propTypes = {
     onValueChanged: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
     helperText: PropTypes.string,
-    isRequired: PropTypes.bool,
+    required: PropTypes.bool,
 };
 
 export default DateBlock;

@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 4:30 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Sunday, 2nd May 2021 1:29 pm
+ * Last Modified: Friday, 28th May 2021 12:43 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -35,7 +35,11 @@ export default class EZFormValidator {
 
             const validateObject = this.validateQuestion(question);
             if (!validateObject.isValid) {
-                errors.push(question.number);
+                if (question.number == null) {
+                    errors.push('"' + question.label + '"');
+                } else {
+                    errors.push(question.number);
+                }
             }
 
             question.isValid = validateObject.isValid;
@@ -92,31 +96,31 @@ export default class EZFormValidator {
      *
      * @param {*} value value to be validated
      * @param {*} type type the value should be
-     * @param {*} isRequired whether or not the value is required
+     * @param {*} required whether or not the value is required
      * @returns {*} validation object
      * @memberof EZForm
      */
-    validateValueAgainstType(value, type, isRequired) {
+    validateValueAgainstType(value, type, required) {
         const dictionary = {
             DATE: this.validateDate.bind(this),
             TEXT: this.validateText.bind(this),
             NUMBER: this.validateNumber.bind(this),
         };
-        return dictionary[type](value, isRequired);
+        return dictionary[type](value, required);
     }
 
     /**
      * Validates the value object as a date
      *
      * @param {*} value Object to validate
-     * @param {*} isRequired Whether or not the date is required
+     * @param {*} required Whether or not the date is required
      * @returns {*} Validation object
      * @memberof EZForm
      */
-    validateDate(value, isRequired) {
+    validateDate(value, required) {
         const validDate = value && moment(value, "MM/DD/YYYY").isValid();
 
-        if (isRequired) {
+        if (required) {
             if (validDate) {
                 return { isValid: true, errorMessage: "" };
             } else if (!value || value.length === 0) {
@@ -140,14 +144,14 @@ export default class EZFormValidator {
      * Validates a value object as text
      *
      * @param {*} value Object to validate
-     * @param {*} isRequired Whether or not the value needs to exist
+     * @param {*} required Whether or not the value needs to exist
      * @returns {*} Validation object
      * @memberof EZForm
      */
-    validateText(value, isRequired) {
+    validateText(value, required) {
         const hasValue = value != null && value.length > 0;
 
-        if (isRequired) {
+        if (required) {
             if (hasValue) {
                 return { isValid: true, errorMessage: "" };
             } else {
@@ -165,13 +169,13 @@ export default class EZFormValidator {
      * Validates a value object as a number
      *
      * @param {*} value Object to validate
-     * @param {*} isRequired Whether or not the value needs to exist
+     * @param {*} required Whether or not the value needs to exist
      * @returns {*} Validation object
      * @memberof EZForm
      */
-    validateNumber(value, isRequired) {
+    validateNumber(value, required) {
         const validNumber = value && !isNaN(value);
-        if (isRequired) {
+        if (required) {
             if (validNumber && value.length > 0) {
                 return { isValid: true, errorMessage: "" };
             } else if (value && value.length > 0) {
@@ -209,7 +213,7 @@ export default class EZFormValidator {
         return this.validateValueAgainstType(
             hasValues ? question.value[0] : null,
             question.dataType.code,
-            question.isRequired
+            question.required
         );
     }
 
@@ -232,14 +236,14 @@ export default class EZFormValidator {
             let error = this.validateValueAgainstType(
                 value,
                 question.dataType.code,
-                question.isRequired
+                question.required
             );
             if (!error.isValid) {
                 return error;
             }
         }
 
-        if (question.isRequired && values.length === 0) {
+        if (question.required && values.length === 0) {
             return {
                 isValid: false,
                 errorMessage: "This field is required",
@@ -269,7 +273,7 @@ export default class EZFormValidator {
         return this.validateValueAgainstType(
             value,
             question.dataType.code,
-            question.isRequired
+            question.required
         );
     }
 }

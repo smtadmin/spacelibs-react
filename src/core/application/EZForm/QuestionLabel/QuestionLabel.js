@@ -6,7 +6,7 @@
  * File Created: Wednesday, 10th February 2021 11:08 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 12th May 2021 10:26 am
+ * Last Modified: Friday, 28th May 2021 11:56 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -37,19 +37,19 @@ function QuestionLabel(props) {
 
 	return <div 
 	className={"question-label"}>
-		{getNumber()} {props.label} {props.isRequired && <span style={{color:'red'}}>*</span>} <Tooltip text={props.helperText}/>
+		{getNumber()} {props.label} {props.required && <span style={{color:'red'}}>*</span>} <Tooltip text={props.helperText}/>
 	</div>;
 }
 
 QuestionLabel.defaultProps = {
-	isRequired: false
+	required: false
 };
 
 QuestionLabel.propTypes = {
 	number: PropTypes.number,
-	label: PropTypes.string.isRequired,
+	label: PropTypes.string.required,
 	helperText: PropTypes.string,
-	isRequired: PropTypes.bool
+	required: PropTypes.bool
 };
 
 export default QuestionLabel;

@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 12th May 2021 10:24 am
+ * Last Modified: Friday, 28th May 2021 12:49 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -154,13 +154,12 @@ class QuestionBlock extends React.Component {
     render() {
         const type = this.props.type;
         const dataType = this.props.dataType.code;
-        const optionCount = this.props.options ? this.props.options.length : 0;
+		const optionCount = this.props.options ? this.props.options.length : 0;
 
         let props = this.props;
         props.config = {
             options: this.props.options,
         };
-        props.dataType.isMultiple = type === "MULTI";
         delete props.options;
 
         return (
@@ -173,21 +172,21 @@ class QuestionBlock extends React.Component {
 
 QuestionBlock.defaultProps = {
 	variant: "standard",
-	isRequired: false
+	required: false
 };
 
 QuestionBlock.propTypes = {
     value: PropTypes.any,
     isValid: PropTypes.bool,
     errorMessage: PropTypes.string,
-	config: PropTypes.any,
+    config: PropTypes.any,
     identifier: PropTypes.string.isRequired,
     number: PropTypes.number,
     variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
     label: PropTypes.string.isRequired,
-    isRequired: PropTypes.bool,
-	helperText: PropTypes.string,
-	type: PropTypes.oneOf(["ENTRY", "CHOICE", "MULTI"]).isRequired,
+    required: PropTypes.bool,
+    helperText: PropTypes.string,
+    type: PropTypes.oneOf(["ENTRY", "CHOICE", "MULTI"]).isRequired,
     dataType: PropTypes.shape({
         code: PropTypes.oneOf([
             "DATE",

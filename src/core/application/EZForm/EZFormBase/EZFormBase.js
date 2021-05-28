@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 4:00 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 25th May 2021 5:12 pm
+ * Last Modified: Friday, 28th May 2021 12:54 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -130,12 +130,24 @@ class EZFormBase extends React.Component {
         copiedData.pages.forEach((page) => {
 			let questions = [];
             page.questions.forEach((question) => {
-				if(question.isActive){
+				if(question.active){
                     /* Will need to change when we allow people to save and submit later */
                     question.value = [];
                     question.errorMessage = null;
                     question.isValid = true;
-                    if (data.displayNumbersFlag) question.number = count;
+					if (data.displayNumbersFlag) question.number = count;
+					
+					if(question.altResponseId != null){
+						for(let index = 0; index < question.options.length; index++){
+							if(question.options[index].identifier == question.altResponseId){
+								const altOption = question.options[index];
+								question.options.splice(index,1);
+								question.options.push(altOption);
+								break;
+							}
+						}
+					}
+
 					count++;
 					questions.push(question);
                 }
@@ -166,7 +178,7 @@ class EZFormBase extends React.Component {
             validationObject.errors
         );
 
-        this.setState(prevState);
+		this.setState(prevState);
         return {
             isValid: validationObject.errors.length === 0,
             prompt: formErrorMessage,
