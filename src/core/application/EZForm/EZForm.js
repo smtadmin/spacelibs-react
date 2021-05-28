@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 12th May 2021 12:15 pm
+ * Last Modified: Friday, 28th May 2021 1:50 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -169,8 +169,6 @@ class EZForm extends React.Component {
                 this.setState(prevState);
 
                 if (!response.isValid) {
-                    console.log(response);
-                    console.log(this.state);
                     this.prompt(
                         "Something went wrong",
                         "An error occured, please try submitting again."
