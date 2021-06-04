@@ -6,8 +6,8 @@
  * File Created: Wednesday, 28th April 2021 9:27 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Sunday, 2nd May 2021 1:17 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Thursday, June 3, 2021 5:42pm
+ * Modified By: James Camire (james@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -23,7 +23,7 @@ import CheckCircle from "@material-ui/icons/CheckCircle";
  * @param {*} {text, resubmit, formId} - Component props
  * @returns {*} React element
  */
-function EZFormSubmission({text, resubmit, formId}){
+function EZFormSubmission({text, resubmit, uriPath}){
 	return (
         <div className='submission-text text-center'>
             <span style={{ fontSize: "60px" }}>
@@ -37,7 +37,7 @@ function EZFormSubmission({text, resubmit, formId}){
                     className={"resubmit-button"}
                     color={"secondary"}
                     onClick={() => {
-                        window.location = "/form/" + formId;
+                        window.location = "/form/" + uriPath;
                     }}>
                     Submit Another Response
                 </SMTButton>
@@ -53,7 +53,7 @@ EZFormSubmission.defaultProps = {
 EZFormSubmission.propTypes = {
 	text: PropTypes.string,
 	resubmit: PropTypes.bool.isRequired,
-	formId: PropTypes.string
+	uriPath: PropTypes.string
 };
 
 export default EZFormSubmission;
