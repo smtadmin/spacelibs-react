@@ -58,7 +58,7 @@ class EZForm extends React.Component {
      * @memberof EZForm
      */
     componentDidMount() {
-        this.getFormData(this.props.formId);
+        this.getFormData(this.props.groupId);
     }
 
     /**
@@ -82,15 +82,15 @@ class EZForm extends React.Component {
     /**
      *Makes a request to the EZForm api to retrieve form data using the form id
      *
-     * @param {*} formId - The id of the form
+     * @param {*} groupId - The id of the form
      * @memberof EZForm
      */
-    getFormData(formId) {
+    getFormData(groupId) {
         let http = this.getHTTPService();
         let prevState = this.state;
         prevState.apiService = http;
         this.setState(prevState);
-        http.read("/api/form/" + formId, {}, this.onComplete.bind(this), {});
+        http.read("/api/form/" + groupId, {}, this.onComplete.bind(this), {});
     }
 
     /**
@@ -157,7 +157,7 @@ class EZForm extends React.Component {
      */
     sendData(responseData) {
         this.state.apiService.insert(
-            "/api/response/create/" + this.state.data.identifier,
+            "/api/response/create/" + this.state.data.groupId,
             responseData,
             {},
             (response) => {
@@ -229,7 +229,7 @@ class EZForm extends React.Component {
             );
         } else {
             output = (
-                <EZFormSubmission resubmit={this.state.data.resubmitFlag} text={this.state.data.submissionText} />
+                <EZFormSubmission uriPath={this.state.data.uriPath} resubmit={this.state.data.resubmitFlag} text={this.state.data.submissionText} />
             );
         }
 
@@ -250,7 +250,7 @@ class EZForm extends React.Component {
 }
 
 EZForm.propTypes = {
-    formId: PropTypes.string,
+    groupId: PropTypes.string,
     stateCallback: PropTypes.func,
 };
 
