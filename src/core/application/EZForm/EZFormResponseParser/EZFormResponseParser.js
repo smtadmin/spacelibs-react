@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 5:07 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 27th April 2021 5:11 pm
+ * Last Modified: Friday, 28th May 2021 1:54 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -72,7 +72,8 @@ class EZFormResponseParser {
 
         return [
             {
-                question: question.identifier,
+				question: question.identifier,
+				questionGroupId: question.groupIdentifier,
                 value: question.value[0],
             },
         ];
@@ -94,6 +95,7 @@ class EZFormResponseParser {
                     : question.value[x].displayText;
             values.push({
                 question: question.identifier,
+                questionGroupId: question.groupIdentifier,
                 value: value,
             });
         }
@@ -118,6 +120,7 @@ class EZFormResponseParser {
         return [
             {
                 question: question.identifier,
+                questionGroupId: question.groupIdentifier,
                 value: value,
             },
         ];

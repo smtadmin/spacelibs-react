@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 12th May 2021 12:15 pm
+ * Last Modified: Friday, 4th June 2021 2:52 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -58,7 +58,7 @@ class EZForm extends React.Component {
      * @memberof EZForm
      */
     componentDidMount() {
-        this.getFormData(this.props.groupId);
+        this.getFormData(this.props.formId);
     }
 
     /**
@@ -82,15 +82,15 @@ class EZForm extends React.Component {
     /**
      *Makes a request to the EZForm api to retrieve form data using the form id
      *
-     * @param {*} groupId - The id of the form
+     * @param {*} uriPath - The id of the form
      * @memberof EZForm
      */
-    getFormData(groupId) {
+    getFormData(uriPath) {
         let http = this.getHTTPService();
         let prevState = this.state;
         prevState.apiService = http;
         this.setState(prevState);
-        http.read("/api/form/" + groupId, {}, this.onComplete.bind(this), {});
+        http.read("/api/form/" + uriPath, {}, this.onComplete.bind(this), {});
     }
 
     /**
@@ -157,7 +157,7 @@ class EZForm extends React.Component {
      */
     sendData(responseData) {
         this.state.apiService.insert(
-            "/api/response/create/" + this.state.data.groupId,
+            "/api/response/create/" + this.state.data.identifier,
             responseData,
             {},
             (response) => {
@@ -169,8 +169,6 @@ class EZForm extends React.Component {
                 this.setState(prevState);
 
                 if (!response.isValid) {
-                    console.log(response);
-                    console.log(this.state);
                     this.prompt(
                         "Something went wrong",
                         "An error occured, please try submitting again."
@@ -229,7 +227,11 @@ class EZForm extends React.Component {
             );
         } else {
             output = (
-                <EZFormSubmission uriPath={this.state.data.uriPath} resubmit={this.state.data.resubmitFlag} text={this.state.data.submissionText} />
+                <EZFormSubmission
+                    uriPath={this.state.data.uriPath}
+                    resubmit={this.state.data.resubmitFlag}
+                    text={this.state.data.submissionText}
+                />
             );
         }
 
@@ -250,7 +252,7 @@ class EZForm extends React.Component {
 }
 
 EZForm.propTypes = {
-    groupId: PropTypes.string,
+	formId: PropTypes.string,
     stateCallback: PropTypes.func,
 };
 

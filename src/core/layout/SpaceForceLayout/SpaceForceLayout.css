@@ -6,8 +6,8 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wed May 12 2021
- * Modified By: Chris Scarola
+ * Last Modified: Mon May 24 2021
+ * Modified By: tylergaffaney
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -185,6 +185,14 @@ body {
     color: #2196f3;
 }
 
+::-moz-selection { /* Code for Firefox */
+  background: #b5d8fe;
+}
+
+::selection {
+  background: #b5d8fe;
+}
+
 /* Template Colors */
 .orange {
     background-color: #ff9800;
@@ -288,12 +296,11 @@ body {
 
 .tab.default {
     display: inline-block;
-    border: 1px solid transparent;
-    border-bottom: none;
-    bottom: -2px;
+	border: 1px solid transparent;
+	border-bottom: 0px;
     position: relative;
     list-style: none;
-    padding: 6px 15px;
+    padding: 4px 15px;
     cursor: pointer;
     border-color: #ccc;
 	border-radius: 10px 10px 0 0;
@@ -324,13 +331,10 @@ body {
 
 .tab-add {
 	display: inline-block;
-    border-bottom: 1px solid transparent;
-    bottom: -1px;
     position: relative;
     list-style: none;
-    padding: 6px 8px;
+    padding: 3px 8px 3px 8px;
     cursor: pointer;
-	border-bottom-color: #034e77;
 	background-color: #DDD;
 	border-radius: 10px 10px 0 0;
 }
@@ -406,4 +410,33 @@ div.centering {
 
 .generic-modal-icon.error {
 	color: #d32f2f
+}
+
+.dynamic-label {
+	flex-grow: 1;
+}
+
+.dynamic-label.text {
+	display: inline-block;
+}
+
+.dynamic-label.text.other {
+	color:gray;
+}
+
+.dynamic-label.text.can-edit {
+	cursor: pointer;
+}
+
+.dynamic-label.text.can-edit:hover {
+	border-bottom: 2px solid gray;
+}
+
+.outlined-select > div > input {
+	padding: 0px 0px !important;
+}
+
+.select-icon {
+	margin-right: 4px;
+	padding-bottom:1px;
 }

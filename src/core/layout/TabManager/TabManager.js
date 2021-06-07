@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 10:05 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Sunday, 2nd May 2021 2:49 pm
+ * Last Modified: Tuesday, 25th May 2021 3:22 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -15,20 +15,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 /**
  * Tab Example class
  */
 class TabManager extends React.Component {
-    /**
-     * Creates an instance of TabExample.
-     * @param {*} props Props for component
-     * @memberof TabExample
-     */
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
 
     /**
      * This returns a React element for our extra tabs
@@ -77,7 +69,10 @@ class TabManager extends React.Component {
      */
     getCompleteComponent(tabs, panels, defaultIndex) {
         return (
-            <Tabs defaultIndex={defaultIndex}>
+            <Tabs
+                defaultIndex={this.props.selectedIndex != null ? undefined : defaultIndex}
+                selectedIndex={this.props.selectedIndex}
+                onSelect={this.props.onSelect}>
                 <TabList
                     className={[
                         "tab-list",
@@ -129,13 +124,23 @@ class TabManager extends React.Component {
                     item.isDisabled,
                     true
                 )
+			);
+			panels.push(
+                this.getPanel(
+                    <div className={"centering pad-20"}>
+                        <CircularProgress color={"primary"} />
+                    </div>,
+                    "panel-" + elementIndex++
+                )
             );
         });
 
         return this.getCompleteComponent(
             tabs,
-            panels,
-            this.props.defaultIndex != null ? this.props.defaultIndex : defaultIndex
+			panels,
+            this.props.defaultIndex != null
+                ? this.props.defaultIndex
+                : defaultIndex
         );
     }
 }
@@ -158,7 +163,6 @@ TabManager.propTypes = {
     extraButtons: PropTypes.arrayOf(
         PropTypes.exact({
             tabComponent: PropTypes.element,
-            callback: PropTypes.func,
         })
     ),
     selectedIndex: PropTypes.number,

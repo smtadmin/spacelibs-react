@@ -6,8 +6,8 @@
  * File Created: Tuesday, 11th May 2021 12:26 pm
  * Author: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 12th May 2021 2:07 pm
- * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
+ * Last Modified: Wednesday, 19th May 2021 5:04 pm
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -24,7 +24,7 @@ import ErrorIcon from '@material-ui/icons/ErrorRounded';
 /**
  * Template for themed modals
  * 
- * @example 
+ * @example
  * import Modal from '../GenericModal';
  * 
  * render() {
@@ -186,7 +186,7 @@ GenericModal.propTypes = {
     leftButtonStartIcon: PropTypes.any,
     leftButtonEndIcon: PropTypes.any,
     leftButtonOnClick: PropTypes.func,
-    leftButtonLabel: PropTypes.string,
+    leftButtonLabel: PropTypes.any,
 
     showRightButton: PropTypes.bool,
     /**
@@ -207,7 +207,7 @@ GenericModal.propTypes = {
     rightButtonStartIcon: PropTypes.any,
     rightButtonEndIcon: PropTypes.any,
     rightButtonOnClick: PropTypes.func,
-    rightButtonLabel: PropTypes.string
+    rightButtonLabel: PropTypes.any
 };
 
 export default GenericModal;

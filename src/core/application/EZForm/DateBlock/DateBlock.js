@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:39 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 12th May 2021 10:23 am
+ * Last Modified: Friday, 28th May 2021 11:12 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -55,25 +55,27 @@ class DateBlock extends React.Component {
 	 * @memberof DateBlock
 	 */
 	render() {
+		const {label, ...leftovers} = this.props;
+
         return (
             <>
                 <QuestionLabel
-                    label={this.props.label}
+                    label={label}
                     helperText={this.props.helperText}
-                    isRequired={this.props.isRequired}
+                    required={this.props.required}
                     number={this.props.number}
                 />
-                <div className="question-input-wrapper pl-5">
-                <FormControl fullWidth>
-                    <DateField
-                        {...this.props}
-                        onValueChanged={this.onValueChanged.bind(this)}
+                <div className='question-input-wrapper pl-5'>
+                    <FormControl fullWidth>
+                        <DateField
+                            {...leftovers}
+                            onValueChanged={this.onValueChanged.bind(this)}
+                        />
+                    </FormControl>
+                    <ErrorLabel
+                        isValid={this.props.isValid}
+                        errorMessage={this.props.errorMessage}
                     />
-                </FormControl>
-                <ErrorLabel
-                    isValid={this.props.isValid}
-                    errorMessage={this.props.errorMessage}
-                />
                 </div>
             </>
         );
@@ -82,7 +84,7 @@ class DateBlock extends React.Component {
 
 DateBlock.defaultProps = {
     variant: "standard",
-    isRequired: false,
+    required: false,
 };
 
 DateBlock.propTypes = {
@@ -97,7 +99,7 @@ DateBlock.propTypes = {
     onValueChanged: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
     helperText: PropTypes.string,
-    isRequired: PropTypes.bool,
+    required: PropTypes.bool,
 };
 
 export default DateBlock;
