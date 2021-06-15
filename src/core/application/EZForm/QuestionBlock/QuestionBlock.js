@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 28th May 2021 12:49 pm
+ * Last Modified: Tuesday, 15th June 2021 9:28 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -31,6 +31,7 @@ class QuestionBlock extends React.Component {
      */
     constructor(props) {
         super(props);
+		console.log(props);
     }
 
     /**
@@ -57,9 +58,8 @@ class QuestionBlock extends React.Component {
             return null;
         }
 
-        let component = componentFunc(dataType);
-
-        return React.createElement(component, { ...this.props }, null);
+        let Component = componentFunc(dataType);
+		return <Component {...this.props} />;
     }
 
     /**

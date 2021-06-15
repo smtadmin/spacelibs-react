@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:49 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 28th May 2021 11:57 am
+ * Last Modified: Tuesday, 15th June 2021 9:29 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -132,12 +132,7 @@ class SelectBlock extends React.Component {
                     <FormControl fullWidth>
                         <SelectField
                             {...leftovers}
-                            isMultiple={
-                                this.props.dataType != null &&
-                                this.props.dataType.isMultiple != null
-                                    ? this.props.dataType.isMultiple
-                                    : false
-                            }
+                            isMultiple={this.props.type === "MULTI"}
                             onValueChanged={this.valueChanged.bind(this)}
                         />
                     </FormControl>
@@ -179,8 +174,8 @@ SelectBlock.propTypes = {
     required: PropTypes.bool,
 	dataType: PropTypes.shape({
 		code: PropTypes.string,
-		isMultiple: PropTypes.boolean
 	}),
+	type: PropTypes.string,
     color: PropTypes.string,
     labelPlacement: PropTypes.oneOf(["left", "top", "right", "bottom"]),
     variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
