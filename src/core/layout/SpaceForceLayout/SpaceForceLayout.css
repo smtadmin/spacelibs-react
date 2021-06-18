@@ -6,7 +6,7 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Mon May 24 2021
+ * Last Modified: Thu Jun 17 2021
  * Modified By: tylergaffaney
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -275,9 +275,20 @@ body {
 	width: 100%;
 }
 
+.tab-list-wrapper {
+	margin: 0px -10px -10px -10px;
+	padding: 0px 10px 1px 10px ;
+	transition: background-color 0.2s ease;
+	background-color: white;
+	border-radius: 10px;
+}
+
 .tab-list {
-	margin: 0 0 10px;
-	padding: 0;
+	padding: 0 0 0 0;
+}
+
+.tab-list-wrapper.dragging {
+	background-color: #29749D;
 }
 
 .tab-list.default {
@@ -294,6 +305,10 @@ body {
 	text-align: left;
 }
 
+.tab {
+	transition: background-color 0.2s ease;
+}
+
 .tab.default {
     display: inline-block;
 	border: 1px solid transparent;
@@ -305,6 +320,15 @@ body {
     border-color: #ccc;
 	border-radius: 10px 10px 0 0;
 	font-size: 14px;
+	background-color: white;
+}
+
+.tab.dragging {
+	background-color: #DDD;
+}
+
+.tab.default.draggable {
+	padding: 4px 15px 2px 4px !important;
 }
 
 .tab.minimal {
@@ -333,7 +357,7 @@ body {
 	display: inline-block;
     position: relative;
     list-style: none;
-    padding: 3px 8px 3px 8px;
+    padding: 3px 8px 4px 8px;
     cursor: pointer;
 	background-color: #DDD;
 	border-radius: 10px 10px 0 0;
@@ -351,6 +375,11 @@ body {
 	color: #aaa;
 	cursor: not-allowed;
 }
+.tab-placeholder {
+	height:33px;
+	overflow: hidden;
+	display: inline-block;
+}
 
 .react-tabs__tab--disabled {
     color: GrayText;
@@ -363,7 +392,7 @@ body {
     outline: none;
 }
 
-.react-tabs__tab:focus:after {
+/* .react-tabs__tab:focus:after {
     content: "";
     position: absolute;
     height: 5px;
@@ -371,7 +400,7 @@ body {
     right: -4px;
     bottom: -5px;
     background: #fff;
-}
+} */
 
 .react-tabs__tab-panel {
 	display: none;
