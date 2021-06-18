@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Friday, 4th June 2021 2:52 pm
+ * Last Modified: Monday, 7th June 2021 4:37 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -157,7 +157,7 @@ class EZForm extends React.Component {
      */
     sendData(responseData) {
         this.state.apiService.insert(
-            "/api/response/create/" + this.state.data.identifier,
+            "/api/response/create/" + this.state.data.uriPath,
             responseData,
             {},
             (response) => {

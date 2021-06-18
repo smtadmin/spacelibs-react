@@ -6,7 +6,7 @@
  * File Created: Friday, 14th May 2021 4:03 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 27th May 2021 10:12 am
+ * Last Modified: Friday, 18th June 2021 9:38 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -25,22 +25,26 @@ import TextField from '../TextField';
 function DynamicTextField(props){
 	if (props.isEditing) {
         return (
-            <div className={"dynamic-label " + props.className}>
+            <div
+                className={"dynamic-label " + props.className}
+                data-testid='dynamic-label'>
                 <TextField
-					multiline={props.multiline}
+                    multiline={props.multiline}
                     hasError={props.hasError}
                     subText={props.subText}
-                    inputProps={{ style: { 
-						fontSize: props.fontSize + "px" } 
-					}}
+                    inputProps={{
+                        style: {
+                            fontSize: props.fontSize + "px",
+                        },
+                    }}
                     autoFocus
                     className={"input"}
                     onValueChanged={(text) => {
                         props.callbacks.onChange(props.identifier, text);
-					}}
-					onFocus={(event) => {
-						if (props.selectOnFocus) event.target.select();
-					}}
+                    }}
+                    onFocus={(event) => {
+                        if (props.selectOnFocus) event.target.select();
+                    }}
                     onBlur={() => {
                         props.callbacks.onBlur(props.identifier);
                     }}
@@ -62,7 +66,8 @@ function DynamicTextField(props){
                 onClick={() => {
                     props.callbacks.onFocus(props.identifier);
                 }}
-                className={"dynamic-label text can-edit " + props.className}>
+                className={"dynamic-label text can-edit " + props.className}
+				data-testid='dynamic-label'>
                 {props.value}
             </div>
         );
@@ -70,6 +75,7 @@ function DynamicTextField(props){
         return (
             <div
                 className={"dynamic-label text " + props.className}
+                data-testid='dynamic-label'
                 style={{
                     fontSize: props.fontSize,
                     height: props.fontSize + props.bottomBarOffset + "px",
