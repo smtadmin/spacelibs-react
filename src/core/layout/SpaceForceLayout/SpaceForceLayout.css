@@ -6,7 +6,7 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thu Jun 17 2021
+ * Last Modified: Mon Jun 21 2021
  * Modified By: tylergaffaney
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -275,16 +275,42 @@ body {
 	width: 100%;
 }
 
+.tab-list-scroll-parent {
+	overflow:hidden;
+	display: flex;
+	flex-direction: row;
+	white-space: nowrap;
+}
+
 .tab-list-wrapper {
-	margin: 0px -10px -10px -10px;
-	padding: 0px 10px 1px 10px ;
+	flex-grow:1;
+	overflow: hidden;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 	transition: background-color 0.2s ease;
 	background-color: white;
-	border-radius: 10px;
+	border-radius: 10px 10px 0 0;
+	display: flex;
+}
+
+.tab-list-wrapper:hover {
+	margin:0;
+	overflow: auto; 
+}
+
+.tab-list-wrapper:active {
+	margin:0;
+	overflow: auto;
 }
 
 .tab-list {
 	padding: 0 0 0 0;
+	margin-bottom: 0px;
+	flex-grow:1;
+}
+
+.tab-list:nth-child() {
+	background-color: rgba(0,0,0,.1);
 }
 
 .tab-list-wrapper.dragging {
@@ -357,7 +383,7 @@ body {
 	display: inline-block;
     position: relative;
     list-style: none;
-    padding: 3px 8px 4px 8px;
+    padding: 3px 8px 3.5px 8px;
     cursor: pointer;
 	background-color: #DDD;
 	border-radius: 10px 10px 0 0;

@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 10:05 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 17th June 2021 11:31 am
+ * Last Modified: Monday, 21st June 2021 2:21 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -35,16 +35,14 @@ class TabManager extends React.Component {
     getTab(component, key, isDisabled, isExtra) {
         const tabClass = isExtra ? "tab-add" : "tab";
         return (
-			<>
-                <Tab
-                    disabled={isDisabled == null ? false : isDisabled}
-                    key={key}
-                    className={[tabClass, this.props.variant]}
-                    disabledClassName={"disabled"}
-                    selectedClassName={"selected"}>
-                    {component}
-                </Tab>
-			</>
+			<Tab
+				disabled={isDisabled == null ? false : isDisabled}
+				key={key}
+				className={[tabClass, this.props.variant]}
+				disabledClassName={"disabled"}
+				selectedClassName={"selected"}>
+				{component}
+			</Tab>
         );
     }
 

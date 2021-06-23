@@ -6,7 +6,7 @@
  * File Created: Tuesday, 11th May 2021 12:26 pm
  * Author: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 19th May 2021 5:04 pm
+ * Last Modified: Monday, 21st June 2021 1:57 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -163,7 +163,7 @@ GenericModal.propTypes = {
      * Choose between 'help', 'info', 'warning', 'error'
      */
     titleIconName: PropTypes.oneOf(['help','info','warning','error']),
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
 
     children: PropTypes.any,
 

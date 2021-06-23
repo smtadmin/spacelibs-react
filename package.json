@@ -1,6 +1,6 @@
 {
   "name": "@siliconmtn/spacelibs-react",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Library for reusable React components",
   "main": "index.js",
   "scripts": {
@@ -56,6 +56,7 @@
     "keycloak-js": "^12.0.4",
     "moment": "^2.29.1",
     "react-bootstrap": "^1.5.2",
+    "react-custom-scroller": "^1.0.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-tabs": "^3.2.2",

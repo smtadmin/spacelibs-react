@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 4:00 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 28th May 2021 12:54 pm
+ * Last Modified: Wednesday, 23rd June 2021 9:59 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -96,10 +96,8 @@ class EZFormBase extends React.Component {
     onValueChanged(questionId, value) {
         let prevState = this.state;
         let breakOut = false;
-        for (var x = 0; x < prevState.data.pages.length; x++) {
-            let page = prevState.data.pages[x];
-            for (var y = 0; y < page.questions.length; y++) {
-                let question = page.questions[y];
+        for (let page of prevState.data.pages) {
+            for (let question of page.questions) {
                 if (question.identifier === questionId) {
                     question.value = value;
                     question.isValid = true;
@@ -116,6 +114,8 @@ class EZFormBase extends React.Component {
         this.setState(prevState);
     }
 
+	
+
     /**
      * Formats Backend data for front end consumption
      *
@@ -125,11 +125,27 @@ class EZFormBase extends React.Component {
      */
     formatData(data) {
 
+		/**
+		 * Sort an array by order number
+		 *
+		 * @param {*} array elements
+		 */
+		function sortByOrderNumber(array) {
+            array.sort((a, b) => a.orderNumber - b.orderNumber);
+        }
+
 		let copiedData = copy(data);
         let count = 1;
+
+		// Sort pages;
+		sortByOrderNumber(copiedData.pages);
         copiedData.pages.forEach((page) => {
 			let questions = [];
+
+			// Sort questions;
+			sortByOrderNumber(page.questions);
             page.questions.forEach((question) => {
+
 				if(question.active){
                     /* Will need to change when we allow people to save and submit later */
                     question.value = [];
@@ -137,6 +153,8 @@ class EZFormBase extends React.Component {
                     question.isValid = true;
 					if (data.displayNumbersFlag) question.number = count;
 					
+					// Sort options
+					sortByOrderNumber(question.options);
 					if(question.altResponseId != null){
 						for(let index = 0; index < question.options.length; index++){
 							if(question.options[index].identifier == question.altResponseId){
