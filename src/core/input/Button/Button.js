@@ -6,7 +6,7 @@
  * File Created: Thursday, 11th February 2021 12:37 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 14th May 2021 4:52 pm
+ * Last Modified: Wednesday, 23rd June 2021 2:01 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -14,7 +14,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import MuiButton from '@material-ui/core/Button';
+import MuiButton from "@material-ui/core/Button";
 
 /**
  * Button class
@@ -37,20 +37,17 @@ class Button extends React.Component {
 	 * @memberof Button
 	 */
 	render(){
-		const {variant, size, className, color, startIcon, endIcon, onClick, children, ...leftOver} = this.props;
-		return <MuiButton 
-		variant={variant}
-		size={size}
-		data-testid={'button'}
-		className={"sl-button " + className}
-		color={color}
-		startIcon={startIcon ? startIcon : null}
-		endIcon={endIcon ? endIcon : null }
-		onClick={onClick}
-		{...leftOver}
-		>
-			{children}
-		</MuiButton>;
+		const {className, startIcon, endIcon, children, ...leftOver} = this.props;
+		return (
+            <MuiButton
+                data-testid={"button"}
+                className={"sl-button " + className}
+                startIcon={startIcon ? startIcon : null}
+                endIcon={endIcon ? endIcon : null}
+                {...leftOver}>
+                {children}
+            </MuiButton>
+        );
 	}
 }
 

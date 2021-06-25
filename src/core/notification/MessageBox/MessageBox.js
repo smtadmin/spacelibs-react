@@ -6,7 +6,7 @@
  * File Created: Wednesday, 23rd February 2021 08:18pm
  * Author: James Camire (james@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 10:21 am
+ * Last Modified: Friday, 25th June 2021 1:16 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -86,8 +86,7 @@ class MessageBox extends React.Component {
                             variant='outlined'
                             color='default'
                             onClick={this.onClose.bind(this)}
-                            size='large'
-                            style={{ paddingRight: "10px" }}>
+                            size='large'>
                             Close
                         </Button>
                     </Modal.Footer>
