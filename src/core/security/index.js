@@ -6,7 +6,7 @@
  * File Created: Wednesday, 17th February 2021 1:51 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 25th June 2021 1:33 pm
+ * Last Modified: Friday, 25th June 2021 4:17 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -44,7 +44,6 @@ function SLSecurityProvider({ children, api }) {
     const apiContext = React.useContext(APIContext);
 
     React.useEffect(() => {
-        console.log("Use effect: ", "color: yellow");
         apiContext.read(api, null, (response) => {
             console.log(response);
             setSecurityData({

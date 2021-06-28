@@ -6,7 +6,7 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Mon Jun 21 2021
+ * Last Modified: Mon Jun 28 2021
  * Modified By: tylergaffaney
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -341,7 +341,6 @@ body {
 	border-bottom: 0px;
     position: relative;
     list-style: none;
-    padding: 4px 15px;
     cursor: pointer;
     border-color: #ccc;
 	border-radius: 10px 10px 0 0;
@@ -377,6 +376,18 @@ body {
 
 .tab.selected.minimal {
 	border-bottom: 2px solid #034e77;
+}
+
+.tab.default > .tab-inner {
+	transition: background-color 0.2s ease;
+	padding: 4px 15px;
+	border-radius: 10px 10px 0 0;
+}
+
+
+
+.tab-inner.dragging {
+	background-color:#29749d;
 }
 
 .tab-add {
