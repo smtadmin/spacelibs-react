@@ -7,7 +7,7 @@
  * File Created: Wednesday, 19th May 2021 3:16 pm
  * Author: James Camire (james@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 8th June 2021 3:13 pm
+ * Last Modified: Monday, 21st June 2021 2:01 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -32,7 +32,7 @@ function MessageOverlay(props) {
         if (props.emptyAnimation) return "";
         else
             return !props.children ? (
-                <CircularProgress color={props.color} />
+                <CircularProgress color='inherit' />
             ) : (
                 props.children
             );
