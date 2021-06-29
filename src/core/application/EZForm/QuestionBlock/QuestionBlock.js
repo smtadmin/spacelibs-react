@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 25th June 2021 1:23 pm
+ * Last Modified: Tuesday, 29th June 2021 11:00 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -31,7 +31,6 @@ class QuestionBlock extends React.Component {
      */
     constructor(props) {
         super(props);
-		console.log(props);
     }
 
     /**
