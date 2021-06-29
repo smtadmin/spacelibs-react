@@ -6,7 +6,7 @@
  * File Created: Thursday, 11th February 2021 11:51 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Friday, 12th February 2021 3:14 pm
+ * Last Modified: Friday, 28th May 2021 11:58 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -26,9 +26,9 @@ const singleOptionNoValues = {
     identifier: "1",
     type: "date",
     label: "Date Action Completed",
-    isRequired: true,
+    required: true,
     value: [],
-    onValueChanged: () => { },
+    onValueChanged: () => {},
     config: {
         options: [
             {
@@ -36,7 +36,7 @@ const singleOptionNoValues = {
                 displayText: "Option A",
                 isSelected: undefined,
                 isDisabled: undefined,
-            }
+            },
         ],
     },
 };
@@ -46,7 +46,7 @@ const twoOptionsOneSelectedValue = {
     identifier: "1",
     type: "date",
     label: "Date Action Completed",
-    isRequired: true,
+    required: true,
     value: [
         {
             identifier: "B",
@@ -54,7 +54,7 @@ const twoOptionsOneSelectedValue = {
             isDisabled: false,
         },
     ],
-    onValueChanged: () => { },
+    onValueChanged: () => {},
     subText: "Error occurred",
     config: {
         options: [

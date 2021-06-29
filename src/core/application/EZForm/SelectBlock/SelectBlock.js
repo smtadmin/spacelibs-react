@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:49 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 3:27 pm
+ * Last Modified: Tuesday, 15th June 2021 9:29 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -119,31 +119,27 @@ class SelectBlock extends React.Component {
      * @memberof SelectBlock
      */
     render() {
+		const { label, ...leftovers } = this.props;
         return (
             <>
                 <QuestionLabel
-                    label={this.props.label}
+                    label={label}
                     helperText={this.props.helperText}
-                    isRequired={this.props.isRequired}
+                    required={this.props.required}
                     number={this.props.number}
                 />
                 <div className='question-input-wrapper pl-5'>
                     <FormControl fullWidth>
                         <SelectField
-                            {...this.props}
-                            isMultiple={
-                                this.props.dataType != null &&
-                                this.props.dataType.isMultiple != null
-                                    ? this.props.dataType.isMultiple
-                                    : false
-                            }
+                            {...leftovers}
+                            isMultiple={this.props.type === "MULTI"}
                             onValueChanged={this.valueChanged.bind(this)}
                         />
                     </FormControl>
                     {this.state.showAlternateResponse && (
                         <TextField
                             class={"select-alt-field"}
-                            placeholder={"Other"}
+                            label={"Other"}
                             value={this.state.alternateValue}
                             onValueChanged={this.onAlternateValueChanged.bind(
                                 this
@@ -172,14 +168,14 @@ SelectBlock.propTypes = {
     errorMessage: PropTypes.string,
 	altResponseId: PropTypes.string,
     identifier: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired,
+    number: PropTypes.number,
     label: PropTypes.string.isRequired,
     helperText: PropTypes.string,
-    isRequired: PropTypes.bool,
+    required: PropTypes.bool,
 	dataType: PropTypes.shape({
 		code: PropTypes.string,
-		isMultiple: PropTypes.boolean
 	}),
+	type: PropTypes.string,
     color: PropTypes.string,
     labelPlacement: PropTypes.oneOf(["left", "top", "right", "bottom"]),
     variant: PropTypes.oneOf(["standard", "filled", "outlined"]),

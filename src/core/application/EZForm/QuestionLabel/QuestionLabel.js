@@ -6,8 +6,8 @@
  * File Created: Wednesday, 10th February 2021 11:08 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 19th February 2021 3:04 pm
- * Modified By: Justin Jeffrey (justin.jeffrey@siliconmtn.com>)
+ * Last Modified: Friday, 28th May 2021 11:56 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -23,21 +23,33 @@ import Tooltip from '../../../input/Tooltip';
  * @returns {*} Component
  */
 function QuestionLabel(props) {
+	/**
+	 * Returns the number label
+	 *
+	 * @returns {*} Number String
+	 */
+	function getNumber(){
+		if(props.number == null)
+			return null;
+		else 
+			return props.number + ".";
+	}
+
 	return <div 
 	className={"question-label"}>
-		{props.number}. {props.label} {props.isRequired && <span style={{color:'red'}}>*</span>} <Tooltip text={props.helperText}/>
+		{getNumber()} {props.label} {props.required && <span style={{color:'red'}}>*</span>} <Tooltip text={props.helperText}/>
 	</div>;
 }
 
 QuestionLabel.defaultProps = {
-	isRequired: false
+	required: false
 };
 
 QuestionLabel.propTypes = {
-	number: PropTypes.number.isRequired,
-	label: PropTypes.string.isRequired,
+	number: PropTypes.number,
+	label: PropTypes.string.required,
 	helperText: PropTypes.string,
-	isRequired: PropTypes.bool
+	required: PropTypes.bool
 };
 
 export default QuestionLabel;

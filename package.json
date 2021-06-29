@@ -1,6 +1,6 @@
 {
   "name": "@siliconmtn/spacelibs-react",
-  "version": "0.0.18",
+  "version": "1.0.20",
   "description": "Library for reusable React components",
   "main": "index.js",
   "scripts": {
@@ -11,9 +11,10 @@
     "test": "jest --coverage ./src/core",
     "test:watch": "jest --coverage --watchAll ./src/core",
     "test:prod": "jest",
-    "test:watchAll": "jest --coverage --watchAll --collectCoverageFrom=src/**/*.{js,jsx}",
+    "test:watchAll": "jest --coverage ./src/core --watchAll --collectCoverageFrom=src/**/*.{js,jsx}",
+    "test:unit:single": "jest --coverage  --collectCoverageFrom=src/**/*.{js,jsx}",
     "lint": "eslint src",
-    "test:unit": "jest --coverage --collectCoverageFrom=src/**/*.{js,jsx}",
+    "test:unit": "jest --coverage ./src/core --collectCoverageFrom=src/**/*.{js,jsx}",
     "copyFonts": "cp -R './src/core/layout/SpaceForceLayout/Fonts' './core/layout/SpaceForceLayout'",
     "copyStyles": "cp -R './src/core/layout/SpaceForceLayout/SpaceForceLayout.css' './core/layout/SpaceForceLayout/SpaceForceLayout.css'",
     "semantic-release": "semantic-release",
@@ -45,22 +46,27 @@
   "homepage": "https://github.com/smtadmin/spacelibs-react#readme",
   "dependencies": {
     "@date-io/moment": "^1.3.13",
-    "@material-ui/core": "^4.11.2",
-    "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@material-ui/pickers": "^3.3.10",
     "@react-keycloak/web": "^3.4.0",
-    "@siliconmtn/spacelibs-js": "0.0.7",
+    "@siliconmtn/spacelibs-js": "0.0.18",
     "autosuggest-highlight": "^3.1.1",
     "babel-plugin-transform-rename-import": "^2.3.0",
+    "fast-copy": "^2.1.1",
     "keycloak-js": "^12.0.4",
     "moment": "^2.29.1",
-    "react": "^17.0.1",
     "react-bootstrap": "^1.5.2",
-    "react-dom": "^17.0.1",
+    "react-custom-scroller": "^1.0.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "react-tabs": "^3.2.2",
     "typescript": "^4.2.3"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "4.11.2",
+    "@material-ui/icons": "4.11.2",
+    "react-dom": "^17.0.1",
+    "react": "^17.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.10",

@@ -6,7 +6,7 @@
  * File Created: Monday, 1st March 2021 4:04 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 10:06 am
+ * Last Modified: Friday, 28th May 2021 11:11 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -26,7 +26,7 @@ Object.defineProperty(window, 'scrollTo', { value: scrollTo, writable: true });
 
 jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
 	function getSelectData(url) {
-		url = url.replace("/api/ezform/", "");
+		url = url.replace("/api/form/", "");
         let value = questionMap[url];
         if (!value) {
             throw Error("Questiond data not found for " + url);
@@ -47,6 +47,40 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
     }
 
     const questionMap = {
+        t_single_other: [
+            {
+                identifier: "Q1",
+                label: "Pick other",
+                type: "CHOICE",
+                dataType: {
+                    code: "TEXT",
+                },
+                required: true,
+                altResponseId: "1",
+                options: [
+                    {
+                        identifier: "1",
+                        displayText: "Other",
+                    },
+                    {
+                        identifier: "2",
+                        displayText: "Hi",
+                    },
+                    {
+                        identifier: "3",
+                        displayText: "Bonjour",
+                    },
+                    {
+                        identifier: "4",
+                        displayText: "Hola",
+                    },
+                    {
+                        identifier: "5",
+                        displayText: "Hello",
+                    },
+                ],
+            },
+        ],
         t_number_no_required: [
             {
                 identifier: "Q1",
@@ -55,7 +89,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                 dataType: {
                     code: "NUMBER",
                 },
-                isRequired: false,
+                required: false,
             },
         ],
         t_number_required: [
@@ -66,7 +100,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                 dataType: {
                     code: "NUMBER",
                 },
-                isRequired: true,
+                required: true,
             },
         ],
         t_multi_required: [
@@ -100,7 +134,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                         displayText: "Other",
                     },
                 ],
-                isRequired: true,
+                required: true,
             },
         ],
         t_choice_required: [
@@ -125,7 +159,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                         displayText: "Bonjour",
                     },
                 ],
-                isRequired: true,
+                required: true,
             },
         ],
         t_choice_optional: [
@@ -150,7 +184,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                         displayText: "Bonjour",
                     },
                 ],
-                isRequired: false,
+                required: false,
             },
         ],
     };
@@ -179,7 +213,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "TEXT",
                                         },
-                                        isRequired: true,
+                                        required: true,
                                     },
                                 ],
                             },
@@ -193,7 +227,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "TEXT",
                                         },
-                                        isRequired: true,
+                                        required: true,
                                     },
                                 ],
                             },
@@ -207,7 +241,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "TEXT",
                                         },
-                                        isRequired: true,
+                                        required: true,
                                     },
                                 ],
                             },
@@ -230,7 +264,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "DATE",
 										},
-										isRequired: false
+										required: false
                                     },
                                 ],
                             },
@@ -254,7 +288,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "DATE",
                                         },
-                                        isRequired: true,
+                                        required: true,
                                     },
                                     {
                                         identifier: "Date2",
@@ -263,7 +297,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "DATE",
                                         },
-                                        isRequired: false,
+                                        required: false,
                                     },
                                     {
                                         identifier: "Select1",
@@ -273,7 +307,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                             code: "TEXT",
                                         },
                                         altResponseId: "3",
-                                        isRequired: false,
+                                        required: false,
                                         options: [
                                             {
                                                 identifier: "1",
@@ -304,7 +338,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "TEXT",
                                         },
-                                        isRequired: true,
+                                        required: true,
                                         options: [
                                             {
                                                 identifier: "1",
@@ -335,7 +369,7 @@ jest.mock("@siliconmtn/spacelibs-js/core/io/BaseHTTPService", () => {
                                         dataType: {
                                             code: "TEXT",
                                         },
-                                        isRequired: false,
+                                        required: false,
                                         options: [
                                             {
                                                 identifier: "1",

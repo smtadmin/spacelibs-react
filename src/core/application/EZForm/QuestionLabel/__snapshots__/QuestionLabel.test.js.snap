@@ -6,8 +6,8 @@ exports[`Renders with no props 1`] = `
     <div
       class="question-label"
     >
-      1
-      . 
+      1.
+       
       What is your name?
        
        
@@ -22,8 +22,8 @@ exports[`Renders with required prop 1`] = `
     <div
       class="question-label"
     >
-      1
-      . 
+      1.
+       
       What is your name?
        
       <span
