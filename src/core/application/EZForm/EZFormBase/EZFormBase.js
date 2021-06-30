@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 4:00 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 23rd June 2021 9:59 am
+ * Last Modified: Wednesday, 30th June 2021 1:44 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -192,14 +192,11 @@ class EZFormBase extends React.Component {
         let prevState = this.state;
 
         prevState.data = state.data;
-        const formErrorMessage = validator.getErrorMessageForErrors(
-            validationObject.errors
-        );
 
 		this.setState(prevState);
         return {
             isValid: validationObject.errors.length === 0,
-            prompt: formErrorMessage,
+            prompt: validationObject.errors,
         };
     }
 

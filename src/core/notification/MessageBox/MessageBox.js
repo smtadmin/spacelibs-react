@@ -6,7 +6,7 @@
  * File Created: Wednesday, 23rd February 2021 08:18pm
  * Author: James Camire (james@siliconmtn.com)
  * -----
- * Last Modified: Friday, 25th June 2021 1:16 pm
+ * Last Modified: Wednesday, 30th June 2021 1:51 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -28,35 +28,55 @@ class MessageBox extends React.Component {
      * @param {*} props - MessageBox props
      */
     constructor(props) {
-		super(props);
+        super(props);
         this.state = {
-            show : props.show,
-            title : props.title,
-            message : props.message,
-            level : props.level
-		};
-	}
-	
-	/**
-	 * Method called when modal is closed
-	 *
-	 * @memberof MessageBox
-	 */
-	onClose(){
-		let oldState = this.state;
-		oldState.show = false;
-		this.setState(oldState);
-		if(this.props.onClose){
-			this.props.onClose();
-		}
-	}
+            show: props.show,
+            title: props.title,
+            message: props.message,
+            level: props.level,
+        };
+    }
+
+    /**
+     * Method called when modal is closed
+     *
+     * @memberof MessageBox
+     */
+    onClose() {
+        let oldState = this.state;
+        oldState.show = false;
+        this.setState(oldState);
+        if (this.props.onClose) {
+            this.props.onClose();
+        }
+    }
 
     /**
      * Grabs the correct font awesome icon for the given level
      * @returns {*} Font Awesome Icon
      */
     getIcon() {
-		return null;
+        return null;
+    }
+
+    /**
+     * Gets message for prompt
+     * @param {*} message Message data
+     * @returns {*} React Component
+     * @memberof MessageBox
+     */
+    getMessage(message) {
+        if (Array.isArray(message)) {
+            return (
+                <div>
+                    {message.map((object, index) => (
+                        <div key={index}>{object}</div>
+                    ))}
+                </div>
+            );
+        } else {
+            return message;
+        }
     }
 
     /**
@@ -78,7 +98,7 @@ class MessageBox extends React.Component {
                     </Modal.Header>
                     <Modal.Body>
                         <Row>
-                            <Col>{this.state.message}</Col>
+                            <Col>{this.getMessage(this.props.message)}</Col>
                         </Row>
                     </Modal.Body>
                     <Modal.Footer>

@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 29th June 2021 11:00 am
+ * Last Modified: Wednesday, 30th June 2021 1:52 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -151,7 +151,6 @@ class QuestionBlock extends React.Component {
      * @memberof QuestionBlock
      */
     render() {
-		console.log(this.props.dataType);
         const type = this.props.type;
         const dataType = this.props.dataType.code;
 		const optionCount = this.props.options ? this.props.options.length : 0;

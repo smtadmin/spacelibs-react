@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 4:30 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 28th May 2021 12:43 pm
+ * Last Modified: Wednesday, 30th June 2021 1:43 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -30,16 +30,12 @@ export default class EZFormValidator {
 	 */
 	validatePage(page) {
         let errors = [];
-        for (var y = 0; y < page.questions.length; y++) {
-            let question = page.questions[y];
+        for (let question of page.questions) {
 
             const validateObject = this.validateQuestion(question);
             if (!validateObject.isValid) {
-                if (question.number == null) {
-                    errors.push('"' + question.label + '"');
-                } else {
-                    errors.push(question.number);
-                }
+				let label = question.number ? question.number + '. ' : '';
+                errors.push(label + '"' + question.label + '"');
             }
 
             question.isValid = validateObject.isValid;
@@ -66,8 +62,8 @@ export default class EZFormValidator {
             return errors[0];
         } else {
             let output = "";
-            for (var x = 0; x < errors.length; x++) {
-                output += errors[x] + ", ";
+            for (let error of errors) {
+                output += error + ", ";
             }
             return output.slice(0, -2);
         }

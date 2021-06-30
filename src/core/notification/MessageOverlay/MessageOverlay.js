@@ -7,7 +7,7 @@
  * File Created: Wednesday, 19th May 2021 3:16 pm
  * Author: James Camire (james@siliconmtn.com)
  * -----
- * Last Modified: Monday, 21st June 2021 2:01 pm
+ * Last Modified: Wednesday, 30th June 2021 1:56 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -21,7 +21,7 @@ import { useTheme } from "@material-ui/core/styles";
 /**
  * Main function for the overlay component
  * @param {*} props Properties for the function
- * @returns Fully configured overlay object
+ * @returns {*} Fully configured overlay object
  */
 function MessageOverlay(props) {
     /**

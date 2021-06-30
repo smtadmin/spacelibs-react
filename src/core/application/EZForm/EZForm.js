@@ -6,7 +6,7 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 30th June 2021 9:58 am
+ * Last Modified: Wednesday, 30th June 2021 1:55 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -109,7 +109,6 @@ class EZForm extends React.Component {
             data = response.data;
             status = EZFormStatus.inProgress;
         }else if(response.status === "GONE"){
-			console.log("Redirecting");
 			status = EZFormStatus.redirect;
 			passedData = response.message;
 		}

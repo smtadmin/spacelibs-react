@@ -6,7 +6,7 @@
  * File Created: Wednesday, 17th February 2021 1:51 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 25th June 2021 4:17 pm
+ * Last Modified: Wednesday, 30th June 2021 1:55 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -45,7 +45,6 @@ function SLSecurityProvider({ children, api }) {
 
     React.useEffect(() => {
         apiContext.read(api, null, (response) => {
-            console.log(response);
             setSecurityData({
                 ...response.data,
                 loaded: true,
