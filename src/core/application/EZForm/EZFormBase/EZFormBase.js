@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 4:00 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 30th June 2021 1:44 pm
+ * Last Modified: Thursday, 1st July 2021 11:28 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -224,18 +224,9 @@ class EZFormBase extends React.Component {
      * @memberof EZForm
      */
     onGoBack() {
-		const validationResults = this.validateCurrentPage();
-        if (validationResults.isValid) {
-            let prevState = this.state;
-            prevState.currentPage--;
-            this.setState(prevState);
-        } else {
-            //Error
-            this.prompt(
-                "The following questions are required:",
-                validationResults.prompt
-            );
-        }
+		let prevState = this.state;
+		prevState.currentPage--;
+		this.setState(prevState);
     }
 
     /**
