@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 10:05 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 21st June 2021 2:21 pm
+ * Last Modified: Monday, 12th July 2021 5:37 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -17,10 +17,19 @@ import PropTypes from "prop-types";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
+/** @jsx jsx */
+import { css, jsx } from "@emotion/react";
+import { useTheme } from '@material-ui/core/styles';
+
 /**
- * Tab Example class
+ * TabManager
+ *
+ * @param {*} props Component props
+ * @returns {*} Component
  */
-class TabManager extends React.Component {
+function TabManager(props) {
+
+	const theme = useTheme();
 
     /**
      * This returns a React element for our extra tabs
@@ -32,17 +41,21 @@ class TabManager extends React.Component {
      * @returns {*} React element
      * @memberof TabManager
      */
-    getTab(component, key, isDisabled, isExtra) {
+    function getTab(component, key, isDisabled, isExtra) {
         const tabClass = isExtra ? "tab-add" : "tab";
         return (
-			<Tab
-				disabled={isDisabled == null ? false : isDisabled}
-				key={key}
-				className={[tabClass, this.props.variant]}
-				disabledClassName={"disabled"}
-				selectedClassName={"selected"}>
-				{component}
-			</Tab>
+            <Tab
+                disabled={isDisabled == null ? false : isDisabled}
+                key={key}
+                className={[tabClass, props.variant]}
+                style={{ 
+					color: theme.palette.primary.main,
+					borderColor: theme.palette.primary.main
+				}}
+                disabledClassName={"disabled"}
+                selectedClassName={"selected"}>
+                {component}
+            </Tab>
         );
     }
 
@@ -54,7 +67,7 @@ class TabManager extends React.Component {
      * @returns {*} React element
      * @memberof TabManager
      */
-    getPanel(component, key) {
+    function getPanel(component, key) {
         return <TabPanel key={key}>{component}</TabPanel>;
     }
 
@@ -67,18 +80,16 @@ class TabManager extends React.Component {
      * @returns {*} React element
      * @memberof TabManager
      */
-    getCompleteComponent(tabs, panels, defaultIndex) {
+    function getCompleteComponent(tabs, panels, defaultIndex) {
         return (
             <Tabs
-                defaultIndex={this.props.selectedIndex != null ? undefined : defaultIndex}
-                selectedIndex={this.props.selectedIndex}
-                onSelect={this.props.onSelect}>
+                defaultIndex={
+                    props.selectedIndex != null ? undefined : defaultIndex
+                }
+                selectedIndex={props.selectedIndex}
+                onSelect={props.onSelect}>
                 <TabList
-                    className={[
-                        "tab-list",
-                        this.props.variant,
-                        this.props.alignment,
-                    ]}>
+                    className={["tab-list", props.variant, props.alignment]}>
                     {tabs}
                 </TabList>
                 {panels}
@@ -86,63 +97,46 @@ class TabManager extends React.Component {
         );
     }
 
-    /**
-     * Renders the component
-     *
-     * @returns {*} Rendered component
-     * @memberof TabManager
-     */
-    render() {
-        let tabs = [];
-        let panels = [];
-        let elementIndex = 0;
-        let defaultIndex = -1;
+    let tabs = [];
+    let panels = [];
+    let elementIndex = 0;
+    let defaultIndex = -1;
 
-        this.props.items?.forEach((item) => {
-            if (defaultIndex === -1 && item.isDisabled !== true) {
-                defaultIndex = elementIndex;
-            }
+    props.items?.forEach((item) => {
+        if (defaultIndex === -1 && item.isDisabled !== true) {
+            defaultIndex = elementIndex;
+        }
 
-            tabs.push(
-                this.getTab(
-                    item.title,
-                    "tab-" + elementIndex,
-                    item.isDisabled,
-                    false
-                )
-            );
-            panels.push(
-                this.getPanel(item.component, "panel-" + elementIndex++)
-            );
-        });
-
-        this.props.extraButtons?.forEach((item) => {
-            tabs.push(
-                this.getTab(
-                    item.tabComponent,
-                    "tab-" + elementIndex++,
-                    item.isDisabled,
-                    true
-                )
-			);
-			panels.push(
-                this.getPanel(
-                    <div className={"centering pad-20"}>
-                        <CircularProgress color={"primary"} />
-                    </div>,
-                    "panel-" + elementIndex++
-                )
-            );
-        });
-
-        return this.getCompleteComponent(
-            tabs,
-			panels,
-            this.props.defaultIndex != null
-                ? this.props.defaultIndex
-                : defaultIndex
+        tabs.push(
+            getTab(item.title, "tab-" + elementIndex, item.isDisabled, false)
         );
-    }
+        panels.push(getPanel(item.component, "panel-" + elementIndex++));
+    });
+
+    props.extraButtons?.forEach((item) => {
+        tabs.push(
+            getTab(
+                item.tabComponent,
+                "tab-" + elementIndex++,
+                item.isDisabled,
+                true
+            )
+        );
+        panels.push(
+            getPanel(
+                <div className={"centering pad-20"}>
+                    <CircularProgress color={"primary"} />
+                </div>,
+                "panel-" + elementIndex++
+            )
+        );
+    });
+
+    return getCompleteComponent(
+        tabs,
+        panels,
+        props.defaultIndex != null ? props.defaultIndex : defaultIndex
+    );
 }
 
 TabManager.defaultProps = {

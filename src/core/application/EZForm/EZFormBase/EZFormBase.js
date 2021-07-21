@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 4:00 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 1st July 2021 11:28 am
+ * Last Modified: Wednesday, 21st July 2021 3:59 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -20,10 +20,16 @@ import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import MessageBox from "../../../notification/MessageBox";
+import GenericModal from '../../../notification/GenericModal';
 import EZFormValidator from "../EZFormValidator/EZFormValidator";
 import copy from 'fast-copy';
-
 import EZFormResponseParser from '../EZFormResponseParser/EZFormResponseParser';
+
+/** Styles */
+/** @jsx jsx */
+import { css, jsx } from "@emotion/react";
+import { withTheme } from "@material-ui/core/styles";
+
 /**
  * EZForm base component
  */
@@ -41,7 +47,7 @@ class EZFormBase extends React.Component {
         this.state = {
             currentPage: 0,
             showModal: false,
-            modalMessage: "",
+            modalMessage: [],
             modalTitle: "",
             data: data,
         };
@@ -82,7 +88,7 @@ class EZFormBase extends React.Component {
     onCloseModal() {
         let prevState = this.state;
         prevState.showModal = false;
-        prevState.modalMessage = "";
+        prevState.modalMessage = [];
         this.setState(prevState);
     }
 
@@ -209,6 +215,7 @@ class EZFormBase extends React.Component {
         const currentPage = this.state.data.pages[this.state.currentPage];
         return (
             <>
+				<div className='ezform-title' css={css`color: ${this.props.theme.palette.text.secondary};`}>{this.state.data.name}</div>
                 <EZFormPage
                     onValueChanged={this.onValueChanged.bind(this)}
                     {...currentPage}
@@ -350,13 +357,16 @@ class EZFormBase extends React.Component {
         return (
             <>
                 {this.getFullComponent()}
-                <MessageBox
-                    key={this.state.showModal}
-                    show={this.state.showModal}
-                    message={this.state.modalMessage}
-                    title={this.state.modalTitle}
-                    onClose={this.onCloseModal.bind(this)}
-                />
+				<GenericModal 
+					title={this.state.modalTitle}
+					show={this.state.showModal}
+					onHide={this.onCloseModal.bind(this)}
+					leftButtonOnClick={this.onCloseModal.bind(this)}
+					showRightButton={false}>
+					{this.state.modalMessage.map((value, index) => {
+						return <div key={index}>{value}</div>;
+					})}
+				</GenericModal>
             </>
         );
     }
@@ -367,4 +377,4 @@ EZFormBase.propTypes = {
 	onSubmit: PropTypes.func.isRequired
 };
 
-export default EZFormBase;
+export default withTheme(EZFormBase);

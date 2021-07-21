@@ -6,7 +6,7 @@
  * File Created: Friday, 14th May 2021 4:03 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 18th June 2021 9:38 am
+ * Last Modified: Wednesday, 21st July 2021 5:03 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -16,6 +16,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '../TextField';
 
+/** Styles */
+/** @jsx jsx */
+import { css, jsx } from "@emotion/react";
+import { useTheme } from "@material-ui/core/styles";
+
 /**
  * Dynamic TextField component
  * 
@@ -23,6 +28,8 @@ import TextField from '../TextField';
  * @returns {*} React element 
  */
 function DynamicTextField(props){
+	const palette = useTheme().palette;
+
 	if (props.isEditing) {
         return (
             <div
@@ -67,6 +74,8 @@ function DynamicTextField(props){
                     props.callbacks.onFocus(props.identifier);
                 }}
                 className={"dynamic-label text can-edit " + props.className}
+				css={css`color: ${palette.text.primary};
+				border-color: ${palette.background.divider};`}
 				data-testid='dynamic-label'>
                 {props.value}
             </div>
@@ -79,7 +88,11 @@ function DynamicTextField(props){
                 style={{
                     fontSize: props.fontSize,
                     height: props.fontSize + props.bottomBarOffset + "px",
-                }}>
+                }}
+                css={css`
+                    color: ${palette.text.primary};
+                    border-color: ${palette.background.divider};
+                `}>
                 {props.value}
             </div>
         );

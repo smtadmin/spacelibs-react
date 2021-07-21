@@ -6,7 +6,7 @@
  * File Created: Monday, 8th February 2021 3:18 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 6th May 2021 1:53 pm
+ * Last Modified: Tuesday, 13th July 2021 2:11 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -18,6 +18,10 @@ import MuiRadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Tooltip from '../Tooltip';
+
+/** @jsx jsx */
+import { css, jsx } from "@emotion/react";
+import { withTheme } from "@material-ui/core/styles";
 
 /**
  * Class for Radio buttons
@@ -70,7 +74,7 @@ class RadioGroup extends React.Component {
 			value={option.identifier}
 			control={<Radio color={this.props.color} />}
 			label={<div>
-				<span>{option.displayText}</span>
+				<span css={css`color: ${this.props.theme.palette.text.primary};`}>{option.displayText}</span>
 				<Tooltip text={option.helperText} />
 			</div>}
 			labelPlacement={muiPlacement}
@@ -142,7 +146,8 @@ RadioGroup.propTypes = {
 			isSelected: PropTypes.bool,
 			isDisabled: PropTypes.bool
 		})).isRequired
-	})
+	}),
+	theme: PropTypes.any
 };
 
-export default RadioGroup;
+export default withTheme(RadioGroup);

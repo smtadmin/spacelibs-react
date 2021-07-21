@@ -6,7 +6,7 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Mon Jun 28 2021
+ * Last Modified: Tue Jul 20 2021
  * Modified By: tylergaffaney
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -106,7 +106,7 @@ body {
 /** Colors **/
 
 /* Theme */
-.background-theme-light {
+/* .background-theme-light {
     background-color: #29749d;
 }
 
@@ -131,7 +131,7 @@ body {
 }
 
 /* Greys */
-.background-main {
+/* .background-main {
     background-color: #ffffff;
 }
 
@@ -157,11 +157,11 @@ body {
 
 .text-dark-grey {
     color: #616161;
-}
+}  */
 
 /* Message Colors */
 
-.background-success {
+/* .background-success {
     background-color: #4caf50;
 }
 
@@ -186,15 +186,15 @@ body {
 }
 
 ::-moz-selection { /* Code for Firefox */
-  background: #b5d8fe;
-}
+  /* background: #b5d8fe;
+} */
 
-::selection {
+/* ::selection {
   background: #b5d8fe;
-}
+} */ 
 
 /* Template Colors */
-.orange {
+/* .orange {
     background-color: #ff9800;
 }
 
@@ -220,12 +220,12 @@ body {
 
 .red {
     background-color: #f4511e;
-}
+} */
 
 /** THEME CSS **/
 
 .nav-link {
-    color: white !important;
+    /* color: white !important; */
 }
 
 .nav-text:hover {
@@ -288,7 +288,6 @@ body {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	transition: background-color 0.2s ease;
-	background-color: white;
 	border-radius: 10px 10px 0 0;
 	display: flex;
 }
@@ -318,7 +317,8 @@ body {
 }
 
 .tab-list.default {
-    border-bottom: 2px solid #034e77;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
 }
 
 .tab-list.center {
@@ -331,21 +331,23 @@ body {
 	text-align: left;
 }
 
-.tab {
-	transition: background-color 0.2s ease;
-}
-
 .tab.default {
     display: inline-block;
-	border: 1px solid transparent;
+	border-width: 1px;
+	border-style: solid;
 	border-bottom: 0px;
     position: relative;
     list-style: none;
     cursor: pointer;
-    border-color: #ccc;
 	border-radius: 10px 10px 0 0;
 	font-size: 14px;
-	background-color: white;
+}
+
+.ezform-title {
+  text-align: center;
+  font-size: 24px;
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
 
 .tab.dragging {
@@ -366,16 +368,16 @@ body {
 	cursor: pointer;
 	font-family: NunitoSans-SemiBold;
 	font-size: 14px;
-	color: #034e77;
+	/* color: #034e77; */
 }
 
 .tab.disabled.minimal {
-	color: #aaa;
 	cursor: not-allowed;
 }
 
 .tab.selected.minimal {
-	border-bottom: 2px solid #034e77;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
 }
 
 .tab.default > .tab-inner {
@@ -384,30 +386,19 @@ body {
 	border-radius: 10px 10px 0 0;
 }
 
-.tab-inner.dragging {
-	background-color:#29749d;
-}
-
 .tab-add {
 	display: inline-block;
     position: relative;
     list-style: none;
     padding: 3px 8px 3.5px 8px;
     cursor: pointer;
-	background-color: #DDD;
 	border-radius: 10px 10px 0 0;
-}
-
-.tab.selected.default {
-    background: #034e77;
-    border-color: #034e77;
-    color: white;
 }
 
 .tab.disabled.default {
 	background: transparent;
     border-color: transparent;
-	color: #aaa;
+	/* color: #aaa; */
 	cursor: not-allowed;
 }
 .tab-placeholder {
@@ -417,7 +408,7 @@ body {
 }
 
 .react-tabs__tab--disabled {
-    color: GrayText;
+    /* color: GrayText; */
     cursor: default;
 }
 
@@ -426,16 +417,6 @@ body {
 	border-color: hsl(208, 99%, 50%);
     outline: none;
 }
-
-/* .react-tabs__tab:focus:after {
-    content: "";
-    position: absolute;
-    height: 5px;
-    left: -4px;
-    right: -4px;
-    bottom: -5px;
-    background: #fff;
-} */
 
 .react-tabs__tab-panel {
 	display: none;
@@ -451,7 +432,6 @@ div.centering {
 }
 
 .h-divider {
-	
 	height:2px;
 }
 
@@ -461,19 +441,19 @@ div.centering {
 }
 
 .generic-modal-icon.help {
-	color: #2196f3
+	/* color: #2196f3 */
 }
 
 .generic-modal-icon.info {
-	color: #2196f3
+	/* color: #2196f3 */
 }
 
 .generic-modal-icon.warning {
-	color: #ff9800
+	/* color: #ff9800 */
 }
 
 .generic-modal-icon.error {
-	color: #d32f2f
+	/* color: #d32f2f */
 }
 
 .dynamic-label {
@@ -485,7 +465,7 @@ div.centering {
 }
 
 .dynamic-label.text.other {
-	color:gray;
+	/* color:gray; */
 }
 
 .dynamic-label.text.can-edit {
@@ -493,7 +473,8 @@ div.centering {
 }
 
 .dynamic-label.text.can-edit:hover {
-	border-bottom: 2px solid gray;
+	border-bottom-style: solid;
+	border-width: 0px 0px 2px 0px;
 }
 
 .outlined-select > div > input {
@@ -503,4 +484,17 @@ div.centering {
 .select-icon {
 	margin-right: 4px;
 	padding-bottom:1px;
+}
+
+.modal-title {
+	text-align: center;
+	width: 100%;
+}
+
+.modal-header {
+    border-bottom: 0 none !important;
+}
+
+.modal-footer {
+    border-top: 0 none !important;
 }

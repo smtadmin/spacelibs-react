@@ -6,7 +6,7 @@
  * File Created: Friday, 29th January 2021 10:15 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 11:40 am
+ * Last Modified: Friday, 16th July 2021 2:54 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -37,11 +37,12 @@ class OneColumn extends React.Component {
      * @memberof OneColumn
      */
     render() {
+		const { column, ...rest} = this.props;
         return (
-            <Container className="single-column-container mb-5 mt-5">
+            <Container {...rest} className="single-column-container mb-5 mt-5">
                 <Row>
                     <Col className="col-12 mb-5">
-                        {this.props.column}
+                        {column}
                     </Col>
                 </Row>
             </Container>
@@ -54,7 +55,7 @@ class OneColumn extends React.Component {
  * Accepted Prop Types
  */
 OneColumn.propTypes = {
-	column: PropTypes.any
+	column: PropTypes.any,
 };
 
 export default OneColumn;

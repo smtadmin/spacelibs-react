@@ -6,13 +6,13 @@
  * File Created: Tuesday, 11th May 2021 12:26 pm
  * Author: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
- * Last Modified: Monday, 21st June 2021 1:57 pm
+ * Last Modified: Tuesday, 20th July 2021 4:00 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 
-import React from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 import Modal from "react-bootstrap/Modal";
 import Button from "../../input/Button";
@@ -20,6 +20,11 @@ import HelpIcon from "@material-ui/icons/HelpRounded";
 import InfoIcon from '@material-ui/icons/InfoRounded';
 import WarningIcon from '@material-ui/icons/WarningRounded';
 import ErrorIcon from '@material-ui/icons/ErrorRounded';
+
+
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
+import { useTheme } from "@material-ui/core/styles";
 
 /**
  * Template for themed modals
@@ -46,6 +51,8 @@ import ErrorIcon from '@material-ui/icons/ErrorRounded';
  */
  function GenericModal(props) {
 
+	const theme = useTheme();
+
     /**
      * Loads an icon if needed
      * Current icons are help, info, warning, and error
@@ -54,17 +61,19 @@ import ErrorIcon from '@material-ui/icons/ErrorRounded';
     function loadIcon() {
         switch (props.titleIconName) {
             case "help":
-                return <HelpIcon className='generic-modal-icon help' />;
+                return <HelpIcon className='generic-modal-icon' css={css`color: ${theme.palette.primary.main}`} />;
             case "info":
-                return <InfoIcon className='generic-modal-icon info' />;
+                return <InfoIcon className='generic-modal-icon' css={css`color: ${theme.palette.primary.main}`}/>;
             case "warning":
-                return <WarningIcon className='generic-modal-icon warning' />;
+                return <WarningIcon className='generic-modal-icon' css={css`color: ${theme.palette.warning.main}`}/>;
             case "error":
-                return <ErrorIcon className='generic-modal-icon error' />;
+                return <ErrorIcon className='generic-modal-icon' css={css`color: ${theme.palette.error.main}`}/>;
             default:
                 return null;
         }
     }
+
+	const backgroundColor = theme.palette.background.paper;
 
     return (
         <Modal
@@ -75,44 +84,58 @@ import ErrorIcon from '@material-ui/icons/ErrorRounded';
             keyboard={props.keyboard}
             animation={props.isAnimated}
             centered={props.isCentered}
-            size={props.size}
-        >
-            <Modal.Header>
+            size={props.size}>
+            <Modal.Header
+                closeButton
+                css={css`
+                    background-color: ${backgroundColor};
+                    color: ${theme.palette.text.primary};
+                    .close {
+                        color: ${theme.palette.text.primary};
+                    }
+                `}>
                 <Modal.Title>
                     {loadIcon()}
                     {props.title}
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body>{props.children}</Modal.Body>
-            <Modal.Footer>
-                {props.showLeftButton &&
+            <Modal.Body
+                css={css`
+                    background-color: ${backgroundColor};
+					color: ${theme.palette.text.primary};
+                `}>
+                {props.children}
+            </Modal.Body>
+            <Modal.Footer
+                css={css`
+                    background-color: ${backgroundColor};
+                `}>
+                {props.showLeftButton && (
                     <Button
-                    variant={props.leftButtonVariant}
-                    className={props.leftButtonClassName}
-                    color={props.leftButtonColor}
-                    size={props.leftButtonSize}
-                    disabled={props.leftButtonIsDisabled}
-                    startIcon={props.leftButtonStartIcon}
-                    endIcon={props.leftButtonEndIcon}
-                    onClick={props.leftButtonOnClick}
-                >
-                    {props.leftButtonLabel}
-                </Button>
-                }    
-                {props.showRightButton &&             
-                <Button
-                    variant={props.rightButtonVariant}
-                    className={props.rightButtonClassName}
-                    color={props.rightButtonColor}
-                    size={props.rightButtonSize}
-                    disabled={props.rightButtonIsDisabled}
-                    startIcon={props.rightButtonStartIcon}
-                    endIcon={props.rightButtonEndIcon}
-                    onClick={props.rightButtonOnClick}
-                >
-                    {props.rightButtonLabel}
-                </Button>
-                }
+                        variant={props.leftButtonVariant}
+                        className={props.leftButtonClassName}
+                        color={props.leftButtonColor}
+                        size={props.leftButtonSize}
+                        disabled={props.leftButtonIsDisabled}
+                        startIcon={props.leftButtonStartIcon}
+                        endIcon={props.leftButtonEndIcon}
+                        onClick={props.leftButtonOnClick}>
+                        {props.leftButtonLabel}
+                    </Button>
+                )}
+                {props.showRightButton && (
+                    <Button
+                        variant={props.rightButtonVariant}
+                        className={props.rightButtonClassName}
+                        color={props.rightButtonColor}
+                        size={props.rightButtonSize}
+                        disabled={props.rightButtonIsDisabled}
+                        startIcon={props.rightButtonStartIcon}
+                        endIcon={props.rightButtonEndIcon}
+                        onClick={props.rightButtonOnClick}>
+                        {props.rightButtonLabel}
+                    </Button>
+                )}
             </Modal.Footer>
         </Modal>
     );

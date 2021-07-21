@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:49 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 15th June 2021 9:29 am
+ * Last Modified: Wednesday, 21st July 2021 4:07 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -146,7 +146,7 @@ class SelectBlock extends React.Component {
                             )}
                         />
                     )}
-                    <ErrorLabel
+                    <ErrorLabel 
                         isValid={this.props.isValid}
                         errorMessage={this.props.errorMessage}
                     />

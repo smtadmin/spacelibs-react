@@ -7,7 +7,7 @@
  * File Created: Wednesday, 3rd February 2021 3:56 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 11:40 am
+ * Last Modified: Monday, 12th July 2021 12:45 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -73,8 +73,9 @@ class TwoColumn extends React.Component {
      * @memberof TwoColumn
      */
     render() {
+		const { colOne, colTwo, colOneBootstrap, colTwoBootstrap, ...rest } = this.props;
         return (
-            <Container fluid className='two-column-container'>
+            <Container {...rest} fluid className='two-column-container'>
                 <Row>
                     <Col
                         key='col-1'
