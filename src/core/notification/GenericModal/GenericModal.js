@@ -49,9 +49,9 @@ import { useTheme } from "@material-ui/core/styles";
  * @param {*} props settings for Modal and buttons 
  * @returns {*} a custom bootstrap modal
  */
- function GenericModal(props) {
+function GenericModal(props) {
 
-	const theme = useTheme();
+    const theme = useTheme();
 
     /**
      * Loads an icon if needed
@@ -63,17 +63,17 @@ import { useTheme } from "@material-ui/core/styles";
             case "help":
                 return <HelpIcon className='generic-modal-icon' css={css`color: ${theme.palette.primary.main}`} />;
             case "info":
-                return <InfoIcon className='generic-modal-icon' css={css`color: ${theme.palette.primary.main}`}/>;
+                return <InfoIcon className='generic-modal-icon' css={css`color: ${theme.palette.primary.main}`} />;
             case "warning":
-                return <WarningIcon className='generic-modal-icon' css={css`color: ${theme.palette.warning.main}`}/>;
+                return <WarningIcon className='generic-modal-icon' css={css`color: ${theme.palette.warning.main}`} />;
             case "error":
-                return <ErrorIcon className='generic-modal-icon' css={css`color: ${theme.palette.error.main}`}/>;
+                return <ErrorIcon className='generic-modal-icon' css={css`color: ${theme.palette.error.main}`} />;
             default:
                 return null;
         }
     }
 
-	const backgroundColor = theme.palette.background.paper;
+    const backgroundColor = theme.palette.background.paper;
 
     return (
         <Modal
@@ -86,7 +86,7 @@ import { useTheme } from "@material-ui/core/styles";
             centered={props.isCentered}
             size={props.size}>
             <Modal.Header
-                closeButton
+                closeButton={props.showX}
                 css={css`
                     background-color: ${backgroundColor};
                     color: ${theme.palette.text.primary};
@@ -145,6 +145,7 @@ GenericModal.defaultProps = {
     backdrop: 'static',
     isAnimated: true,
     isCentered: false,
+    showX: true,
 
     showLeftButton: true,
     leftButtonVariant: 'outlined',
@@ -167,7 +168,7 @@ GenericModal.propTypes = {
      * 
      * One of ('static','true','false')
      */
-    backdrop: PropTypes.oneOf(['static','true','false']),
+    backdrop: PropTypes.oneOf(['static', 'true', 'false']),
     /**
      * Modal keyboard option to choose if esc closes a modal (true) or not
      */
@@ -179,13 +180,13 @@ GenericModal.propTypes = {
      * 
      * One of ('sm','lg','xl')
      */
-    size: PropTypes.oneOf(['sm','lg','xl']),
+    size: PropTypes.oneOf(['sm', 'lg', 'xl']),
     /**
      * Name of the icon to use before the title
      * 
      * Choose between 'help', 'info', 'warning', 'error'
      */
-    titleIconName: PropTypes.oneOf(['help','info','warning','error']),
+    titleIconName: PropTypes.oneOf(['help', 'info', 'warning', 'error']),
     title: PropTypes.string,
 
     children: PropTypes.any,
@@ -196,7 +197,7 @@ GenericModal.propTypes = {
      * 
      * One of ('contained','outlined','text')
      */
-    leftButtonVariant: PropTypes.oneOf(['contained','outlined','text']),
+    leftButtonVariant: PropTypes.oneOf(['contained', 'outlined', 'text']),
     leftButtonClassName: PropTypes.string,
     leftButtonColor: PropTypes.string,
     /**
@@ -204,7 +205,7 @@ GenericModal.propTypes = {
      * 
      * One of ('large','medium','small')
      */
-    leftButtonSize: PropTypes.oneOf(['large','medium','small']),
+    leftButtonSize: PropTypes.oneOf(['large', 'medium', 'small']),
     leftButtonIsDisabled: PropTypes.bool,
     leftButtonStartIcon: PropTypes.any,
     leftButtonEndIcon: PropTypes.any,
@@ -217,7 +218,7 @@ GenericModal.propTypes = {
      * 
      * One of ('contained','outlined','text')
      */
-    rightButtonVariant: PropTypes.oneOf(['contained','outlined','text']),
+    rightButtonVariant: PropTypes.oneOf(['contained', 'outlined', 'text']),
     rightButtonClassName: PropTypes.string,
     rightButtonColor: PropTypes.string,
     /**
@@ -225,7 +226,7 @@ GenericModal.propTypes = {
      * 
      * One of ('large','medium','small')
      */
-    rightButtonSize: PropTypes.oneOf(['large','medium','small']),
+    rightButtonSize: PropTypes.oneOf(['large', 'medium', 'small']),
     rightButtonIsDisabled: PropTypes.bool,
     rightButtonStartIcon: PropTypes.any,
     rightButtonEndIcon: PropTypes.any,
