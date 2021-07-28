@@ -6,7 +6,7 @@
  * File Created: Friday, 23rd July 2021 10:21 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 26th July 2021 11:15 am
+ * Last Modified: Monday, 26th July 2021 4:29 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -46,9 +46,11 @@ function LikertScale(props) {
     config.options.push({
       identifier: '' + x,
       displayText: '' + x,
-      isDisabled: true
+      isDisabled: props.isDisabled
     });
   }
+
+  console.log(responseSet, props);
 
   return (
     <div
@@ -57,25 +59,31 @@ function LikertScale(props) {
         display: 'flex'
       }}>
       <SiblingDiv>
-        <ChildSiblingDiv>{responseSet[props.type][0]}</ChildSiblingDiv>
+        <ChildSiblingDiv>{responseSet[props.responseSet][0]}</ChildSiblingDiv>
       </SiblingDiv>
-      <RadioGroup row labelPlacement="top" config={config} />
+      <RadioGroup
+        row
+        labelPlacement="top"
+        config={config}
+        onValueChanged={() => {}}
+      />
       <SiblingDiv>
-        <ChildSiblingDiv>{responseSet[props.type][4]}</ChildSiblingDiv>
+        <ChildSiblingDiv>{responseSet[props.responseSet][4]}</ChildSiblingDiv>
       </SiblingDiv>
     </div>
   );
 }
 
 LikertScale.defaultProps = {
-  type: 'Agreement'
+  responseSet: 'Agreement',
+  isDisabled: false
 };
 
 LikertScale.propTypes = {
-  value: PropTypes.number,
+  value: PropTypes.array,
   onValueChanged: PropTypes.func,
-  Intensity: ['None', 'Very mild', 'Mild', 'Moderate', 'Severe'],
-  type: PropTypes.oneOf([
+  isDisabled: PropTypes.bool,
+  responseSet: PropTypes.oneOf([
     'Frequency',
     'Quality',
     'Intensity',
