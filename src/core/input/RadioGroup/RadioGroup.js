@@ -6,8 +6,8 @@
  * File Created: Monday, 8th February 2021 3:18 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 26th July 2021 11:07 am
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Thursday, 29th July 2021 4:42 pm
+ * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -76,7 +76,13 @@ class RadioGroup extends React.Component {
         key={option.identifier}
         disabled={option.isDisabled == null ? false : option.isDisabled}
         value={option.identifier}
-        control={<Radio color={this.props.color} />}
+        data-testid="radio-button"
+        control={
+          <Radio
+            inputProps={{ 'data-testid': 'radio-button-input' }}
+            color={this.props.color}
+          />
+        }
         label={
           <div>
             <span
