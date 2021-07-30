@@ -10,13 +10,14 @@ Object {
       >
         <div
           class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
-          data-testid="textfield-input"
+          data-testid="generic-textfield"
         >
           <div
             class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
           >
             <input
               class="MuiInputBase-input MuiInput-input"
+              data-testid="generic-textfield-input"
               type="text"
               value=""
             />
@@ -31,13 +32,14 @@ Object {
     >
       <div
         class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
-        data-testid="textfield-input"
+        data-testid="generic-textfield"
       >
         <div
           class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
         >
           <input
             class="MuiInputBase-input MuiInput-input"
+            data-testid="generic-textfield-input"
             type="text"
             value=""
           />

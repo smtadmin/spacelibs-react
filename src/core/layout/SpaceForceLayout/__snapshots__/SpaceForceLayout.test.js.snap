@@ -3,17 +3,19 @@
 exports[`Renders Correctly 1`] = `
 Object {
   "asFragment": [Function],
-  "baseElement": <body>
+  "baseElement": <body
+    style="background-color: rgb(255, 255, 255);"
+  >
     <div>
       <div
         class="px-0 container-fluid"
       >
         <nav
-          class="desktop-header d-none d-md-flex background-theme-main white navbar navbar-expand navbar-light"
+          class="desktop-header d-none d-md-flex background-theme-main white css-tzbarz-Header navbar navbar-expand navbar-light"
           id="header-container"
         >
           <div
-            class="header-left col-1 col"
+            class="header-left col-2 col"
           >
             <div
               class="desktop-header-left-direction-wrapper null row"
@@ -26,7 +28,7 @@ Object {
             </div>
           </div>
           <div
-            class="header-center col-10 col"
+            class="header-center col-8 col"
           >
             <div
               class="desktop-header-center-direction-wrapper float-right row"
@@ -39,7 +41,7 @@ Object {
             </div>
           </div>
           <div
-            class="header-right col-1 col"
+            class="header-right col-2 col"
           >
             <div
               class="desktop-header-right-direction-wrapper null row"
@@ -53,11 +55,11 @@ Object {
           </div>
         </nav>
         <nav
-          class="mobile-header fixed-bottom d-md-none background-theme-main navbar navbar-expand navbar-light"
+          class="mobile-header fixed-bottom d-md-none background-theme-main css-tzbarz-Header navbar navbar-expand navbar-light"
           id="header-container"
         >
           <div
-            class="header-left col-1 col"
+            class="header-left col-2 col"
           >
             <div
               class="mobile-header-left-direction-wrapper null row"
@@ -68,7 +70,7 @@ Object {
             </div>
           </div>
           <div
-            class="header-center col-10 col"
+            class="header-center col-8 col"
           >
             <div
               class="mobile-header-center-direction-wrapper null row"
@@ -79,7 +81,7 @@ Object {
             </div>
           </div>
           <div
-            class="header-right col-1 col"
+            class="header-right col-2 col"
           >
             <div
               class="mobile-header-right-direction-wrapper null row"
@@ -178,11 +180,11 @@ Object {
       class="px-0 container-fluid"
     >
       <nav
-        class="desktop-header d-none d-md-flex background-theme-main white navbar navbar-expand navbar-light"
+        class="desktop-header d-none d-md-flex background-theme-main white css-tzbarz-Header navbar navbar-expand navbar-light"
         id="header-container"
       >
         <div
-          class="header-left col-1 col"
+          class="header-left col-2 col"
         >
           <div
             class="desktop-header-left-direction-wrapper null row"
@@ -195,7 +197,7 @@ Object {
           </div>
         </div>
         <div
-          class="header-center col-10 col"
+          class="header-center col-8 col"
         >
           <div
             class="desktop-header-center-direction-wrapper float-right row"
@@ -208,7 +210,7 @@ Object {
           </div>
         </div>
         <div
-          class="header-right col-1 col"
+          class="header-right col-2 col"
         >
           <div
             class="desktop-header-right-direction-wrapper null row"
@@ -222,11 +224,11 @@ Object {
         </div>
       </nav>
       <nav
-        class="mobile-header fixed-bottom d-md-none background-theme-main navbar navbar-expand navbar-light"
+        class="mobile-header fixed-bottom d-md-none background-theme-main css-tzbarz-Header navbar navbar-expand navbar-light"
         id="header-container"
       >
         <div
-          class="header-left col-1 col"
+          class="header-left col-2 col"
         >
           <div
             class="mobile-header-left-direction-wrapper null row"
@@ -237,7 +239,7 @@ Object {
           </div>
         </div>
         <div
-          class="header-center col-10 col"
+          class="header-center col-8 col"
         >
           <div
             class="mobile-header-center-direction-wrapper null row"
@@ -248,7 +250,7 @@ Object {
           </div>
         </div>
         <div
-          class="header-right col-1 col"
+          class="header-right col-2 col"
         >
           <div
             class="mobile-header-right-direction-wrapper null row"

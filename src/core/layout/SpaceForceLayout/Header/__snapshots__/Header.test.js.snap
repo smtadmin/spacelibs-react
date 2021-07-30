@@ -6,34 +6,34 @@ Object {
   "baseElement": <body>
     <div>
       <nav
-        class="header navbar navbar-expand navbar-light"
+        class="header css-1ri2fes-Header navbar navbar-expand navbar-light"
         id="header-container"
       >
         <div
-          class="header-left col-1 col"
+          class="header-left col-2 col"
         />
         <div
-          class="header-center col-10 col"
+          class="header-center col-8 col"
         />
         <div
-          class="header-right col-1 col"
+          class="header-right col-2 col"
         />
       </nav>
     </div>
   </body>,
   "container": <div>
     <nav
-      class="header navbar navbar-expand navbar-light"
+      class="header css-1ri2fes-Header navbar navbar-expand navbar-light"
       id="header-container"
     >
       <div
-        class="header-left col-1 col"
+        class="header-left col-2 col"
       />
       <div
-        class="header-center col-10 col"
+        class="header-center col-8 col"
       />
       <div
-        class="header-right col-1 col"
+        class="header-right col-2 col"
       />
     </nav>
   </div>,
@@ -97,34 +97,34 @@ Object {
   "baseElement": <body>
     <div>
       <nav
-        class="header navbar navbar-expand navbar-light"
+        class="header css-1ri2fes-Header navbar navbar-expand navbar-light"
         id="header-container"
       >
         <div
-          class="header-left col-1 col"
+          class="header-left col-2 col"
         />
         <div
-          class="header-center col-10 col"
+          class="header-center col-8 col"
         />
         <div
-          class="header-right col-1 col"
+          class="header-right col-2 col"
         />
       </nav>
     </div>
   </body>,
   "container": <div>
     <nav
-      class="header navbar navbar-expand navbar-light"
+      class="header css-1ri2fes-Header navbar navbar-expand navbar-light"
       id="header-container"
     >
       <div
-        class="header-left col-1 col"
+        class="header-left col-2 col"
       />
       <div
-        class="header-center col-10 col"
+        class="header-center col-8 col"
       />
       <div
-        class="header-right col-1 col"
+        class="header-right col-2 col"
       />
     </nav>
   </div>,

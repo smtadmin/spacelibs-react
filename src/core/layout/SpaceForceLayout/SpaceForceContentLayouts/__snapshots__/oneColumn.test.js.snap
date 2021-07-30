@@ -7,6 +7,7 @@ Object {
     <div>
       <div
         class="single-column-container mb-5 mt-5 container"
+        colone="[object Object],[object Object],[object Object]"
       >
         <div
           class="row"
@@ -21,6 +22,7 @@ Object {
   "container": <div>
     <div
       class="single-column-container mb-5 mt-5 container"
+      colone="[object Object],[object Object],[object Object]"
     >
       <div
         class="row"
@@ -92,6 +94,7 @@ Object {
     <div>
       <div
         class="single-column-container mb-5 mt-5 container"
+        colone="[object Object]"
       >
         <div
           class="row"
@@ -106,6 +109,7 @@ Object {
   "container": <div>
     <div
       class="single-column-container mb-5 mt-5 container"
+      colone="[object Object]"
     >
       <div
         class="row"
