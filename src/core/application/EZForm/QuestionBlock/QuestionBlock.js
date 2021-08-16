@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 26th July 2021 4:18 pm
+ * Last Modified: Monday, 16th August 2021 10:35 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -26,15 +26,6 @@ import LikertScale from '../QuestionType/LikertScale';
  */
 class QuestionBlock extends React.Component {
   /**
-   * Creates an instance of QuestionBlock.
-   * @param {*} props Component Props
-   * @memberof QuestionBlock
-   */
-  constructor(props) {
-    super(props);
-  }
-
-  /**
    * Returns a component for the given params
    *
    * @param {*} type Question
@@ -46,8 +37,6 @@ class QuestionBlock extends React.Component {
   getComponent(type, dataType, optionCount) {
     const componentMap = this.getComponentMap(optionCount);
     const componentFunc = componentMap[type];
-
-    console.table(type);
 
     if (!componentFunc) {
       console.error(
@@ -238,6 +227,7 @@ QuestionBlock.propTypes = {
 };
 
 const areEqual = (prevProps, nextProps) => {
+  console.log('Checking equality');
   return (
     prevProps.identifier === nextProps.identifier &&
     prevProps.value === nextProps.value &&

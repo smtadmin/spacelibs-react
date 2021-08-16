@@ -6,7 +6,7 @@
  * File Created: Friday, 23rd July 2021 10:21 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 26th July 2021 4:29 pm
+ * Last Modified: Monday, 16th August 2021 10:36 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -63,9 +63,13 @@ function LikertScale(props) {
       </SiblingDiv>
       <RadioGroup
         row
+        value={props.value}
         labelPlacement="top"
         config={config}
-        onValueChanged={() => {}}
+        onValueChanged={(val) => {
+          console.log(val);
+          props.onValueChanged(val);
+        }}
       />
       <SiblingDiv>
         <ChildSiblingDiv>{responseSet[props.responseSet][4]}</ChildSiblingDiv>
@@ -81,7 +85,7 @@ LikertScale.defaultProps = {
 
 LikertScale.propTypes = {
   value: PropTypes.array,
-  onValueChanged: PropTypes.func,
+  onValueChanged: PropTypes.func.isRequired,
   isDisabled: PropTypes.bool,
   responseSet: PropTypes.oneOf([
     'Frequency',
