@@ -6,8 +6,8 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tue Jul 20 2021
- * Modified By: tylergaffaney
+ * Last Modified: Tue Aug 10 2021
+ * Modified By: tyler Gaffaney
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -497,4 +497,8 @@ div.centering {
 
 .modal-footer {
     border-top: 0 none !important;
+}
+
+.MuiFormControlLabel-labelPlacementTop {
+	margin: 0px 10px !important;
 }

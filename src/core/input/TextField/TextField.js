@@ -6,8 +6,8 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 29th July 2021 11:32 am
- * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
+ * Last Modified: Monday, 9th August 2021 4:54 pm
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -95,7 +95,7 @@ class TextField extends React.Component {
           className={this.props.className}
           variant={this.props.variant}
           multiline={this.props.multiline}
-          rowsMax={this.props.rowsMax}
+          maxRows={this.props.rowsMax}
           data-testid={`${this.props['data-testid']}-textfield`}
           type={this.props.type}
           onBlur={this.props.onBlur}

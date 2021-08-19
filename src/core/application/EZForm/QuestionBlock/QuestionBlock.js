@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 16th August 2021 10:35 am
+ * Last Modified: Monday, 16th August 2021 10:45 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -20,6 +20,9 @@ import CheckBlock from '../CheckBlock';
 import SelectBlock from '../SelectBlock';
 import TextBlock from '../TextBlock';
 import LikertScale from '../QuestionType/LikertScale';
+import { getQuestionConfig } from '../QuestionType';
+import QuestionLabel from '../QuestionLabel';
+import { deepEqual } from 'fast-equals';
 
 /**
  * Question Factory
@@ -156,17 +159,26 @@ class QuestionBlock extends React.Component {
   render() {
     const type = this.props.type;
     const dataType = this.props.dataType.code;
-    const optionCount = this.props.options ? this.props.options.length : 0;
+    const { label, ...rest } = this.props;
 
-    let props = this.props;
-    props.config = {
+    let questionProps = rest;
+    questionProps.config = {
       options: this.props.options
     };
-    delete props.options;
+    delete questionProps.options;
 
+    const questionConfig = getQuestionConfig(type, dataType);
     return (
       <div className={'question-block-wrapper pt-3 pl-5'}>
-        {this.getComponent(type, dataType, optionCount)}
+        <QuestionLabel
+          label={label}
+          helperText={this.props.helperText}
+          required={this.props.required}
+          number={this.props.number}
+        />
+        <div className="pl-5 pt-2">
+          {questionConfig.getComponent(questionProps)}
+        </div>
       </div>
     );
   }
@@ -226,14 +238,6 @@ QuestionBlock.propTypes = {
   onValueChanged: PropTypes.func.isRequired
 };
 
-const areEqual = (prevProps, nextProps) => {
-  console.log('Checking equality');
-  return (
-    prevProps.identifier === nextProps.identifier &&
-    prevProps.value === nextProps.value &&
-    prevProps.isValid === nextProps.isValid &&
-    prevProps.errorMessage === nextProps.errorMessage
-  );
-};
+const areEqual = (prevProps, nextProps) => deepEqual(prevProps, nextProps);
 
 export default React.memo(QuestionBlock, areEqual);

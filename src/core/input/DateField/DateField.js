@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 3:31 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 16th August 2021 10:28 am
+ * Last Modified: Monday, 16th August 2021 10:44 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -58,12 +58,17 @@ class DateField extends React.Component {
    * @memberof DateField
    */
   render() {
-    let date,
-      selected = this.props.value;
-    if (selected && selected.constructor === Array && selected.length === 1) {
-      date = selected[0];
-    } else {
-      date = null;
+    let date = null;
+    let selected = this.props.value;
+
+    if (selected) {
+      if (selected.constructor === Array) {
+        if (selected.length > 0) {
+          date = selected[0];
+        }
+      } else {
+        date = selected;
+      }
     }
 
     return (

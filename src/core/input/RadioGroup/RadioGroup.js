@@ -6,8 +6,8 @@
  * File Created: Monday, 8th February 2021 3:18 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 29th July 2021 4:42 pm
- * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
+ * Last Modified: Tuesday, 10th August 2021 4:51 pm
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -122,9 +122,14 @@ class RadioGroup extends React.Component {
   render() {
     let selectedValue = '';
     var value = this.props.value;
-    if (value && value.constructor === Array && value.length === 1) {
-      selectedValue = value[0].identifier;
+    if (value) {
+      if (value.constructor === Array && value.length === 1) {
+        selectedValue = value[0].identifier;
+      } else if (value.identifier) {
+        selectedValue = value.identifier;
+      }
     }
+
     return (
       <MuiRadioGroup
         row={this.props.row}
@@ -151,7 +156,7 @@ RadioGroup.defaultProps = {
  */
 RadioGroup.propTypes = {
   row: PropTypes.bool,
-  value: PropTypes.arrayOf(PropTypes.any),
+  value: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   isValid: PropTypes.bool,
   color: PropTypes.string,
   labelPlacement: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),

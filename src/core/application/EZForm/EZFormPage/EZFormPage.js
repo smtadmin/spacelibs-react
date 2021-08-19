@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 2:05 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Monday, 16th August 2021 10:34 am
+ * Last Modified: Monday, 16th August 2021 10:43 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -48,7 +48,9 @@ function EZFormPage(props) {
           props.questions.map((question) => (
             <QuestionBlock
               key={question.identifier}
-              onValueChanged={props.onValueChanged}
+              onValueChanged={(value) =>
+                props.onValueChanged(question.identifier, value)
+              }
               {...question}
             />
           ))}

@@ -6,7 +6,7 @@
  * File Created: Friday, 23rd July 2021 10:21 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 16th August 2021 10:36 am
+ * Last Modified: Monday, 16th August 2021 10:44 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -50,8 +50,6 @@ function LikertScale(props) {
     });
   }
 
-  console.log(responseSet, props);
-
   return (
     <div
       style={{
@@ -66,10 +64,7 @@ function LikertScale(props) {
         value={props.value}
         labelPlacement="top"
         config={config}
-        onValueChanged={(val) => {
-          console.log(val);
-          props.onValueChanged(val);
-        }}
+        onValueChanged={props.onValueChanged}
       />
       <SiblingDiv>
         <ChildSiblingDiv>{responseSet[props.responseSet][4]}</ChildSiblingDiv>
@@ -84,8 +79,8 @@ LikertScale.defaultProps = {
 };
 
 LikertScale.propTypes = {
-  value: PropTypes.array,
-  onValueChanged: PropTypes.func.isRequired,
+  value: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  onValueChanged: PropTypes.func,
   isDisabled: PropTypes.bool,
   responseSet: PropTypes.oneOf([
     'Frequency',
