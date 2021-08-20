@@ -6,8 +6,8 @@
  * File Created: Friday, 19th February 2021 10:25 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 30th July 2021 4:21 pm
- * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
+ * Last Modified: Monday, 16th August 2021 11:13 am
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -15,7 +15,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '@material-ui/core/FormControl';
-import QuestionLabel from '../QuestionLabel';
 import CheckboxGroup from '../../../input/CheckboxGroup';
 import ErrorLabel from '../ErrorLabel';
 import TextField from '../../../input/TextField';
@@ -32,6 +31,7 @@ class CheckBlock extends React.Component {
   constructor(props) {
     super(props);
     let object;
+
     for (var x = 0; x < this.props.value.length; x++) {
       if (this.props.value[x].identifier === this.props.altResponseId) {
         object = this.props.value[x];
@@ -85,9 +85,9 @@ class CheckBlock extends React.Component {
           break;
         }
       }
-      this.props.onValueChanged(this.props.identifier, values);
+      this.props.onValueChanged(values);
     } else {
-      this.props.onValueChanged(this.props.identifier, this.state.values);
+      this.props.onValueChanged(this.state.values);
     }
   }
 
@@ -113,37 +113,27 @@ class CheckBlock extends React.Component {
    * @memberof CheckBlock
    */
   render() {
-    const { label, ...leftovers } = this.props;
     return (
-      <>
-        <QuestionLabel
-          label={label}
-          helperText={this.props.helperText}
-          required={this.props.required}
-          number={this.props.number}
-        />
-        <div className="question-input-wrapper pl-5">
-          <FormControl fullWidth>
-            <CheckboxGroup
-              {...leftovers}
-              color={this.props.color}
-              onValueChanged={this.valueChanged.bind(this)}
-            />
-          </FormControl>
-          {this.state.showAlternateResponse && (
-            <TextField
-              class={'select-alt-field'}
-              label={'Other'}
-              value={this.state.alternateValue}
-              onValueChanged={this.onAlternateValueChanged.bind(this)}
-            />
-          )}
-          <ErrorLabel
-            isValid={this.props.isValid}
-            errorMessage={this.props.errorMessage}
+      <div className="question-input-wrapper">
+        <FormControl fullWidth>
+          <CheckboxGroup
+            {...this.props}
+            onValueChanged={this.valueChanged.bind(this)}
           />
-        </div>
-      </>
+        </FormControl>
+        {this.state.showAlternateResponse && (
+          <TextField
+            class={'select-alt-field'}
+            label={'Other'}
+            value={this.state.alternateValue}
+            onValueChanged={this.onAlternateValueChanged.bind(this)}
+          />
+        )}
+        <ErrorLabel
+          isValid={this.props.isValid}
+          errorMessage={this.props.errorMessage}
+        />
+      </div>
     );
   }
 }
@@ -161,7 +151,6 @@ CheckBlock.propTypes = {
 
   identifier: PropTypes.string.isRequired,
   number: PropTypes.number,
-  label: PropTypes.string.isRequired,
   helperText: PropTypes.string,
   required: PropTypes.bool,
   altResponseId: PropTypes.string,

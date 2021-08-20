@@ -6,7 +6,7 @@
  * File Created: Monday, 8th February 2021 3:18 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 10th August 2021 4:51 pm
+ * Last Modified: Wednesday, 18th August 2021 3:51 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -161,7 +161,7 @@ RadioGroup.propTypes = {
   color: PropTypes.string,
   labelPlacement: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
   variant: PropTypes.oneOf(['standard', 'filled', 'outlined']),
-  onValueChanged: PropTypes.func.isRequired,
+  onValueChanged: PropTypes.func,
   config: PropTypes.shape({
     alternateResponseAllowed: PropTypes.bool,
     options: PropTypes.arrayOf(

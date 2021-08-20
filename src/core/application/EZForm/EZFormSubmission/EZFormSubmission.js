@@ -6,8 +6,8 @@
  * File Created: Wednesday, 28th April 2021 9:27 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 11th August 2021 1:39 pm
- * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
+ * Last Modified: Monday, 16th August 2021 2:17 pm
+ * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -44,7 +44,11 @@ const newFormPrompt = (palette) => (
 function EZFormSubmission({ text, resubmit, uriPath }) {
   const palette = useTheme().palette;
   return (
-    <div className="submission-text text-center">
+    <div
+      className="submission-text text-center"
+      css={css`
+        color: ${palette.text.secondary};
+      `}>
       <span style={{ fontSize: '60px' }}>
         <CheckCircle fontSize="inherit" htmlColor={'#4fad52'} />
       </span>

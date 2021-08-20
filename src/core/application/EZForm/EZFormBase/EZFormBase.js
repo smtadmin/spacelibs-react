@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 4:00 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 16th August 2021 10:42 am
+ * Last Modified: Friday, 20th August 2021 2:20 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -98,7 +98,6 @@ class EZFormBase extends React.Component {
    * @memberof EZForm
    */
   onValueChanged(questionId, value) {
-    console.log(questionId, value);
     let prevState = this.state;
     let breakOut = false;
     for (let page of prevState.data.pages) {

@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 16th August 2021 10:45 am
+ * Last Modified: Monday, 16th August 2021 1:54 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -20,7 +20,7 @@ import CheckBlock from '../CheckBlock';
 import SelectBlock from '../SelectBlock';
 import TextBlock from '../TextBlock';
 import LikertScale from '../QuestionType/LikertScale';
-import { getQuestionConfig } from '../QuestionType';
+import { getQuestionConfig } from '../config/questionTypes';
 import QuestionLabel from '../QuestionLabel';
 import { deepEqual } from 'fast-equals';
 

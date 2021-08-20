@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 2:05 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Monday, 16th August 2021 10:43 am
+ * Last Modified: Wednesday, 18th August 2021 1:35 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -27,7 +27,6 @@ import { useTheme } from '@material-ui/core/styles';
  */
 function EZFormPage(props) {
   const theme = useTheme();
-  console.log('Updating');
   return (
     <div
       className="form-page-wrapper"
