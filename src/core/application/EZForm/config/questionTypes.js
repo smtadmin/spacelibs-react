@@ -7,7 +7,7 @@
  * File Created: Monday, 16th August 2021 1:48 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 20th August 2021 2:36 pm
+ * Last Modified: Monday, 23rd August 2021 9:47 am
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -52,6 +52,11 @@ export const getQuestionType = (type, dataType) => {
 /* Gets the Question Config */
 export const getQuestionConfig = (type, dataType) => {
   const configType = getQuestionType(type, dataType);
+  if (!configType)
+    throw Error(
+      `Couldn't find a config type for {type: ${type}, dataType: ${dataType}}`
+    );
+
   return questionTypes[configType];
 };
 
@@ -174,7 +179,7 @@ export const questionTypes = {
     },
     validation: {
       defaultType: dataTypes.text,
-      availableTypes: [dataTypes.text],
+      availableTypes: [dataTypes.text, dataTypes.number],
       validate: validation.choice
     },
     getComponent: (params) =>
@@ -196,7 +201,7 @@ export const questionTypes = {
     },
     validation: {
       defaultType: dataTypes.text,
-      availableTypes: [dataTypes.text],
+      availableTypes: [dataTypes.text, dataTypes.number],
       validate: validation.multi
     },
     getComponent: (params) =>
