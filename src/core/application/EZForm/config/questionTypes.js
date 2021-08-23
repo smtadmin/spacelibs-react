@@ -79,8 +79,8 @@ const response = {
     for (let option of question.value) {
       const value =
         question.altResponseId === option.identifier
-          ? question.option.value
-          : question.option.displayText;
+          ? option.value
+          : option.displayText;
       values.push({
         question: question.identifier,
         questionGroupId: question.groupIdentifier,
@@ -93,7 +93,6 @@ const response = {
     if (!Array.isArray(question.value)) question.value = [question.value];
 
     if (question.value == null || question.value.length === 0) return [];
-
     const value =
       question.altResponseId === question.value[0].identifier
         ? question.value[0].value
