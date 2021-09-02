@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 4:00 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 20th August 2021 2:20 pm
+ * Last Modified: Thursday, 2nd September 2021 2:16 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -23,6 +23,7 @@ import GenericModal from '../../../notification/GenericModal';
 import EZFormValidator from '../EZFormValidator/EZFormValidator';
 import copy from 'fast-copy';
 import EZFormResponseParser from '../EZFormResponseParser/EZFormResponseParser';
+import { deepEqual } from 'fast-equals';
 
 /** Styles */
 /** @jsx jsx */
@@ -52,13 +53,40 @@ class EZFormBase extends React.Component {
   }
 
   /**
+   * Lifecycle method that determines if the component should update
+   *
+   * @param {*} nextProps New props
+   * @param {*} nextState New state
+   * @returns {*} True if the component should update
+   * @memberof EZFormBase
+   */
+  shouldComponentUpdate(nextProps, nextState) {
+    const isStateTheSame = deepEqual(nextState, this.state);
+    const isPropsTheSame = deepEqual(
+      nextProps.unformattedFormData,
+      this.props.unformattedFormData
+    );
+    return !(isStateTheSame && isPropsTheSame);
+  }
+
+  /**
+   * Helper function to return a copy of the state
+   *
+   * @returns {*} The state object
+   * @memberof EZFormBase
+   */
+  getState() {
+    return copy(this.state);
+  }
+
+  /**
    * Runs when a component is mounted
    *
    * @memberof EZFormBase
    */
   componentDidMount() {
     const formattedData = this.formatData(this.props.unformattedFormData);
-    let previousState = this.state;
+    let previousState = this.getState();
     previousState.data = formattedData;
     this.setState(previousState);
   }
@@ -71,7 +99,7 @@ class EZFormBase extends React.Component {
    * @memberof EZForm
    */
   prompt(title, message) {
-    let prevState = this.state;
+    let prevState = this.getState();
     prevState.showModal = true;
     prevState.modalMessage = message;
     prevState.modalTitle = title;
@@ -84,7 +112,7 @@ class EZFormBase extends React.Component {
    * @memberof EZForm
    */
   onCloseModal() {
-    let prevState = this.state;
+    let prevState = this.getState();
     prevState.showModal = false;
     prevState.modalMessage = [];
     this.setState(prevState);
@@ -98,7 +126,7 @@ class EZFormBase extends React.Component {
    * @memberof EZForm
    */
   onValueChanged(questionId, value) {
-    let prevState = this.state;
+    let prevState = this.getState();
     let breakOut = false;
     for (let page of prevState.data.pages) {
       for (let question of page.questions) {
@@ -158,13 +186,15 @@ class EZFormBase extends React.Component {
           if (question.altResponseId != null) {
             for (let index = 0; index < question.options.length; index++) {
               if (
-                question.options[index].identifier == question.altResponseId
+                question.options[index].identifier !== question.altResponseId
               ) {
-                const altOption = question.options[index];
-                question.options.splice(index, 1);
-                question.options.push(altOption);
-                break;
+                continue;
               }
+
+              const altOption = question.options[index];
+              question.options.splice(index, 1);
+              question.options.push(altOption);
+              break;
             }
           }
 
@@ -184,7 +214,7 @@ class EZFormBase extends React.Component {
    * @memberof EZForm
    */
   validateCurrentPage() {
-    let state = this.state;
+    let state = this.getState();
     let page = state.data.pages[state.currentPage];
     const validator = new EZFormValidator();
 
@@ -208,7 +238,7 @@ class EZFormBase extends React.Component {
    * @memberof EZFormBase
    */
   getFullComponent() {
-    const currentPage = this.state.data.pages[this.state.currentPage];
+    const currentPage = copy(this.state.data.pages[this.state.currentPage]);
     return (
       <>
         <div
@@ -233,7 +263,7 @@ class EZFormBase extends React.Component {
    * @memberof EZForm
    */
   onGoBack() {
-    let prevState = this.state;
+    let prevState = copy(this.state);
     prevState.currentPage--;
     this.setState(prevState);
   }
@@ -246,7 +276,7 @@ class EZFormBase extends React.Component {
   onGoForward() {
     const validationResults = this.validateCurrentPage();
     if (validationResults.isValid) {
-      let prevState = this.state;
+      let prevState = this.getState();
       prevState.currentPage++;
       this.setState(prevState);
     } else {
