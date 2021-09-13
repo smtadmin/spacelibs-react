@@ -6,14 +6,13 @@
  * File Created: Wednesday, 28th April 2021 9:27 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 16th August 2021 2:17 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Monday, 13th September 2021 1:39 pm
+ * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SMTButton from '../../../input/Button';
 import CheckCircle from '@material-ui/icons/CheckCircle';
@@ -22,16 +21,21 @@ import CheckCircle from '@material-ui/icons/CheckCircle';
 import { css, jsx } from '@emotion/react';
 import { useTheme } from '@material-ui/core/styles';
 
-const newFormPrompt = (palette) => (
+const marketingSlug = (palette) => (
   <>
     <div
       css={css`
         color: ${palette.text.secondary};
         margin-top: 20px;
       `}>
-      Interested in making your own secure forms with EZ Form? Get started here:
+      Interested in making your own secure forms with EZ Form?{' '}
     </div>
-    <Link to="/">EZ Form Homepage</Link>
+    <div>
+      Contact the SMT Team to get started here{' '}
+      <a href="https://chat.il4.dso.mil/ez-forms/">
+        https://chat.il4.dso.mil/ez-forms/
+      </a>
+    </div>
   </>
 );
 
@@ -65,7 +69,7 @@ function EZFormSubmission({ text, resubmit, uriPath }) {
           Submit Another Response
         </SMTButton>
       )}
-      {newFormPrompt(palette)}
+      {marketingSlug(palette)}
     </div>
   );
 }
