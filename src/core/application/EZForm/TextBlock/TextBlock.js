@@ -6,96 +6,95 @@
  * File Created: Friday, 19th February 2021 10:04 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 28th May 2021 11:58 am
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Friday, 8th October 2021 11:33 am
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import FormControl from "@material-ui/core/FormControl";
-import QuestionLabel from "../QuestionLabel";
-import TextField from "../../../input/TextField";
-import ErrorLabel from "../ErrorLabel";
+import FormControl from '@material-ui/core/FormControl';
+import QuestionLabel from '../QuestionLabel';
+import TextField from '../../../input/TextField';
+import ErrorLabel from '../ErrorLabel';
 
 /**
  * TextBlock Component
  */
 class TextBlock extends React.Component {
-
-	/**
-	 * On value changed handler
-	 *
-	 * @param {*} output - Value
-	 * @memberof TextBlock
-	 */
-	onValueChanged(output) {
-		let reducedValue = output;
-        if (reducedValue.constructor !== Array) {
-            reducedValue = [reducedValue];
-        }
-        this.props.onValueChanged(this.props.identifier, reducedValue);
+  /**
+   * On value changed handler
+   *
+   * @param {*} output - Value
+   * @memberof TextBlock
+   */
+  onValueChanged(output) {
+    let reducedValue = output;
+    if (reducedValue.constructor !== Array) {
+      reducedValue = [reducedValue];
     }
+    this.props.onValueChanged(this.props.identifier, reducedValue);
+  }
 
-    /**
-     * QuestionLabel Render
-     *
-     * @returns {*} Component
-     * @memberof TextBlock
-     */
-    render() {
-        return (
-            <>
-                <QuestionLabel
-                    label={this.props.label}
-                    helperText={this.props.helperText}
-                    required={this.props.required}
-                    number={this.props.number}
-                />
-                <div className='question-input-wrapper pl-5'>
-                    <FormControl fullWidth>
-                        <TextField
-                            type={this.props.config.textType}
-                            onValueChanged={this.onValueChanged.bind(this)}
-                            value={this.props.value ? this.props.value[0] : ""}
-                            isValid={this.props.isValid}
-                        />
-                    </FormControl>
-                    <ErrorLabel
-                        errorMessage={this.props.errorMessage}
-                        isValid={this.props.isValid}
-                    />
-                </div>
-            </>
-        );
-    }
+  /**
+   * QuestionLabel Render
+   *
+   * @returns {*} Component
+   * @memberof TextBlock
+   */
+  render() {
+    return (
+      <>
+        <QuestionLabel
+          label={this.props.label}
+          helperText={this.props.helperText}
+          required={this.props.required}
+          number={this.props.number}
+        />
+        <div className="question-input-wrapper pl-5">
+          <FormControl fullWidth>
+            <TextField
+              type={this.props.config.textType}
+              onValueChanged={this.onValueChanged.bind(this)}
+              value={this.props.value ? this.props.value[0] : ''}
+              isValid={this.props.isValid}
+            />
+          </FormControl>
+          <ErrorLabel
+            errorMessage={this.props.errorMessage}
+            isValid={this.props.isValid}
+          />
+        </div>
+      </>
+    );
+  }
 }
 
 TextBlock.defaultProps = {
-	variant: "standard",
-	required: false,
-	config: {}
+  variant: 'standard',
+  required: false,
+  config: {}
 };
 
 TextBlock.propTypes = {
-	value: PropTypes.arrayOf(PropTypes.string),
-	isValid: PropTypes.bool,
-	errorMessage: PropTypes.string,
+  value: PropTypes.arrayOf(PropTypes.string),
+  isValid: PropTypes.bool,
+  errorMessage: PropTypes.string,
 
-	identifier: PropTypes.string.isRequired,
-	variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
-	number: PropTypes.number,
-	label: PropTypes.string.isRequired,
-	onValueChanged: PropTypes.func.isRequired,
-	placeholder: PropTypes.string,
-	helperText: PropTypes.string,
-	config: PropTypes.shape({
-		textType: PropTypes.string,
-		matchesPattern: PropTypes.string,
-	}),
-	required: PropTypes.bool,
+  identifier: PropTypes.string.isRequired,
+  variant: PropTypes.oneOf(['standard', 'filled', 'outlined']),
+  number: PropTypes.number,
+  label: PropTypes.string.isRequired,
+  onValueChanged: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  helperText: PropTypes.string,
+  config: PropTypes.shape({
+    textType: PropTypes.string,
+    matchesPattern: PropTypes.string
+  }),
+  required: PropTypes.bool
 };
 
 export default TextBlock;
