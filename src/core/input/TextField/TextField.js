@@ -6,8 +6,8 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 8th October 2021 11:33 am
- * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
+ * Last Modified: Wednesday, 20th October 2021 4:04 pm
+ * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -48,10 +48,14 @@ class TextField extends React.Component {
    */
   constructor(props) {
     super(props);
+
+    this.state = {
+      charCount: 0
+    };
   }
 
   /**
-   * Event handler for TextField value chaning
+   * Event handler for TextField value changing
    *
    * @param {*} output - Text input change event
    * @memberof TextField
@@ -59,6 +63,7 @@ class TextField extends React.Component {
   onValueChanged(output) {
     let reducedValue = output && output.target ? output.target.value : null;
     this.props.onValueChanged(reducedValue);
+    this.setState({ charCount: output.target.value.length });
   }
 
   /**
@@ -81,8 +86,10 @@ class TextField extends React.Component {
     let inputProps = this.props.inputProps ? this.props.inputProps : {};
     inputProps.readOnly = this.props.isReadOnly;
 
+    let helperText = null;
     if (this.props.maxLength != null) {
       inputProps.maxLength = this.props.maxLength;
+      helperText = this.state.charCount + '/' + inputProps.maxLength;
     }
 
     inputProps['data-testid'] = `${this.props['data-testid']}-textfield-input`;
@@ -108,6 +115,7 @@ class TextField extends React.Component {
           label={this.props.label}
           placeholder={this.props.placeholder}
           error={this.props.hasError ? true : null}
+          helperText={helperText}
           InputProps={InputProps}
         />
         {this.props.subText && this.props.subText.length > 0 && (

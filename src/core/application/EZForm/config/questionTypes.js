@@ -7,7 +7,7 @@
  * File Created: Monday, 16th August 2021 1:48 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 20th October 2021 11:42 am
+ * Last Modified: Wednesday, 20th October 2021 4:26 pm
  * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -147,7 +147,7 @@ const validation = {
         value = data.value;
       }
     } else {
-      return null;
+      value = null;
     }
     const dataType = dataTypes[data.dataType.code.toLowerCase()];
     return dataType.validate(value, data.required);
@@ -253,7 +253,9 @@ export const questionTypes = {
     previewComponent: (
       <TextField isDisabled multiline={true} label={'Your Answer Here'} />
     ),
-    getComponent: (params) => <TextField {...params} multiline={true} />,
+    getComponent: (params) => (
+      <TextField {...params} multiline={true} maxLength={200} />
+    ),
     getResponse: response.entry
   },
   LIKERT_SCALE: {
