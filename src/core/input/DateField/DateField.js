@@ -6,8 +6,8 @@
  * File Created: Tuesday, 9th February 2021 3:31 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 16th August 2021 10:44 am
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Thursday, 21st October 2021 2:21 pm
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -80,12 +80,14 @@ class DateField extends React.Component {
               data-testid={'date-input'}
               disableToolbar
               disabled={this.props.isDisabled}
-              variant="inline"
-              format="MM/DD/yyyy"
-              margin="normal"
+              variant='inline'
+              format='MM/DD/yyyy'
+              margin='normal'
               label={this.props.label}
               placeholder={this.props.placeholder}
               value={date}
+              disabledToolbar={this.props.disabledToolbar}
+              views={this.props.views}
               onChange={this.onValueChanged.bind(this)}
               KeyboardButtonProps={{}}
             />
@@ -136,7 +138,12 @@ DateField.propTypes = {
   format: PropTypes.string,
 
   // Event handler for value changes
-  onValueChanged: PropTypes.func
+  onValueChanged: PropTypes.func,
+
+  // Toolbar disabled/enabled
+  disabledToolbar: PropTypes.bool,
+
+  views: PropTypes.array
 };
 
 export default DateField;
