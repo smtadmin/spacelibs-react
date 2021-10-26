@@ -6,7 +6,7 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 20th October 2021 4:04 pm
+ * Last Modified: Thursday, 21st October 2021 10:32 am
  * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -50,7 +50,7 @@ class TextField extends React.Component {
     super(props);
 
     this.state = {
-      charCount: 0
+      charCount: this.props.value ? this.props.value.length : 0
     };
   }
 
