@@ -6,8 +6,8 @@
  * File Created: Monday, 8th February 2021 4:50 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 4th August 2021 4:28 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Tuesday, 2nd November 2021 2:57 pm
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -148,7 +148,8 @@ class SelectField extends React.Component {
           <span
             data-testid={'select-option'}
             key={index}
-            style={{ fontWeight: part.highlight ? 700 : 400 }}>
+            style={{ fontWeight: part.highlight ? 700 : 400 }}
+          >
             {part.text}
           </span>
         ))}
@@ -181,7 +182,7 @@ class SelectField extends React.Component {
         disabled={this.props.isDisabled}
         multiple={this.props.isMultiple ? true : false}
         options={options}
-        getOptionLabel={(option) => this.getOptionLabel(option)}
+        getOptionLabel={(option) => this.getOptionLabel(option) || ''}
         value={selectedValues}
         getOptionSelected={(option, option2) =>
           this.isOptionSelected(option, option2)
