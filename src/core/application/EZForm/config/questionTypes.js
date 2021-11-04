@@ -7,7 +7,7 @@
  * File Created: Monday, 16th August 2021 1:48 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 25th October 2021 3:25 pm
+ * Last Modified: Thursday, 4th November 2021 12:33 pm
  * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -73,7 +73,7 @@ const response = {
         question: question.identifier,
         questionGroupId: question.groupIdentifier,
         value: Array.isArray(question.value)
-          ? question.value[0]
+          ? question.value[0].toISOString().split('T')[0]
           : question.value
       }
     ];
