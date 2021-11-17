@@ -6,11 +6,13 @@
  * File Created: Tuesday, 27th April 2021 5:07 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 28th May 2021 1:54 pm
+ * Last Modified: Friday, 20th August 2021 2:19 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
+
+import { getQuestionConfig } from '../config/questionTypes';
 
 /**
  * EZForm question response parser
@@ -18,113 +20,38 @@
  * @class EZFormResponseParser
  */
 class EZFormResponseParser {
-
-	/**
-	 * Gets the response array for an EZForm
-	 *
-	 * @param {*} ezformData - EZForm data object
-	 * @returns {*} Array of EZForm question responses
-	 * @memberof EZFormResponseParser
-	 */
-	getResponseDataForEZForm(ezformData){
-		let data = [];
-		for (let x = 0; x < ezformData.pages.length; x++) {
-            const page = ezformData.pages[x];
-            for (let y = 0; y < page.questions.length; y++) {
-                const question = page.questions[y];
-                let values = this.getResponseValuesFromQuestion(question);
-                for (var z = 0; z < values.length; z++) {
-                    data.push(values[z]);
-                }
-            }
-		}
-		return data;
-	}
-
-    /**
-     * Gets the current value(s) for a question to send as a response to the backend
-     *
-     * @param {*} question Question object
-     * @returns {*} Array of values
-     * @memberof EZForm
-     */
-    getResponseValuesFromQuestion(question) {
-        const dictionary = {
-            ENTRY: this.getEntryValue.bind(this),
-            MULTI: this.getMultiValue.bind(this),
-            CHOICE: this.getChoiceValue.bind(this),
-        };
-
-        return dictionary[question.type](question);
-    }
-
-    /**
-     * Gets value for an Entry question
-     *
-     * @param {*} question Question object
-     * @returns {Array.<{isValid: boolean, errorMessage: string}>} Value object
-     * @memberof EZForm
-     */
-    getEntryValue(question) {
-        if (question.value == null || question.value.length === 0) {
-            return [];
+  /**
+   * Gets the response array for an EZForm
+   *
+   * @param {*} ezformData - EZForm data object
+   * @returns {*} Array of EZForm question responses
+   * @memberof EZFormResponseParser
+   */
+  getResponseDataForEZForm(ezformData) {
+    let data = [];
+    for (let page of ezformData.pages) {
+      for (let question of page.questions) {
+        let values = this.getResponseValuesFromQuestion(question);
+        for (var value of values) {
+          data.push(value);
         }
-
-        return [
-            {
-				question: question.identifier,
-				questionGroupId: question.groupIdentifier,
-                value: question.value[0],
-            },
-        ];
+      }
     }
+    return data;
+  }
 
-    /**
-     * Gets value for a Multi question
-     *
-     * @param {*} question Question object
-     * @returns {Array.<{isValid: boolean, errorMessage: string}>} Value object
-     * @memberof EZForm
-     */
-    getMultiValue(question) {
-        let values = [];
-        for (let x = 0; x < question.value.length; x++) {
-            const value =
-                question.altResponseId === question.value[x].identifier
-                    ? question.value[x].value
-                    : question.value[x].displayText;
-            values.push({
-                question: question.identifier,
-                questionGroupId: question.groupIdentifier,
-                value: value,
-            });
-        }
-        return values;
-    }
-
-    /**
-     * Gets value for a Choice question
-     *
-     * @param {*} question Question object
-     * @returns {Array.<{isValid: boolean, errorMessage: string}>} Value object
-     * @memberof EZForm
-     */
-    getChoiceValue(question) {
-        if (question.value == null || question.value.length === 0) return [];
-
-        const value =
-            question.altResponseId === question.value[0].identifier
-                ? question.value[0].value
-                : question.value[0].displayText;
-
-        return [
-            {
-                question: question.identifier,
-                questionGroupId: question.groupIdentifier,
-                value: value,
-            },
-        ];
-    }
+  /**
+   * Gets the current value(s) for a question to send as a response to the backend
+   *
+   * @param {*} question Question object
+   * @returns {*} Array of values
+   * @memberof EZForm
+   */
+  getResponseValuesFromQuestion(question) {
+    const { type, dataType } = question;
+    const questionConfig = getQuestionConfig(type, dataType.code);
+    return questionConfig.getResponse(question);
+  }
 }
 
 export default EZFormResponseParser;

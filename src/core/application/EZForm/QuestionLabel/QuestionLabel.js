@@ -6,7 +6,7 @@
  * File Created: Wednesday, 10th February 2021 11:08 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 28th May 2021 11:56 am
+ * Last Modified: Wednesday, 30th June 2021 1:53 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -47,7 +47,7 @@ QuestionLabel.defaultProps = {
 
 QuestionLabel.propTypes = {
 	number: PropTypes.number,
-	label: PropTypes.string.required,
+	label: PropTypes.string,
 	helperText: PropTypes.string,
 	required: PropTypes.bool
 };

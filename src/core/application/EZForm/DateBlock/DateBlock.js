@@ -6,7 +6,7 @@
  * File Created: Friday, 19th February 2021 10:39 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 28th May 2021 11:12 am
+ * Last Modified: Tuesday, 10th August 2021 4:55 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -24,82 +24,62 @@ import ErrorLabel from '../ErrorLabel';
  * Class for Select pickers on survey forms
  */
 class DateBlock extends React.Component {
-    /**
-     * Creates an instance of DateBlock.
-     * @param {*} props Component props
-     * @memberof DateBlock
-     */
-    constructor(props) {
-        super(props);
+  /**
+   * Event handler for value change events
+   *
+   * @param {object} output - Event handler event
+   * @memberof DateBlock
+   */
+  onValueChanged(output) {
+    if (output == null) {
+      output = [];
+    } else if (output.constructor !== Array) {
+      output = [output];
     }
+    this.props.onValueChanged(output);
+  }
 
-    /**
-     * Event handler for value change events
-     *
-     * @param {object} output - Event handler event
-     * @memberof DateBlock
-     */
-    onValueChanged(output) {
-		if (output == null){
-			output = [];
-		}else if (output.constructor !== Array) {
-            output = [output];
-        }
-        this.props.onValueChanged(this.props.identifier, output);
-    }
-
-	/**
-	 * Renders Date Block component
-	 *
-	 * @returns {*} Date Block component
-	 * @memberof DateBlock
-	 */
-	render() {
-		const {label, ...leftovers} = this.props;
-
-        return (
-            <>
-                <QuestionLabel
-                    label={label}
-                    helperText={this.props.helperText}
-                    required={this.props.required}
-                    number={this.props.number}
-                />
-                <div className='question-input-wrapper pl-5'>
-                    <FormControl fullWidth>
-                        <DateField
-                            {...leftovers}
-                            onValueChanged={this.onValueChanged.bind(this)}
-                        />
-                    </FormControl>
-                    <ErrorLabel
-                        isValid={this.props.isValid}
-                        errorMessage={this.props.errorMessage}
-                    />
-                </div>
-            </>
-        );
-    }
+  /**
+   * Renders Date Block component
+   *
+   * @returns {*} Date Block component
+   * @memberof DateBlock
+   */
+  render() {
+    return (
+      <div className="question-input-wrapper">
+        <FormControl fullWidth>
+          <DateField
+            {...this.props}
+            onValueChanged={this.onValueChanged.bind(this)}
+          />
+        </FormControl>
+        <ErrorLabel
+          isValid={this.props.isValid}
+          errorMessage={this.props.errorMessage}
+        />
+      </div>
+    );
+  }
 }
 
 DateBlock.defaultProps = {
-    variant: "standard",
-    required: false,
+  variant: 'standard',
+  required: false
 };
 
 DateBlock.propTypes = {
-    value: PropTypes.arrayOf(PropTypes.any),
-    isValid: PropTypes.bool,
-    errorMessage: PropTypes.string,
+  value: PropTypes.arrayOf(PropTypes.any),
+  isValid: PropTypes.bool,
+  errorMessage: PropTypes.string,
 
-    identifier: PropTypes.string.isRequired,
-    variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
-    number: PropTypes.number,
-    label: PropTypes.string.isRequired,
-    onValueChanged: PropTypes.func.isRequired,
-    placeholder: PropTypes.string,
-    helperText: PropTypes.string,
-    required: PropTypes.bool,
+  identifier: PropTypes.string.isRequired,
+  variant: PropTypes.oneOf(['standard', 'filled', 'outlined']),
+  number: PropTypes.number,
+  onValueChanged: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  helperText: PropTypes.string,
+  required: PropTypes.bool
 };
 
 export default DateBlock;

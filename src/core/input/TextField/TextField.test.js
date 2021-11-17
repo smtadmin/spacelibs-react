@@ -6,8 +6,8 @@
  * File Created: Thursday, 11th February 2021 12:08 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 12th February 2021 10:53 am
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Friday, 30th July 2021 4:34 pm
+ * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -19,66 +19,66 @@ import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 
 const blankProps = {
-	identifier: "1",
-	onValueChanged: ()=>{},
+  identifier: '1',
+  onValueChanged: jest.fn()
 };
 
 const valueProps = {
-	identifier: "1",
-	value: "Hello",
-	onValueChanged: ()=>{},
+  identifier: '1',
+  value: 'Hello',
+  onValueChanged: jest.fn()
 };
 
 const errorTextFieldProps = {
-	identifier: "1",
-	value: "Hello",
-	onValueChanged: ()=>{},
-	hasError: true,
-	subText: "Error message"
+  identifier: '1',
+  value: 'Hello',
+  onValueChanged: jest.fn(),
+  hasError: true,
+  subText: 'Error message'
 };
 
 /**
  * Checks that TextField renders with basic props
  */
-it("Renders with basic props", ()=> {
-	const element = render(<TextField {...blankProps}/>);
-	expect(element).toBeTruthy();
-	expect(element).toMatchSnapshot();
+it('Renders with basic props', () => {
+  const element = render(<TextField {...blankProps} />);
+  expect(element).toBeTruthy();
+  expect(element).toMatchSnapshot();
 });
 
 /**
  * Checks that TextField renders a value in the input when value is passed
  */
-it("Renders with value prop", ()=> {
-	const element = render(<TextField {...valueProps}/>);
+it('Renders with value prop', () => {
+  const element = render(<TextField {...valueProps} />);
 
-	const inputParent = screen.getByTestId('textfield-input');
-	const input = inputParent.children[0].children[0];
+  const input = screen.getByTestId('generic-textfield-input');
 
-	expect(element).toBeTruthy();
-	expect(input.value).toBe(valueProps.value);
+  expect(element).toBeTruthy();
+  expect(input.value).toBe(valueProps.value);
 });
 
 /**
  * Checks that TextField displays error message
  */
-it("Renders with error props", ()=> {
-	const element = render(<TextField {...errorTextFieldProps}/>);
-	expect(element).toBeTruthy();
+it('Renders with error props', () => {
+  const element = render(<TextField {...errorTextFieldProps} />);
+  expect(element).toBeTruthy();
 });
 
 /**
  * Checks that onValueChanged is called when text is entered
  */
-it("Calls onValueChanged when a user types in data", ()=> {
-	const onValueChanged = jest.fn();
-	const element = render(<TextField {...blankProps} onValueChanged={onValueChanged}/>);
-	const inputParent = screen.getByTestId('textfield-input');
-	const input = inputParent.children[0].children[0];
-	
-	userEvent.click(input);
-	userEvent.type(input, "one");
+it('Calls onValueChanged when a user types in data', () => {
+  const onValueChanged = jest.fn();
+  const element = render(
+    <TextField {...blankProps} onValueChanged={onValueChanged} />
+  );
+  const input = screen.getByTestId('generic-textfield-input');
 
-	expect(element).toBeTruthy();
-	expect(onValueChanged).toHaveBeenCalled();
+  userEvent.click(input);
+  userEvent.type(input, 'one');
+
+  expect(element).toBeTruthy();
+  expect(onValueChanged).toHaveBeenCalled();
 });

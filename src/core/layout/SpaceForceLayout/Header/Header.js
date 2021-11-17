@@ -6,51 +6,42 @@
  * File Created: Friday, 29th January 2021 9:57 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th March 2021 11:45 am
+ * Last Modified: Tuesday, 20th July 2021 2:44 pm
  * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
 
-import React from 'react';
+import * as React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Col from 'react-bootstrap/Col';
 import PropTypes from 'prop-types';
 
+/** @jsx jsx */
+import { css, jsx } from "@emotion/react";
+import { useTheme } from "@material-ui/core/styles";
+
 /**
- * Component that wraps and formats page header content
+ * Header Component
+ *
+ * @param {*} props Component props
+ * @returns {*} React component 
  */
-class Header extends React.Component {
+function Header(props) {
+	const theme = useTheme();
 
-    /**
-     * Creates an instance of the Header Class
-     * @param {*} props Header Props
-     */
-    constructor(props) {
-        super(props);
-    }
-
-	/**
-	 * Renders Header Component
-	 *
-	 * @returns {*} React Components 
-	 * @memberof Header
-	 */
-	render() {
-        return (
-            <Navbar id="header-container" className={this.props.bootstrap}>
-                <Col className="header-left col-1">
-                    {this.props.left}
-                </Col>
-                <Col className="header-center col-10">
-                    {this.props.center}
-                </Col>
-                <Col className="header-right col-1">
-                    {this.props.right}
-                </Col>
-            </Navbar>
-        );
-    }
+	return (
+        <Navbar
+            id='header-container'
+            className={props.bootstrap}
+            css={css`
+                background-color: ${theme.palette.primary.mainOriginal};
+            `}>
+            <Col className='header-left col-2'>{props.left}</Col>
+            <Col className='header-center col-8'>{props.center}</Col>
+            <Col className='header-right col-2'>{props.right}</Col>
+        </Navbar>
+    );
 }
 
 /** Sets Default Props */

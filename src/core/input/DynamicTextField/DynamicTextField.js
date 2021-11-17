@@ -6,8 +6,8 @@
  * File Created: Friday, 14th May 2021 4:03 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 18th June 2021 9:38 am
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Thursday, 29th July 2021 1:58 pm
+ * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -16,99 +16,117 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '../TextField';
 
+/** Styles */
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
+import { useTheme } from '@material-ui/core/styles';
+
 /**
  * Dynamic TextField component
- * 
+ *
  * @param {*} props Component props
- * @returns {*} React element 
+ * @returns {*} React element
  */
-function DynamicTextField(props){
-	if (props.isEditing) {
-        return (
-            <div
-                className={"dynamic-label " + props.className}
-                data-testid='dynamic-label'>
-                <TextField
-                    multiline={props.multiline}
-                    hasError={props.hasError}
-                    subText={props.subText}
-                    inputProps={{
-                        style: {
-                            fontSize: props.fontSize + "px",
-                        },
-                    }}
-                    autoFocus
-                    className={"input"}
-                    onValueChanged={(text) => {
-                        props.callbacks.onChange(props.identifier, text);
-                    }}
-                    onFocus={(event) => {
-                        if (props.selectOnFocus) event.target.select();
-                    }}
-                    onBlur={() => {
-                        props.callbacks.onBlur(props.identifier);
-                    }}
-                    value={props.value}
-                />
-            </div>
-        );
-    } else if (props.canEdit) {
-        return (
-            <div
-                tabIndex={0}
-                onFocus={() => {
-                    props.callbacks.onFocus(props.identifier);
-                }}
-                style={{
-                    fontSize: props.fontSize,
-                    height: props.fontSize + props.bottomBarOffset + "px",
-                }}
-                onClick={() => {
-                    props.callbacks.onFocus(props.identifier);
-                }}
-                className={"dynamic-label text can-edit " + props.className}
-				data-testid='dynamic-label'>
-                {props.value}
-            </div>
-        );
-    } else {
-        return (
-            <div
-                className={"dynamic-label text " + props.className}
-                data-testid='dynamic-label'
-                style={{
-                    fontSize: props.fontSize,
-                    height: props.fontSize + props.bottomBarOffset + "px",
-                }}>
-                {props.value}
-            </div>
-        );
-    }
+function DynamicTextField(props) {
+  const palette = useTheme().palette;
+  const testid = `${props['data-testid']}-dynamic`;
+  const labelid = testid + '-label';
+
+  if (props.isEditing) {
+    return (
+      <div className={'dynamic-label ' + props.className} data-testid={labelid}>
+        <TextField
+          data-testid={testid}
+          multiline={props.multiline}
+          hasError={props.hasError}
+          subText={props.subText}
+          inputProps={{
+            style: {
+              fontSize: props.fontSize + 'px'
+            }
+          }}
+          autoFocus
+          className={'input'}
+          onValueChanged={(text) => {
+            props.callbacks.onChange(props.identifier, text);
+          }}
+          onFocus={(event) => {
+            if (props.selectOnFocus) event.target.select();
+          }}
+          onBlur={() => {
+            props.callbacks.onBlur(props.identifier);
+          }}
+          value={props.value}
+        />
+      </div>
+    );
+  } else if (props.canEdit) {
+    return (
+      <div
+        tabIndex={0}
+        onFocus={() => {
+          props.callbacks.onFocus(props.identifier);
+        }}
+        style={{
+          fontSize: props.fontSize,
+          height: props.fontSize + props.bottomBarOffset + 'px'
+        }}
+        onClick={() => {
+          props.callbacks.onFocus(props.identifier);
+        }}
+        className={'dynamic-label text can-edit ' + props.className}
+        css={css`
+          color: ${palette.text.primary};
+          border-color: ${palette.background.divider};
+        `}
+        data-testid={labelid}>
+        {props.value}
+      </div>
+    );
+  } else {
+    return (
+      <div
+        className={'dynamic-label text ' + props.className}
+        data-testid={labelid}
+        style={{
+          fontSize: props.fontSize,
+          height: props.fontSize + props.bottomBarOffset + 'px'
+        }}
+        css={css`
+          color: ${palette.text.primary};
+          border-color: ${palette.background.divider};
+        `}>
+        {props.value}
+      </div>
+    );
+  }
 }
 
 DynamicTextField.defaultProps = {
-    fontSize: 16,
-	bottomBarOffset: 10,
-	className: ""
+  fontSize: 16,
+  bottomBarOffset: 10,
+  className: '',
+  'data-testid': 'generic'
 };
 
 DynamicTextField.propTypes = {
-	className: PropTypes.string,
-    value: PropTypes.string.isRequired,
-    hasError: PropTypes.bool,
-	subText: PropTypes.string,
-	fontSize: PropTypes.number,
-	bottomBarOffset: PropTypes.number,
-	multiline: PropTypes.bool,
-    canEdit: PropTypes.bool,
-    isEditing: PropTypes.bool,
-	identifier: PropTypes.string,
-	selectOnFocus: PropTypes.bool,
-    callbacks: PropTypes.shape({
-        onBlur: PropTypes.func,
-        onChange: PropTypes.func,
-        onFocus: PropTypes.func,
-    }),
+  className: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  hasError: PropTypes.bool,
+  subText: PropTypes.string,
+  fontSize: PropTypes.number,
+  bottomBarOffset: PropTypes.number,
+  'data-testid': PropTypes.string,
+  multiline: PropTypes.bool,
+  canEdit: PropTypes.bool,
+  isEditing: PropTypes.bool,
+  identifier: PropTypes.string,
+  selectOnFocus: PropTypes.bool,
+  callbacks: PropTypes.shape({
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onFocus: PropTypes.func
+  })
 };
 
 export default DynamicTextField;
