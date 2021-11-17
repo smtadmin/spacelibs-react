@@ -2,11 +2,11 @@
  * File: /src/core/input/DateField/DateField.js
  * Version: 0.0.2
  * Project: @siliconmtn/spacelibs-react
- * Description: Spacelibs date field
+ * Description: Spacelibs date field with no keyboard input
  * File Created: Tuesday, 9th February 2021 3:31 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 8th November 2021 10:42 am
+ * Last Modified: Tuesday, 16th November 2021 2:13 pm
  * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -17,10 +17,7 @@ import PropTypes from 'prop-types';
 
 import MomentUtils from '@date-io/moment';
 import Grid from '@material-ui/core/Grid';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, DatePicker } from '@material-ui/pickers';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 /**
@@ -75,13 +72,14 @@ class DateField extends React.Component {
       <>
         <MuiPickersUtilsProvider utils={MomentUtils}>
           <Grid container>
-            <KeyboardDatePicker
+            <DatePicker
+              minDate={this.props.minDate}
               autoOk={this.props.closeOnSelect}
               data-testid={'date-input'}
               disableToolbar
               disabled={this.props.isDisabled}
               variant='inline'
-              format='MM/DD/yyyy'
+              format={this.props.format}
               margin='normal'
               label={this.props.label}
               placeholder={this.props.placeholder}
@@ -89,6 +87,7 @@ class DateField extends React.Component {
               disabledToolbar={this.props.disabledToolbar}
               views={this.props.views}
               onChange={this.onValueChanged.bind(this)}
+              allowKeyboardControl={true}
               KeyboardButtonProps={{}}
             />
           </Grid>
@@ -143,7 +142,9 @@ DateField.propTypes = {
   // Toolbar disabled/enabled
   disabledToolbar: PropTypes.bool,
 
-  views: PropTypes.array
+  views: PropTypes.array,
+
+  minDate: PropTypes.any
 };
 
 export default DateField;

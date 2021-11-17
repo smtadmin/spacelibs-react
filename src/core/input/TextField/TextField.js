@@ -6,8 +6,8 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 21st October 2021 10:32 am
- * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
+ * Last Modified: Thursday, 4th November 2021 1:12 pm
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -76,7 +76,7 @@ class TextField extends React.Component {
     const InputProps = this.props.startAdornment
       ? {
           startAdornment: (
-            <InputAdornment position="start">
+            <InputAdornment position='start'>
               {this.props.startAdornment}
             </InputAdornment>
           )
@@ -152,7 +152,7 @@ TextField.propTypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   inputProps: PropTypes.any,
-  value: PropTypes.string,
+  value: PropTypes.any,
   hasError: PropTypes.bool,
   multiline: PropTypes.bool,
   rowsMax: PropTypes.number,
