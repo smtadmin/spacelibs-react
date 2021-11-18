@@ -7,8 +7,8 @@
  * File Created: Monday, 16th August 2021 1:48 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 4th November 2021 12:33 pm
- * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
+ * Last Modified: Thursday, 18th November 2021 9:50 am
+ * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -251,7 +251,12 @@ export const questionTypes = {
       validate: validation.entry
     },
     previewComponent: (
-      <TextField isDisabled multiline={true} label={'Your Answer Here'} />
+      <TextField
+        isDisabled
+        multiline={true}
+        label={'Your Answer Here'}
+        onValueChanged={() => {}}
+      />
     ),
     getComponent: (params) => (
       <TextField {...params} multiline={true} maxLength={200} />
