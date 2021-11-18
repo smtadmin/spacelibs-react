@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 3:31 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 8th November 2021 10:42 am
+ * Last Modified: Thursday, 18th November 2021 1:58 pm
  * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -78,7 +78,6 @@ class DateField extends React.Component {
             <KeyboardDatePicker
               autoOk={this.props.closeOnSelect}
               data-testid={'date-input'}
-              disableToolbar
               disabled={this.props.isDisabled}
               variant='inline'
               format='MM/DD/yyyy'
@@ -86,7 +85,7 @@ class DateField extends React.Component {
               label={this.props.label}
               placeholder={this.props.placeholder}
               value={date}
-              disabledToolbar={this.props.disabledToolbar}
+              disabledToolbar={this.props.disabledtoolbar}
               views={this.props.views}
               onChange={this.onValueChanged.bind(this)}
               KeyboardButtonProps={{}}
@@ -118,7 +117,7 @@ DateField.propTypes = {
   closeOnSelect: PropTypes.bool,
 
   // Value of the date field, shown in the input
-  value: PropTypes.arrayOf(PropTypes.any),
+  value: PropTypes.any,
 
   // Whether or not datefield is in error
   hasError: PropTypes.bool,
@@ -141,7 +140,7 @@ DateField.propTypes = {
   onValueChanged: PropTypes.func,
 
   // Toolbar disabled/enabled
-  disabledToolbar: PropTypes.bool,
+  disabledtoolbar: PropTypes.bool,
 
   views: PropTypes.array
 };

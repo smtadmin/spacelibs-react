@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 3:31 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 16th November 2021 2:13 pm
+ * Last Modified: Thursday, 18th November 2021 1:42 pm
  * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -76,7 +76,6 @@ class DateField extends React.Component {
               minDate={this.props.minDate}
               autoOk={this.props.closeOnSelect}
               data-testid={'date-input'}
-              disableToolbar
               disabled={this.props.isDisabled}
               variant='inline'
               format={this.props.format}
@@ -84,11 +83,10 @@ class DateField extends React.Component {
               label={this.props.label}
               placeholder={this.props.placeholder}
               value={date}
-              disabledToolbar={this.props.disabledToolbar}
+              disabledtoolbar={this.props.disabledToolbar}
               views={this.props.views}
               onChange={this.onValueChanged.bind(this)}
               allowKeyboardControl={true}
-              KeyboardButtonProps={{}}
             />
           </Grid>
         </MuiPickersUtilsProvider>
