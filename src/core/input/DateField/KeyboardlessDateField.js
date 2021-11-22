@@ -6,7 +6,7 @@
  * File Created: Tuesday, 9th February 2021 3:31 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 18th November 2021 1:42 pm
+ * Last Modified: Monday, 22nd November 2021 1:34 pm
  * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -83,7 +83,7 @@ class DateField extends React.Component {
               label={this.props.label}
               placeholder={this.props.placeholder}
               value={date}
-              disabledtoolbar={this.props.disabledToolbar}
+              disabledtoolbar={this.props.disabledtoolbar}
               views={this.props.views}
               onChange={this.onValueChanged.bind(this)}
               allowKeyboardControl={true}
@@ -138,7 +138,7 @@ DateField.propTypes = {
   onValueChanged: PropTypes.func,
 
   // Toolbar disabled/enabled
-  disabledToolbar: PropTypes.bool,
+  disabledtoolbar: PropTypes.bool,
 
   views: PropTypes.array,
 
