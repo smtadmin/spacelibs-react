@@ -67,6 +67,7 @@
     "moment": "^2.29.1",
     "mui": "^0.0.1",
     "react-bootstrap": "^1.5.2",
+    "react-chartjs-2": "^4.0.0",
     "react-custom-scroller": "^1.0.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
