@@ -6,8 +6,8 @@
  * File Created: Tuesday, 2nd March 2021 9:42 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Friday, 30th July 2021 4:22 pm
- * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
+ * Last Modified: Wednesday, 8th December 2021 2:07 pm
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -30,7 +30,19 @@ jest.mock('../../../input/CheckboxGroup', () => {
 const normalProps = {
   label: 'What is your birthday',
   number: 1,
-  value: [],
+  value: [
+    {
+      identifier: 'A',
+      displayText: 'Option A',
+      isSelected: undefined,
+      isDisabled: undefined
+    },
+    {
+      identifier: 'B',
+      displayText: 'Option B',
+      isDisabled: false
+    }
+  ],
   identifier: '1',
   onValueChanged: jest.fn(),
   config: {
