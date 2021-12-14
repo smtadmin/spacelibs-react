@@ -6,7 +6,7 @@
  * File Created: Wednesday, 8th December 2021 1:46 pm
  * Author: Daniel Fong (daniel.fong@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 8th December 2021 1:47 pm
+ * Last Modified: Thursday, 9th December 2021 5:02 pm
  * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -52,13 +52,15 @@ RadarChart.propTypes = {
   'data-testid': PropTypes.string,
   data: PropTypes.shape({
     labels: PropTypes.array,
-    datasets: PropTypes.shape({
-      label: PropTypes.string,
-      data: PropTypes.array,
-      backgroundColor: PropTypes.array,
-      borderColor: PropTypes.array,
-      borderWidth: PropTypes.number
-    })
+    datasets: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string,
+        data: PropTypes.array,
+        backgroundColor: PropTypes.array,
+        borderColor: PropTypes.array,
+        borderWidth: PropTypes.number
+      })
+    )
   }),
   options: PropTypes.shape({
     responsive: PropTypes.bool,

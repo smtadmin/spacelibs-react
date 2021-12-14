@@ -6,7 +6,7 @@
  * File Created: Wednesday, 8th December 2021 11:32 am
  * Author: Daniel Fong (daniel.fong@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 8th December 2021 11:42 am
+ * Last Modified: Thursday, 9th December 2021 5:01 pm
  * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -54,13 +54,15 @@ LineChart.propTypes = {
   'data-testid': PropTypes.string,
   data: PropTypes.shape({
     labels: PropTypes.array,
-    datasets: PropTypes.shape({
-      label: PropTypes.string,
-      data: PropTypes.array,
-      backgroundColor: PropTypes.array,
-      borderColor: PropTypes.array,
-      borderWidth: PropTypes.number
-    })
+    datasets: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string,
+        data: PropTypes.array,
+        backgroundColor: PropTypes.array,
+        borderColor: PropTypes.array,
+        borderWidth: PropTypes.number
+      })
+    )
   }),
   options: PropTypes.shape({
     responsive: PropTypes.bool,
