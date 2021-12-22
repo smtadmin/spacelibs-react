@@ -6,7 +6,7 @@
  * File Created: Wednesday, 8th December 2021 11:32 am
  * Author: Daniel Fong (daniel.fong@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 9th December 2021 5:01 pm
+ * Last Modified: Wednesday, 22nd December 2021 3:03 pm
  * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -73,6 +73,20 @@ LineChart.propTypes = {
       title: PropTypes.shape({
         display: PropTypes.bool,
         text: PropTypes.string
+      })
+    }),
+    scales: PropTypes.shape({
+      y: PropTypes.shape({
+        title: PropTypes.shape({
+          display: PropTypes.bool,
+          text: PropTypes.string
+        })
+      }),
+      x: PropTypes.shape({
+        title: PropTypes.shape({
+          display: PropTypes.bool,
+          text: PropTypes.string
+        })
       })
     })
   })

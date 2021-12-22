@@ -6,7 +6,7 @@
  * File Created: Wednesday, 8th December 2021 1:53 pm
  * Author: Daniel Fong (daniel.fong@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 9th December 2021 5:00 pm
+ * Last Modified: Wednesday, 22nd December 2021 3:03 pm
  * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -26,7 +26,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 function DoughnutChart(props) {
   return (
     <Doughnut
-      options={props.options}
+      options={{ ...props.options, scales: {} }}
       data={props.data}
       data-testid={props['data-testid'] + '-doughnut-chart'}
     />
@@ -56,6 +56,20 @@ DoughnutChart.propTypes = {
       title: PropTypes.shape({
         display: PropTypes.bool,
         text: PropTypes.string
+      })
+    }),
+    scales: PropTypes.shape({
+      y: PropTypes.shape({
+        title: PropTypes.shape({
+          display: PropTypes.bool,
+          text: PropTypes.string
+        })
+      }),
+      x: PropTypes.shape({
+        title: PropTypes.shape({
+          display: PropTypes.bool,
+          text: PropTypes.string
+        })
       })
     })
   })

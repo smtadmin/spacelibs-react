@@ -6,7 +6,7 @@
  * File Created: Wednesday, 8th December 2021 1:46 pm
  * Author: Daniel Fong (daniel.fong@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 9th December 2021 5:02 pm
+ * Last Modified: Wednesday, 22nd December 2021 3:04 pm
  * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -41,7 +41,7 @@ ChartJS.register(
 function RadarChart(props) {
   return (
     <Radar
-      options={props.options}
+      options={{ ...props.options, scales: {} }}
       data={props.data}
       data-testid={props['data-testid'] + '-radar-chart'}
     />
@@ -71,6 +71,20 @@ RadarChart.propTypes = {
       title: PropTypes.shape({
         display: PropTypes.bool,
         text: PropTypes.string
+      })
+    }),
+    scales: PropTypes.shape({
+      y: PropTypes.shape({
+        title: PropTypes.shape({
+          display: PropTypes.bool,
+          text: PropTypes.string
+        })
+      }),
+      x: PropTypes.shape({
+        title: PropTypes.shape({
+          display: PropTypes.bool,
+          text: PropTypes.string
+        })
       })
     })
   })

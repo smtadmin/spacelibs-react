@@ -6,7 +6,7 @@
  * File Created: Monday, 6th December 2021 3:40 pm
  * Author: Daniel Fong (daniel.fong@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 9th December 2021 5:01 pm
+ * Last Modified: Wednesday, 22nd December 2021 3:01 pm
  * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -72,6 +72,20 @@ BarChart.propTypes = {
       title: PropTypes.shape({
         display: PropTypes.bool,
         text: PropTypes.string
+      })
+    }),
+    scales: PropTypes.shape({
+      y: PropTypes.shape({
+        title: PropTypes.shape({
+          display: PropTypes.bool,
+          text: PropTypes.string
+        })
+      }),
+      x: PropTypes.shape({
+        title: PropTypes.shape({
+          display: PropTypes.bool,
+          text: PropTypes.string
+        })
       })
     })
   })
