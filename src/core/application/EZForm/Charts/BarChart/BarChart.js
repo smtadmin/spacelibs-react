@@ -6,8 +6,8 @@
  * File Created: Monday, 6th December 2021 3:40 pm
  * Author: Daniel Fong (daniel.fong@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 22nd December 2021 3:01 pm
- * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
+ * Last Modified: Wednesday, 29th December 2021 11:17 am
+ * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -42,6 +42,7 @@ ChartJS.register(
 function BarChart(props) {
   return (
     <Bar
+      ref={props.forwardedRef}
       options={props.options}
       data={props.data}
       data-testid={`${props['data-testid']}-bar-chart`}
@@ -50,6 +51,7 @@ function BarChart(props) {
 }
 
 BarChart.propTypes = {
+  forwardedRef: PropTypes.object,
   'data-testid': PropTypes.string,
   data: PropTypes.shape({
     labels: PropTypes.array,

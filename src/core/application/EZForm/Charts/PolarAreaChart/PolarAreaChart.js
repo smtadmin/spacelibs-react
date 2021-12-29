@@ -6,8 +6,8 @@
  * File Created: Wednesday, 8th December 2021 11:43 am
  * Author: Daniel Fong (daniel.fong@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 22nd December 2021 3:04 pm
- * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
+ * Last Modified: Wednesday, 29th December 2021 11:23 am
+ * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -32,6 +32,7 @@ ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 function PolarAreaChart(props) {
   return (
     <PolarArea
+      ref={props.forwardedRef}
       options={{ ...props.options, scales: {} }}
       data={props.data}
       data-testid={props['data-testid'] + '-polar-area-chart'}
@@ -40,6 +41,7 @@ function PolarAreaChart(props) {
 }
 
 PolarAreaChart.propTypes = {
+  forwardedRef: PropTypes.object,
   'data-testid': PropTypes.string,
   data: PropTypes.shape({
     labels: PropTypes.array,

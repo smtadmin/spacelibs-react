@@ -6,8 +6,8 @@
  * File Created: Wednesday, 8th December 2021 1:46 pm
  * Author: Daniel Fong (daniel.fong@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 22nd December 2021 3:04 pm
- * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
+ * Last Modified: Wednesday, 29th December 2021 11:23 am
+ * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -41,6 +41,7 @@ ChartJS.register(
 function RadarChart(props) {
   return (
     <Radar
+      ref={props.forwardedRef}
       options={{ ...props.options, scales: {} }}
       data={props.data}
       data-testid={props['data-testid'] + '-radar-chart'}
@@ -49,6 +50,7 @@ function RadarChart(props) {
 }
 
 RadarChart.propTypes = {
+  forwardedRef: PropTypes.object,
   'data-testid': PropTypes.string,
   data: PropTypes.shape({
     labels: PropTypes.array,
