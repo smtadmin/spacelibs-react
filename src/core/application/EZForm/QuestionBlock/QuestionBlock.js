@@ -6,8 +6,8 @@
  * File Created: Tuesday, 9th February 2021 6:10 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 16th August 2021 1:54 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Sunday, 27th February 2022 2:32 pm
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -23,6 +23,23 @@ import LikertScale from '../QuestionType/LikertScale';
 import { getQuestionConfig } from '../config/questionTypes';
 import QuestionLabel from '../QuestionLabel';
 import { deepEqual } from 'fast-equals';
+import { withTheme } from '@material-ui/core/styles';
+
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
+
+// const QuestionBox = styled.div`
+//   padding-top: 1em;
+//   padding-left: 2em;
+//   border: 0.1em solid #f0f0f0;
+//   border-left: 0.5em solid white;
+//   box-shadow: 0.1em 0.2em 0.1em grey, inset 0.3em 0 0 0 #034e77;
+//   border-radius: 0.5em;
+// `;
+
+// const ThemedQuestionBox = withStyles((theme) => ({
+//   root: { backgroundColor: theme.palette.primary.light }
+// }))(QuestionBox);
 
 /**
  * Question Factory
@@ -155,6 +172,11 @@ class QuestionBlock extends React.Component {
    *
    * @returns {*} - Rendered component
    * @memberof QuestionBlock
+  /**
+   *
+   *
+   * @return {*} 
+   * @memberof QuestionBlock
    */
   render() {
     const type = this.props.type;
@@ -169,15 +191,29 @@ class QuestionBlock extends React.Component {
 
     const questionConfig = getQuestionConfig(type, dataType);
     return (
-      <div className={'question-block-wrapper pt-3 pl-5'}>
-        <QuestionLabel
-          label={label}
-          helperText={this.props.helperText}
-          required={this.props.required}
-          number={this.props.number}
-        />
-        <div className="pl-5 pt-2">
-          {questionConfig.getComponent(questionProps)}
+      <div className={'question-block-wrapper pt-3 pl-1'}>
+        <div
+          css={css`
+            padding-top: 1em;
+            padding-left: 2em;
+            border: 0.1em solid ${this.props.theme.palette.secondary.main};
+            border-left: 0.5em solid ${this.props.theme.palette.secondary.main};
+            box-shadow: 0.1em 0.2em 0.1em
+                ${this.props.theme.palette.secondary.main},
+              inset 0.2em 0 0 0 ${this.props.theme.palette.primary.main};
+            border-radius: 0.5em;
+          `}
+        >
+          <QuestionLabel
+            label={label}
+            helperText={this.props.helperText}
+            required={this.props.required}
+            number={this.props.number}
+          />
+
+          <div className='pt-2'>
+            {questionConfig.getComponent(questionProps)}
+          </div>
         </div>
       </div>
     );
@@ -240,4 +276,4 @@ QuestionBlock.propTypes = {
 
 const areEqual = (prevProps, nextProps) => deepEqual(prevProps, nextProps);
 
-export default React.memo(QuestionBlock, areEqual);
+export default withTheme(React.memo(QuestionBlock, areEqual));

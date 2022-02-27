@@ -6,8 +6,8 @@
  * File Created: Friday, 19th February 2021 2:05 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wednesday, 18th August 2021 1:35 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Thursday, 24th February 2022 1:13 pm
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -29,20 +29,21 @@ function EZFormPage(props) {
   const theme = useTheme();
   return (
     <div
-      className="form-page-wrapper"
+      className='form-page-wrapper'
       css={css`
         color: ${theme.palette.text.primary};
-      `}>
-      <h2 data-testid="page-title" className="form-header">
+      `}
+    >
+      <h2 data-testid='page-title' className='form-header'>
         {props.title}
       </h2>
-      <p data-testid="page-desc" className="form-description">
+      <p data-testid='page-desc' className='form-description'>
         {props.description}
       </p>
-      <p className="required-page-header">
+      <p className='required-page-header'>
         Required <span style={{ color: 'red' }}>*</span>
       </p>
-      <div data-testid="question-list">
+      <div data-testid='question-list'>
         {props.questions &&
           props.questions.map((question) => (
             <QuestionBlock
