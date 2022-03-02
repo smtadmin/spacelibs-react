@@ -6,7 +6,7 @@
  * File Created: Tuesday, 27th April 2021 4:00 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 4th November 2021 10:37 am
+ * Last Modified: Wednesday, 2nd March 2022 11:52 am
  * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -241,17 +241,10 @@ class EZFormBase extends React.Component {
     const currentPage = copy(this.state.data.pages[this.state.currentPage]);
     return (
       <>
-        <div
-          className='ezform-title'
-          css={css`
-            color: ${this.props.theme.palette.text.secondary};
-          `}
-        >
-          {this.state.data.name}
-        </div>
         <EZFormPage
           onValueChanged={this.onValueChanged.bind(this)}
           {...currentPage}
+          formName={this.state.data.name}
         />
         {this.getBottomElements()}
       </>
