@@ -6,8 +6,8 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Wed Mar 02 2022
- * Modified By: Daniel Fong
+ * Last Modified: Thu Mar 03 2022
+ * Modified By: danielfong
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -257,7 +257,7 @@ body {
 }
 
 .question-input-wrapper {
-    max-width: 500px;
+    max-width: 650px;
     padding-right: 20px;
 }
 
