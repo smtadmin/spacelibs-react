@@ -6,8 +6,8 @@
  * File Created: Thursday, 11th February 2021 12:37 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 29th July 2021 11:28 am
- * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
+ * Last Modified: Monday, 11th April 2022 10:24 am
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -36,7 +36,8 @@ class Button extends React.Component {
    * @memberof Button
    */
   render() {
-    const { className, startIcon, endIcon, children, ...leftOver } = this.props;
+    const { className, startIcon, endIcon, children, disabled, ...leftOver } =
+      this.props;
     const testId = leftOver['data-testid'];
     delete leftOver['data-testid'];
     return (
@@ -45,7 +46,9 @@ class Button extends React.Component {
         className={'sl-button ' + className}
         startIcon={startIcon ? startIcon : null}
         endIcon={endIcon ? endIcon : null}
-        {...leftOver}>
+        disabled={disabled}
+        {...leftOver}
+      >
         {children}
       </MuiButton>
     );
@@ -58,7 +61,8 @@ class Button extends React.Component {
 Button.defaultProps = {
   variant: 'contained',
   color: 'primary',
-  'data-testid': 'generic'
+  'data-testid': 'generic',
+  disabled: false
 };
 
 /**
@@ -73,7 +77,8 @@ Button.propTypes = {
   onClick: PropTypes.func,
   startIcon: PropTypes.any,
   endIcon: PropTypes.any,
-  className: PropTypes.string
+  className: PropTypes.string,
+  disabled: PropTypes.boolean
 };
 
 export default Button;
