@@ -7,8 +7,8 @@
  * File Created: Monday, 16th August 2021 1:48 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 23rd August 2021 9:47 am
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Tuesday, 1st March 2022 1:46 pm
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -29,11 +29,13 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
 import LinearScaleIcon from '@material-ui/icons/LinearScale';
+import ShortTextIcon from '@material-ui/icons/ShortText';
 import DateBlock from '../DateBlock';
 import CheckBlock from '../CheckBlock';
 
 /* SMT */
 import dataTypes from './dataTypes';
+import TextField from '../../../input/TextField';
 
 /* Gets the Question Type */
 export const getQuestionType = (type, dataType) => {
@@ -70,7 +72,9 @@ const response = {
       {
         question: question.identifier,
         questionGroupId: question.groupIdentifier,
-        value: question.value[0]
+        value: Array.isArray(question.value)
+          ? question.value[0].toISOString().split('T')[0]
+          : question.value
       }
     ];
   },
@@ -135,7 +139,16 @@ const validation = {
   },
   entry: (data) => {
     const hasValues = data.value != null && data.value.length;
-    const value = hasValues ? data.value[0] : null;
+    let value;
+    if (hasValues) {
+      if (Array.isArray(data.value)) {
+        value = data.value[0];
+      } else {
+        value = data.value;
+      }
+    } else {
+      value = null;
+    }
     const dataType = dataTypes[data.dataType.code.toLowerCase()];
     return dataType.validate(value, data.required);
   },
@@ -224,6 +237,30 @@ export const questionTypes = {
     },
     previewComponent: <DateField isDisabled label={'Month, Day, Year'} />,
     getComponent: (params) => <DateBlock {...params} />,
+    getResponse: response.entry
+  },
+  TEXT_RESPONSE: {
+    type: 'ENTRY',
+    dropdown: {
+      label: 'TextResponse',
+      icon: ShortTextIcon
+    },
+    validation: {
+      defaultType: dataTypes.text,
+      availableTypes: [dataTypes.text],
+      validate: validation.entry
+    },
+    previewComponent: (
+      <TextField
+        isDisabled
+        multiline={true}
+        label={'Your Answer Here'}
+        onValueChanged={() => {}}
+      />
+    ),
+    getComponent: (params) => (
+      <TextField {...params} multiline={true} maxLength={200} />
+    ),
     getResponse: response.entry
   },
   LIKERT_SCALE: {

@@ -6,8 +6,8 @@
  * File Created: Saturday, 9th February 2021 11:01 am
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Tue Aug 10 2021
- * Modified By: tyler Gaffaney
+ * Last Modified: Thu Mar 03 2022
+ * Modified By: danielfong
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -102,6 +102,12 @@ body {
 .sl-button {
     font-family: NunitoSans-ExtraBold;
 }
+
+@media only screen and (min-width : 1200px) {
+
+    #single-column-container-metrics { max-width: 2500px; } 
+  
+  }
 
 /** Colors **/
 
@@ -251,7 +257,8 @@ body {
 }
 
 .question-input-wrapper {
-    max-width: 300px;
+    max-width: 650px;
+    padding-right: 20px;
 }
 
 .MuiPaper-elevation4 {

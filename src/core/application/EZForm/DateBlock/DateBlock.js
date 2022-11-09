@@ -6,8 +6,8 @@
  * File Created: Friday, 19th February 2021 10:39 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 10th August 2021 4:55 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Wednesday, 9th March 2022 2:48 pm
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -47,7 +47,7 @@ class DateBlock extends React.Component {
    */
   render() {
     return (
-      <div className="question-input-wrapper">
+      <div className='question-input-wrapper'>
         <FormControl fullWidth>
           <DateField
             {...this.props}

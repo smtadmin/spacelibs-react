@@ -6,8 +6,8 @@
  * File Created: Thursday, 18th February 2021 4:01 pm
  * Author: Justin Jeffrey (justin.jeffrey@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 2nd September 2021 2:30 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Monday, 28th February 2022 4:14 pm
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -213,8 +213,8 @@ class EZForm extends React.Component {
 
     if (this.state.status === EZFormStatus.loading) {
       output = (
-        <div className="justify-content-center text-center">
-          <CircularProgress color="primary" />
+        <div className='justify-content-center text-center'>
+          <CircularProgress color='primary' />
         </div>
       );
     } else if (this.state.status === EZFormStatus.failedToLoad) {
@@ -225,9 +225,10 @@ class EZForm extends React.Component {
           css={css`
             color: ${this.props.theme.palette.text.secondary};
           `}
-          className="justify-content-center text-center">
+          className='justify-content-center text-center'
+        >
           <h1>Submitting</h1>
-          <CircularProgress color="primary" />
+          <CircularProgress color='primary' />
         </div>
       );
     } else if (this.state.status === EZFormStatus.redirect) {
@@ -257,7 +258,8 @@ class EZForm extends React.Component {
                 this.state.status === EZFormStatus.inProgress
                   ? 'inline'
                   : 'none'
-            }}>
+            }}
+          >
             <EZFormBase
               unformattedFormData={this.state.data}
               onSubmit={this.onSubmit.bind(this)}

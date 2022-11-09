@@ -6,8 +6,8 @@
  * File Created: Wednesday, 28th April 2021 9:27 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 13th September 2021 1:39 pm
- * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
+ * Last Modified: Wednesday, 16th March 2022 9:36 am
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -27,12 +27,13 @@ const marketingSlug = (palette) => (
       css={css`
         color: ${palette.text.secondary};
         margin-top: 20px;
-      `}>
-      Interested in making your own secure forms with EZ Form?{' '}
+      `}
+    >
+      Interested in making your own secure forms with EZForm?{' '}
     </div>
     <div>
       Contact the SMT Team to get started here{' '}
-      <a href="https://chat.il4.dso.mil/ez-forms/">
+      <a href='https://chat.il4.dso.mil/ez-forms/'>
         https://chat.il4.dso.mil/ez-forms/
       </a>
     </div>
@@ -49,12 +50,13 @@ function EZFormSubmission({ text, resubmit, uriPath }) {
   const palette = useTheme().palette;
   return (
     <div
-      className="submission-text text-center"
+      className='submission-text text-center'
       css={css`
         color: ${palette.text.secondary};
-      `}>
+      `}
+    >
       <span style={{ fontSize: '60px' }}>
-        <CheckCircle fontSize="inherit" htmlColor={'#4fad52'} />
+        <CheckCircle fontSize='inherit' htmlColor={'#4fad52'} />
       </span>
       <h1>Thanks!</h1>
       <h1>You&apos;re all set.</h1>
@@ -65,7 +67,8 @@ function EZFormSubmission({ text, resubmit, uriPath }) {
           color={'secondary'}
           onClick={() => {
             window.location = '/form/' + uriPath;
-          }}>
+          }}
+        >
           Submit Another Response
         </SMTButton>
       )}

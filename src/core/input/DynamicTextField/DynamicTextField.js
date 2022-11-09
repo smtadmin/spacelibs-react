@@ -6,8 +6,8 @@
  * File Created: Friday, 14th May 2021 4:03 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 29th July 2021 1:58 pm
- * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
+ * Last Modified: Monday, 1st November 2021 10:31 am
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -36,6 +36,7 @@ function DynamicTextField(props) {
     return (
       <div className={'dynamic-label ' + props.className} data-testid={labelid}>
         <TextField
+          maxLength={props.maxLength}
           data-testid={testid}
           multiline={props.multiline}
           hasError={props.hasError}
@@ -79,7 +80,8 @@ function DynamicTextField(props) {
           color: ${palette.text.primary};
           border-color: ${palette.background.divider};
         `}
-        data-testid={labelid}>
+        data-testid={labelid}
+      >
         {props.value}
       </div>
     );
@@ -95,7 +97,8 @@ function DynamicTextField(props) {
         css={css`
           color: ${palette.text.primary};
           border-color: ${palette.background.divider};
-        `}>
+        `}
+      >
         {props.value}
       </div>
     );
@@ -118,6 +121,7 @@ DynamicTextField.propTypes = {
   bottomBarOffset: PropTypes.number,
   'data-testid': PropTypes.string,
   multiline: PropTypes.bool,
+  maxLength: PropTypes.number,
   canEdit: PropTypes.bool,
   isEditing: PropTypes.bool,
   identifier: PropTypes.string,

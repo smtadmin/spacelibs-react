@@ -6,8 +6,8 @@
  * File Created: Tuesday, 27th April 2021 4:00 pm
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 2nd September 2021 2:16 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Wednesday, 2nd March 2022 11:52 am
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -241,16 +241,10 @@ class EZFormBase extends React.Component {
     const currentPage = copy(this.state.data.pages[this.state.currentPage]);
     return (
       <>
-        <div
-          className="ezform-title"
-          css={css`
-            color: ${this.props.theme.palette.text.secondary};
-          `}>
-          {this.state.data.name}
-        </div>
         <EZFormPage
           onValueChanged={this.onValueChanged.bind(this)}
           {...currentPage}
+          formName={this.state.data.name}
         />
         {this.getBottomElements()}
       </>
@@ -329,8 +323,9 @@ class EZFormBase extends React.Component {
         data-testid={`page-${buttonText.toLowerCase()}-button`}
         color={'primary'}
         variant={'contained'}
-        size="small"
-        onClick={onClick}>
+        size='small'
+        onClick={onClick}
+      >
         {buttonText}
         <KeyboardArrowRight />
       </Button>
@@ -349,13 +344,14 @@ class EZFormBase extends React.Component {
 
     return (
       <Button
-        data-testid="page-back-button"
+        data-testid='page-back-button'
         style={computedStyle}
-        size="small"
+        size='small'
         color={'secondary'}
         variant={'contained'}
         onClick={this.onGoBack.bind(this)}
-        disabled={this.state.currentPage === 0}>
+        disabled={this.state.currentPage === 0}
+      >
         <KeyboardArrowLeft />
         Back
       </Button>
@@ -371,9 +367,9 @@ class EZFormBase extends React.Component {
   getBottomElements() {
     return (
       <MobileStepper
-        variant="dots"
+        variant='dots'
         steps={this.state.data.pages.length}
-        position="static"
+        position='static'
         activeStep={this.state.currentPage}
         nextButton={this.getNextButton()}
         backButton={this.getBackButton()}
@@ -392,12 +388,13 @@ class EZFormBase extends React.Component {
       <>
         {this.getFullComponent()}
         <GenericModal
-          data-testid="validation"
+          data-testid='validation'
           title={this.state.modalTitle}
           show={this.state.showModal}
           onHide={this.onCloseModal.bind(this)}
           leftButtonOnClick={this.onCloseModal.bind(this)}
-          showRightButton={false}>
+          showRightButton={false}
+        >
           {this.state.modalMessage.map((value, index) => {
             return <div key={index}>{value}</div>;
           })}

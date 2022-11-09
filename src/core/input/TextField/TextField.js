@@ -6,8 +6,8 @@
  * File Created: Wednesday, 10th February 2021 8:26 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Monday, 9th August 2021 4:54 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Thursday, 4th November 2021 1:12 pm
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -48,10 +48,14 @@ class TextField extends React.Component {
    */
   constructor(props) {
     super(props);
+
+    this.state = {
+      charCount: this.props.value ? this.props.value.length : 0
+    };
   }
 
   /**
-   * Event handler for TextField value chaning
+   * Event handler for TextField value changing
    *
    * @param {*} output - Text input change event
    * @memberof TextField
@@ -59,6 +63,7 @@ class TextField extends React.Component {
   onValueChanged(output) {
     let reducedValue = output && output.target ? output.target.value : null;
     this.props.onValueChanged(reducedValue);
+    this.setState({ charCount: output.target.value.length });
   }
 
   /**
@@ -71,7 +76,7 @@ class TextField extends React.Component {
     const InputProps = this.props.startAdornment
       ? {
           startAdornment: (
-            <InputAdornment position="start">
+            <InputAdornment position='start'>
               {this.props.startAdornment}
             </InputAdornment>
           )
@@ -81,8 +86,10 @@ class TextField extends React.Component {
     let inputProps = this.props.inputProps ? this.props.inputProps : {};
     inputProps.readOnly = this.props.isReadOnly;
 
+    let helperText = null;
     if (this.props.maxLength != null) {
       inputProps.maxLength = this.props.maxLength;
+      helperText = this.state.charCount + '/' + inputProps.maxLength;
     }
 
     inputProps['data-testid'] = `${this.props['data-testid']}-textfield-input`;
@@ -108,6 +115,7 @@ class TextField extends React.Component {
           label={this.props.label}
           placeholder={this.props.placeholder}
           error={this.props.hasError ? true : null}
+          helperText={helperText}
           InputProps={InputProps}
         />
         {this.props.subText && this.props.subText.length > 0 && (
@@ -144,7 +152,7 @@ TextField.propTypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   inputProps: PropTypes.any,
-  value: PropTypes.string,
+  value: PropTypes.any,
   hasError: PropTypes.bool,
   multiline: PropTypes.bool,
   rowsMax: PropTypes.number,

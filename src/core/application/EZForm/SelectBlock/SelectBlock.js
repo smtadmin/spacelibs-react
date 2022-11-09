@@ -6,8 +6,8 @@
  * File Created: Friday, 19th February 2021 10:49 am
  * Author: tyler Gaffaney (tyler.gaffaney@siliconmtn.com)
  * -----
- * Last Modified: Tuesday, 10th August 2021 5:03 pm
- * Modified By: tyler Gaffaney (tyler.gaffaney@siliconmtn.com>)
+ * Last Modified: Tuesday, 14th December 2021 11:16 am
+ * Modified By: Daniel Fong (daniel.fong@siliconmtn.com>)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
  */
@@ -117,7 +117,7 @@ class SelectBlock extends React.Component {
    */
   render() {
     return (
-      <div className="question-input-wrapper">
+      <div className='question-input-wrapper'>
         <FormControl fullWidth>
           <SelectField
             {...this.props}
@@ -128,7 +128,8 @@ class SelectBlock extends React.Component {
         {this.state.showAlternateResponse && (
           <TextField
             class={'select-alt-field'}
-            label={'Other'}
+            label={'Other (NO PII AUTHORIZED)'}
+            maxLength={100}
             value={this.state.alternateValue}
             onValueChanged={this.onAlternateValueChanged.bind(this)}
           />

@@ -6,7 +6,7 @@
  * File Created: Tuesday, 11th May 2021 12:26 pm
  * Author: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
- * Last Modified: Thursday, 29th July 2021 11:31 am
+ * Last Modified: Friday, 26th November 2021 10:01 am
  * Modified By: Chris Scarola (chris.scarola@siliconmtn.com)
  * -----
  * Copyright 2021, Silicon Mountain Technologies, Inc.
@@ -61,7 +61,7 @@ const GenericModal = (props) => {
       case 'help':
         return (
           <HelpIcon
-            className="generic-modal-icon"
+            className='generic-modal-icon'
             css={css`
               color: ${theme.palette.primary.main};
             `}
@@ -70,7 +70,7 @@ const GenericModal = (props) => {
       case 'info':
         return (
           <InfoIcon
-            className="generic-modal-icon"
+            className='generic-modal-icon'
             css={css`
               color: ${theme.palette.primary.main};
             `}
@@ -79,7 +79,7 @@ const GenericModal = (props) => {
       case 'warning':
         return (
           <WarningIcon
-            className="generic-modal-icon"
+            className='generic-modal-icon'
             css={css`
               color: ${theme.palette.warning.main};
             `}
@@ -88,7 +88,7 @@ const GenericModal = (props) => {
       case 'error':
         return (
           <ErrorIcon
-            className="generic-modal-icon"
+            className='generic-modal-icon'
             css={css`
               color: ${theme.palette.error.main};
             `}
@@ -111,7 +111,8 @@ const GenericModal = (props) => {
       animation={props.isAnimated}
       centered={props.isCentered}
       data-testid={`${props['data-testid']}-modal`}
-      size={props.size}>
+      size={props.size}
+    >
       <Modal.Header
         closeButton={props.showX}
         data-testid={`${props['data-testid']}-modal-header`}
@@ -121,7 +122,8 @@ const GenericModal = (props) => {
           .close {
             color: ${theme.palette.text.primary};
           }
-        `}>
+        `}
+      >
         <Modal.Title data-testid={`${props['data-testid']}-modal-title`}>
           {loadIcon()}
           {props.title}
@@ -132,14 +134,16 @@ const GenericModal = (props) => {
         css={css`
           background-color: ${backgroundColor};
           color: ${theme.palette.text.primary};
-        `}>
+        `}
+      >
         {props.children}
       </Modal.Body>
       <Modal.Footer
         data-testid={`${props['data-testid']}-modal-footer`}
         css={css`
           background-color: ${backgroundColor};
-        `}>
+        `}
+      >
         {props.showLeftButton && (
           <Button
             variant={props.leftButtonVariant}
@@ -150,7 +154,8 @@ const GenericModal = (props) => {
             startIcon={props.leftButtonStartIcon}
             endIcon={props.leftButtonEndIcon}
             onClick={props.leftButtonOnClick}
-            data-testid={`${props['data-testid']}-modal-left`}>
+            data-testid={`${props['data-testid']}-modal-left`}
+          >
             {props.leftButtonLabel}
           </Button>
         )}
@@ -164,7 +169,8 @@ const GenericModal = (props) => {
             startIcon={props.rightButtonStartIcon}
             endIcon={props.rightButtonEndIcon}
             onClick={props.rightButtonOnClick}
-            data-testid={`${props['data-testid']}-modal-right`}>
+            data-testid={`${props['data-testid']}-modal-right`}
+          >
             {props.rightButtonLabel}
           </Button>
         )}
@@ -202,7 +208,7 @@ GenericModal.propTypes = {
    *
    * One of ('static','true','false')
    */
-  backdrop: PropTypes.oneOf(['static', 'true', 'false']),
+  backdrop: PropTypes.oneOf(['static', true, false]),
   /**
    * Modal keyboard option to choose if esc closes a modal (true) or not
    */
